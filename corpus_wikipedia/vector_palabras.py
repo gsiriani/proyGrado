@@ -1,4 +1,3 @@
-from random import random
 from codecs import open, BOM_UTF8
 
 def is_number(token):
@@ -24,12 +23,3 @@ class palabras_comunes:
 		p = token.lower()
 		c = is_number(p)
 		return self.dic_p.setdefault(c, self.UNK)
-
-def generar_vectores_iniciales(cantidad, tamano):
-	lista_vectores = []
-	for i in range (0, cantidad):
-		vector = []
-		for k in range(0, tamano):
-			vector.append(random())
-		lista_vectores.append(vector)
-	return lista_vectores
