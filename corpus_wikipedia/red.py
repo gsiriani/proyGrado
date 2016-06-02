@@ -11,24 +11,23 @@ def obtener_matriz(oracion):
 	# resultado = tf.zeros([window_size, vector_size] )
 	matriz = []
 	for i in range (window_size):
-		matriz.append([0] * cant_palabras)
+		matriz.append([0.0] * cant_palabras)
 	for i in range (window_size):
 		matriz[i][p.obtener_indice(oracion[i])] = 1
-	return tf.Variable(matriz)
+	return matriz
 
 sess = tf.InteractiveSession()
 oracion = ["La", "casa", "del", "gato", "verde"]
 matriz = obtener_matriz(oracion)
 
-#x = tf.placeholder(tf.float32, shape=[window_size, cant_palabras])
-#
-#
-#wVectores = tf.Variable(vectores)
-#
-#y = tf.nn.softmax(tf.matmul(x,wVectores))
-#
-#sess.run(tf.initialize_all_variables())
-#print y.eval(feed_dict={x: matriz})
+x = tf.placeholder(tf.float32, shape=[window_size, cant_palabras])
 
+wVectores = tf.Variable(vectores)
 
+wConvolutional = tf.Variable(tf.zeros[])
+bConvolutional = tf.Variable(tf.zeros[])
 
+y = tf.matmul(x,wVectores)
+c = tf.constant(matriz)
+sess.run(tf.initialize_all_variables())
+print y.eval(feed_dict={x: matriz})
