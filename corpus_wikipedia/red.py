@@ -4,7 +4,7 @@ import tensorflow as tf
 window_size = 5
 vector_size = 3
 cant_palabras = 100002
-unidades_ocultas_capa_2 = 150
+unidades_ocultas_capa_2 = 500
 
 p = palabras_comunes("es-lexicon.txt")
 
@@ -37,10 +37,14 @@ x = tf.placeholder(tf.float32, shape=[window_size, cant_palabras])
 
 wVectores = tf.Variable(vectores)
 
-h_1 = tf.tanh(tf.reshape(tf.matmul(x,wVectores),[vector_size * window_size]))
+h_1 = tf.reshape(tf.matmul(x,wVectores),[vector_size * window_size])
 
-#wConvolutional = tf.Variable(tf.zeros[])
-#bConvolutional = tf.Variable(tf.zeros[])
+w_capa_2 = tf.Variable(tf.zeros[unidades_ocultas_capa_2,vector_size * window_size])
+b_capa_2 = tf.Variable(tf.zeros[unidades_ocultas_capa_2])
+
+h_2 = tf.tanh(tf.matmul(w_capa_2, h_1) + b_capa_2)
+
+
 
 sess.run(tf.initialize_all_variables())
 
