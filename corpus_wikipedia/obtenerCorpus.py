@@ -48,3 +48,7 @@ def palabras_frecuentes(words_in_corpus = 60000000, max_words = 100000, start=0)
 
     # Guardo las palabras en un archivo de texto
     open("es-lexicon.txt", "w").write(BOM_UTF8 + "\n".join(resultado).encode("utf-8"))
+
+
+def obtener_ventanas(file_name, window_size):
+    return []
