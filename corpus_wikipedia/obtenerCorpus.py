@@ -26,7 +26,7 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
     i = 0
     motivo_fin = "Se han parseado todos los archivos"
     # Recorro los archivos del corpus
-    for f in glob("/run/media/gonzalo.herrera/Herrera/raw.es/*")[start:]:
+    for f in glob("raw.es/*")[start:]:
         # Recorro las lineas del archivo
         for line in open(f, encoding="latin-1"):
             if line == "\n" or line.startswith((
