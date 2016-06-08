@@ -1,0 +1,10 @@
+él,tiene,una,casa,linda,1,0
+él,no,tiene,casa,alguna,1,0
+la,casa,es,muy,grande,1,0
+ella,vive,en,su,casa,1,0
+ella,no,vive,en,casa,1,0
+él,tiene,linda,casa,no,0,1
+no,él,casa,tiene,alguna,0,1
+la,casa,no,él,grande,0,1
+ella,casa,vive,en,su,0,1
+casa,no,ella,en,vive,0,1

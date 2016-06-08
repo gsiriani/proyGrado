@@ -5,6 +5,18 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
     print "Ejecutando..."
     lexicon = {}
 
+    def no_numeros(palabra):
+        for p in palabra:
+            if (p.isdigit()):
+                return False
+        return True
+
+    def no_simbolos_raros(palabra):
+        for p in palabra:
+            if (not p.isalnum()):
+                return False
+        return True
+
     def agregar_a_lexicon(palabra):        
         if lexicon.has_key(palabra):
             lexicon[palabra] += 1
@@ -14,7 +26,7 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
     i = 0
     motivo_fin = "Se han parseado todos los archivos"
     # Recorro los archivos del corpus
-    for f in glob("raw.es/*")[start:]:
+    for f in glob("/run/media/gonzalo.herrera/Herrera/raw.es/*")[start:]:
         # Recorro las lineas del archivo
         for line in open(f, encoding="latin-1"):
             if line == "\n" or line.startswith((
@@ -42,16 +54,19 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
                 inicio = palabra[0]
                 if not inicio.isalnum():
                     agregar_a_lexicon(inicio)
+                    palabra = palabra[1:]
+                if len(palabra) == 0:
+                    continue
                 # chequeo signo de puntuacion al final                
                 final = palabra[-1]
                 if not final.isalnum():
                     agregar_a_lexicon(final)
-                # conservo unicamente caracteres alfanumericos
-                palabra = ''.join(e for e in palabra if e.isalnum())
+                    palabra = palabra[:-1]
                 # ignoro numeros y palabras de largo 0
-                if palabra.isdigit() or len(palabra) == 0:
+                if len(palabra) == 0:
                     continue
-                agregar_a_lexicon(palabra)
+                if (no_numeros(palabra) and no_simbolos_raros(palabra)):
+                    agregar_a_lexicon(palabra)
      
     # Ordeno segun la frecuencia y me quedo con la cantidad deseada        
     top = []  
@@ -73,3 +88,5 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
 
 def obtener_ventanas(file_name, window_size):
     return []
+
+palabras_frecuentes()
