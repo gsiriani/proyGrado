@@ -1,5 +1,9 @@
+import freeling
+import sys
+import random
+import io
+from codecs import open, BOM_UTF8
 from glob import glob
-from codecs import open, BOM_UTF8   
 
 def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0):
     print "Ejecutando..."
@@ -23,6 +27,35 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
         else:
             lexicon[palabra] = 1
 
+
+    FREELINGDIR = "/usr/local";
+
+    sys.stdin = io.TextIOWrapper(sys.stdin.buffer,encoding='latin-1');
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='latin-1');
+
+    DATA = FREELINGDIR+"/share/freeling/";
+    LANG="es";
+
+    freeling.util_init_locale("default");
+
+    # create language analyzer
+    la=freeling.lang_ident(DATA+"common/lang_ident/ident.dat");
+
+    # create options set for maco analyzer. Default values are Ok, except for data files.
+    op= freeling.maco_options("es");
+    op.set_data_files( "", 
+                       DATA + "common/punct.dat",
+                       DATA + LANG + "/dicc.src",
+                       DATA + LANG + "/afixos.dat",
+                       "",
+                       DATA + LANG + "/locucions.dat", 
+                       DATA + LANG + "/np.dat",
+                       DATA + LANG + "/quantities.dat",
+                       DATA + LANG + "/probabilitats.dat");
+
+    # create analyzers
+    tk=freeling.tokenizer(DATA+LANG+"/tokenizer.dat");
+
     i = 0
     motivo_fin = "Se han parseado todos los archivos"
     # Recorro los archivos del corpus
@@ -43,7 +76,7 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
                 break
 
             # Divido la linea en palabras
-            palabras_linea = line.lower().split()
+            palabras_linea = map(lambda x: x.getform(),tk.tokenize(line.lower()))
 
             # Actualizo la cantidad de palabras leidas
             i += len(palabras_linea)
@@ -88,5 +121,7 @@ def palabras_frecuentes(words_in_corpus = 130000000, max_words = 100000, start=0
 
 def obtener_ventanas(file_name, window_size):
     return []
+
+
 
 palabras_frecuentes()

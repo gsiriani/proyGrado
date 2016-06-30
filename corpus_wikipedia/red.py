@@ -1,18 +1,20 @@
+import sys
 from vector_palabras import palabras_comunes
 from random import random
 import tensorflow as tf
 import csv
 
+csv.field_size_limit(sys.maxsize)
 
-window_size = 5 # Cantidad de palabras en cada caso de prueba
+
+window_size = 11 # Cantidad de palabras en cada caso de prueba
 vector_size = 150 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
-cant_palabras = 100002	# Cantidad de palabras consideradas en el diccionario
+cant_palabras = 100003	# Cantidad de palabras consideradas en el diccionario
 unidades_ocultas_capa_2 = 100
 unidades_ocultas_capa_3 = 2
 file_length = 10
 
 p = palabras_comunes("es-lexicon.txt")
-
 
 def generar_vectores_iniciales(cantidad, tamano):
 	lista_vectores = []
@@ -36,7 +38,7 @@ def obtener_matriz(oracion):
 	matriz = []
 	for i in range (window_size):
 		matriz.append([0.0] * cant_palabras)
-	for i in range (window_size):
+	for i in range (window_size):	
 		matriz[i][p.obtener_indice(oracion[i])] = 1
 	return matriz
 
@@ -46,7 +48,7 @@ def leer_csv(nombre):
 	valores = []
 	filas = []
 	for r in lector:
-		filas.append(obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size])))
+		filas.append(obtener_matriz(map(lambda x: unicode(x, encoding="latin-1"),r[:window_size])))
 		valores.append(map(lambda x: int(x), r[window_size:]))
 	return [filas,valores]
 
@@ -77,20 +79,35 @@ cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices 
 
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(cross_entropy)
 
-entrenamiento = leer_csv("prueba.csv")
+#entrenamiento = leer_csv("prueba.csv")
 
 sess.run(tf.initialize_all_variables())
 
-for i in range(100):
-	print i
-	for j in range(len(entrenamiento[0])):
-		sess.run(train_step, feed_dict = {x : entrenamiento[0][j], y_ : entrenamiento[1][j]})
+archivo = open("diez_porciento.csv", "rb")
+lector = csv.reader(archivo, delimiter=' ')
+fallidos = 0
+for i in range(1):
+	archivo.seek(0)
+	j = 0
+	for r in lector:	
+		j = j + 1	
+		if (len(r) != 13):
+			fallidos = fallidos + 1
+			j = j + 1
+			continue
+		print j
+		j = j + 1
+		oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
+		valoracion = map(lambda x: int(x), r[window_size:])
+		sess.run(train_step, feed_dict = {x : oracion, y_ : valoracion})
+print
+print j
 
-for i in range(len(entrenamiento[0])):
-	print y.eval(feed_dict = {x : entrenamiento[0][i]})
-	print entrenamiento[1][i]
-	print sess.run(cross_entropy, feed_dict = {x : entrenamiento[0][i], y_ : entrenamiento[1][i]})
-	print
-
-
-
+#archivo.seek(0)
+#for r in lector:
+#	oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
+#	valoracion = map(lambda x: int(x), r[window_size:])
+#	print valoracion
+#	print y.eval(feed_dict = {x : oracion})
+#	print sess.run(cross_entropy, feed_dict = {x : oracion, y_ : valoracion})
+#	print

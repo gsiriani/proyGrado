@@ -1,16 +1,18 @@
 from vector_palabras import palabras_comunes
 from random import random
+import sys
 import tensorflow as tf
 import csv
 
+csv.field_size_limit(sys.maxsize)
 
-window_size = 5 # Cantidad de palabras en cada caso de prueba
+window_size = 11 # Cantidad de palabras en cada caso de prueba
 vector_size = 150 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
-cant_palabras = 100002	# Cantidad de palabras consideradas en el diccionario
+cant_palabras = 100003	# Cantidad de palabras consideradas en el diccionario
 unidades_ocultas_capa_2 = 100
 unidades_ocultas_capa_3 = 2
 file_length = 10
-batch_size = 10
+batch_size = 50
 
 p = palabras_comunes("es-lexicon.txt")
 
@@ -91,19 +93,51 @@ cross_entropy_test = tf.reduce_mean(-tf.reduce_sum(y_test_ * tf.log(y_test), red
 
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(cross_entropy)
 
-entrenamiento = leer_csv("prueba.csv")
+#entrenamiento = leer_csv("prueba.csv")
 
 sess.run(tf.initialize_all_variables())
 
-for i in range(100):
-	print i
-	batch = []
-	for j in range(batch_size):
-		batch = batch + entrenamiento[0][j]
-	sess.run(train_step, feed_dict = {x : batch, y_ : entrenamiento[1]})
+#for i in range(1):
+#	print i
+#	batch = []
+#	for j in range(batch_size):
+#		batch = batch + entrenamiento[0][j]
+#	sess.run(train_step, feed_dict = {x : batch, y_ : entrenamiento[1]})
 
-for i in range(len(entrenamiento[0])):
-	print y_test.eval(feed_dict = {x_test : entrenamiento[0][i]})
-	print entrenamiento[1][i]
-	print sess.run(cross_entropy_test, feed_dict = {x_test : entrenamiento[0][i], y_test_ : entrenamiento[1][i]})
-	print
+
+archivo = open("diez_porciento.csv", "rb")
+lector = csv.reader(archivo, delimiter=' ')
+lineas = 0
+for r in lector:
+	lineas = lineas + 1
+
+for i in range(1):
+	archivo.seek(0)
+	k = 0
+	while (k < lineas):
+		print k
+		batch = []
+		batch_val = []
+		for j in range(batch_size):
+			r = lector.next()
+			while (len(r) != 13):
+				r = lector.next()
+				k = k + 1
+				if (k >= lineas):
+					break
+			if (k >= lineas):
+				break
+			oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
+			valoracion = map(lambda x: int(x), r[window_size:])
+			batch = batch + oracion
+			batch_val.append(valoracion)
+		if (k >= lineas):
+			break
+		k = k + batch_size
+		sess.run(train_step, feed_dict = {x : batch, y_ : batch_val})
+
+#for i in range(len(entrenamiento[0])):
+#	print y_test.eval(feed_dict = {x_test : entrenamiento[0][i]})
+#	print entrenamiento[1][i]
+#	print sess.run(cross_entropy_test, feed_dict = {x_test : entrenamiento[0][i], y_test_ : entrenamiento[1][i]})
+#	print
