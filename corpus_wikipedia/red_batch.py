@@ -105,7 +105,7 @@ sess.run(tf.initialize_all_variables())
 #	sess.run(train_step, feed_dict = {x : batch, y_ : entrenamiento[1]})
 
 
-archivo = open("diez_porciento.csv", "rb")
+archivo = open("diez_porciento_filtrado.csv", "rb")
 lector = csv.reader(archivo, delimiter=' ')
 lineas = 0
 for r in lector:
@@ -127,6 +127,7 @@ for i in range(1):
 					break
 			if (k >= lineas):
 				break
+			print r
 			oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
 			valoracion = map(lambda x: int(x), r[window_size:])
 			batch = batch + oracion
