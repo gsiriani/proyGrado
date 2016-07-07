@@ -1,32 +1,90 @@
+import sys
+import json
+sys.path.append('.../myfreeling/APIs/python')
+import freeling
+import random
+import io
+from codecs import open, BOM_UTF8
 from glob import glob
-from codecs import open, BOM_UTF8   
 
+# Variables de control
+# Seteadas para cubrir todo el corpus
 words_in_corpus = 130000000
 max_words = 100000
 start=0
 
-print "Obteniendo Corpus..."
+print("Obteniendo Corpus...")
+
+# Inicializo diccionarios
 lexicon = {}
+numeros = {}
+fechas = {}
+desconocidos = {}
 
-def no_numeros(palabra):
-    for p in palabra:
-        if (p.isdigit()):
-            return False
-    return True
-
-def no_simbolos_raros(palabra):
-    for p in palabra:
-        if (not p.isalnum()):
-            return False
-    return True
-
+# Funciones auxiliares
+# --------------------
 def agregar_a_lexicon(palabra):        
     if lexicon.has_key(palabra):
         lexicon[palabra] += 1
     else:
         lexicon[palabra] = 1
 
-i = 0
+def agregar_a_numeros(palabra):        
+    if not numeros.has_key(palabra):
+        numeros[palabra] = 1
+
+def agregar_a_fechas(palabra):        
+    if not fechas.has_key(palabra):
+        fechas[palabra] = 1
+
+def agregar_a_desconocidos(palabra, tag):        
+    if not desconocidos.has_key(palabra):
+        desconocidos[palabra] = tag
+
+# Configuracion de freeling
+# -------------------------
+FREELINGDIR = "/usr/local";
+DATA = FREELINGDIR+"/share/freeling/"
+LANG = "es"
+
+freeling.util_init_locale("default")
+
+# Se crean opciones para analizador maco
+op= freeling.maco_options("es")
+op.set_data_files( "", 
+                   DATA + "common/punct.dat",
+                   DATA + LANG + "/dicc.src",
+                   DATA + LANG + "/afixos.dat",
+                   "",
+                   DATA + LANG + "/locucions.dat", 
+                   DATA + LANG + "/np.dat",
+                   DATA + LANG + "/quantities.dat",
+                   DATA + LANG + "/probabilitats.dat")
+
+# Se crea el analizador maco con las opciones precreadas
+morfo = freeling.maco(op)
+# Se setean los analisis requeridos. Solamente se usa deteccion de numeros y de fechas 
+morfo.set_active_options (False, # UserMap
+                         True, # NumbersDetection,
+                         False, #  PunctuationDetection,
+                         True, #  DatesDetection,
+                         False, #  DictionarySearch,
+                         False, #  AffixAnalysis,
+                         False, #  CompoundAnalysis,
+                         False, #  RetokContractions,
+                         False, #  MultiwordsDetection,
+                         False, #  NERecognition,
+                         False, #  QuantitiesDetection,
+                         False) #  ProbabilityAssignment
+
+# Se crean tokenizador y splitter
+tk = freeling.tokenizer(DATA+LANG+"/tokenizer.dat")
+sp = freeling.splitter(DATA+LANG+"/splitter.dat")
+
+
+# Estructura principal
+# --------------------
+i = 0 # Contador de palabras leidas
 motivo_fin = "Se han parseado todos los archivos"
 # Recorro los archivos del corpus
 for f in glob("raw.es/*")[start:]:
@@ -45,59 +103,83 @@ for f in glob("raw.es/*")[start:]:
             motivo_fin = "Supere la cantidad de palabras previstas"
             break
 
-        # Divido la linea en palabras
-        palabras_linea = line.lower().split()
+        # Divido la linea en tokens (palabras)
+        palabras_linea = tk.tokenize(line.lower())
 
-        # Actualizo la cantidad de palabras leidas
-        i += len(palabras_linea)
-
-        # Agrego las palabras al diccionario
-        for palabra in palabras_linea:
-            # chequeo signo de puntuacion al principio
-            inicio = palabra[0]
-            if not inicio.isalnum():
-                agregar_a_lexicon(inicio)
-                palabra = palabra[1:]
-            if len(palabra) == 0:
-                continue
-            # chequeo signo de puntuacion al final                
-            final = palabra[-1]
-            if not final.isalnum():
-                agregar_a_lexicon(final)
-                palabra = palabra[:-1]
-            # ignoro numeros y palabras de largo 0
-            if len(palabra) == 0:
-                continue
-            if (no_numeros(palabra) and no_simbolos_raros(palabra)):
-                agregar_a_lexicon(palabra)
+        # Agrupo en oraciones para analizar
+        for oracion in sp.split(palabras_linea):
+        	# Analizo la oracion          
+        	oracion = morfo.analyze(oracion)
+        	palabras = oracion.get_words()
+        	# Recorro las palabras de la oracion
+        	for palabra in palabras:	
+	        	# Actualizo la cantidad de palabras leidas
+	        	i += 1
+        		# Obtengo el analisis
+	        	analisis = palabra.get_analysis()
+	        	if analisis != ():
+	        		if ("Z" in str(analisis[0].get_tag())):	
+	        			# la palabra es un numero
+	        			agregar_a_numeros(palabra.get_form())
+	        		elif ("W" in str(analisis[0].get_tag())):	
+	        			# la palabra es una fecha
+	        			agregar_a_fechas(palabra.get_form())
+	        		else:
+	        			# no se reconoce la etiqueta de la palabra
+	        			agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
+    			else:
+        			# Agrego palabra al diccionario
+	        		agregar_a_lexicon(palabra.get_form())
  
-print "Ordenando palabras..."
+print("Ordenando palabras...")
 
+# Grabo los resultados en archivos de texto
+# ------------------------------------------
+
+# Palabras mas frecuentes
+# - - - - - - - - - - - -
 # Ordeno segun la frecuencia y me quedo con la cantidad deseada        
 top = []  
 for (w,freq) in lexicon.items():    
     top.append((freq, w))
  
 top = sorted(top, reverse=True)[:max_words] # top max_words
-# resultado = [w for (_,w) in top] 
-resultado = [str(f) + ' ' + w for (f,w) in top] 
+resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
+# resultado = [str(f) + ' ' + w for (f,w) in top] # Almaceno palabras y cantidad de usos
 
 # Guardo las palabras en un archivo de texto
 open("es-lexicon.txt", "w").write(BOM_UTF8 + "\n".join(resultado).encode("utf-8"))
 
-
+# Todas las palabras consideradas
+# - - - - - - - - - - - - - - - -
 total = []
 for (w,freq) in lexicon.items():    
     total.append((freq, w)) 
 total = sorted(total, reverse=True)
-# resultado = [w for (_,w) in top] 
-resultado_tot = [str(f) + ' ' + w for (f,w) in total]
+# resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
+resultado_tot = [str(f) + ' ' + w for (f,w) in total] # Almaceno palabras y cantidad de usos
 # Guardo las palabras en un archivo de texto
-open("es-lexicon-total.txt", "w").write(BOM_UTF8 + "\n".join(resultado_tot).encode("utf-8"))
+open("descarte/es-lexicon-total.txt", "w").write(BOM_UTF8 + "\n".join(resultado_tot).encode("utf-8")) 
+
+# Palabras identificadas como numero
+# - - - - - - - - - - - - - - - - -
+numeros_aux = [w for (w,_) in numeros.items()]
+open("descarte/es-lexicon-numeros.txt", "w").write(BOM_UTF8 + "\n".join(numeros_aux).encode("utf-8"))
+
+# Palabras identificadas como fecha
+# - - - - - - - - - - - - - - - - -
+fechas_aux = [w for (w,_) in fechas.items()]
+open("descarte/es-lexicon-fechas.txt", "w").write(BOM_UTF8 + "\n".join(fechas_aux).encode("utf-8"))
+
+# Palabras con tag desconocida
+# - - - - - - - - - - - - - - 
+desconocidos_aux = [str(w) + ' ' + str(t) for (w,t) in desconocidos.items()]
+open("descarte/es-lexicon-desconocidos.txt", "w").write(BOM_UTF8 + "\n".join(desconocidos_aux).encode("utf-8"))
+
 
 # Calculo porcentaje de cobertura
+# -------------------------------
 porcentaje = (100*max_words)/len(lexicon)
-print "La cantidad total de palabras parseadas es: " + str(len(lexicon))
-print "El porcentaje de cobertura es: " + str(porcentaje)
-print motivo_fin
-
+print("La cantidad total de palabras parseadas es: " + str(len(lexicon)))
+print("El porcentaje de cobertura es: " + str(porcentaje))
+print(motivo_fin)
