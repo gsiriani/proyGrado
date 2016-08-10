@@ -19,13 +19,13 @@ for l in archivo:
 	if (i % 5000 == 0):
 		cant_ocurrencias.append((i,ocurrencias))
 
-print '#Palabras \t%Palabras \t#Ocurrencias \t%Ocurrencias'
+print '#Palabras \t%Palabras \t%Ocurrencias'
 for (n,c) in cant_ocurrencias:
 	pp = float(n)*100/i
 	po = float(c)*100/ocurrencias
 	if n < 1000000:
-		print "%u \t\t%f \t%u \t%f" % (n,pp,c,po) 
+		print "%u \t\t%f \t%f" % (n,pp,po) 
 	else:		
-		print "%u \t%f \t%u \t%f" % (n,pp,c,po) 
+		print "%u \t%f \t%f" % (n,pp,po) 
 print '\nTotal de ocurrencias: ' + str(ocurrencias)
 print 'Total de palabras: ' + str(i)

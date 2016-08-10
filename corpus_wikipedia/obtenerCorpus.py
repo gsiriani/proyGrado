@@ -10,7 +10,7 @@ from glob import glob
 # Variables de control
 # Seteadas para cubrir todo el corpus
 words_in_corpus = 130000000
-max_words = 100000
+max_words = 55000
 start=0
 
 print("Obteniendo Corpus...")
@@ -67,7 +67,7 @@ morfo = freeling.maco(op)
 morfo.set_active_options (False, # UserMap
                          True, # NumbersDetection,
                          False, #  PunctuationDetection,
-                         True, #  DatesDetection,
+                         False, #  DatesDetection,  --> Setear a True para considerar fechas
                          False, #  DictionarySearch,
                          False, #  AffixAnalysis,
                          False, #  CompoundAnalysis,
