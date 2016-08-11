@@ -52,6 +52,16 @@ def leer_csv(nombre):
 		valores.append(map(lambda x: int(x), r[window_size:]))
 	return [filas,valores]
 
+def colocar_unos(oracion, matriz):
+	for i in range (window_size):	
+		matriz[i][p.obtener_indice(oracion[i])] = 1
+	return matriz
+
+def colocar_ceros(oracion,matriz):
+	for i in range (window_size):	
+		matriz[i][p.obtener_indice(oracion[i])] = 0
+	return matriz
+
 vectores = generar_vectores_iniciales(cant_palabras, vector_size)
 
 sess = tf.InteractiveSession()
@@ -83,6 +93,8 @@ train_step = tf.train.GradientDescentOptimizer(0.1).minimize(cross_entropy)
 
 sess.run(tf.initialize_all_variables())
 
+oracion = [[0]*cant_palabras for i in range(window_size)]
+
 archivo = open("diez_porciento.csv", "rb")
 lector = csv.reader(archivo, delimiter=' ')
 fallidos = 0
@@ -97,9 +109,10 @@ for i in range(1):
 			continue
 		print j
 		j = j + 1
-		oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
+		oracion = colocar_unos(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]), oracion)
 		valoracion = map(lambda x: int(x), r[window_size:])
 		sess.run(train_step, feed_dict = {x : oracion, y_ : valoracion})
+		oracion = colocar_ceros(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]), oracion)
 print
 print j
 
