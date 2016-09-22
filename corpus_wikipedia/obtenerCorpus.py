@@ -65,7 +65,7 @@ op.set_data_files( "",
 morfo = freeling.maco(op)
 # Se setean los analisis requeridos. Solamente se usa deteccion de numeros y de fechas 
 morfo.set_active_options (False, # UserMap
-                         True, # NumbersDetection,
+                         False, # NumbersDetection,
                          False, #  PunctuationDetection,
                          False, #  DatesDetection,  --> Setear a True para considerar fechas
                          False, #  DictionarySearch,
@@ -108,28 +108,35 @@ for f in glob("raw.es/*")[start:]:
 
         # Agrupo en oraciones para analizar
         for oracion in sp.split(palabras_linea):
-        	# Analizo la oracion          
-        	oracion = morfo.analyze(oracion)
-        	palabras = oracion.get_words()
+        	# # Analizo la oracion          
+        	# oracion = morfo.analyze(oracion)
+          palabras = oracion.get_words()
+
         	# Recorro las palabras de la oracion
-        	for palabra in palabras:	
+          for palabra in palabras:	
 	        	# Actualizo la cantidad de palabras leidas
-	        	i += 1
-        		# Obtengo el analisis
-	        	analisis = palabra.get_analysis()
-	        	if analisis != ():
-	        		if ("Z" in str(analisis[0].get_tag())):	
-	        			# la palabra es un numero
-	        			agregar_a_numeros(palabra.get_form())
-	        		elif ("W" in str(analisis[0].get_tag())):	
-	        			# la palabra es una fecha
-	        			agregar_a_fechas(palabra.get_form())
-	        		else:
-	        			# no se reconoce la etiqueta de la palabra
-	        			agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
-    			else:
-        			# Agrego palabra al diccionario
-	        		agregar_a_lexicon(palabra.get_form())
+            i += 1
+            p = palabra.get_form()
+            if p.isalnum():
+              if p.isdigit():
+                agregar_a_numeros(p)
+              else:
+                agregar_a_lexicon(p)
+        		# # Obtengo el analisis
+          #   analisis = palabra.get_analysis()
+          #   if analisis != ():
+          #     if ("Z" in str(analisis[0].get_tag())):	
+          #   		# la palabra es un numero
+          #       agregar_a_numeros(palabra.get_form())
+          #     elif ("W" in str(analisis[0].get_tag())):	
+          #   		# la palabra es una fecha
+          #   		agregar_a_fechas(palabra.get_form())
+          #     else:
+          #   		# no se reconoce la etiqueta de la palabra
+          #       agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
+          #   else:
+        		# 	# Agrego palabra al diccionario
+          #     agregar_a_lexicon(palabra.get_form())
  
 print("Ordenando palabras...")
 
