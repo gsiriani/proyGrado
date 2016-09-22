@@ -28,7 +28,7 @@ def agregar_a_numeros(palabra):
 # --------------------
 i = 0 # Contador de palabras leidas
 # Recorro las oraciones (lineas) del archivo
-for line in open('ancora_oraciones.txt', encoding="latin-1"):
+for line in open('ancora_oraciones.txt', encoding="utf-8"):
   	# Recorro las palabras de la oracion
     for palabra in line[:-3].split(' '):	# el [:-3] es para deshacerme del salto de linea al final de cada oracion
       	# Actualizo la cantidad de palabras leidas
@@ -51,8 +51,8 @@ for (w,freq) in lexicon.items():
     top.append((freq, w))
  
 top = sorted(top, reverse=True)# palabras ordenadas por frecuencia
-# resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
-resultado = [str(f) + ' ' + w for (f,w) in top] # Almaceno palabras y cantidad de usos
+resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
+# resultado = [str(f) + ' ' + w for (f,w) in top] # Almaceno palabras y cantidad de usos
 
 # Guardo las palabras en un archivo de texto
 open("lexicon_ancora.txt", "w").write(BOM_UTF8 + "\n".join(resultado).encode("utf-8"))
