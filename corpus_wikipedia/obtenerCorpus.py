@@ -65,9 +65,9 @@ op.set_data_files( "",
 morfo = freeling.maco(op)
 # Se setean los analisis requeridos. Solamente se usa deteccion de numeros y de fechas 
 morfo.set_active_options (False, # UserMap
-                         False, # NumbersDetection,
+                         True, # NumbersDetection,
                          False, #  PunctuationDetection,
-                         False, #  DatesDetection,  --> Setear a True para considerar fechas
+                         True, #  DatesDetection,  --> Setear a True para considerar fechas
                          False, #  DictionarySearch,
                          False, #  AffixAnalysis,
                          False, #  CompoundAnalysis,
@@ -116,27 +116,21 @@ for f in glob("raw.es/*")[start:]:
           for palabra in palabras:	
 	        	# Actualizo la cantidad de palabras leidas
             i += 1
-            p = palabra.get_form()
-            if p.isalnum():
-              if p.isdigit():
-                agregar_a_numeros(p)
+        		# Obtengo el analisis
+            analisis = palabra.get_analysis()
+            if analisis != ():
+              if ("Z" in str(analisis[0].get_tag())):	
+            		# la palabra es un numero
+                agregar_a_numeros(palabra.get_form())
+              elif ("W" in str(analisis[0].get_tag())):	
+            		# la palabra es una fecha
+            		agregar_a_fechas(palabra.get_form())
               else:
-                agregar_a_lexicon(p)
-        		# # Obtengo el analisis
-          #   analisis = palabra.get_analysis()
-          #   if analisis != ():
-          #     if ("Z" in str(analisis[0].get_tag())):	
-          #   		# la palabra es un numero
-          #       agregar_a_numeros(palabra.get_form())
-          #     elif ("W" in str(analisis[0].get_tag())):	
-          #   		# la palabra es una fecha
-          #   		agregar_a_fechas(palabra.get_form())
-          #     else:
-          #   		# no se reconoce la etiqueta de la palabra
-          #       agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
-          #   else:
-        		# 	# Agrego palabra al diccionario
-          #     agregar_a_lexicon(palabra.get_form())
+            		# no se reconoce la etiqueta de la palabra
+                agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
+            else:
+        			# Agrego palabra al diccionario
+              agregar_a_lexicon(palabra.get_form())
  
 print("Ordenando palabras...")
 
