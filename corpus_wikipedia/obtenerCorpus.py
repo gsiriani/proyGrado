@@ -108,8 +108,8 @@ for f in glob("raw.es/*")[start:]:
 
         # Agrupo en oraciones para analizar
         for oracion in sp.split(palabras_linea):
-        	# # Analizo la oracion          
-        	# oracion = morfo.analyze(oracion)
+          # # Analizo la oracion          
+          oracion = morfo.analyze(oracion)
           palabras = oracion.get_words()
 
         	# Recorro las palabras de la oracion
