@@ -41,6 +41,9 @@ def agregar_a_desconocidos(palabra, tag):
     if not desconocidos.has_key(palabra):
         desconocidos[palabra] = tag
 
+def has_num(palabra):
+  return any(char.isdigit() for char in palabra)
+
 # Configuracion de freeling
 # -------------------------
 FREELINGDIR = "/usr/local";
@@ -94,7 +97,9 @@ for f in glob("raw.es/*")[start:]:
           "<doc", "</doc>", "ENDOFARTICLE", "REDIRECT",
           "Acontecimientos", 
           "Fallecimientos", 
-          "Nacimientos")):
+          "Nacimientos"," Acontecimientos", 
+          " Fallecimientos", 
+          " Nacimientos")):
             continue
 
         # Si ya tengo la cantidad de palabras que quiero, corto
@@ -117,18 +122,7 @@ for f in glob("raw.es/*")[start:]:
 	        	# Actualizo la cantidad de palabras leidas
             i += 1
         		# Obtengo el analisis
-            analisis = palabra.get_analysis()
-            if analisis != ():
-              if ("Z" in str(analisis[0].get_tag())):	
-            		# la palabra es un numero
-                agregar_a_numeros(palabra.get_form())
-              elif ("W" in str(analisis[0].get_tag())):	
-            		# la palabra es una fecha
-            		agregar_a_fechas(palabra.get_form())
-              else:
-            		# no se reconoce la etiqueta de la palabra
-                agregar_a_desconocidos(palabra.get_form(), analisis[0].get_tag())
-            else:
+            if !has_num(palabra):
         			# Agrego palabra al diccionario
               agregar_a_lexicon(palabra.get_form())
  
