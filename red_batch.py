@@ -7,12 +7,12 @@ import csv
 csv.field_size_limit(sys.maxsize)
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-vector_size = 150 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
+vector_size = 50 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
 cant_palabras = 55004	# Cantidad de palabras consideradas en el diccionario
 unidades_ocultas_capa_2 = 100
 unidades_ocultas_capa_3 = 1
 file_length = 10
-batch_size = 50
+batch_size = 25
 
 # Obtenemos diccionario con las palabras a utilizar
 p = palabras_comunes("es-lexicon.txt")
@@ -101,38 +101,35 @@ sess.run(tf.initialize_all_variables())
 #	sess.run(train_step, feed_dict = {x : batch, y_ : entrenamiento[1]})
 
 
-archivo = open("diez_porciento_filtrado.csv", "rb")
-lector = csv.reader(archivo, delimiter=' ')
+archivo = open("oraciones.csv", "r")
 lineas = 0
-for r in lector:
+for c in archivo:
 	lineas = lineas + 1
 
 for i in range(1):
 	archivo.seek(0)
 	k = 0
 	while (k < lineas):
-		print k
 		batch = []
 		batch_val = []
 		for j in range(batch_size):
-			r = lector.next()
-			while (len(r) != 13):
-				r = lector.next()
-				k = k + 1
-				if (k >= lineas):
-					break
-			if (k >= lineas):
-				break
-			print r
+			r = archivo.readline().replace("\r","").split(" ")
+#			while (len(r) != 12):
+#				r = archivo.readline().replace("\r","").split(" ")
+#				k = k + 1
+#				if (k >= lineas):
+#					break
+#			if (k >= lineas):
+#				break
 			oracion = obtener_matriz(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]))
 			valoracion = map(lambda x: int(x), r[window_size:])
 			batch = batch + oracion
-			batch_val.append(valoracion)
-		if (k >= lineas):
+			batch_val = batch_val + valoracion
+		if (k >= 7000):
 			break
 		k = k + batch_size
 		sess.run(train_step, feed_dict = {x : batch, y_ : batch_val})
-
+print k
 #for i in range(len(entrenamiento[0])):
 #	print y_test.eval(feed_dict = {x_test : entrenamiento[0][i]})
 #	print entrenamiento[1][i]

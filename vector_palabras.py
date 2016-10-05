@@ -2,7 +2,7 @@ from codecs import open, BOM_UTF8
 
 def is_punct(token):
 	# Retorna True si el token es un caracter no alfanumerico de un digito
-	return ((len(token) == 1) && !(token.isalnum()))
+	return ((len(token) == 1) and not(token.isalnum()))
 
 
 class palabras_comunes:
@@ -28,4 +28,4 @@ class palabras_comunes:
 		if is_punct(token):
 			return self.dic_p["PUNCT"]
 		p = token.lower()
-		return self.dic_p.setdefault(c, self.UNK)
+		return self.dic_p.setdefault(p, self.UNK)

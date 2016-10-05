@@ -8,10 +8,10 @@ csv.field_size_limit(sys.maxsize)
 
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-vector_size = 150 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
-cant_palabras = 100003	# Cantidad de palabras consideradas en el diccionario
+vector_size = 50 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
+cant_palabras = 55004	# Cantidad de palabras consideradas en el diccionario
 unidades_ocultas_capa_2 = 100
-unidades_ocultas_capa_3 = 2
+unidades_ocultas_capa_3 = 1
 file_length = 10
 
 p = palabras_comunes("es-lexicon.txt")
@@ -67,7 +67,7 @@ vectores = generar_vectores_iniciales(cant_palabras, vector_size)
 sess = tf.InteractiveSession()
 
 x = tf.placeholder(tf.float32, shape=[window_size, cant_palabras])
-y_ = tf.placeholder(tf.float32, shape=[2])
+y_ = tf.placeholder(tf.float32, shape=[unidades_ocultas_capa_3])
 
 wVectores = tf.Variable(vectores)
 
@@ -95,24 +95,25 @@ sess.run(tf.initialize_all_variables())
 
 oracion = [[0]*cant_palabras for i in range(window_size)]
 
-archivo = open("diez_porciento.csv", "rb")
-lector = csv.reader(archivo, delimiter=' ')
+archivo = open("oraciones.csv", "r")
+
 fallidos = 0
 for i in range(1):
 	archivo.seek(0)
 	j = 0
-	for r in lector:	
-		j = j + 1	
-		if (len(r) != 13):
-			fallidos = fallidos + 1
-			j = j + 1
-			continue
-		print j
+	for l in archivo:
+		r = l.replace("\n","").split(" ")
 		j = j + 1
+		if (len(r) != 12):
+			print "fallido"
+			continue
 		oracion = colocar_unos(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]), oracion)
 		valoracion = map(lambda x: int(x), r[window_size:])
 		sess.run(train_step, feed_dict = {x : oracion, y_ : valoracion})
 		oracion = colocar_ceros(map(lambda x: unicode(x, encoding="utf-8"),r[:window_size]), oracion)
+		if (j == 7000):
+			print j
+			break
 print
 print j
 
