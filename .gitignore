@@ -2,4 +2,4 @@
 *.pyc
 
 # Corpus Wikipedia
-corpus_wikipedia/raw.es/
+lexicon/corpus_wikipedia/raw.es/

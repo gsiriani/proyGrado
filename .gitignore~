@@ -1,0 +1,5 @@
+# Archivos .pyc
+*.pyc
+
+# Corpus Wikipedia
+lexicon/corpus_wikipedia/raw.es/
