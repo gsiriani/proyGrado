@@ -3,3 +3,7 @@
 
 # Corpus Wikipedia
 lexicon/corpus_wikipedia/raw.es/
+
+# Corpus de entrenamiento
+corpus/*
+Corpus.7z

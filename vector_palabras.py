@@ -1,10 +1,5 @@
 from codecs import open, BOM_UTF8
 
-def is_punct(token):
-	# Retorna True si el token es un caracter no alfanumerico de un digito
-	return ((len(token) == 1) and not(token.isalnum()))
-
-
 class palabras_comunes:
 
 	def __init__(self, archivo):
@@ -25,7 +20,11 @@ class palabras_comunes:
 			return self.dic_p["OUT"]
 		if (token == "NUM"):
 			return self.dic_p["NUM"]
-		if is_punct(token):
+		if self.is_punct(token):
 			return self.dic_p["PUNCT"]
 		p = token.lower()
 		return self.dic_p.setdefault(p, self.UNK)
+
+	def is_punct(self, token):
+		# Retorna True si el token es un caracter no alfanumerico de un digito que no esta en el diccionario
+		return ((not (token in self.dic_p.keys())) and (len(token) == 1) and not (token.isalnum()))

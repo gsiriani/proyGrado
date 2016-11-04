@@ -8,14 +8,14 @@ csv.field_size_limit(sys.maxsize)
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
 vector_size = 50 # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
-cant_palabras = 55004	# Cantidad de palabras consideradas en el diccionario
+cant_palabras = 16665 + 4	# Cantidad de palabras consideradas en el diccionario + 4 tags especiales
 unidades_ocultas_capa_2 = 100
 unidades_ocultas_capa_3 = 1
 file_length = 10
 batch_size = 25
 
 # Obtenemos diccionario con las palabras a utilizar
-p = palabras_comunes("es-lexicon.txt")
+p = palabras_comunes("lexicon/lexicon.txt")
 
 
 def generar_vectores_iniciales(cantidad, tamano):
@@ -101,7 +101,7 @@ sess.run(tf.initialize_all_variables())
 #	sess.run(train_step, feed_dict = {x : batch, y_ : entrenamiento[1]})
 
 
-archivo = open("oraciones.csv", "r")
+archivo = open("corpus/prueba.csv", "r")
 lineas = 0
 for c in archivo:
 	lineas = lineas + 1
