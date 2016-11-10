@@ -7,3 +7,6 @@ lexicon/corpus_wikipedia/raw.es/
 # Corpus de entrenamiento
 corpus/*
 Corpus.7z
+
+# Embedding pre-entrenado
+embedding/eswiki.0.3.vectors.150.txt
