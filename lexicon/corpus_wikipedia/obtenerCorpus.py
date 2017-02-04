@@ -119,15 +119,16 @@ for f in glob("raw.es/*")[start:]:
 
         	# Recorro las palabras de la oracion
           for palabra in palabras:	
-	        	# Actualizo la cantidad de palabras leidas
+	        # Actualizo la cantidad de palabras leidas
             i += 1
-        		# Descarto las que tienen numero
+        	# Descarto las que tienen numero
             if not has_num(palabra.get_form()):
-        			# Agrego palabra al diccionario
+        	  # Agrego palabra al diccionario
               agregar_a_lexicon(palabra.get_form())
             else:
               agregar_a_numeros(palabra.get_form())
- 
+
+print(motivo_fin)
 print("Ordenando palabras...")
 
 # Grabo los resultados en archivos de texto
@@ -141,8 +142,8 @@ for (w,freq) in lexicon.items():
     top.append((freq, w))
  
 top = sorted(top, reverse=True)[:max_words] # top max_words
-resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
-# resultado = [str(f) + ' ' + w for (f,w) in top] # Almaceno palabras y cantidad de usos
+# resultado = [w for (_,w) in top] 	# Almaceno unicamente las palabras
+resultado = [str(f) + ' ' + w for (f,w) in top] # Almaceno palabras y cantidad de usos
 
 # Guardo las palabras en un archivo de texto
 open("lexicon_wiki-frecuentes.txt", "w").write(BOM_UTF8 + "\n".join(resultado).encode("utf-8"))
@@ -179,4 +180,3 @@ open("descarte/lexicon_wiki-desconocidos.txt", "w").write(BOM_UTF8 + "\n".join(d
 porcentaje = (100*max_words)/len(lexicon)
 print("La cantidad total de palabras parseadas es: " + str(len(lexicon)))
 print("El porcentaje de cobertura es: " + str(porcentaje))
-print(motivo_fin)

@@ -8,12 +8,12 @@ import re
 # Cargo lexicon wikipedia
 corpus_wiki = {}
 total_ocurrencias_wiki = 0
-# for linea in open('../lexicon/corpus_wikipedia/lexicon_wiki-total.txt', encoding="latin-1"):
-#     r = linea.split()
-#     if len(r) > 1:
-#         num = int(re.sub("[^0-9]", "", r[0]))
-#         corpus_wiki[r[1]] = num
-#         total_ocurrencias_wiki += num
+for linea in open('../lexicon/corpus_wikipedia/lexicon_wiki-frecuentes.txt', encoding="latin-1"):
+    r = linea.split()
+    if len(r) > 1:
+        num = int(re.sub("[^0-9]", "", r[0]))
+        corpus_wiki[r[1]] = num
+        total_ocurrencias_wiki += num
 
 # Cargo lexicon ancora
 corpus_ancora = {}
@@ -24,7 +24,7 @@ for linea in open('../lexicon/corpus_ancora/lexicon_ancora.txt', encoding="latin
     corpus_ancora[r[1]] = num
     total_ocurrencias_ancora += num
 
-# Cargo lexicon final
+# Cargo lexicon ancora
 lexicon = []
 for linea in open('./lexicon.txt', encoding="latin-1"):
     r = linea.split()

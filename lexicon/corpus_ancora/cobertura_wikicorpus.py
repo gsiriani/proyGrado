@@ -4,7 +4,7 @@ import re
 
 # Cargo lexicon wikipedia
 corpus_wiki = []
-for linea in open('../corpus_wikipedia/es-lexicon.txt', encoding="utf-8"):
+for linea in open('../corpus_wikipedia/respaldo-lexicon/es-lexicon.txt', encoding="utf-8"):
 	r = linea.split()
 	if len(r) > 0:
 		corpus_wiki.append(r[0])
