@@ -2,9 +2,13 @@
 from codecs import open, BOM_UTF8
 import re
 
+# Inicializo variables para el embedding total
+lexicon_total = []
+embedding_total = {}
+
+
 # EMBEDDING ANCORA
 # ----------------
-
 
 # Cargo lexicon
 print 'EMBEDDING ANCORA\n--------------'
@@ -48,10 +52,12 @@ nuevo_lexicon = []
 for palabra in lexicon:
     if palabra in embedding_completo:
         nuevo_lexicon.append(palabra)
+        lexicon_total.append(palabra)
         valores = ''
         for num in embedding_completo[palabra]:
             valores += ' ' + str(num)
         embedding.append(palabra + valores)
+        embedding_total[palabra] = valores
     else:
         no_encontradas.append(palabra)
 
@@ -88,10 +94,13 @@ nuevo_lexicon = []
 for palabra in lexicon:
     if palabra in embedding_completo:
         nuevo_lexicon.append(palabra)
+        if not palabra in embedding_total:
+            lexicon_total.append(palabra)
         valores = ''
         for num in embedding_completo[palabra]:
             valores += ' ' + str(num)
         embedding.append(palabra + valores)
+        embedding_total[palabra] = valores
     else:
         no_encontradas.append(palabra)
 
@@ -103,3 +112,13 @@ open("lexicon_wikipedia.txt", "w").write(BOM_UTF8 + "\n".join(nuevo_lexicon).enc
 
 print 'Se obtuvo el embedding de ' + str(len(embedding)) + ' palabras'
 print 'Se perdieron ' + str(len(no_encontradas)) + ' palabras en el proceso'
+
+# Persisto las palabras
+print 'Persistiendo embedding total...'
+embedding_total_aux = []
+for (k,v) in embedding_total.items():
+    embedding_total_aux.append(k + v)
+open("embedding_total.txt", "w").write(BOM_UTF8 + "\n".join(embedding_total_aux).encode("latin-1"))
+open("lexicon_total.txt", "w").write(BOM_UTF8 + "\n".join(lexicon_total).encode("latin-1"))
+
+print 'Fin'
