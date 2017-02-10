@@ -1,12 +1,4 @@
-﻿6983 ,
-3971 .
-1952 "
-522 )
-522 (
-30 '
-27 ?
-23 ;
-14 ¿
+﻿14 ¿
 12 ...
 10 poliacetileno
 8 zznm
@@ -19,7 +11,6 @@
 6 joerg
 6 gescartera
 6 d'esquadra
-6 !
 5 vicelehendakari
 5 telesp
 5 snet
@@ -97,7 +88,6 @@
 3 alcober
 3 aceptora
 3 a.
-3 &
 2 òmnium
 2 zenarruzabeitia
 2 zeberio
@@ -258,8 +248,6 @@
 2 ahram
 2 aeb
 2 acerqué
-2 +
-2 %
 1 álbum-catálogo
 1 ¡hola!
 1 zznf
@@ -1125,7 +1113,6 @@
 1 decomisos
 1 decomisados
 1 declararán
-1 decisivos
 1 debute
 1 dañará
 1 danubio-mar
