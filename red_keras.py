@@ -1,11 +1,12 @@
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Embedding
+from keras.layers import Dense, Activation, Embedding, Flatten
 from keras.initializers import TruncatedNormal, Constant
 from vector_palabras import palabras_comunes
 from random import uniform
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import numpy as np
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
 unidades_ocultas_capa_2 = 100
@@ -19,9 +20,9 @@ palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el di
 
 embedding_inicial=[]
 for l in open(archivo_embedding):
-    embedding_inicial.append(l.split()[1:])
+    embedding_inicial.append([float(x) for x in l.split()[1:]])
 
-vector_size = len[embedding_inicial[0]] # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
+vector_size = len(embedding_inicial[0]) # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
 print 'Cantidad de features considerados: ' + str(vector_size)
 
 # Agregamos embedding para PUNCT inicializado como el mismo embedding que ':'
@@ -33,6 +34,9 @@ for _ in range(3):
     features_aux = []
     for _ in range(vector_size):
         features_aux.append(uniform(-1,1))
+    embedding_inicial.append(list(features_aux))
+
+embedding_inicial = np.array(embedding_inicial)
 
 cant_palabras = len(embedding_inicial)	# Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
@@ -41,7 +45,7 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 # Defino las capas de la red
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=embedding_inicial,
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             input_length=window_size, trainable=True)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
@@ -60,6 +64,7 @@ third_layer = Dense(units=unidades_ocultas_capa_3,
 model = Sequential()
 
 model.add(embedding_layer)
+model.add(Flatten())
 model.add(second_layer)
 model.add(Activation("tanh"))
 model.add(third_layer)
@@ -69,12 +74,13 @@ model.add(Activation("softmax"))
 # Compilo la red
 
 model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['accuracy'])
+# model.summary()
 
 
 # Entreno
 
 # Abro el archivo con casos de entrenamiento
-df = pd.read_csv('corpus/pruebaMin.csv', delim_whitespace=True, skipinitialspace=True, header=None)
+df = pd.read_csv('corpus/prueba.csv', delim_whitespace=True, skipinitialspace=True, header=None)
 
 # Obtengo los indices de las palabras
 for f in range(len(df)):
@@ -86,7 +92,13 @@ X = df.iloc[:,:-1]
 Y = df.iloc[:,-1:]
 x_train, x_test, y_train, y_test = train_test_split(X, Y)
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=2, batch_size=50, verbose=1)
+x_train = np.array(x_train)
+x_test = np.array(x_test)
+y_train = np.array(y_train)
+y_test = np.array(y_test)
+
+
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=2, batch_size=100, verbose=1)
 
 # list all data in history
 print(history.history.keys())
