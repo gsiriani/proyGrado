@@ -6,12 +6,12 @@ class palabras_comunes:
 		# Genera un diccionario a partir de un archivo de palabras y palabras auxiliares
 		i = 0
 		self.dic_p = {}
-		for p in open(archivo, encoding="latin-1"):
+		for p in open(archivo):
 			self.dic_p[p.split()[0]] = i
 			i = i + 1
-		self.dic_p["NUM"] = i
-		self.dic_p["OUT"] = i + 1
-		self.dic_p["PUNCT"] = i + 2
+		self.dic_p["PUNCT"] = i
+		self.dic_p["NUM"] = i + 1
+		self.dic_p["OUT"] = i + 2
 		self.UNK = i + 3
 
 	def obtener_indice(self,token):

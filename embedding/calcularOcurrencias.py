@@ -64,7 +64,7 @@ for palabra in lexicon:
 # # Guardo las palabras en un archivo de texto
 # open("frecuencia_faltantes.txt", "w").write(BOM_UTF8 + "\n".join(resultado_tot).encode("latin-1"))
 
-print 'Porcentaje de ocurrencias cubiertas en Wikipedia: ' + str(float(ocurrencias_wiki * 100 / total_ocurrencias_wiki)) + '%'
+print 'Porcentaje de ocurrencias cubiertas en Wikipedia: ' + str(float(ocurrencias_wiki) * 100 / total_ocurrencias_wiki) + '%'
 
-print 'Porcentaje de ocurrencias cubiertas en Ancora: ' + str(float(ocurrencias_ancora * 100 / total_ocurrencias_ancora)) + '%'
+print 'Porcentaje de ocurrencias cubiertas en Ancora: ' + str(float(ocurrencias_ancora) * 100 / total_ocurrencias_ancora) + '%'
 
