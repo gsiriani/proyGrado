@@ -1,0 +1,21 @@
+Detallar tareas a realizar buscando información para cada una
+-lm
+-pos
+-chunking
+-ner
+-srl
+
+Detallar recolección de datos
+- Wikipedia
+- Ancora
+	- pos
+	- chunking
+	- ner
+	- srl
+
+Detallar arquitectura de las redes
+- Arquitecturas
+- Funcionamiento (ventana/convolutiva)
+
+
+
