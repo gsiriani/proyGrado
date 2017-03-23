@@ -1,0 +1,35 @@
+Variantes de la red
+=======================
+
+Ventana
+-----------------------
+LM
+Chunking
+NER
+POS-Principal
+POS-Completo
+
+Convolutiva
+-----------------------
+LM
+Chunking
+NER
+POS-Principal
+POS-Completo
+SRL-Principal
+SRL-Completo
+
+Definitivas
+-----------------------
+Ventana separada principal
+Ventana unida principal
+Ventana separada completa
+Ventana unida completa
+
+Convolutiva separada principal
+Convolutiva unida principal
+Convolutiva separada completa
+Convolutiva unida completa
+
+Standalone para cada caso
+

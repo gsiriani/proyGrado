@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-unidades_ocultas_capa_2 = 100
+unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 1
 file_length = 10
 
@@ -80,7 +80,7 @@ model.compile(loss='binary_crossentropy', optimizer='sgd', metrics=['accuracy'])
 # Entreno
 
 # Abro el archivo con casos de entrenamiento
-df = pd.read_csv('corpus/prueba.csv', delim_whitespace=True, skipinitialspace=True, header=None)
+df = pd.read_csv('corpus/pruebaMin.csv', delim_whitespace=True, skipinitialspace=True, header=None)
 
 # Obtengo los indices de las palabras
 for f in range(len(df)):
@@ -98,7 +98,8 @@ y_train = np.array(y_train)
 y_test = np.array(y_test)
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=2, batch_size=100, verbose=1)
+
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=200, batch_size=100, verbose=1)
 
 # list all data in history
 print(history.history.keys())
