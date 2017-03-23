@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import random
 
 sn_token = 0
 sv_token = 1
@@ -14,6 +15,18 @@ b_sv = "0 0 0 0 1 0 0 0"
 i_sv = "0 0 0 0 0 1 0 0"
 e_sv = "0 0 0 0 0 0 1 0"
 s_sv = "0 0 0 0 0 0 0 1"
+
+def correct_escape_sequences(word):
+	if word == "&quot;":
+		return "\""
+  	elif word == "&lt;":
+  		return "<"
+	elif word == "&gt;":
+		return ">"
+	elif word == "&amp;":
+		return "&"
+	else:
+		return word
 
 def number_filter(word):
 	try:
@@ -53,11 +66,13 @@ def process_sentence(sentence_in):
 			for w in words:
 				aux_uno = number_filter(w)
 				aux_dos = date_filter(aux_uno)
-				sentence.append((aux_dos,word[1]))
+				aux_tres = correct_escape_sequences(aux_dos)
+				sentence.append((aux_tres,word[1]))
 		else:
 			aux_uno = number_filter(word[0])
 			aux_dos = date_filter(aux_uno)
-			sentence.append((aux_dos,word[1]))
+			aux_tres = correct_escape_sequences(aux_dos)
+			sentence.append((aux_tres,word[1]))
 	length = len(sentence)
 	in_sn = False
 	in_sv = False
@@ -65,23 +80,23 @@ def process_sentence(sentence_in):
 		if sentence[i][1] == out_token:
 			intermediate.append((sentence[i][0],out))
 		if sentence[i][1] == sn_token:
-			if not in_sn and i < (len(sentence) - 1) and sentence[i + 1] == sn_token:
+			if not in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
 				in_sn = True
 				intermediate.append((sentence[i][0],b_sn))
 			elif not in_sn:
 				intermediate.append((sentence[i][0],s_sn))
-			elif in_sn and i < (len(sentence) - 1) and sentence[i + 1] == sn_token:
+			elif in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
 				intermediate.append((sentence[i][0],i_sn))
 			elif in_sn:
 				intermediate.append((sentence[i][0],e_sn))
 				in_sn = False
 		elif sentence[i][1] == sv_token:
-			if not in_sv and i < (len(sentence) - 1) and sentence[i + 1] == sv_token:
+			if not in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
 				in_sv = True
 				intermediate.append((sentence[i][0],b_sv))
 			elif not in_sv:
 				intermediate.append((sentence[i][0],s_sv))
-			elif in_sv and i < (len(sentence) - 1) and sentence[i + 1] == sv_token:
+			elif in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
 				intermediate.append((sentence[i][0],i_sv))
 			elif in_sv:
 				intermediate.append((sentence[i][0],e_sv))
@@ -90,7 +105,9 @@ def process_sentence(sentence_in):
 	return output
 
 folder = sys.argv[1]
-output_file = open(sys.argv[1] + ".csv","w")
+output_training_file = open("chunking_training.csv","w")
+output_testing_file = open("chunking_testing.csv","w")
+output_pruebas_file = open("chunking_pruebas.csv","w")
 
 for file in os.listdir(folder):
 	open_file = open(folder + "/" + file, "r")
@@ -124,5 +141,12 @@ for file in os.listdir(folder):
 			sn = 0
 			sv = 0
 			output = process_sentence(sentence)
+			r = random.random()
 			for o in output:
-				output_file.write(o)
+				if r <= 0.7:
+					output_training_file.write(o)
+				elif r <= 0.85:
+					output_pruebas_file.write(o)
+				else:
+					output_testing_file.write(o)
+			sentence = []
