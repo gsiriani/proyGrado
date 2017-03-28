@@ -1,3 +1,8 @@
+path_proyecto = '/home/guille/proyGrado'
+
+import sys
+sys.path.append(path_proyecto)
+
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Embedding, Flatten
 from keras.initializers import TruncatedNormal, Constant
@@ -9,11 +14,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-unidades_ocultas_capa_2 = 50
-unidades_ocultas_capa_3 = 1
-file_length = 10
+unidades_ocultas_capa_2 = 300
+unidades_ocultas_capa_3 = 1 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
-archivo_embedding = "embedding/embedding_total.txt"
+archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
@@ -82,7 +86,7 @@ model.summary()
 # Entreno
 
 # Abro el archivo con casos de entrenamiento
-df = pd.read_csv('corpus/pruebaMin.csv', delim_whitespace=True, skipinitialspace=True, header=None)
+df = pd.read_csv(path_proyecto + '/corpus/pruebaMin.csv', delim_whitespace=True, skipinitialspace=True, header=None)
 
 # Obtengo los indices de las palabras
 for f in range(len(df)):
@@ -101,7 +105,7 @@ y_test = np.array(y_test)
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=100, batch_size=25, verbose=2)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=100, batch_size=25, verbose=1)
 
 # list all data in history
 print(history.history.keys())
