@@ -8,4 +8,3 @@
 + Investigar: compartir capas en distintas redes (Guille)
 + Corpus ventana **TODOS** (Gonzalo)
 + Organizar árbol de directorios
-+ Corregir la red para que aprenda algo (Guille)
