@@ -139,17 +139,10 @@ def process_sentence(sentence_in):
 	output = generate_cases(intermediate)
 	return output
 
-folder = sys.argv[1]
-output_training_file = open("ner_training.csv","w")
-output_testing_file = open("ner_testing.csv","w")
-output_pruebas_file = open("ner_pruebas.csv","w")
-
-for file in os.listdir(folder):
-	open_file = open(folder + "/" + file, "r")
+def process_file(input_file, output_file):
 	in_sentence = False
 	sentence = []
-	for o_line in open_file:
-		line = o_line.lower()
+	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
 		if in_sentence and " wd=" in line and " ne=\"person\"" in line:
@@ -177,12 +170,29 @@ for file in os.listdir(folder):
 			sn = 0
 			sv = 0
 			output = process_sentence(sentence)
-			r = random.random()
 			for o in output:
-				if r <= 0.7:
-					output_training_file.write(o)
-				elif r <= 0.85:
-					output_pruebas_file.write(o)
-				else:
-					output_testing_file.write(o)
+				output_file.write(o)
 			sentence = []
+
+input_folder = sys.argv[1]
+output_folder = sys.argv[2]
+
+output_training_file = open(output_folder + "/" + "ner_training.csv","w")
+output_testing_file = open(output_folder + "/" + "ner_testing.csv","w")
+output_pruebas_file = open(output_folder + "/" + "ner_pruebas.csv","w")
+
+input_training_file = open(input_folder + "/" + "ancora_training.xml","r")
+input_testing_file = open(input_folder + "/" + "ancora_testing.xml","r")
+input_pruebas_file = open(input_folder + "/" + "ancora_pruebas.xml","r")
+
+process_file(input_training_file, output_training_file)
+process_file(input_testing_file, output_testing_file)
+process_file(input_pruebas_file, output_pruebas_file)
+
+input_training_file.close()
+input_pruebas_file.close()
+input_testing_file.close()
+
+output_pruebas_file.close()
+output_testing_file.close()
+output_training_file.close()
