@@ -126,17 +126,35 @@ def process_sentence(sentence_in):
 	output = generate_cases(intermediate)
 	return output
 
+def generate_in_chunk():
+	l = []
+	for i in range(len(tags)):
+		l.append(0)
+	return l
+
 def process_file(input_file, output_file):
 	in_sentence = False
 	sn = 0
 	sv = 0
 	sentence = []
+	in_chunk = []
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
-		if in_sentence and all(map(lambda x : x == 0)):
+			in_chunk = generate_in_chunk()
+		if in_sentence and all(map(lambda x : x == 0, in_chunk)):
 			for tag in tags:
+				if ("<" + tag) in line and ("</" + tag + ">") not in line:
+					in_chunk[tags[tag]] += 1
+				elif (" wd=\"") in line:
+					palabra = re.sub(".* wd=\"","",line)
+					palabra = re.sub("\".*\n","",palabra)
+					sentence.append((palabra,None,None))
 
+
+
+
+					
 		if in_sentence and sv == 0 and "<sn" in line:
 			sn += 1
 		if in_sentence and sn == 0 and "<grup.verb" in line:
