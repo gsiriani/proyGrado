@@ -3,18 +3,16 @@ import os
 import re
 import random
 
-sn_token = 0
-sv_token = 1
-out_token = 2
-out = "0 0 0 0 0 0 0 0"
-b_sn = "1 0 0 0 0 0 0 0"
-i_sn = "0 1 0 0 0 0 0 0"
-e_sn = "0 0 1 0 0 0 0 0"
-s_sn = "0 0 0 1 0 0 0 0"
-b_sv = "0 0 0 0 1 0 0 0"
-i_sv = "0 0 0 0 0 1 0 0"
-e_sv = "0 0 0 0 0 0 1 0"
-s_sv = "0 0 0 0 0 0 0 1"
+opciones_arg = ["arg0", "arg1", "arg2", "arg3", "arg4", "argL", "argM"]
+opciones_iobes = ["b", "i", "e", "s"]
+
+input_folder = sys.argv[1]
+output_folder = sys.argv[2]
+
+tag_length = len(opciones_iobes) * len(opciones_arg)
+out_tag = []
+for i in range(tag_length):
+	out_tag.append(0)
 
 def correct_escape_sequences(word):
 	if word == "&quot;":
@@ -109,7 +107,7 @@ def process_file(input_file, output_file):
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
-		if in_sentence and sv == 0 and "<sn" in line and not re.search("<sn.*/>",line):
+		if in_sentence and sv == 0 and "<sn" in line:
 			sn += 1
 		if in_sentence and sn == 0 and "<grup.verb" in line:
 			sv += 1
@@ -135,12 +133,9 @@ def process_file(input_file, output_file):
 					output_file.write(o)
 			sentence = []
 
-input_folder = sys.argv[1]
-output_folder = sys.argv[2]
-
-output_training_file = open(output_folder + "/" + "chunking_training.csv","w")
-output_testing_file = open(output_folder + "/" + "chunking_testing.csv","w")
-output_pruebas_file = open(output_folder + "/" + "chunking_pruebas.csv","w")
+output_training_file = open(output_folder + "/" + "srl_simple_training.csv","w")
+output_testing_file = open(output_folder + "/" + "srl_simple_testing.csv","w")
+output_pruebas_file = open(output_folder + "/" + "srl_simple_pruebas.csv","w")
 
 input_training_file = open(input_folder + "/" + "ancora_training.xml","r")
 input_testing_file = open(input_folder + "/" + "ancora_testing.xml","r")

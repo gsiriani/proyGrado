@@ -21,7 +21,7 @@ orden_tags = {"pos" : 0,
 # Cantidad de opciones por tag segun el orden
 cantidad_opciones = [12, 3, 3, 1, 25, 3, 16, 2, 4, 3, 2, 2, 5]
 
-# Opciones para cada ta
+# Opciones para cada tag
 opciones_pos = {"a" : 0,
 				"c" : 1,
 				"d":  2,

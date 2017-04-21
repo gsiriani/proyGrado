@@ -3,18 +3,40 @@ import os
 import re
 import random
 
-sn_token = 0
-sv_token = 1
-out_token = 2
-out = "0 0 0 0 0 0 0 0"
-b_sn = "1 0 0 0 0 0 0 0"
-i_sn = "0 1 0 0 0 0 0 0"
-e_sn = "0 0 1 0 0 0 0 0"
-s_sn = "0 0 0 1 0 0 0 0"
-b_sv = "0 0 0 0 1 0 0 0"
-i_sv = "0 0 0 0 0 1 0 0"
-e_sv = "0 0 0 0 0 0 1 0"
-s_sv = "0 0 0 0 0 0 0 1"
+tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
+opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
+
+in_tag = {}
+for tag in tags:
+	in_tag[tag] = 0
+
+cant_opciones = len(opciones)
+cant_tags = len(tags)
+largo_vector = cant_tags * cant_opciones
+
+def obtener_indice(tag, opcion):
+	indice = tags[tag] + opciones[opcion]
+	return indice
+
+def list_to_str(vector):
+	salida = ""
+	primero = True
+	for p in vector:
+		if primero:
+			salida = str(p)
+			primero = False
+		else:
+			salida += " " + str(p)
+	return salida
+
+def vector_variante(indice):
+	vector = []
+	for i in range(cant_tags):
+		if i == indice:
+			vector.append(1)
+		else:
+			vector.append(0)
+	return vector
 
 def correct_escape_sequences(word):
 	if word == "&quot;":
@@ -112,6 +134,9 @@ def process_file(input_file, output_file):
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
+		if in_sentence and all(map(lambda x : x == 0)):
+			for tag in tags:
+
 		if in_sentence and sv == 0 and "<sn" in line:
 			sn += 1
 		if in_sentence and sn == 0 and "<grup.verb" in line:
