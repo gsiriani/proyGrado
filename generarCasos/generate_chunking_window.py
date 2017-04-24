@@ -32,7 +32,7 @@ def list_to_str(vector):
 
 def vector_variante(indice):
 	vector = []
-	for i in range(cant_tags):
+	for i in range(largo_vector):
 		if i == indice:
 			vector.append(1)
 		else:
@@ -150,7 +150,7 @@ def process_file(input_file, output_file):
 				for tag in tags:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
 						in_chunk[tags[tag]] = 1
-		elif in_sentence and any(map(lambda x : x == 1, in_chunk)):
+		elif in_sentence and any(map(lambda x : x > 0, in_chunk)):
 			tag_seleccionado = ""
 			for tag in tags:
 				if in_chunk[tags[tag]] > 0:
