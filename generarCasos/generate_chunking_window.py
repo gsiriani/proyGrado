@@ -13,6 +13,7 @@ for tag in tags:
 cant_opciones = len(opciones)
 cant_tags = len(tags)
 largo_vector = cant_tags * cant_opciones
+window_size = int(11)
 
 def obtener_indice(tag, opcion):
 	indice = tags[tag] + opciones[opcion]
@@ -37,6 +38,15 @@ def vector_variante(indice):
 		else:
 			vector.append(0)
 	return vector
+
+def generate_vector_palabra(palabra):
+	if palabra[1] != None:
+		indice = obtener_indice(palabra[1], palabra[2])
+		vector = vector_variante(indice)
+		return list_to_str(vector)
+	else:
+		vector = vector_variante(-1)
+		return list_to_str(vector)
 
 def correct_escape_sequences(word):
 	if word == "&quot;":
@@ -65,23 +75,26 @@ def date_filter(word):
 
 def generate_cases(words):
 	output = []
+	mitad_ventana = int(window_size / 2)
 	for i in range(len(words)):
 		line = ""
-		max_index = min(i + 6,len(words))
-		min_index = max(0,i - 5)
-		for j in range(0,5 - i):
+		max_index = min(i + mitad_ventana + 1,len(words))
+		min_index = max(0,i - mitad_ventana)
+		for j in range(0,mitad_ventana - i):
 			line += "OUT "
 		for j in range(min_index, max_index):
 			line += words[j][0] + " "
 		for j in range(6 - (len(words) - i)):
 			line += "OUT "
-		line += words[i][1] + "\n"
+		line += generate_vector_palabra(words[i]) + "\n"
 		output.append(line)
 	return output
 
 def process_sentence(sentence_in):
 	intermediate = []
 	sentence = []
+	for i in range(largo_vector):
+		vector.append(0)
 	for word in sentence_in:
 		if "_" in word[0]:
 			words = word[0].split("_")
@@ -89,40 +102,26 @@ def process_sentence(sentence_in):
 				aux_uno = number_filter(w)
 				aux_dos = date_filter(aux_uno)
 				aux_tres = correct_escape_sequences(aux_dos)
-				sentence.append((aux_tres,word[1]))
+				sentence.append((aux_tres, word[1], word[2]))
 		else:
 			aux_uno = number_filter(word[0])
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
-			sentence.append((aux_tres,word[1]))
+			sentence.append((aux_tres, word[1], word[2]))
 	length = len(sentence)
-	in_sn = False
-	in_sv = False
 	for i in range(length):
-		if sentence[i][1] == out_token:
-			intermediate.append((sentence[i][0],out))
-		if sentence[i][1] == sn_token:
-			if not in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
-				in_sn = True
-				intermediate.append((sentence[i][0],b_sn))
-			elif not in_sn:
-				intermediate.append((sentence[i][0],s_sn))
-			elif in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
-				intermediate.append((sentence[i][0],i_sn))
-			elif in_sn:
-				intermediate.append((sentence[i][0],e_sn))
-				in_sn = False
-		elif sentence[i][1] == sv_token:
-			if not in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
-				in_sv = True
-				intermediate.append((sentence[i][0],b_sv))
-			elif not in_sv:
-				intermediate.append((sentence[i][0],s_sv))
-			elif in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
-				intermediate.append((sentence[i][0],i_sv))
-			elif in_sv:
-				intermediate.append((sentence[i][0],e_sv))
-				in_sv = False
+		if sentence[i][1] == None:
+			intermediate.append((sentence[i][0]), None)
+		elif sentence[i][2]:
+			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
+				intermediate.append((sentence[i][0], sentence[i][1], "b"))
+			else:
+				intermediate.append((sentence[i][0], sentence[i][1], "s"))
+		else:
+			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
+				intermediate.append((sentence[i][0], sentence[i][1], "i"))
+			else:
+				intermediate.append((sentence[i][0], sentence[i][1], "e"))
 	output = generate_cases(intermediate)
 	return output
 
@@ -138,47 +137,44 @@ def process_file(input_file, output_file):
 	sv = 0
 	sentence = []
 	in_chunk = []
+	first = True
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
+			first = True
 			in_chunk = generate_in_chunk()
 		if in_sentence and all(map(lambda x : x == 0, in_chunk)):
-			for tag in tags:
-				if ("<" + tag) in line and ("</" + tag + ">") not in line:
-					in_chunk[tags[tag]] += 1
-				elif (" wd=\"") in line:
-					palabra = re.sub(".* wd=\"","",line)
-					palabra = re.sub("\".*\n","",palabra)
-					sentence.append((palabra,None,None))
-
-
-
-
-					
-		if in_sentence and sv == 0 and "<sn" in line:
-			sn += 1
-		if in_sentence and sn == 0 and "<grup.verb" in line:
-			sv += 1
-		if in_sentence and sn > 0 and "</sn>" in line:
-			sn -= 1
-		if in_sentence and sv > 0 and "</grup.verb>":
-			sv -= 1
-		if in_sentence and "wd=" in line:
-			aux_line = re.sub(".*?wd=\"","",line)
-			word = re.sub("\".*\n","",aux_line)
-			if sn > 0:
-				sentence.append((word,sn_token))
-			elif sv > 0:
-				sentence.append((word,sv_token))
+			if (" wd=\"") in line:
+				palabra = re.sub(".* wd=\"","",line)
+				palabra = re.sub("\".*\n","",palabra)
+				sentence.append((palabra,None))
 			else:
-				sentence.append((word,out_token))
+				for tag in tags:
+					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
+						in_chunk[tags[tag]] = 1
+		elif in_sentence and any(map(lambda x : x == 1, in_chunk)):
+			tag_seleccionado = ""
+			for tag in tags:
+				if in_chunk[tags[tag]] > 0:
+					tag_seleccionado = tag
+					break
+			if (" wd=\"") in line:
+				palabra = re.sub(".* wd=\"","",line)
+				palabra = re.sub("\".*\n","",palabra)
+				sentence.append((palabra,tag_seleccionado, first))
+				if first:
+					first = False				
+			elif ("<" + tag_seleccionado) in line and ("</" + tag_seleccionado + ">") not in line and in_chunk[tags[tag_seleccionado]] > 0:
+				in_chunk[tags[tag_seleccionado]] += 1
+			elif ("<" + tag_seleccionado) not in line and ("</" + tag_seleccionado + ">") in line and in_chunk[tags[tag_seleccionado]] > 0:
+				in_chunk[tags[tag_seleccionado]] -= 1
+				if in_chunk[tags[tag_seleccionado]] == 0:
+					first = True
 		if in_sentence and "</sentence" in line:
 			in_sentence = False
-			sn = 0
-			sv = 0
 			output = process_sentence(sentence)
 			for o in output:
-					output_file.write(o)
+				output_file.write(o)
 			sentence = []
 
 input_folder = sys.argv[1]
