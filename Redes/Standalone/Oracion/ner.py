@@ -4,10 +4,10 @@ import sys
 sys.path.append(path_proyecto)
 
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Embedding, Flatten, Conv2D
-from keras.layers.pooling import GlobalMaxPooling2D
+from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D
+from keras.layers.pooling import GlobalMaxPooling1D
 from keras.initializers import TruncatedNormal, Constant
-from vector_palabras import palabras_comunespyp
+from vector_palabras import palabras_comunes
 from random import uniform
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -58,7 +58,7 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             trainable=True)
 
-convolutive_layer = Conv2D(filters=unidades_ocultas_capa_2, kernel_size=5)
+convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
@@ -77,7 +77,7 @@ model = Sequential()
 
 model.add(embedding_layer)
 model.add(convolutive_layer)
-model.add(GlobalMaxPooling2D())
+model.add(GlobalMaxPooling1D())
 model.add(second_layer)
 model.add(Activation("tanh"))
 model.add(third_layer)
@@ -97,7 +97,7 @@ print 'Cargando casos de entrenamiento...'
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
 # Obtengo los indices de las palabras
-largo = len(df)
+largo = 100
 for f in range(largo):
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
     for c in range(11):
@@ -116,7 +116,7 @@ print 'Cargando casos de prueba...'
 df = pd.read_csv(archivo_corpus_pruebas, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
 # Obtengo los indices de las palabras
-largo = len(df)
+largo = 50
 for f in range(largo):    
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
     for c in range(11):
