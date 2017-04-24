@@ -93,8 +93,6 @@ def generate_cases(words):
 def process_sentence(sentence_in):
 	intermediate = []
 	sentence = []
-	for i in range(largo_vector):
-		vector.append(0)
 	for word in sentence_in:
 		if "_" in word[0]:
 			words = word[0].split("_")
@@ -111,7 +109,7 @@ def process_sentence(sentence_in):
 	length = len(sentence)
 	for i in range(length):
 		if sentence[i][1] == None:
-			intermediate.append((sentence[i][0]), None)
+			intermediate.append((sentence[i][0], None))
 		elif sentence[i][2]:
 			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
 				intermediate.append((sentence[i][0], sentence[i][1], "b"))
@@ -147,7 +145,7 @@ def process_file(input_file, output_file):
 			if (" wd=\"") in line:
 				palabra = re.sub(".* wd=\"","",line)
 				palabra = re.sub("\".*\n","",palabra)
-				sentence.append((palabra,None))
+				sentence.append((palabra, None, None))
 			else:
 				for tag in tags:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
