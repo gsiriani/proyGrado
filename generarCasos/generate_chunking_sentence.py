@@ -3,7 +3,7 @@ import os
 import re
 import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
-from funciones_chunking import generate_vector_palabra, generate_vector_cero
+from funciones_chunking import generate_vector_cero, generate_vector_palabra
 
 tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
 opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
@@ -15,22 +15,17 @@ for tag in tags:
 cant_opciones = len(opciones)
 cant_tags = len(tags)
 largo_vector = cant_tags * cant_opciones
-window_size = int(11)
 
 def generate_cases(words):
 	output = []
-	mitad_ventana = int(window_size / 2)
-	for i in range(len(words)):
-		line = ""
-		max_index = min(i + mitad_ventana + 1,len(words))
-		min_index = max(0,i - mitad_ventana)
-		for j in range(0,mitad_ventana - i):
-			line += "OUT "
-		for j in range(min_index, max_index):
+	largo = len(words)
+	for i in range(largo):
+		line = str(largo) + " "
+		indices = ""
+		for j in range(len(words)):
 			line += words[j][0] + " "
-		for j in range(6 - (len(words) - i)):
-			line += "OUT "
-		line += generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
+			indices += str(i - j) + " "
+		line += indices + " " + generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
 		output.append(line)
 	return output
 
@@ -134,4 +129,4 @@ input_testing_file.close()
 
 output_pruebas_file.close()
 output_testing_file.close()
-output_training_file.close()	
+output_training_file.close()
