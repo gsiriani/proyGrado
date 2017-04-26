@@ -2,8 +2,9 @@ import sys
 import os
 import re
 import random
+from funciones_generales import correct_escape_sequences, number_filter, date_filter
 
-opciones_arg = ["arg0", "arg1", "arg2", "arg3", "arg4", "argL", "argM"]
+opciones_arg = ["arg0", "arg1", "arg2", "arg3", "arg4", "argL", "argM", "grup.verb"]
 opciones_iobes = ["b", "i", "e", "s"]
 
 input_folder = sys.argv[1]
@@ -13,31 +14,6 @@ tag_length = len(opciones_iobes) * len(opciones_arg)
 out_tag = []
 for i in range(tag_length):
 	out_tag.append(0)
-
-def correct_escape_sequences(word):
-	if word == "&quot;":
-		return "\""
-  	elif word == "&lt;":
-  		return "<"
-	elif word == "&gt;":
-		return ">"
-	elif word == "&amp;":
-		return "&"
-	else:
-		return word
-
-def number_filter(word):
-	try:
-		num = float(word)
-		return "NUM"
-	except:
-		return word
-
-def date_filter(word):
-	if re.match("\d+/\d+/\d+",word) or re.match("\d+-\d+-\d+",word):
-		return "DATE"
-	else:
-		return word
 
 def generate_cases(words):
 	output = []
@@ -107,6 +83,15 @@ def process_file(input_file, output_file):
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
+		if "</sentence" in line:
+			in_sentence = False
+			output = process_sentence(sentence)
+			for o in output:
+				output_file.write(o)
+			sentence = []
+		if in_sentence:
+			sentence.append(line)
+
 		if in_sentence and sv == 0 and "<sn" in line:
 			sn += 1
 		if in_sentence and sn == 0 and "<grup.verb" in line:

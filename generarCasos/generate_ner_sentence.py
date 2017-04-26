@@ -2,6 +2,7 @@ import sys
 import os
 import re
 import random
+from funciones_generales import correct_escape_sequences, number_filter, date_filter
 
 person_token = 0
 location_token = 1
@@ -26,45 +27,16 @@ i_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0"
 e_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
 s_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1"
 
-
-def correct_escape_sequences(word):
-	if word == "&quot;":
-		return "\""
-  	elif word == "&lt;":
-  		return "<"
-	elif word == "&gt;":
-		return ">"
-	elif word == "&amp;":
-		return "&"
-	else:
-		return word
-
-def number_filter(word):
-	try:
-		num = float(word)
-		return "NUM"
-	except:
-		return word
-
-def date_filter(word):
-	if re.match("\d+/\d+/\d+",word) or re.match("\d+-\d+-\d+",word):
-		return "DATE"
-	else:
-		return word
-
 def generate_cases(words):
 	output = []
-	for i in range(len(words)):
-		line = ""
-		max_index = min(i + 6,len(words))
-		min_index = max(0,i - 5)
-		for j in range(0,5 - i):
-			line += "OUT "
-		for j in range(min_index, max_index):
+	largo = len(words)
+	for i in range(largo):
+		line = str(largo) + " "
+		indices = ""
+		for j in range(len(words)):
 			line += words[j][0] + " "
-		for j in range(6 - (len(words) - i)):
-			line += "OUT "
-		line += words[i][1] + "\n"
+			indices += str(i - j) + " "
+		line += indices + words[i][1] + "\n"
 		output.append(line)
 	return output
 
