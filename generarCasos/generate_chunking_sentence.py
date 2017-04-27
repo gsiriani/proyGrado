@@ -3,7 +3,7 @@ import os
 import re
 import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
-from funciones_chunking import generate_vector_cero, generate_vector_palabra
+from funciones_vector import generate_vector_cero, generate_vector_palabra
 
 tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
 opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
@@ -83,7 +83,7 @@ def process_file(input_file, output_file):
 			if (" wd=\"") in line:
 				palabra = re.sub(".* wd=\"","",line)
 				palabra = re.sub("\".*\n","",palabra)
-				sentence.append((palabra, None, None))
+				sentence.append((palabra, None, True))
 			else:
 				for tag in tags:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
