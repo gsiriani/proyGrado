@@ -5,35 +5,32 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_cero, generate_vector_palabra
 
-opciones_arg = ["arg0", "arg1", "arg2", "arg3", "arg4", "argL", "argM", "verb"]
-opciones_iobes = ["b", "i", "e", "s"]
+opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argL" : 5, "argm" : 6, "verb" : 7}
+opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
 input_folder = sys.argv[1]
 output_folder = sys.argv[2]
 
-tag_length = len(opciones_iobes) * len(opciones_arg)
-out_tag = []
-for i in range(tag_length):
-	out_tag.append(0)
-
-cant_opciones = len(opciones)
-cant_tags = len(tags)
+cant_opciones = len(opciones_iobes)
+cant_tags = len(opciones_arg)
 largo_vector = cant_tags * cant_opciones
 
-def generate_cases(words):
+def generate_cases(words, indice_verbo):
 	output = []
 	largo = len(words)
 	for i in range(largo):
 		line = str(largo) + " "
 		indices = ""
+		indices_verbo = ""
 		for j in range(len(words)):
 			line += words[j][0] + " "
 			indices += str(i - j) + " "
-		line += indices + " " + generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
+			indices_verbo += str(indice_verbo - j) + " "
+		line += indices + indices_verbo + generate_vector_palabra(words[i], opciones_arg, opciones_iobes, largo_vector) + "\n"
 		output.append(line)
 	return output
 
-def process_sentence(sentence_in):
+def process_sentence(sentence_in, indice_verbo):
 	intermediate = []
 	sentence = []
 	for word in sentence_in:
@@ -67,57 +64,90 @@ def process_sentence(sentence_in):
 				intermediate.append((sentence[i][0], sentence[i][1], "i"))
 			else:
 				intermediate.append((sentence[i][0], sentence[i][1], "e"))
-	output = generate_cases(intermediate)
+	output = generate_cases(intermediate, indice_verbo)
 	return output
 
-def process_sentence_iterativo(sentence_in):
-	i = 0
-	end = False
+def process_sentence_iterativo(sentence_in, sectores):
 	output = []
-	while not end:
+	for sector in sectores:
+		found = False
 		in_arg = False
 		in_verb = False
 		first = True
 		end = True
 		arg = ""
 		sentence = []
+		indice_verbo = -1
 		j = 0
+		k = 0
 		for line in sentence_in:
-			if j == i:
-				end = False
-			if j == i and re.match(".* arg=\".*"):
+			if j == sector[2] and re.match(".* arg=\".*", line) and k >= sector[0] and k <= sector[1]:
+				found = True
 				in_arg = True
 				arg = re.sub(".* arg=\"", "", line)
 				arg = re.sub("\".*\n", "", arg)
 				first = True
-			if j == i and re.match("<grup.verb"):
-				in_verb
-				first = True
-			if re.match(".*<.*>.*", line) and not re.match(".*<.*/>.*", line):
+			if j == sector[2] and (re.match(".*<grup.verb.*", line) or re.match(".*<infinitiu.*", line)) and k >= sector[0] and k <= sector[1]:
+				found = True
+				indice_verbo = len(sentence)
+				print indice_verbo
+				print line
+				print
+				in_verb = True
+				first = True					
+			if re.match(".*<.*>.*", line) and not re.match(".*<.*/.*>.*", line):
 				j += 1
 			if re.match(".*</.*>.*", line):
 				j -= 1
-				if j == i:
+				if j == sector[2]:
 					in_arg = False
 					in_verb = False
 			if re.match(".* wd=\"", line):
 				word = re.sub(".* wd=\"", "", line)
 				word = re.sub("\".*\n", "", word)
 				if in_arg:
-					sentence.append(word, arg, first)
+					sentence.append((word, arg, first))
 					first = False
 				elif in_verb:
-					sentence.append(word, "verb", first)
+					sentence.append((word, "verb", first))
 					first = False
+				elif sector[2] == j and re.match(".*<n .*origin=\"deverbal\".*", line) and k >= sector[0] and k <= sector[1]:
+					found = True
+					indice_verbo = len(sentence)
+					print indice_verbo
+					print line
+					print
+					sentence.append((word, "verb", first))
 				else:
-					sentence.append(word, "out", True)
-		output += process_sentence(sentence)
-		i += 1
+					sentence.append((word, None, True))
+			k += 1
+		if found and indice_verbo != -1:
+			output += process_sentence(sentence, indice_verbo)
 	return output
 
-
-
-
+def determinar_sectores(sentence_in):
+	i = 0
+	end = False
+	sectores = []
+	while not end:
+		j = 0
+		end = True
+		k = 0
+		ini_sector = 0
+		for line in sentence_in:
+			if j == i:
+				end = False
+			if re.match(".*<.*>.*", line) and not re.match(".*<.*/.*>.*", line):
+				j += 1
+				if j == i + 1:
+					ini_sector = k + 1
+			if re.match(".*</.*>.*", line):
+				j -= 1
+				if j == i:
+					sectores.append((ini_sector,k - 1, i + 1))
+			k += 1
+		i += 1
+	return sectores
 
 def process_file(input_file, output_file):
 	in_sentence = False
@@ -129,7 +159,8 @@ def process_file(input_file, output_file):
 			in_sentence = True
 		if "</sentence" in line:
 			in_sentence = False
-			output = process_sentence_iterativo(sentence)
+			sectores = determinar_sectores(sentence)
+			output = process_sentence_iterativo(sentence, sectores)
 			for o in output:
 				output_file.write(o)
 			sentence = []
@@ -155,25 +186,3 @@ input_testing_file.close()
 output_pruebas_file.close()
 output_testing_file.close()
 output_training_file.close()
-
-
-
-
-
-		if in_sentence and sv == 0 and "<sn" in line:
-			sn += 1
-		if in_sentence and sn == 0 and "<grup.verb" in line:
-			sv += 1
-		if in_sentence and sn > 0 and "</sn>" in line:
-			sn -= 1
-		if in_sentence and sv > 0 and "</grup.verb>":
-			sv -= 1
-		if in_sentence and "wd=" in line:
-			aux_line = re.sub(".*?wd=\"","",line)
-			word = re.sub("\".*\n","",aux_line)
-			if sn > 0:
-				sentence.append((word,sn_token))
-			elif sv > 0:
-				sentence.append((word,sv_token))
-			else:
-				sentence.append((word,out_token))
