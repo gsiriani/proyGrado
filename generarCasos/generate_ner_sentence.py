@@ -2,6 +2,7 @@ import sys
 import os
 import re
 import random
+from funciones_generales import correct_escape_sequences, number_filter, date_filter
 
 person_token = 0
 location_token = 1
@@ -25,32 +26,6 @@ b_oth = "0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0"
 i_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0"
 e_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
 s_oth = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1"
-
-
-def correct_escape_sequences(word):
-	if word == "&quot;":
-		return "\""
-  	elif word == "&lt;":
-  		return "<"
-	elif word == "&gt;":
-		return ">"
-	elif word == "&amp;":
-		return "&"
-	else:
-		return word
-
-def number_filter(word):
-	try:
-		num = float(word)
-		return "NUM"
-	except:
-		return word
-
-def date_filter(word):
-	if re.match("\d+/\d+/\d+",word) or re.match("\d+-\d+-\d+",word):
-		return "DATE"
-	else:
-		return word
 
 def generate_cases(words):
 	output = []

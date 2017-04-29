@@ -2,102 +2,152 @@ import sys
 import os
 import re
 import random
+from funciones_generales import correct_escape_sequences, number_filter, date_filter
+from funciones_vector import generate_vector_cero, generate_vector_palabra
 
-opciones_arg = ["arg0", "arg1", "arg2", "arg3", "arg4", "argL", "argM"]
-opciones_iobes = ["b", "i", "e", "s"]
+opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argL" : 5, "argm" : 6, "verb" : 7}
+opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
 input_folder = sys.argv[1]
 output_folder = sys.argv[2]
 
-tag_length = len(opciones_iobes) * len(opciones_arg)
-out_tag = []
-for i in range(tag_length):
-	out_tag.append(0)
+cant_opciones = len(opciones_iobes)
+cant_tags = len(opciones_arg)
+largo_vector = cant_tags * cant_opciones
 
-def correct_escape_sequences(word):
-	if word == "&quot;":
-		return "\""
-  	elif word == "&lt;":
-  		return "<"
-	elif word == "&gt;":
-		return ">"
-	elif word == "&amp;":
-		return "&"
-	else:
-		return word
-
-def number_filter(word):
-	try:
-		num = float(word)
-		return "NUM"
-	except:
-		return word
-
-def date_filter(word):
-	if re.match("\d+/\d+/\d+",word) or re.match("\d+-\d+-\d+",word):
-		return "DATE"
-	else:
-		return word
-
-def generate_cases(words):
+def generate_cases(words, indice_verbo):
 	output = []
 	largo = len(words)
 	for i in range(largo):
 		line = str(largo) + " "
 		indices = ""
+		indices_verbo = ""
 		for j in range(len(words)):
 			line += words[j][0] + " "
 			indices += str(i - j) + " "
-		line += indices + words[i][1] + "\n"
+			indices_verbo += str(indice_verbo - j) + " "
+		line += indices + indices_verbo + generate_vector_palabra(words[i], opciones_arg, opciones_iobes, largo_vector) + "\n"
 		output.append(line)
 	return output
 
-def process_sentence(sentence_in):
+def process_sentence(sentence_in, indice_verbo):
 	intermediate = []
 	sentence = []
 	for word in sentence_in:
 		if "_" in word[0]:
 			words = word[0].split("_")
+			primero = True
 			for w in words:
 				aux_uno = number_filter(w)
 				aux_dos = date_filter(aux_uno)
 				aux_tres = correct_escape_sequences(aux_dos)
-				sentence.append((aux_tres,word[1]))
+				if primero:
+					sentence.append((aux_tres, word[1], word[2]))
+				else:
+					sentence.append((aux_tres, word[1], False))
 		else:
 			aux_uno = number_filter(word[0])
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
-			sentence.append((aux_tres,word[1]))
+			sentence.append((aux_tres, word[1], word[2]))
 	length = len(sentence)
-	in_sn = False
-	in_sv = False
 	for i in range(length):
-		if sentence[i][1] == out_token:
-			intermediate.append((sentence[i][0],out))
-		if sentence[i][1] == sn_token:
-			if not in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
-				in_sn = True
-				intermediate.append((sentence[i][0],b_sn))
-			elif not in_sn:
-				intermediate.append((sentence[i][0],s_sn))
-			elif in_sn and i < (len(sentence) - 1) and sentence[i + 1][1] == sn_token:
-				intermediate.append((sentence[i][0],i_sn))
-			elif in_sn:
-				intermediate.append((sentence[i][0],e_sn))
-				in_sn = False
-		elif sentence[i][1] == sv_token:
-			if not in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
-				in_sv = True
-				intermediate.append((sentence[i][0],b_sv))
-			elif not in_sv:
-				intermediate.append((sentence[i][0],s_sv))
-			elif in_sv and i < (len(sentence) - 1) and sentence[i + 1][1] == sv_token:
-				intermediate.append((sentence[i][0],i_sv))
-			elif in_sv:
-				intermediate.append((sentence[i][0],e_sv))
-				in_sv = False
-	output = generate_cases(intermediate)
+		if sentence[i][1] == None:
+			intermediate.append((sentence[i][0], None))
+		elif sentence[i][2]:
+			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
+				intermediate.append((sentence[i][0], sentence[i][1], "b"))
+			else:
+				intermediate.append((sentence[i][0], sentence[i][1], "s"))
+		else:
+			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
+				intermediate.append((sentence[i][0], sentence[i][1], "i"))
+			else:
+				intermediate.append((sentence[i][0], sentence[i][1], "e"))
+	output = generate_cases(intermediate, indice_verbo)
 	return output
+
+def process_sentence_iterativo(sentence_in, sectores):
+	output = []
+	for sector in sectores:
+		found = False
+		in_arg = False
+		in_verb = False
+		first = True
+		end = True
+		arg = ""
+		sentence = []
+		indice_verbo = -1
+		j = 0
+		k = 0
+		for line in sentence_in:
+			if j == sector[2] and re.match(".* arg=\".*", line) and k >= sector[0] and k <= sector[1]:
+				found = True
+				in_arg = True
+				arg = re.sub(".* arg=\"", "", line)
+				arg = re.sub("\".*\n", "", arg)
+				first = True
+			if j == sector[2] and (re.match(".*<grup.verb.*", line) or re.match(".*<infinitiu.*", line)) and k >= sector[0] and k <= sector[1]:
+				found = True
+				indice_verbo = len(sentence)
+				print indice_verbo
+				print line
+				print
+				in_verb = True
+				first = True					
+			if re.match(".*<.*>.*", line) and not re.match(".*<.*/.*>.*", line):
+				j += 1
+			if re.match(".*</.*>.*", line):
+				j -= 1
+				if j == sector[2]:
+					in_arg = False
+					in_verb = False
+			if re.match(".* wd=\"", line):
+				word = re.sub(".* wd=\"", "", line)
+				word = re.sub("\".*\n", "", word)
+				if in_arg:
+					sentence.append((word, arg, first))
+					first = False
+				elif in_verb:
+					sentence.append((word, "verb", first))
+					first = False
+				elif sector[2] == j and re.match(".*<n .*origin=\"deverbal\".*", line) and k >= sector[0] and k <= sector[1]:
+					found = True
+					indice_verbo = len(sentence)
+					print indice_verbo
+					print line
+					print
+					sentence.append((word, "verb", first))
+				else:
+					sentence.append((word, None, True))
+			k += 1
+		if found and indice_verbo != -1:
+			output += process_sentence(sentence, indice_verbo)
+	return output
+
+def determinar_sectores(sentence_in):
+	i = 0
+	end = False
+	sectores = []
+	while not end:
+		j = 0
+		end = True
+		k = 0
+		ini_sector = 0
+		for line in sentence_in:
+			if j == i:
+				end = False
+			if re.match(".*<.*>.*", line) and not re.match(".*<.*/.*>.*", line):
+				j += 1
+				if j == i + 1:
+					ini_sector = k + 1
+			if re.match(".*</.*>.*", line):
+				j -= 1
+				if j == i:
+					sectores.append((ini_sector,k - 1, i + 1))
+			k += 1
+		i += 1
+	return sectores
 
 def process_file(input_file, output_file):
 	in_sentence = False
@@ -107,31 +157,15 @@ def process_file(input_file, output_file):
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
-		if in_sentence and sv == 0 and "<sn" in line:
-			sn += 1
-		if in_sentence and sn == 0 and "<grup.verb" in line:
-			sv += 1
-		if in_sentence and sn > 0 and "</sn>" in line:
-			sn -= 1
-		if in_sentence and sv > 0 and "</grup.verb>":
-			sv -= 1
-		if in_sentence and "wd=" in line:
-			aux_line = re.sub(".*?wd=\"","",line)
-			word = re.sub("\".*\n","",aux_line)
-			if sn > 0:
-				sentence.append((word,sn_token))
-			elif sv > 0:
-				sentence.append((word,sv_token))
-			else:
-				sentence.append((word,out_token))
-		if in_sentence and "</sentence" in line:
+		if "</sentence" in line:
 			in_sentence = False
-			sn = 0
-			sv = 0
-			output = process_sentence(sentence)
+			sectores = determinar_sectores(sentence)
+			output = process_sentence_iterativo(sentence, sectores)
 			for o in output:
-					output_file.write(o)
+				output_file.write(o)
 			sentence = []
+		if in_sentence:
+			sentence.append(line)
 
 output_training_file = open(output_folder + "/" + "srl_simple_training.csv","w")
 output_testing_file = open(output_folder + "/" + "srl_simple_testing.csv","w")
