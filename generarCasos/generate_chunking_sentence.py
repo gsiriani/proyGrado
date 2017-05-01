@@ -20,12 +20,17 @@ def generate_cases(words):
 	output = []
 	largo = len(words)
 	for i in range(largo):
-		line = str(largo) + " "
-		indices = ""
+		line = "["
 		for j in range(len(words)):
-			line += words[j][0] + " "
-			indices += str(i - j) + " "
-		line += indices + " " + generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
+			if j > 0:
+				line += ","
+			if "\"" in words[j][0]:
+				line += "('" + words[j][0] + "'," + str(i - j) + ")"
+			else:
+				line += "(\"" + words[j][0] + "\"," + str(i - j) + ")"
+		for j in range(largo,6):
+			line += ",(\"OUT\"," + str(i - j) + ")"
+		line += "] " + generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
 		output.append(line)
 	return output
 
