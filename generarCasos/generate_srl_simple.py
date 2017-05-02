@@ -5,7 +5,7 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_cero, generate_vector_palabra
 
-opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argL" : 5, "argm" : 6, "verb" : 7}
+opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argl" : 5, "argm" : 6, "verb" : 7}
 opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
 input_folder = sys.argv[1]
@@ -19,14 +19,17 @@ def generate_cases(words, indice_verbo):
 	output = []
 	largo = len(words)
 	for i in range(largo):
-		line = str(largo) + " "
-		indices = ""
-		indices_verbo = ""
+		line = "["
 		for j in range(len(words)):
-			line += words[j][0] + " "
-			indices += str(i - j) + " "
-			indices_verbo += str(indice_verbo - j) + " "
-		line += indices + indices_verbo + generate_vector_palabra(words[i], opciones_arg, opciones_iobes, largo_vector) + "\n"
+			if j > 0:
+				line += ","
+			if "\"" in words[j][0]:
+				line += "('" + words[j][0] + "'," + str(i - j) + "," + str(indice_verbo - j) + ")"
+			else:
+				line += "(\"" + words[j][0] + "\"," + str(i - j) + "," + str(indice_verbo - j) + ")"
+		for j in range(largo,5):
+			line += ",(\"OUT\"," + str(i - j) + ")"
+		line += "] " + generate_vector_palabra(words[i], opciones_arg, opciones_iobes, largo_vector) + "\n"
 		output.append(line)
 	return output
 
@@ -90,9 +93,6 @@ def process_sentence_iterativo(sentence_in, sectores):
 			if j == sector[2] and (re.match(".*<grup.verb.*", line) or re.match(".*<infinitiu.*", line)) and k >= sector[0] and k <= sector[1]:
 				found = True
 				indice_verbo = len(sentence)
-				print indice_verbo
-				print line
-				print
 				in_verb = True
 				first = True					
 			if re.match(".*<.*>.*", line) and not re.match(".*<.*/.*>.*", line):
@@ -114,9 +114,6 @@ def process_sentence_iterativo(sentence_in, sectores):
 				elif sector[2] == j and re.match(".*<n .*origin=\"deverbal\".*", line) and k >= sector[0] and k <= sector[1]:
 					found = True
 					indice_verbo = len(sentence)
-					print indice_verbo
-					print line
-					print
 					sentence.append((word, "verb", first))
 				else:
 					sentence.append((word, None, True))

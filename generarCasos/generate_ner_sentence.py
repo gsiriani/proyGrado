@@ -31,12 +31,17 @@ def generate_cases(words):
 	output = []
 	largo = len(words)
 	for i in range(largo):
-		line = str(largo) + " "
-		indices = ""
+		line = "["
 		for j in range(len(words)):
-			line += words[j][0] + " "
-			indices += str(i - j) + " "
-		line += indices + words[i][1] + "\n"
+			if j > 0:
+				line += ","
+			if "\"" in words[j][0]:
+				line += "('" + words[j][0] + "'," + str(i - j) + ")"
+			else:
+				line += "(\"" + words[j][0] + "\"," + str(i - j) + ")"
+		for j in range(largo,5):
+			line += ",(\"OUT\"," + str(i - j) + ")"
+		line += "] " + words[i][1] + "\n"
 		output.append(line)
 	return output
 
