@@ -20,8 +20,8 @@ unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 16 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/ner_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/ner_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/ner_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/ner_pruebas.csv'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
@@ -96,18 +96,25 @@ print 'Cargando casos de entrenamiento...'
 # Abro el archivo con casos de entrenamiento
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
-# Obtengo los indices de las palabras
 largo = 100
-for f in range(largo):
-    print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    for c in range(11):
-        df.at[f,c]=palabras.obtener_indice(df.at[f,c])
-
-print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
 
 # Separo features de resultados esperados
-x_train = np.array(df.iloc[:largo,:11])
-y_train = np.array(df.iloc[:largo,11:])
+x_train = np.array(df.iloc[:largo,:1])
+y_train = np.array(df.iloc[:largo,1:])
+
+x_train_a=[] # Matriz que almacenara indices de palabras
+x_train_b=[] # Matriz que almacenara distancias a la palabra a analizar
+
+# Obtengo los indices de las palabras
+for f in range(largo):
+    print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+    oracion = eval(x_train[i,0])
+    x_train_a.append([palabra for (palabra,distancia) in oracion])
+    x_train_b.append([distancia for (palabra,distancia) in oracion])
+    for c in range(len(oracion)):
+        x_train_a[f,c]=palabras.obtener_indice(x_train_a[f,c])
+
+print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
 
 
 print 'Cargando casos de prueba...' 
@@ -115,18 +122,26 @@ print 'Cargando casos de prueba...'
 # Abro el archivo con casos de prueba
 df = pd.read_csv(archivo_corpus_pruebas, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
-# Obtengo los indices de las palabras
 largo = 50
+
+# Separo features de resultados esperados
+x_test = np.array(df.iloc[:largo,:1])
+y_test = np.array(df.iloc[:largo,1:])
+
+x_test_a=[] # Matriz que almacenara indices de palabras
+x_test_b=[] # Matriz que almacenara distancias a la palabra a analizar
+
+# Obtengo los indices de las palabras
 for f in range(largo):    
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    for c in range(11):
-        df.at[f,c]=palabras.obtener_indice(df.at[f,c])
+    oracion = eval(x_test[i,0])
+    x_test_a.append([palabra for (palabra,distancia) in oracion])
+    x_test_b.append([distancia for (palabra,distancia) in oracion])
+    for c in range(len(oracion)):
+        x_test_a[f,c]=palabras.obtener_indice(x_test_a[f,c])
 
 print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
 
-# Separo features de resultados esperados
-x_test = np.array(df.iloc[:largo,:11])
-y_test = np.array(df.iloc[:largo,11:])
 
 # x_train, x_test, y_train, y_test = train_test_split(X, Y)
 
@@ -137,7 +152,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10, batch_size=25, verbose=2)
+history = model.fit(x_train_a, y_train, validation_data=(x_test_a, y_test), epochs=10, batch_size=25, verbose=2)
 
 # list all data in history
 print(history.history.keys())
