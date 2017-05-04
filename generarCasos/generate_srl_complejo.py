@@ -5,7 +5,89 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_cero, generate_vector_palabra
 
-opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argl" : 5, "argm" : 6, "verb" : 7}
+# Orden de aparicion de func
+orden_func = {"ao" = 0,
+			  "atr" = 1,
+			  "cag" = 2,
+			  "cc" = 3,
+			  "cd" = 4,
+			  "ci" = 5,
+			  "cpred" = 6,
+			  "creg" = 7,
+			  "et" = 8,
+			  "impers" = 9,
+			  "mod" = 10,
+			  "pass" = 11,
+			  "suj" = 12}
+
+# Orden de los args en aparicion
+orden_arg = {"arg0" : 0,
+			 "arg1" : 1,
+			 "arg2" : 2,
+			 "arg3" : 3,
+			 "arg4" : 4,
+			 "argl" : 5,
+			 "argm" : 6,
+			 "verb" : 7}
+
+# Orden de los temas en aparicion
+orden_tem = {"adv" = 0,
+			 "agt" = 1,
+			 "atr" = 2,
+			 "ben" = 3,
+			 "cau" = 4,
+			 "cot" = 5,
+			 "des" = 6,
+			 "efi" = 7,
+			 "ein" = 8,
+			 "exp" = 9,
+			 "ext" = 10,
+			 "fin" = 11,
+			 "ins" = 12,
+			 "loc" = 13,
+			 "mnr" = 14,
+			 "ori" = 15,
+			 "pat" = 16,
+			 "src" = 17,
+			 "tem" = 18,
+			 "tmp" = 19}
+
+# Opciones de verbo
+opciones_verbo = {"normal" = 0,
+				  "infinitivo" = 1,
+				  "nombre_deverbal" = 2}
+
+# Opciones lss de verbo
+opciones_lss = {"a11.transitive-causative" = 0,
+				"a12.ditransitive-causative-state" = 1,
+				"a13.ditransitive-causative-instrumental" = 2,
+				"a21.transitive-agentive-patient" = 3,
+				"a22.transitive-agentive-theme" = 4,
+				"a23.transitive-agentive-extension" = 5,
+				"a31.ditransitive-patient-locative" = 6,
+				"a32.ditransitive-patient-benefactive" = 7,
+				"a33.ditransitive-theme-locative" = 8,
+				"a34.ditransitive-patient-theme" = 9,
+				"a35.ditransitive-theme-cotheme" = 10,
+				"b11.unaccusative-motion" = 11,
+				"b12.unaccusative-passive-ditransitive" = 12,
+				"b21.unaccusative-state" = 13,
+				"b22.unaccusative-passive-transitive" = 14,
+				"b23.unaccusative-theme-cotheme" = 15,
+				"c11.state-existential" = 16,
+				"c21.state-attributive" = 17,
+				"c31.state-scalar" = 18,
+				"c41.state-benefactive" = 19,
+				"c42.state-experiencer" = 20,
+				"d11.inergative-agentive" = 21,
+				"d21.inergative-experiencer" = 22,
+				"d31.inergative-source" = 23}
+
+# Cantidad de opciones por tag segun el orden
+cantidad_opciones = [13, 8, 20, 3, 24]
+
+
+
 opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
 input_folder = sys.argv[1]
