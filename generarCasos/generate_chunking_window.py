@@ -5,6 +5,8 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_palabra, generate_vector_cero
 
+primer_fallo = False
+
 tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
 opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
@@ -20,6 +22,7 @@ window_size = int(11)
 def generate_cases(words):
 	output = []
 	mitad_ventana = int(window_size / 2)
+	mal = False
 	for i in range(len(words)):
 		line = ""
 		max_index = min(i + mitad_ventana + 1,len(words))
@@ -30,6 +33,8 @@ def generate_cases(words):
 			line += words[j][0] + " "
 		for j in range(6 - (len(words) - i)):
 			line += "OUT "
+		if len(line.split(" ")) != 12:
+			mal = True
 		line += generate_vector_palabra(words[i], tags, opciones, largo_vector) + "\n"
 		output.append(line)
 	return output
@@ -38,7 +43,19 @@ def process_sentence(sentence_in):
 	intermediate = []
 	sentence = []
 	for word in sentence_in:
-		if "_" in word[0]:
+		if " " in word[0]:
+			words = word[0].split(" ")
+			first = True
+			for w in words:
+				aux_uno = number_filter(w)
+				aux_dos = date_filter(aux_uno)
+				aux_tres = correct_escape_sequences(aux_dos)
+				if first:
+					sentence.append((aux_tres, word[1], word[2]))
+					first = False
+				else:
+					sentence.append((aux_tres, word[1], False))
+		elif "_" in word[0]:
 			words = word[0].split("_")
 			first = True
 			for w in words:
@@ -55,6 +72,7 @@ def process_sentence(sentence_in):
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
 			sentence.append((aux_tres, word[1], word[2]))
+	largo_viejo = len(sentence_in)
 	length = len(sentence)
 	for i in range(length):
 		if sentence[i][1] == None:

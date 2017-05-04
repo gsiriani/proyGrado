@@ -18,9 +18,6 @@ orden_tags = {"pos" : 0,
 			  "mood" : 11,
 			  "tense" : 12}
 
-# Cantidad de opciones por tag segun el orden
-cantidad_opciones = [12, 3, 3, 1, 25, 3, 16, 2, 4, 3, 2, 2, 5]
-
 # Opciones para cada ta
 opciones_pos = {"a" : 0,
 				"c" : 1,
@@ -119,6 +116,9 @@ opciones_tense = {"conditional" : 0,
 				  "imperfect" : 2,
 				  "past" : 3,
 				  "present" : 4}
+
+# Cantidad de opciones por tag segun el orden
+cantidad_opciones = [12, 3, 3, 1, 25, 3, 16, 2, 4, 3, 2, 2, 5]
 
 # Diccionario de opciones de tag
 opciones_tags = {"pos" : opciones_pos,
