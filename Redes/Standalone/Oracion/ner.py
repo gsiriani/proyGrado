@@ -96,7 +96,7 @@ print 'Cargando casos de entrenamiento...'
 # Abro el archivo con casos de entrenamiento
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
-largo = 100
+largo = 51
 
 # Separo features de resultados esperados
 x_train = np.array(df.iloc[:largo,:1])
@@ -108,13 +108,16 @@ x_train_b=[] # Matriz que almacenara distancias a la palabra a analizar
 # Obtengo los indices de las palabras
 for f in range(largo):
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    oracion = eval(x_train[i,0])
-    x_train_a.append([palabra for (palabra,distancia) in oracion])
+    oracion = eval(x_train[f,0])
+    x_train_a.append([palabras.obtener_indice(palabra) for (palabra,distancia) in oracion])
     x_train_b.append([distancia for (palabra,distancia) in oracion])
-    for c in range(len(oracion)):
-        x_train_a[f,c]=palabras.obtener_indice(x_train_a[f,c])
+#    for c in range(len(oracion)):
+#        x_train_a[f,c]=palabras.obtener_indice(x_train_a[f,c])
 
 print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+print x_train_a[48:]
+x_train_a=np.array(x_train_a)
+x_train_b=np.array(x_train_b)
 
 
 print 'Cargando casos de prueba...' 
@@ -122,7 +125,7 @@ print 'Cargando casos de prueba...'
 # Abro el archivo con casos de prueba
 df = pd.read_csv(archivo_corpus_pruebas, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
-largo = 50
+largo = 5
 
 # Separo features de resultados esperados
 x_test = np.array(df.iloc[:largo,:1])
@@ -134,14 +137,15 @@ x_test_b=[] # Matriz que almacenara distancias a la palabra a analizar
 # Obtengo los indices de las palabras
 for f in range(largo):    
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    oracion = eval(x_test[i,0])
-    x_test_a.append([palabra for (palabra,distancia) in oracion])
+    oracion = eval(x_test[f,0])
+    x_test_a.append([palabras.obtener_indice(palabra) for (palabra,distancia) in oracion])
     x_test_b.append([distancia for (palabra,distancia) in oracion])
-    for c in range(len(oracion)):
-        x_test_a[f,c]=palabras.obtener_indice(x_test_a[f,c])
+ #   for c in range(len(oracion)):
+  #      x_test_a[f,c]=palabras.obtener_indice(x_test_a[f,c])
 
 print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-
+x_test_a=np.array(x_test_a)
+x_test_b=np.array(x_test_b)
 
 # x_train, x_test, y_train, y_test = train_test_split(X, Y)
 
@@ -152,7 +156,7 @@ print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_le
 
 
 
-history = model.fit(x_train_a, y_train, validation_data=(x_test_a, y_test), epochs=10, batch_size=25, verbose=2)
+history = model.fit(x_train_a, y_train, validation_data=(x_test_a, y_test), epochs=10, batch_size=25, verbose=0)
 
 # list all data in history
 print(history.history.keys())
