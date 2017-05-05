@@ -19,8 +19,8 @@ unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 8 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/chunking_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/chunking_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_pruebas.csv'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
@@ -133,7 +133,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10, batch_size=25, verbose=2)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
 
 # list all data in history
 print(history.history.keys())
