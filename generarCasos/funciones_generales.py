@@ -1,6 +1,12 @@
 # Funciones generales
 import re
 
+def sumatoria(arreglo):
+	total = 0
+	for i in arreglo:
+		total += i
+	return total
+
 def list_to_str(vector):
 	salida = ""
 	primero = True
