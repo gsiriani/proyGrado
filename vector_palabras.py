@@ -4,15 +4,15 @@ class palabras_comunes:
 
 	def __init__(self, archivo):
 		# Genera un diccionario a partir de un archivo de palabras y palabras auxiliares
-		i = 0
+		i = 1
 		self.dic_p = {}
+		self.dic_p["OUT"] = 0
 		for p in open(archivo):
 			self.dic_p[p.split()[0]] = i
 			i = i + 1
 		self.dic_p["PUNCT"] = i
 		self.dic_p["NUM"] = i + 1
-		self.dic_p["OUT"] = i + 2
-		self.UNK = i + 3
+		self.UNK = i + 2
 
 	def obtener_indice(self,token):
 		# Retorna el indice del token en el diccionario
