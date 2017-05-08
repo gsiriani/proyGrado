@@ -146,14 +146,6 @@ def put_one(output, tag, opcion):
 	output[posicion] = 1
 	return output
 
-def array_to_str(arreglo):
-	string = ""
-	for p in arreglo:
-		if string == "":
-			string = str(p)
-		else:
-			string += " " + str(p)
-	return string
 
 def correct_escape_sequences(word):
 	if word == "&quot;":
