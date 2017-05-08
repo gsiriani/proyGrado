@@ -1,5 +1,5 @@
 # Funciones generales de chunking
-from funciones_generales import list_to_str
+from funciones_generales import list_to_str, sumatoria
 
 def obtener_indice(tag, tags, opcion, opciones):
 	indice = tags[tag] * len(opciones) + opciones[opcion]
@@ -28,3 +28,17 @@ def generate_vector_cero(largo):
 	for i in range(largo):
 		l.append(0)
 	return l
+
+def put_one(output, num_tag, cantidad_opciones, opciones_tags, orden_tags, valor):
+	#print orden_tags[num_tag]
+	posicion = sumatoria(cantidad_opciones[:num_tag]) + opciones_tags[orden_tags[num_tag]][valor]
+	output[posicion] = 1
+	return output
+
+def generate_srl(word, cantidad_opciones, opciones_tags, orden_tags):
+	srl = generate_vector_cero(sumatoria(cantidad_opciones))
+	for i in range(len(orden_tags)):
+		if word[i + 1] != None:
+			srl = put_one(srl, i, cantidad_opciones, opciones_tags, orden_tags, word[i + 1])
+	output = list_to_str(srl)
+	return output
