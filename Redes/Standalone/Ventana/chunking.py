@@ -16,7 +16,7 @@ from script_auxiliares import print_progress
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 8 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
 archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
