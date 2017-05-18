@@ -28,3 +28,7 @@ class palabras_comunes:
 	def is_punct(self, token):
 		# Retorna True si el token es un caracter no alfanumerico de un digito que no esta en el diccionario
 		return ((not (token in self.dic_p.keys())) and (len(token) == 1) and not (token.isalnum()))
+
+	def __len__(self):
+		# Retorna cantidad de palabras consideradas en el diccionario
+		return len(self.dic_p) + 1

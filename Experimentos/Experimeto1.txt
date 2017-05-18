@@ -1,0 +1,15 @@
+Experimeto 1
+------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: Chunking
+
+Parametros:
+(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
+
+Tiempo estimado carga casos de entrenamiento: 1 h 20 min
+
+Luego de ejecutar aprox. 72 horas seguidas en Aviona el sistema lleva ejecutadas 665 iteraciones sobre todos los casos de entrenamiento.
+El valor de Accuracy alcanzado es de 0.080 y loss=nan
+Se observa que la red procesa aproximadamente 1000 casos por segundo
+Se calcula que una iteración demora aprox. 7 minutos

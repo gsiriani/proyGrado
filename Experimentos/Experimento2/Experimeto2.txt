@@ -1,0 +1,14 @@
+Experimeto 2
+------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: Chunking
+
+Parametros:
+x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=250, verbose=1
+
+Tiempo estimado carga casos de entrenamiento: 1 h 20 min
+
+El sistema demoró menos de 24 horas en procesar todos los casos de entrenamiento
+
+Resultado: val_loss: nan - val_acc: 0.0806
