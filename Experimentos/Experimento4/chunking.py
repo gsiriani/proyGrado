@@ -14,12 +14,8 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
 from script_auxiliares import print_progress
-import time
-from codecs import open, BOM_UTF8
-
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
@@ -27,21 +23,47 @@ archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
 archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
 archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_pruebas.csv'
 
-archivo_acc = path_proyecto + '/Experimentos/Experimento7/accuracy.png'
-archivo_loss = path_proyecto + '/Experimentos/Experimento7/loss.png'
-
-log = 'Log de ejecucion:\n-----------------'
-
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
-cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
+
+embedding_inicial=[]
+
+# Creo embedding para OUT
+features_aux = []
+for _ in range(150): # TODO: VERIFICAR QUE COINCIDA CON VECTOR_SIZE
+    features_aux.append(uniform(-1,1))
+embedding_inicial.append(list(features_aux))
+
+
+for l in open(archivo_embedding):
+    embedding_inicial.append([float(x) for x in l.split()[1:]])
+
+vector_size = len(embedding_inicial[0]) # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
+print 'Cantidad de features considerados: ' + str(vector_size)
+
+# Agregamos embedding para PUNCT inicializado como el mismo embedding que ':'
+indice_punct_base = palabras.obtener_indice(':')
+embedding_inicial.append(list(embedding_inicial[indice_punct_base]))
+
+# todo: agregar DATE y signos de puntuacion
+
+# Agregamos embedding para NUM y UNK
+for _ in range(2):
+    features_aux = []
+    for _ in range(vector_size):
+        features_aux.append(uniform(-1,1))
+    embedding_inicial.append(list(features_aux))
+
+embedding_inicial = np.array(embedding_inicial)
+
+cant_palabras = len(embedding_inicial)  # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 
 # Defino las capas de la red
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, embeddings_initializer='uniform',
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             input_length=window_size, trainable=True)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
@@ -74,7 +96,6 @@ model.summary()
 
 
 # Entreno
-inicio_carga_casos = time.time()
 print 'Cargando casos de entrenamiento...'
 
 # Abro el archivo con casos de entrenamiento
@@ -112,8 +133,6 @@ print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_le
 x_test = np.array(df.iloc[:largo,:11])
 y_test = np.array(df.iloc[:largo,11:])
 
-duracion_carga_casos = time.time() - inicio_carga_casos
-
 # x_train, x_test, y_train, y_test = train_test_split(X, Y)
 
 # x_train = np.array(x_train)
@@ -122,29 +141,11 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 # y_test = np.array(y_test)
 
 
-inicio_entrenamiento = time.time()
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=500, batch_size=100, verbose=2)
-duracion_entrenamiento = time.time() - inicio_entrenamiento
+
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=100, verbose=2)
 
 # list all data in history
 print(history.history.keys())
-
-log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
-log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
-
-log += '\n\nAccuracy entrenamiento inicial: ' + str(history.history['acc'][0])
-log += '\nAccuracy entrenamiento final: ' + str(history.history['acc'][-1])
-log += '\n\nAccuracy validacion inicial: ' + str(history.history['val_acc'][0])
-log += '\nAccuracy validacion final: ' + str(history.history['val_acc'][-1])
-
-log += '\n\nLoss entrenamiento inicial: ' + str(history.history['loss'][0])
-log += '\nLoss entrenamiento final: ' + str(history.history['loss'][-1])
-log += '\n\nLoss validacion inicial: ' + str(history.history['val_loss'][0])
-log += '\nLoss validacion final: ' + str(history.history['val_loss'][-1])
-
-#print log
-open("log.txt", "w").write(BOM_UTF8 + log)
-
 # summarize history for accuracy
 plt.plot(history.history['acc'])
 plt.plot(history.history['val_acc'])
@@ -152,16 +153,12 @@ plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-#plt.show()
-plt.savefig(archivo_acc, bbox_inches='tight')
-
+plt.show()
 # summarize history for loss
-plt.clf()
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-#plt.show()
-plt.savefig(archivo_loss, bbox_inches='tight')
+plt.show()
