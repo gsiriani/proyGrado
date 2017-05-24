@@ -4,7 +4,8 @@ import sys
 sys.path.append(path_proyecto)
 
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Embedding, Flatten
+from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D
+from keras.layers.pooling import GlobalMaxPooling1D
 from keras.initializers import TruncatedNormal, Constant
 from vector_palabras import palabras_comunes
 from random import uniform
@@ -16,16 +17,25 @@ from script_auxiliares import print_progress
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 16 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+padding = 150 # cantidad maxima de palabras de cada oracion
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/ner_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/ner_pruebas.csv'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
 
 embedding_inicial=[]
+
+# Creo embedding para OUT
+features_aux = []
+for _ in range(150): # TODO: VERIFICAR QUE COINCIDA CON VECTOR_SIZE
+    features_aux.append(uniform(-1,1))
+embedding_inicial.append(list(features_aux))
+
+
 for l in open(archivo_embedding):
     embedding_inicial.append([float(x) for x in l.split()[1:]])
 
@@ -38,8 +48,8 @@ embedding_inicial.append(list(embedding_inicial[indice_punct_base]))
 
 # todo: agregar DATE y signos de puntuacion
 
-# Agregamos embedding para OUT, NUM y UNK
-for _ in range(3):
+# Agregamos embedding para NUM y UNK
+for _ in range(2):
     features_aux = []
     for _ in range(vector_size):
         features_aux.append(uniform(-1,1))
@@ -55,7 +65,9 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
-                            input_length=window_size, trainable=True)
+                            trainable=True)
+
+convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
@@ -73,7 +85,8 @@ third_layer = Dense(units=unidades_ocultas_capa_3,
 model = Sequential()
 
 model.add(embedding_layer)
-model.add(Flatten())
+model.add(convolutive_layer)
+model.add(GlobalMaxPooling1D())
 model.add(second_layer)
 model.add(Activation("tanh"))
 model.add(third_layer)
@@ -92,18 +105,30 @@ print 'Cargando casos de entrenamiento...'
 # Abro el archivo con casos de entrenamiento
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
+largo = 500
+
+# Separo features de resultados esperados
+x_train = np.array(df.iloc[:largo,:1])
+y_train = np.array(df.iloc[:largo,1:])
+
+x_train_a=[] # Matriz que almacenara indices de palabras
+x_train_b=[] # Matriz que almacenara distancias a la palabra a analizar
+
 # Obtengo los indices de las palabras
-largo = len(df)
 for f in range(largo):
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    for c in range(11):
-        df.at[f,c]=palabras.obtener_indice(df.at[f,c])
+    oracion = eval(x_train[f,0])
+    palabras_oracion = [palabras.obtener_indice(palabra) for (palabra,distancia) in oracion]
+    palabras_oracion = palabras_oracion + [0]*(padding - len(palabras_oracion))
+    x_train_a.append(palabras_oracion)
+    x_train_b.append([distancia for (palabra,distancia) in oracion])
+#    for c in range(len(oracion)):
+#        x_train_a[f,c]=palabras.obtener_indice(x_train_a[f,c])
 
 print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
 
-# Separo features de resultados esperados
-x_train = np.array(df.iloc[:largo,:11])
-y_train = np.array(df.iloc[:largo,11:])
+x_train_a=np.array(x_train_a)
+x_train_b=np.array(x_train_b)
 
 
 print 'Cargando casos de prueba...' 
@@ -111,18 +136,29 @@ print 'Cargando casos de prueba...'
 # Abro el archivo con casos de prueba
 df = pd.read_csv(archivo_corpus_pruebas, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
-# Obtengo los indices de las palabras
-largo = len(df)
-for f in range(largo):    
-    print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
-    for c in range(11):
-        df.at[f,c]=palabras.obtener_indice(df.at[f,c])
-
-print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+largo = 250
 
 # Separo features de resultados esperados
-x_test = np.array(df.iloc[:largo,:11])
-y_test = np.array(df.iloc[:largo,11:])
+x_test = np.array(df.iloc[:largo,:1])
+y_test = np.array(df.iloc[:largo,1:])
+
+x_test_a=[] # Matriz que almacenara indices de palabras
+x_test_b=[] # Matriz que almacenara distancias a la palabra a analizar
+
+# Obtengo los indices de las palabras
+for f in range(largo):    
+    print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+    oracion = eval(x_test[f,0])
+    palabras_oracion = [palabras.obtener_indice(palabra) for (palabra,distancia) in oracion]
+    palabras_oracion = palabras_oracion + [0]*(padding - len(palabras_oracion))
+    x_test_a.append(palabras_oracion)
+    x_test_b.append([distancia for (palabra,distancia) in oracion])
+ #   for c in range(len(oracion)):
+  #      x_test_a[f,c]=palabras.obtener_indice(x_test_a[f,c])
+
+print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+x_test_a=np.array(x_test_a)
+x_test_b=np.array(x_test_b)
 
 # x_train, x_test, y_train, y_test = train_test_split(X, Y)
 
@@ -133,7 +169,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
+history = model.fit(x_train_a, y_train, validation_data=(x_test_a, y_test), epochs=10, batch_size=25, verbose=0)
 
 # list all data in history
 print(history.history.keys())

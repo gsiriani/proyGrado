@@ -1,0 +1,20 @@
+Experimeto 4
+------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: Chunking
+
+Parametros:
+x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=500, verbose=2
+x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=100, verbose=2
+
+Tiempo estimado carga casos de entrenamiento: 1 h 20 min
+Tiempo estimado carga casos de prueba: 25 min
+
+A través de este experimento intentamos aproximar el tamaño de batch a partir del cual el tiempo de ejecución de cada iteración aumenta.
+Ya se ha descubierto en experimentos anteriores que con batch de tamaño 25 una iteración demora alrededor de 7 min y con batch de tamaño 
+250 una iteración demora aprox. 55 seg. En este caso se busca descubrir la duración de una iteración con batch de 500, 100 y 1000
+
+Para batch de 1000, cada iteración demora 25 s
+Para batch de 500, cada iteración demora 35 s
+Para batch de 100, cada iteración demora 104 s

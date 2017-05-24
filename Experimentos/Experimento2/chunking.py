@@ -133,7 +133,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=250, verbose=1)
 
 # list all data in history
 print(history.history.keys())

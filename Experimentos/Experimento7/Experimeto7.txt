@@ -1,0 +1,38 @@
+Experimeto 7
+------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: Chunking
+Embedding: Aleatorio
+Features: 50
+
+Parametros:
+x_train, y_train, validation_data=(x_test, y_test), epochs=500, batch_size=100, verbose=2
+
+Tiempo estimado carga casos de entrenamiento: 1 h 20 min
+Tiempo estimado carga casos de prueba: 25 min
+
+En este experimento se busca otener la duración por iteración con batch de 100 y 50 features por palabra 
+y el resultado de entrenamiento de chunking con modalidad ventana en la configuración actual de la red.
+Es el primer experimento con embedding aleatorio en que se usan todos los casos de entrenamiento. 
+
+
+
+Cantidad de palabras consideradas: 56935
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 50)            2846750   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 550)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               165300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 24)                7224      
+=================================================================
+Total params: 3,019,274.0
+Trainable params: 3,019,274.0
+Non-trainable params: 0.0
+

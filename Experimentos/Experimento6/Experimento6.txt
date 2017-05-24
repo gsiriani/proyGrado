@@ -1,0 +1,12 @@
+Experimento 6
+-------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: Chunking
+
+Para este experimento se descarta el embedding precalculado y se utiliza un embedding de 50 features por palabra generado aleatoriamente.
+De este modo la red SI pudo entrenar
+
+Se considero una pequeña muestra de los casos de entrenamiento y prueba, por lo que los resultados de la red
+no se consideran especialmente valiosos, pero se logró el objetivo de verificar que la red puede entrenarse
+exitosamente con un embedding aleatorio y el resultado es comparable al obtenido en el experimento 5

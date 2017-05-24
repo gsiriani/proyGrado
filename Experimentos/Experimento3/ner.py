@@ -16,16 +16,24 @@ from script_auxiliares import print_progress
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 16 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/ner_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/ner_pruebas.csv'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
 
 embedding_inicial=[]
+
+# Creo embedding para OUT
+features_aux = []
+for _ in range(150): # TODO: VERIFICAR QUE COINCIDA CON VECTOR_SIZE
+    features_aux.append(uniform(-1,1))
+embedding_inicial.append(list(features_aux))
+
+
 for l in open(archivo_embedding):
     embedding_inicial.append([float(x) for x in l.split()[1:]])
 
@@ -38,8 +46,8 @@ embedding_inicial.append(list(embedding_inicial[indice_punct_base]))
 
 # todo: agregar DATE y signos de puntuacion
 
-# Agregamos embedding para OUT, NUM y UNK
-for _ in range(3):
+# Agregamos embedding para NUM y UNK
+for _ in range(2):
     features_aux = []
     for _ in range(vector_size):
         features_aux.append(uniform(-1,1))
@@ -133,7 +141,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=250, verbose=2)
 
 # list all data in history
 print(history.history.keys())

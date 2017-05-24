@@ -1,0 +1,18 @@
+Experimeto 3
+------------
+Modelo red: Ventana
+Combinacion: Standalone
+Problema: NER
+
+Parametros:
+x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=250, verbose=2
+
+Tiempo estimado carga casos de entrenamiento: 1 h 20 min
+
+El experimento se inició un Viernes por la noche y los resultados fueron recogidos la noche del Lunes. 
+De acuerdo con los logs, el experimento duró 15 hs 17 min, sin contar el tiempo de carga de los casos de entrenamiento,
+lo que nos dá un total estimado de 16 hs 37 min
+
+Resultado: loss: nan - acc: 0.9240 - val_loss: nan - val_acc: 0.9208
+
+OBS: curiosamente, los resultados después de la primer iteración fueron loss: nan - acc: 0.9175 - val_loss: nan - val_acc: 0.9208

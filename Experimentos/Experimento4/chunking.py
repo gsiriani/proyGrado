@@ -6,6 +6,7 @@ sys.path.append(path_proyecto)
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Embedding, Flatten
 from keras.initializers import TruncatedNormal, Constant
+from keras import optimizers
 from vector_palabras import palabras_comunes
 from random import uniform
 import pandas as pd
@@ -26,6 +27,14 @@ archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_prueb
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
 
 embedding_inicial=[]
+
+# Creo embedding para OUT
+features_aux = []
+for _ in range(150): # TODO: VERIFICAR QUE COINCIDA CON VECTOR_SIZE
+    features_aux.append(uniform(-1,1))
+embedding_inicial.append(list(features_aux))
+
+
 for l in open(archivo_embedding):
     embedding_inicial.append([float(x) for x in l.split()[1:]])
 
@@ -38,8 +47,8 @@ embedding_inicial.append(list(embedding_inicial[indice_punct_base]))
 
 # todo: agregar DATE y signos de puntuacion
 
-# Agregamos embedding para OUT, NUM y UNK
-for _ in range(3):
+# Agregamos embedding para NUM y UNK
+for _ in range(2):
     features_aux = []
     for _ in range(vector_size):
         features_aux.append(uniform(-1,1))
@@ -47,7 +56,7 @@ for _ in range(3):
 
 embedding_inicial = np.array(embedding_inicial)
 
-cant_palabras = len(embedding_inicial)	# Cantidad de palabras consideradas en el diccionario
+cant_palabras = len(embedding_inicial)  # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 
@@ -81,8 +90,8 @@ model.add(third_layer)
 
 
 # Compilo la red
-
-model.compile(loss='mean_squared_error', optimizer='sgd', metrics=['accuracy'])
+sgd = optimizers.SGD(lr=0.03, momentum=0.01)
+model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['accuracy'])
 model.summary()
 
 
@@ -133,7 +142,7 @@ y_test = np.array(df.iloc[:largo,11:])
 
 
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=10000, batch_size=25, verbose=1)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=100, verbose=2)
 
 # list all data in history
 print(history.history.keys())

@@ -4,15 +4,15 @@ class palabras_comunes:
 
 	def __init__(self, archivo):
 		# Genera un diccionario a partir de un archivo de palabras y palabras auxiliares
-		i = 0
+		i = 1
 		self.dic_p = {}
+		self.dic_p["OUT"] = 0
 		for p in open(archivo):
 			self.dic_p[p.split()[0]] = i
 			i = i + 1
 		self.dic_p["PUNCT"] = i
 		self.dic_p["NUM"] = i + 1
-		self.dic_p["OUT"] = i + 2
-		self.UNK = i + 3
+		self.UNK = i + 2
 
 	def obtener_indice(self,token):
 		# Retorna el indice del token en el diccionario
@@ -28,3 +28,7 @@ class palabras_comunes:
 	def is_punct(self, token):
 		# Retorna True si el token es un caracter no alfanumerico de un digito que no esta en el diccionario
 		return ((not (token in self.dic_p.keys())) and (len(token) == 1) and not (token.isalnum()))
+
+	def __len__(self):
+		# Retorna cantidad de palabras consideradas en el diccionario
+		return len(self.dic_p) + 1
