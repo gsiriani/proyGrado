@@ -31,4 +31,4 @@ class palabras_comunes:
 
 	def __len__(self):
 		# Retorna cantidad de palabras consideradas en el diccionario
-		return len(self.dic_p) + 1
+		return len(self.dic_p) + 3
