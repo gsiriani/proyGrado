@@ -1136,7 +1136,7 @@ rayos
 positiva
 filme
 by
-gr√
+gr?
 curioso
 salut
 halladas
@@ -1703,7 +1703,7 @@ cuidan
 siglo
 compatriota
 sucedido
-eul√
+eul?
 porter
 sufrir√°
 sugarcubes
@@ -2503,7 +2503,7 @@ destacando
 griegas
 embajadora
 donald
-mill√
+mill?
 nadadora
 especie
 superiores
@@ -3217,7 +3217,7 @@ robos
 counter
 robot
 catal√°
-catal√
+catal?
 comenzaremos
 inconstitucional
 m√©xico
@@ -3681,7 +3681,7 @@ pitonisa
 v√≠ctima
 cuelan
 econ√≥mica
-cat√
+cat?
 venciendo
 competir
 deber√≠a
@@ -3832,7 +3832,7 @@ hubert
 mero
 voluntad
 exterminio
-r√
+r?
 banco
 hielos
 deseos
@@ -4365,7 +4365,7 @@ dirig√≠a
 cruce√±o
 hemos
 bochornoso
-servi√
+servi?
 lanzados
 lanzador
 prominentes
@@ -4454,7 +4454,7 @@ cartagena
 depositado
 resentimientos
 valenciana
-m√
+m?
 despliega
 √≥sea
 multilaterales
@@ -5862,7 +5862,7 @@ firmantes
 artificiales
 colla
 prol√≠fico
-premi√
+premi?
 conflictiva
 prepar√≥
 intercontinental
@@ -6165,7 +6165,7 @@ situ√≥
 irradiado
 previo
 mestiza
-tom√
+tom?
 pende
 mucosa
 autopistas
@@ -6343,7 +6343,7 @@ reconocen
 juegue
 organo
 bouchard
-mil√
+mil?
 inform√°ticos
 atacando
 cubren
@@ -6666,7 +6666,7 @@ grotesco
 partidarios
 neumon√≠a
 tendr√°
-mediterr√
+mediterr?
 marco
 mujer
 negociaron
@@ -7194,7 +7194,7 @@ encender
 centralizan
 niega
 camiseta
-toldr√
+toldr?
 amplios
 causa
 oribe
@@ -7472,7 +7472,7 @@ trova
 limite
 limita
 carisma
-reg√
+reg?
 razonable
 entrar√°
 conlleve
@@ -8004,7 +8004,7 @@ interviniera
 conquistaron
 v√≥mitos
 r√°pidas
-barber√
+barber?
 cometidos
 moral
 sande
@@ -8311,7 +8311,7 @@ street
 ol√≠mpico
 ol√≠mpica
 aliment√≥
-segri√
+segri?
 conforme
 enterradas
 rec√≠proca
@@ -8382,7 +8382,7 @@ emparejado
 concurrir
 rivero
 litio
-democr√
+democr?
 retire
 espadas
 anchura
@@ -8401,7 +8401,7 @@ ganando
 pasaban
 favoritos
 anunciar
-b√
+b?
 reivindicar
 villahermosa
 estoril
@@ -8987,7 +8987,7 @@ estad√≠stico
 evaluar
 enorme
 intergubernamental
-cornell√
+cornell?
 gr√°cil
 planck
 cercanas
@@ -9172,7 +9172,7 @@ ari√±o
 desconocidos
 comprimido
 doscientos
-tr√
+tr?
 rock
 sobornos
 roca
@@ -16182,7 +16182,7 @@ unirse
 simon
 q
 fuertemente
-√
+?
 acad√©mico
 dj
 linux
@@ -26179,7 +26179,7 @@ wittgenstein
 wight
 villadiego
 vasculares
-valenci√
+valenci?
 tertulia
 talladas
 sueltos
@@ -37393,7 +37393,7 @@ tottenham
 terran
 sure√±os
 spreng
-societ√
+societ?
 sinn√∫mero
 simp√°tica
 sibelius
@@ -37621,7 +37621,7 @@ coronarse
 comprometer
 clitemnestra
 clarissa
-citt√
+citt?
 cipreses
 cieza
 chaque√±a
@@ -39672,7 +39672,7 @@ arnoldo
 alineado
 aleatoriamente
 aerospace
-adri√
+adri?
 zool√≥gicos
 yen
 visitaban
@@ -42634,7 +42634,7 @@ escult√≥ricas
 encendidas
 el√≠seos
 eclosi√≥n
-d√©j√
+d√©j?
 despiden
 designaron
 desenvolvimiento
@@ -42779,7 +42779,7 @@ mazas
 masturbaci√≥n
 mamas
 mahoney
-maci√
+maci?
 llam√°ndola
 lindbergh
 lentejas
@@ -45232,7 +45232,7 @@ kern
 katmand√∫
 j√≥zef
 j√°chal
-juli√
+juli?
 juilliard
 jetix
 jesu√≠tica
@@ -47460,7 +47460,7 @@ vilas
 veneran
 vellosidades
 utilizamos
-universit√
+universit?
 t√≥nico
 tvg
 tuskegee
@@ -54136,7 +54136,7 @@ unai
 umi
 ultramarinos
 t√°ctiles
-t√
+t?
 tuttle
 tulum
 triunfalmente
@@ -56929,3 +56929,18 @@ oto
 oscense
 osad√≠a
 oro√±o
+.
+,
+!
+?
+¬ø
+¬°
+(
+)
+"
+'
+PUNCT
+NUM
+DATE
+UNK
+OUT
