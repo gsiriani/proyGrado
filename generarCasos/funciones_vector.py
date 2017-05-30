@@ -5,6 +5,15 @@ def obtener_indice(tag, tags, opcion, opciones):
 	indice = tags[tag] * len(opciones) + opciones[opcion]
 	return indice
 
+def obtener_indices(valores, tags):
+	indices = []
+	largos = []
+	for tag in tags:
+		largos.append(len(tag))
+	for i in range(len(valores)):
+		indice = sumatoria(largos[:i]) + tags[i][valores[i]]
+		indices.append(indice)
+
 def vector_variante(indice, largo_vector):
 	vector = []
 	for i in range(largo_vector):
@@ -14,6 +23,14 @@ def vector_variante(indice, largo_vector):
 			vector.append(0)
 	return vector
 
+def vector_variante_multiple(indices, largo_vector):
+	vector = []
+	for i in range(largo_vector):
+		if i in indices:
+			vector.append(1)
+		else:
+			vector.append(0)
+
 def generate_vector_palabra(palabra, tags, opciones, largo_vector):
 	if palabra[1] != None:
 		indice = obtener_indice(palabra[1], tags, palabra[2], opciones)
@@ -21,6 +38,11 @@ def generate_vector_palabra(palabra, tags, opciones, largo_vector):
 		return list_to_str(vector)
 	else:
 		vector = vector_variante(-1, largo_vector)
+		return list_to_str(vector)
+
+def generate_vector_palabra_multiple(valores, tags, largo_vector):
+		indices = obtener_indices(valores, tags)
+		vector = vector_variante_multiple(indices, largo_vector)
 		return list_to_str(vector)
 
 def generate_vector_cero(largo):

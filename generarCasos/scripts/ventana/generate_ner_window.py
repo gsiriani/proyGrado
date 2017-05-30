@@ -49,17 +49,12 @@ def process_sentence(sentence_in):
 	for word in sentence_in:
 		if " " in word[0]:
 			words = word[0].split(" ")
-			first = True
 			for w in words:
 				if w != "":
 					aux_uno = number_filter(w)
 					aux_dos = date_filter(aux_uno)
 					aux_tres = correct_escape_sequences(aux_dos)
-					if first:
-						sentence.append((aux_tres, word[1]))
-						first = False
-					else:
-						sentence.append((aux_tres, word[1]))
+					sentence.append((aux_tres, word[1]))
 		elif "_" in word[0]:
 			words = word[0].split("_")
 			for w in words:

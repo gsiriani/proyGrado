@@ -22,14 +22,38 @@ opciones_func = {"ao" : 0,
 				 "suj" : 13}
 
 # Orden de los args en aparicion
-opciones_arg = {"arg0" : 0,
-				"arg1" : 1,
-				"arg2" : 2,
-				"arg3" : 3,
-				"arg4" : 4,
-				"argl" : 5,
-				"argm" : 6,
-				"verb" : 7}
+opciones_arg = {"b_arg0" : 0,
+				"b_arg1" : 1,
+				"b_arg2" : 2,
+				"b_arg3" : 3,
+				"b_arg4" : 4,
+				"b_argl" : 5,
+				"b_argm" : 6,
+				"b_verb" : 7,
+				"i_arg0" : 8,
+				"i_arg1" : 9,
+				"i_arg2" : 10,
+				"i_arg3" : 11,
+				"i_arg4" : 12,
+				"i_argl" : 13,
+				"i_argm" : 14,
+				"i_verb" : 15,
+				"e_arg0" : 16,
+				"e_arg1" : 17,
+				"e_arg2" : 18,
+				"e_arg3" : 19,
+				"e_arg4" : 20,
+				"e_argl" : 21,
+				"e_argm" : 22,
+				"e_verb" : 23,
+				"s_arg0" : 24,
+				"s_arg1" : 25,
+				"s_arg2" : 26,
+				"s_arg3" : 27,
+				"s_arg4" : 28,
+				"s_argl" : 29,
+				"s_argm" : 30,
+				"s_verb" : 31}
 
 # Orden de los temas en aparicion
 opciones_tem = {"adv" : 0,
@@ -84,27 +108,20 @@ opciones_lss = {"a11.transitive-causative" : 0,
 				"d21.inergative-experiencer" : 22,
 				"d31.inergative-source" : 23}
 
-opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
-
 # Cantidad de opciones por tag segun el orden
-cantidad_opciones = [13, 8, 20, 3, 24, 4]
+cantidad_opciones = [13, 32, 20, 3, 24]
 
 # Diccionario de opciones de tag
 opciones_tags = {"func" : opciones_func,
 				 "arg" : opciones_arg,
 				 "tem" : opciones_tem,
 				 "verbo" : opciones_verbo,
-				 "lss" : opciones_lss,
-				 "iobes" : opciones_iobes}
+				 "lss" : opciones_lss}
 
-orden_tags = ["func", "arg", "tem", "verbo", "lss", "iobes"]
+orden_tags = ["func", "arg", "tem", "verbo", "lss"]
 
 input_folder = sys.argv[1]
 output_folder = sys.argv[2]
-
-cant_opciones = len(opciones_iobes)
-cant_tags = len(opciones_arg)
-largo_vector = cant_tags * cant_opciones
 
 def generate_cases(words, indice_verbo):
 	output = []
@@ -132,26 +149,28 @@ def process_sentence(sentence_in, indice_verbo):
 			words = word[0].split(" ")
 			first = True
 			for w in words:
-				aux_uno = number_filter(w)
-				aux_dos = date_filter(aux_uno)
-				aux_tres = correct_escape_sequences(aux_dos)
-				if first:
-					sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], word[6]))
-					first = False
-				else:
-					sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], False))
+				if w != "":
+					aux_uno = number_filter(w)
+					aux_dos = date_filter(aux_uno)
+					aux_tres = correct_escape_sequences(aux_dos)
+					if first:
+						sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], word[6]))
+						first = False
+					else:
+						sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], False))
 		elif "_" in word[0]:
 			words = word[0].split("_")
 			primero = True
 			for w in words:
-				aux_uno = number_filter(w)
-				aux_dos = date_filter(aux_uno)
-				aux_tres = correct_escape_sequences(aux_dos)
-				if primero:
-					sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], word[6]))
-				else:
-					sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], False))
-		else:
+				if w != "":
+					aux_uno = number_filter(w)
+					aux_dos = date_filter(aux_uno)
+					aux_tres = correct_escape_sequences(aux_dos)
+					if primero:
+						sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], word[6]))
+					else:
+						sentence.append((aux_tres, word[1], word[2], word[3], word[4], word[5], False))
+		elif word[0] != "":
 			aux_uno = number_filter(word[0])
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
@@ -162,14 +181,14 @@ def process_sentence(sentence_in, indice_verbo):
 			intermediate.append((sentence[i][0], None, None, None, None, None, None))
 		elif sentence[i][6]:
 			if i < (len(sentence) - 1) and not sentence[i + 1][6]:
-				intermediate.append((sentence[i][0], sentence[i][1], sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5], "b"))
+				intermediate.append((sentence[i][0], sentence[i][1], "b_" + sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5]))
 			else:
-				intermediate.append((sentence[i][0], sentence[i][1], sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5], "s"))
+				intermediate.append((sentence[i][0], sentence[i][1], "s_" + sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5]))
 		else:
 			if i < (len(sentence) - 1) and not sentence[i + 1][6]:
-				intermediate.append((sentence[i][0], sentence[i][1], sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5], "i"))
+				intermediate.append((sentence[i][0], sentence[i][1], "i_" + sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5]))
 			else:
-				intermediate.append((sentence[i][0], sentence[i][1], sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5], "e"))
+				intermediate.append((sentence[i][0], sentence[i][1], "e_" + sentence[i][2], sentence[i][3], sentence[i][4], sentence[i][5]))
 	output = generate_cases(intermediate, indice_verbo)
 	return output
 
@@ -290,9 +309,9 @@ def process_file(input_file, output_file):
 		if in_sentence:
 			sentence.append(line)
 
-output_training_file = open(output_folder + "/" + "srl_complejo_iobes_separado_training.csv","w")
-output_testing_file = open(output_folder + "/" + "srl_complejo_iobes_separado_testing.csv","w")
-output_pruebas_file = open(output_folder + "/" + "srl_complejo_iobes_separado_pruebas.csv","w")
+output_training_file = open(output_folder + "/" + "srl_complejo_training.csv","w")
+output_testing_file = open(output_folder + "/" + "srl_complejo_testing.csv","w")
+output_pruebas_file = open(output_folder + "/" + "srl_complejo_pruebas.csv","w")
 
 input_training_file = open(input_folder + "/" + "ancora_training.xml","r")
 input_testing_file = open(input_folder + "/" + "ancora_testing.xml","r")

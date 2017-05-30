@@ -73,8 +73,8 @@ for p in open("lexicon_total.txt", encoding="latin-1"):
 
 FREELINGDIR = "/usr/local";
 
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer,encoding='latin-1');
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8');
+#sys.stdin = io.TextIOWrapper(sys.stdin.buffer,encoding='latin-1');
+#sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='utf8');
 
 DATA = FREELINGDIR+"/share/freeling/";
 LANG="es";
@@ -102,13 +102,13 @@ sp=freeling.splitter(DATA+LANG+"/splitter.dat");
 sid=sp.open_session();
 
 
-train_w = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_training_w.csv","w",encoding='latin-1')
-test_w = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_testing_w.csv","w",encoding='latin-1')
-pruebas_w = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_pruebas_w.csv","w",encoding='latin-1')
+train_w = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_training_w.csv","w",encoding='latin-1')
+test_w = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_testing_w.csv","w",encoding='latin-1')
+pruebas_w = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_pruebas_w.csv","w",encoding='latin-1')
 
-train_s = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_training_s.csv","w",encoding='latin-1')
-test_s = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_testing_s.csv","w",encoding='latin-1')
-pruebas_s = open("/run/media/gonzalo/Informacion/Corpus_Wikipedia_final/lm_pruebas_s.csv","w",encoding='latin-1')
+train_s = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_training_s.csv","w",encoding='latin-1')
+test_s = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_testing_s.csv","w",encoding='latin-1')
+pruebas_s = open("/media/gonzalo/083E1C113E1BF702/Users/Gonzalo/Documents/Resultados/lm_pruebas_s.csv","w",encoding='latin-1')
 
 folder = sys.argv[1]
 
