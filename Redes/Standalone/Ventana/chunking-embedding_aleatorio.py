@@ -81,7 +81,7 @@ print 'Cargando casos de entrenamiento...'
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
 # Obtengo los indices de las palabras
-largo = len(df)
+largo = 500 #len(df)
 for f in range(largo):
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
     for c in range(11):
@@ -100,7 +100,7 @@ print 'Cargando casos de prueba...'
 df = pd.read_csv(archivo_corpus_pruebas, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
 # Obtengo los indices de las palabras
-largo = len(df)
+largo = 100 #len(df)
 for f in range(largo):    
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
     for c in range(11):
@@ -123,7 +123,7 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 
 
 inicio_entrenamiento = time.time()
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=500, batch_size=100, verbose=2)
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=200, batch_size=100, verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
 # list all data in history

@@ -1,0 +1,5 @@
+﻿Log de ejecucion:
+-----------------
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 2 min, 7 s
+Duracion del entrenamiento: 0 hs, 0 min, 7 s

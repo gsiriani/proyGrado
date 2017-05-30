@@ -41,30 +41,33 @@ def process_sentence(sentence_in, indice_verbo):
 			words = word[0].split(" ")
 			first = True
 			for w in words:
-				aux_uno = number_filter(w)
-				aux_dos = date_filter(aux_uno)
-				aux_tres = correct_escape_sequences(aux_dos)
-				if first:
-					sentence.append((aux_tres, word[1], word[2]))
-					first = False
-				else:
-					sentence.append((aux_tres, word[1], False))
+				if w != "":
+					aux_uno = number_filter(w)
+					aux_dos = date_filter(aux_uno)
+					aux_tres = correct_escape_sequences(aux_dos)
+					if first:
+						sentence.append((aux_tres, word[1], word[2]))
+						first = False
+					else:
+						sentence.append((aux_tres, word[1], False))
 		elif "_" in word[0]:
 			words = word[0].split("_")
-			primero = True
+			first = True
 			for w in words:
-				aux_uno = number_filter(w)
-				aux_dos = date_filter(aux_uno)
-				aux_tres = correct_escape_sequences(aux_dos)
-				if primero:
-					sentence.append((aux_tres, word[1], word[2]))
-				else:
-					sentence.append((aux_tres, word[1], False))
-		else:
+				if w != "":
+					aux_uno = number_filter(w)
+					aux_dos = date_filter(aux_uno)
+					aux_tres = correct_escape_sequences(aux_dos)
+					if first:
+						sentence.append((aux_tres,word[1],word[2]))
+						first = False
+					else:
+						sentence.append((aux_tres, word[1], False))
+		elif word[0] != "":
 			aux_uno = number_filter(word[0])
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
-			sentence.append((aux_tres, word[1], word[2]))
+			sentence.append((aux_tres,word[1],word[2]))
 	length = len(sentence)
 	for i in range(length):
 		if sentence[i][1] == None:

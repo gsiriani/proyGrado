@@ -14,56 +14,34 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
 from script_auxiliares import print_progress
+import time
+from codecs import open, BOM_UTF8
+
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
+vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 16 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/ner_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/ner_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_pruebas.csv'
+
+archivo_acc = './accuracy.png'
+archivo_loss = './loss.png'
+
+log = 'Log de ejecucion:\n-----------------'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
-
-embedding_inicial=[]
-
-# Creo embedding para OUT
-features_aux = []
-for _ in range(150): # TODO: VERIFICAR QUE COINCIDA CON VECTOR_SIZE
-    features_aux.append(uniform(-1,1))
-embedding_inicial.append(list(features_aux))
-
-
-for l in open(archivo_embedding):
-    embedding_inicial.append([float(x) for x in l.split()[1:]])
-
-vector_size = len(embedding_inicial[0]) # Cantidad de features para cada palabra. Coincide con la cantidad de hidden units de la primer capa
-print 'Cantidad de features considerados: ' + str(vector_size)
-
-# Agregamos embedding para PUNCT inicializado como el mismo embedding que ':'
-indice_punct_base = palabras.obtener_indice(':')
-embedding_inicial.append(list(embedding_inicial[indice_punct_base]))
-
-# todo: agregar DATE y signos de puntuacion
-
-# Agregamos embedding para NUM y UNK
-for _ in range(2):
-    features_aux = []
-    for _ in range(vector_size):
-        features_aux.append(uniform(-1,1))
-    embedding_inicial.append(list(features_aux))
-
-embedding_inicial = np.array(embedding_inicial)
-
-cant_palabras = len(embedding_inicial)	# Cantidad de palabras consideradas en el diccionario
+cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 
 # Defino las capas de la red
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, embeddings_initializer='uniform',
                             input_length=window_size, trainable=True)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
@@ -90,20 +68,20 @@ model.add(third_layer)
 
 
 # Compilo la red
-
-sgd = optimizers.SGD(lr=0.03, momentum=0.01)
+sgd = optimizers.SGD(lr=0.1, momentum=0.1)
 model.compile(loss='mean_squared_error', optimizer=sgd, metrics=['accuracy'])
 model.summary()
 
 
 # Entreno
+inicio_carga_casos = time.time()
 print 'Cargando casos de entrenamiento...'
 
 # Abro el archivo con casos de entrenamiento
 df = pd.read_csv(archivo_corpus_entrenamiento, delim_whitespace=True, skipinitialspace=True, header=None, quoting=3)
 
 # Obtengo los indices de las palabras
-largo = len(df)
+largo = 2100 #len(df)
 for f in range(largo):
     print_progress(f, largo, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
     for c in range(11):
@@ -114,7 +92,6 @@ print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_le
 # Separo features de resultados esperados
 x_train = np.array(df.iloc[:largo,:11])
 y_train = np.array(df.iloc[:largo,11:])
-
 
 print 'Cargando casos de prueba...' 
 
@@ -134,32 +111,66 @@ print_progress(largo, largo, prefix = 'Progreso:', suffix = 'Completado', bar_le
 x_test = np.array(df.iloc[:largo,:11])
 y_test = np.array(df.iloc[:largo,11:])
 
-# x_train, x_test, y_train, y_test = train_test_split(X, Y)
-
-# x_train = np.array(x_train)
-# x_test = np.array(x_test)
-# y_train = np.array(y_train)
-# y_test = np.array(y_test)
+duracion_carga_casos = time.time() - inicio_carga_casos
 
 
+inicio_entrenamiento = time.time()
 
-history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=1000, batch_size=250, verbose=2)
+acc_aux = []
+acc_val_aux = []
+loss_aux = []
+loss_val_aux = []
 
-# list all data in history
-print(history.history.keys())
+for i in range(0,382):
+    print '\n--------------------------\nCasos ' + str(i*1000) + ' al ' + str(i*1000+1000)
+    history = model.fit(x_train[i*1000: i*1000+1000], y_train[i*1000: i*1000+1000], validation_data=(x_test, y_test), epochs=20, batch_size=100, verbose=0)
+    print 'Accuracy entrenamiento: ' + str(history.history['acc'][-1])
+    print 'Accuracy validacion: ' + str(history.history['val_acc'][-1])
+    acc_aux.append(history.history['val_acc'][-1])
+    acc_val_aux.append(history.history['val_acc'][-1])
+    print 'Loss entrenamiento: ' + str(history.history['loss'][-1])
+    print 'Loss validacion: ' + str(history.history['val_loss'][-1])
+    loss_aux.append(history.history['val_loss'][-1])
+    loss_val_aux.append(history.history['val_loss'][-1])
+
+print '\n--------------------------\nCasos ' + str(382000) + ' al final'
+history = model.fit(x_train[382000:], y_train[382000:], validation_data=(x_test, y_test), epochs=20, batch_size=100, verbose=0)
+print 'Accuracy entrenamiento: ' + str(history.history['acc'][-1])
+print 'Accuracy validacion: ' + str(history.history['val_acc'][-1])
+acc_aux.append(history.history['val_acc'][-1])
+acc_val_aux.append(history.history['val_acc'][-1])
+print 'Loss entrenamiento: ' + str(history.history['loss'][-1])
+print 'Loss validacion: ' + str(history.history['val_loss'][-1])
+loss_aux.append(history.history['val_loss'][-1])
+loss_val_aux.append(history.history['val_loss'][-1])
+
+duracion_entrenamiento = time.time() - inicio_entrenamiento
+
+
+log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
+log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
+
+
+#print log
+open("log.txt", "w").write(BOM_UTF8 + log)
+
 # summarize history for accuracy
-plt.plot(history.history['acc'])
-plt.plot(history.history['val_acc'])
+plt.plot(acc_aux)
+plt.plot(acc_val_aux)
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-plt.show()
+#plt.show()
+plt.savefig(archivo_acc, bbox_inches='tight')
+
 # summarize history for loss
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
+plt.clf()
+plt.plot(loss_aux)
+plt.plot(loss_val_aux)
 plt.title('model loss')
 plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
-plt.show()
+#plt.show()
+plt.savefig(archivo_loss, bbox_inches='tight')

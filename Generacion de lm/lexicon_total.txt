@@ -1136,7 +1136,8 @@ rayos
 positiva
 filme
 by
-gr?curioso
+gr\C3
+curioso
 salut
 halladas
 films
@@ -1702,7 +1703,8 @@ cuidan
 siglo
 compatriota
 sucedido
-eul?porter
+eul\C3
+porter
 sufrirá
 sugarcubes
 putin
@@ -2501,7 +2503,8 @@ destacando
 griegas
 embajadora
 donald
-mill?nadadora
+mill\C3
+nadadora
 especie
 superiores
 transversal
@@ -3214,7 +3217,8 @@ robos
 counter
 robot
 catalá
-catal?comenzaremos
+catal\C3
+comenzaremos
 inconstitucional
 méxico
 comerciantes
@@ -3677,7 +3681,8 @@ pitonisa
 víctima
 cuelan
 económica
-cat?venciendo
+cat\C3
+venciendo
 competir
 debería
 comienzos
@@ -3827,7 +3832,8 @@ hubert
 mero
 voluntad
 exterminio
-r?banco
+r\C3
+banco
 hielos
 deseos
 irlanda
@@ -4359,7 +4365,8 @@ dirigía
 cruceño
 hemos
 bochornoso
-servi?lanzados
+servi\C3
+lanzados
 lanzador
 prominentes
 descalificado
@@ -4447,7 +4454,8 @@ cartagena
 depositado
 resentimientos
 valenciana
-m?despliega
+m\C3
+despliega
 ósea
 multilaterales
 topa
@@ -5854,7 +5862,8 @@ firmantes
 artificiales
 colla
 prolífico
-premi?conflictiva
+premi\C3
+conflictiva
 preparó
 intercontinental
 tirador
@@ -6156,7 +6165,8 @@ situó
 irradiado
 previo
 mestiza
-tom?pende
+tom\C3
+pende
 mucosa
 autopistas
 torneo
@@ -6333,7 +6343,8 @@ reconocen
 juegue
 organo
 bouchard
-mil?informáticos
+mil\C3
+informáticos
 atacando
 cubren
 jamil
@@ -6655,7 +6666,8 @@ grotesco
 partidarios
 neumonía
 tendrá
-mediterr?marco
+mediterr\C3
+marco
 mujer
 negociaron
 stein
@@ -7182,7 +7194,8 @@ encender
 centralizan
 niega
 camiseta
-toldr?amplios
+toldr\C3
+amplios
 causa
 oribe
 culpables
@@ -7459,7 +7472,8 @@ trova
 limite
 limita
 carisma
-reg?razonable
+reg\C3
+razonable
 entrará
 conlleve
 jersey
@@ -7990,7 +8004,8 @@ interviniera
 conquistaron
 vómitos
 rápidas
-barber?cometidos
+barber\C3
+cometidos
 moral
 sande
 vialli
@@ -8296,7 +8311,8 @@ street
 olímpico
 olímpica
 alimentó
-segri?conforme
+segri\C3
+conforme
 enterradas
 recíproca
 habrán
@@ -8366,7 +8382,8 @@ emparejado
 concurrir
 rivero
 litio
-democr?retire
+democr\C3
+retire
 espadas
 anchura
 retira
@@ -8384,7 +8401,8 @@ ganando
 pasaban
 favoritos
 anunciar
-b?reivindicar
+b\C3
+reivindicar
 villahermosa
 estoril
 inmediatos
@@ -8969,7 +8987,8 @@ estadístico
 evaluar
 enorme
 intergubernamental
-cornell?grácil
+cornell\C3
+grácil
 planck
 cercanas
 siempre
@@ -9153,7 +9172,8 @@ ariño
 desconocidos
 comprimido
 doscientos
-tr?rock
+tr\C3
+rock
 sobornos
 roca
 indaga
@@ -16162,7 +16182,8 @@ unirse
 simon
 q
 fuertemente
-?académico
+\C3
+académico
 dj
 linux
 florencia
@@ -26158,7 +26179,8 @@ wittgenstein
 wight
 villadiego
 vasculares
-valenci?tertulia
+valenci\C3
+tertulia
 talladas
 sueltos
 styles
@@ -37371,7 +37393,8 @@ tottenham
 terran
 sureños
 spreng
-societ?sinnúmero
+societ\C3
+sinnúmero
 simpática
 sibelius
 semifinalistas
@@ -37598,7 +37621,8 @@ coronarse
 comprometer
 clitemnestra
 clarissa
-citt?cipreses
+citt\C3
+cipreses
 cieza
 chaqueña
 chaparro
@@ -39648,7 +39672,8 @@ arnoldo
 alineado
 aleatoriamente
 aerospace
-adri?zoológicos
+adri\C3
+zoológicos
 yen
 visitaban
 viet
@@ -42609,7 +42634,8 @@ escultóricas
 encendidas
 elíseos
 eclosión
-déj?despiden
+déj\C3
+despiden
 designaron
 desenvolvimiento
 delano
@@ -42753,7 +42779,8 @@ mazas
 masturbación
 mamas
 mahoney
-maci?llamándola
+maci\C3
+llamándola
 lindbergh
 lentejas
 laviana
@@ -45205,7 +45232,8 @@ kern
 katmandú
 józef
 jáchal
-juli?juilliard
+juli\C3
+juilliard
 jetix
 jesuítica
 janato
@@ -47432,7 +47460,8 @@ vilas
 veneran
 vellosidades
 utilizamos
-universit?tónico
+universit\C3
+tónico
 tvg
 tuskegee
 trunks
@@ -54107,7 +54136,8 @@ unai
 umi
 ultramarinos
 táctiles
-t?tuttle
+t\C3
+tuttle
 tulum
 triunfalmente
 trigonométricas
@@ -56910,3 +56940,8 @@ oroño
 !
 "
 '
+NUM
+PUNCT
+DATE
+OUT
+UNK
