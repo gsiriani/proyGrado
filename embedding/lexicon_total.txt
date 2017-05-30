@@ -1,4 +1,4 @@
-﻿távora
+távora
 montañeros
 sudamérica
 mítico
@@ -1136,11 +1136,7 @@ rayos
 positiva
 filme
 by
-<<<<<<< HEAD
-gr?
-=======
 gr\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 curioso
 salut
 halladas
@@ -1707,11 +1703,7 @@ cuidan
 siglo
 compatriota
 sucedido
-<<<<<<< HEAD
-eul?
-=======
 eul\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 porter
 sufrirá
 sugarcubes
@@ -2511,11 +2503,7 @@ destacando
 griegas
 embajadora
 donald
-<<<<<<< HEAD
-mill?
-=======
 mill\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 nadadora
 especie
 superiores
@@ -3229,11 +3217,7 @@ robos
 counter
 robot
 catalá
-<<<<<<< HEAD
-catal?
-=======
 catal\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 comenzaremos
 inconstitucional
 méxico
@@ -3697,11 +3681,7 @@ pitonisa
 víctima
 cuelan
 económica
-<<<<<<< HEAD
-cat?
-=======
 cat\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 venciendo
 competir
 debería
@@ -3852,11 +3832,7 @@ hubert
 mero
 voluntad
 exterminio
-<<<<<<< HEAD
-r?
-=======
 r\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 banco
 hielos
 deseos
@@ -4389,11 +4365,7 @@ dirigía
 cruceño
 hemos
 bochornoso
-<<<<<<< HEAD
-servi?
-=======
 servi\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 lanzados
 lanzador
 prominentes
@@ -4482,11 +4454,7 @@ cartagena
 depositado
 resentimientos
 valenciana
-<<<<<<< HEAD
-m?
-=======
 m\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 despliega
 ósea
 multilaterales
@@ -5894,11 +5862,7 @@ firmantes
 artificiales
 colla
 prolífico
-<<<<<<< HEAD
-premi?
-=======
 premi\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 conflictiva
 preparó
 intercontinental
@@ -6201,11 +6165,7 @@ situó
 irradiado
 previo
 mestiza
-<<<<<<< HEAD
-tom?
-=======
 tom\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 pende
 mucosa
 autopistas
@@ -6383,11 +6343,7 @@ reconocen
 juegue
 organo
 bouchard
-<<<<<<< HEAD
-mil?
-=======
 mil\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 informáticos
 atacando
 cubren
@@ -6710,11 +6666,7 @@ grotesco
 partidarios
 neumonía
 tendrá
-<<<<<<< HEAD
-mediterr?
-=======
 mediterr\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 marco
 mujer
 negociaron
@@ -7242,11 +7194,7 @@ encender
 centralizan
 niega
 camiseta
-<<<<<<< HEAD
-toldr?
-=======
 toldr\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 amplios
 causa
 oribe
@@ -7524,11 +7472,7 @@ trova
 limite
 limita
 carisma
-<<<<<<< HEAD
-reg?
-=======
 reg\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 razonable
 entrará
 conlleve
@@ -8060,11 +8004,7 @@ interviniera
 conquistaron
 vómitos
 rápidas
-<<<<<<< HEAD
-barber?
-=======
 barber\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 cometidos
 moral
 sande
@@ -8371,11 +8311,7 @@ street
 olímpico
 olímpica
 alimentó
-<<<<<<< HEAD
-segri?
-=======
 segri\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 conforme
 enterradas
 recíproca
@@ -8446,11 +8382,7 @@ emparejado
 concurrir
 rivero
 litio
-<<<<<<< HEAD
-democr?
-=======
 democr\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 retire
 espadas
 anchura
@@ -8469,11 +8401,7 @@ ganando
 pasaban
 favoritos
 anunciar
-<<<<<<< HEAD
-b?
-=======
 b\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 reivindicar
 villahermosa
 estoril
@@ -9059,11 +8987,7 @@ estadístico
 evaluar
 enorme
 intergubernamental
-<<<<<<< HEAD
-cornell?
-=======
 cornell\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 grácil
 planck
 cercanas
@@ -9248,11 +9172,7 @@ ariño
 desconocidos
 comprimido
 doscientos
-<<<<<<< HEAD
-tr?
-=======
 tr\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 rock
 sobornos
 roca
@@ -16262,11 +16182,7 @@ unirse
 simon
 q
 fuertemente
-<<<<<<< HEAD
-?
-=======
 \C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 académico
 dj
 linux
@@ -26263,11 +26179,7 @@ wittgenstein
 wight
 villadiego
 vasculares
-<<<<<<< HEAD
-valenci?
-=======
 valenci\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 tertulia
 talladas
 sueltos
@@ -37481,11 +37393,7 @@ tottenham
 terran
 sureños
 spreng
-<<<<<<< HEAD
-societ?
-=======
 societ\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 sinnúmero
 simpática
 sibelius
@@ -37713,11 +37621,7 @@ coronarse
 comprometer
 clitemnestra
 clarissa
-<<<<<<< HEAD
-citt?
-=======
 citt\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 cipreses
 cieza
 chaqueña
@@ -39768,11 +39672,7 @@ arnoldo
 alineado
 aleatoriamente
 aerospace
-<<<<<<< HEAD
-adri?
-=======
 adri\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 zoológicos
 yen
 visitaban
@@ -42734,11 +42634,7 @@ escultóricas
 encendidas
 elíseos
 eclosión
-<<<<<<< HEAD
-déj?
-=======
 déj\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 despiden
 designaron
 desenvolvimiento
@@ -42883,11 +42779,7 @@ mazas
 masturbación
 mamas
 mahoney
-<<<<<<< HEAD
-maci?
-=======
 maci\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 llamándola
 lindbergh
 lentejas
@@ -45340,11 +45232,7 @@ kern
 katmandú
 józef
 jáchal
-<<<<<<< HEAD
-juli?
-=======
 juli\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 juilliard
 jetix
 jesuítica
@@ -47572,11 +47460,7 @@ vilas
 veneran
 vellosidades
 utilizamos
-<<<<<<< HEAD
-universit?
-=======
 universit\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 tónico
 tvg
 tuskegee
@@ -54252,11 +54136,7 @@ unai
 umi
 ultramarinos
 táctiles
-<<<<<<< HEAD
-t?
-=======
 t\C3
->>>>>>> 24a6203b29bd6bbcf00be4c250dffacc85d090b8
 tuttle
 tulum
 triunfalmente
