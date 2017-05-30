@@ -10,19 +10,14 @@ primer_fallo = False
 tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
 opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
 
-in_tag = {}
-for tag in tags:
-	in_tag[tag] = 0
-
 cant_opciones = len(opciones)
 cant_tags = len(tags)
-largo_vector = cant_tags * cant_opciones
+largo_vector = cant_tags + cant_opciones
 window_size = int(11)
 
 def generate_cases(words):
 	output = []
 	mitad_ventana = int(window_size / 2)
-	mal = False
 	for i in range(len(words)):
 		line = ""
 		max_index = min(i + mitad_ventana + 1,len(words))
@@ -33,8 +28,6 @@ def generate_cases(words):
 			line += words[j][0] + " "
 		for j in range(6 - (len(words) - i)):
 			line += "OUT "
-		if len(line.split(" ")) != 12:
-			mal = True
 		if words[i][1] != None:
 			line += generate_vector_palabra_multiple([words[i][1],words[i][2]], [tags, opciones], largo_vector) + "\n"
 		else:

@@ -13,6 +13,7 @@ def obtener_indices(valores, tags):
 	for i in range(len(valores)):
 		indice = sumatoria(largos[:i]) + tags[i][valores[i]]
 		indices.append(indice)
+	return indices
 
 def vector_variante(indice, largo_vector):
 	vector = []
@@ -30,6 +31,7 @@ def vector_variante_multiple(indices, largo_vector):
 			vector.append(1)
 		else:
 			vector.append(0)
+	return vector
 
 def generate_vector_palabra(palabra, tags, opciones, largo_vector):
 	if palabra[1] != None:
