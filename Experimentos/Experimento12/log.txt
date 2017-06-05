@@ -1,0 +1,17 @@
+﻿Log de ejecucion:
+-----------------
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 6 hs, 24 min, 21 s
+
+Accuracy entrenamiento inicial: 0.0584413886308
+Accuracy entrenamiento final: 0.425288915266
+
+Accuracy validacion inicial: 0.0503940069595
+Accuracy validacion final: 0.261990466652
+
+Loss entrenamiento inicial: 0.0809001299214
+Loss entrenamiento final: 0.010399254093
+
+Loss validacion inicial: 0.0772398420967
+Loss validacion final: 0.124535095162
