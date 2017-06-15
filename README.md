@@ -10,3 +10,34 @@
 + Sentencia stand alone
 + Ventana todo junto
 + Sentencia todo junto
+
+A ejecutar ahora son 6 experimentos:
+
+Con learning rate 0.1 y bias 0.03
+
++ ner_training_out_tag.csv
++ ner_training_iobes_separado_out_tag.csv
++ chunking_training_out_tag.csv
++ chunking_training_iobes_separado_out_tag.csv
+
+Con Learning rate 0.03 y bias 0.01
+
++ ner_training_out_tag.csv
++ ner_training_iobes_separado_out_tag.csv
++ chunking_training_out_tag.csv
++ chunking_training_iobes_separado_out_tag.csv
++ ner_training.csv
++ ner_training_iobes_separado.csv
++ chunking_training.csv
++ chunking_training_iobes_separado.csv
+
+Con learning rate 0.01 y bias 0 (sin bias)
+
++ ner_training_out_tag.csv
++ ner_training_iobes_separado_out_tag.csv
++ chunking_training_out_tag.csv
++ chunking_training_iobes_separado_out_tag.csv
++ ner_training.csv
++ ner_training_iobes_separado.csv
++ chunking_training.csv
++ chunking_training_iobes_separado.csv
