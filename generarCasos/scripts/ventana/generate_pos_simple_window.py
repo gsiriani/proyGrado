@@ -4,6 +4,7 @@ import re
 import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_palabra, generate_vector_cero
+import freeling
 
 primer_fallo = False
 
@@ -93,43 +94,15 @@ def process_sentence(sentence_in):
 
 def process_file(input_file, output_file):
 	in_sentence = False
-	sn = 0
-	sv = 0
 	sentence = []
-	in_chunk = []
-	first = True
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
-			first = True
-			in_chunk = generate_vector_cero(cant_tags)
-		if in_sentence and all(map(lambda x : x == 0, in_chunk)):
-			if (" wd=\"") in line:
-				palabra = re.sub(".* wd=\"","",line)
-				palabra = re.sub("\".*\n","",palabra)
-				sentence.append((palabra, None, True))
-			else:
-				for tag in tags:
-					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
-						in_chunk[tags[tag]] = 1
-		elif in_sentence and any(map(lambda x : x > 0, in_chunk)):
-			tag_seleccionado = ""
-			for tag in tags:
-				if in_chunk[tags[tag]] > 0:
-					tag_seleccionado = tag
-					break
-			if (" wd=\"") in line:
-				palabra = re.sub(".* wd=\"","",line)
-				palabra = re.sub("\".*\n","",palabra)
-				sentence.append((palabra,tag_seleccionado, first))
-				if first:
-					first = False				
-			elif ("<" + tag_seleccionado) in line and ("</" + tag_seleccionado + ">") not in line and in_chunk[tags[tag_seleccionado]] > 0:
-				in_chunk[tags[tag_seleccionado]] += 1
-			elif ("<" + tag_seleccionado) not in line and ("</" + tag_seleccionado + ">") in line and in_chunk[tags[tag_seleccionado]] > 0:
-				in_chunk[tags[tag_seleccionado]] -= 1
-				if in_chunk[tags[tag_seleccionado]] == 0:
-					first = True
+		if in_sentence and " wd=" in line:
+			aux_line = re.sub(".*? wd=\"","",line)
+			word = re.sub("\".*\n","",aux_line)
+			pos = re.sub(".*?<","",line)[0]
+			sentence.append((word,pos))
 		if in_sentence and "</sentence" in line:
 			in_sentence = False
 			output = process_sentence(sentence)
@@ -140,9 +113,9 @@ def process_file(input_file, output_file):
 input_folder = sys.argv[1]
 output_folder = sys.argv[2]
 
-output_training_file = open(output_folder + "/" + "chunking_training.csv","w")
-output_testing_file = open(output_folder + "/" + "chunking_testing.csv","w")
-output_pruebas_file = open(output_folder + "/" + "chunking_pruebas.csv","w")
+output_training_file = open(output_folder + "/" + "pos_simple_training.csv","w")
+output_testing_file = open(output_folder + "/" + "pos_simple_testing.csv","w")
+output_pruebas_file = open(output_folder + "/" + "pos_simple_pruebas.csv","w")
 
 input_training_file = open(input_folder + "/" + "ancora_training.xml","r")
 input_testing_file = open(input_folder + "/" + "ancora_testing.xml","r")

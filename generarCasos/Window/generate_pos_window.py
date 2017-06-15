@@ -292,10 +292,10 @@ def process_sentence(sentence_in):
 	return output
 
 folder = sys.argv[1]
-output_training_file = open("pos_training.csv","w")
-output_testing_file = open("pos_testing.csv","w")
-output_pruebas_file = open("pos_pruebas.csv","w")
-output_file_freeling = open("freeling_pos.csv","w")
+salida_folder = sys.argv[2]
+output_training_file = open(salida_folder + "/pos_training.csv","w")
+output_testing_file = open(salida_folder + "/pos_testing.csv","w")
+output_pruebas_file = open(salida_folder + "/pos_pruebas.csv","w")
 
 for file in os.listdir(folder):
 	open_file = open(folder + "/" + file, "r")
