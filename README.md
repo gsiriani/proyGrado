@@ -13,7 +13,7 @@
 
 A ejecutar ahora son 14 experimentos:
 
-# Con tanh
+### Con tanh
 
 Con learning rate 0.1 y bias 0.03
 
@@ -44,7 +44,7 @@ Con learning rate 0.01 y bias 0 (sin bias)
 + chunking_training.csv
 + chunking_training_iobes_separado.csv
 
-# Con relu
+### Con relu
 
 Con learning rate 0.1 y bias 0.03
 
