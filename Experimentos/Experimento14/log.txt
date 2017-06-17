@@ -2,16 +2,16 @@
 -----------------
 
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
-Duracion del entrenamiento: 12 hs, 55 min, 5 s
+Duracion del entrenamiento: 12 hs, 58 min, 24 s
 
-Accuracy entrenamiento inicial: 0.458883182496
-Accuracy entrenamiento final: 0.938268641245
+Accuracy entrenamiento inicial: 0.453882947461
+Accuracy entrenamiento final: 0.939151189046
 
-Accuracy validacion inicial: 0.478439049726
-Accuracy validacion final: 0.490259264423
+Accuracy validacion inicial: 0.478402567014
+Accuracy validacion final: 0.496254497815
 
-Loss entrenamiento inicial: 0.029457556253
-Loss entrenamiento final: 0.00310156239192
+Loss entrenamiento inicial: 0.0296043112786
+Loss entrenamiento final: 0.00305903824472
 
-Loss validacion inicial: 0.0276162320166
-Loss validacion final: 0.0501686064296
+Loss validacion inicial: 0.0276597091146
+Loss validacion final: 0.0473389741996

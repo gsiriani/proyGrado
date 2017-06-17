@@ -1,0 +1,126 @@
+Cargando embedding inicial...
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+input_1 (InputLayer)             (None, 11)            0                                            
+____________________________________________________________________________________________________
+embedding_1 (Embedding)          (None, 11, 150)       8542050                                      
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 1650)          0                                            
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 300)           495300                                       
+____________________________________________________________________________________________________
+activation_1 (Activation)        (None, 300)           0                                            
+____________________________________________________________________________________________________
+salida_main (Dense)              (None, 6)             1806                                         
+____________________________________________________________________________________________________
+salida_iobes (Dense)             (None, 4)             1204                                         
+====================================================================================================
+Total params: 9,040,360.0
+Trainable params: 9,040,360.0
+Non-trainable params: 0.0
+____________________________________________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/50
+125s - loss: 0.1555 - salida_main_loss: 0.0927 - salida_iobes_loss: 0.0627 - salida_main_acc: 0.5503 - salida_iobes_acc: 0.8360 - val_loss: 0.1454 - val_salida_main_loss: 0.0872 - val_salida_iobes_loss: 0.0582 - val_salida_main_acc: 0.5650 - val_salida_iobes_acc: 0.8356
+Epoch 2/50
+131s - loss: 0.1406 - salida_main_loss: 0.0851 - salida_iobes_loss: 0.0556 - salida_main_acc: 0.5781 - salida_iobes_acc: 0.8398 - val_loss: 0.1416 - val_salida_main_loss: 0.0854 - val_salida_iobes_loss: 0.0563 - val_salida_main_acc: 0.5687 - val_salida_iobes_acc: 0.8386
+Epoch 3/50
+137s - loss: 0.1364 - salida_main_loss: 0.0825 - salida_iobes_loss: 0.0539 - salida_main_acc: 0.5956 - salida_iobes_acc: 0.8422 - val_loss: 0.1400 - val_salida_main_loss: 0.0843 - val_salida_iobes_loss: 0.0558 - val_salida_main_acc: 0.5761 - val_salida_iobes_acc: 0.8381
+Epoch 4/50
+130s - loss: 0.1333 - salida_main_loss: 0.0803 - salida_iobes_loss: 0.0529 - salida_main_acc: 0.6125 - salida_iobes_acc: 0.8438 - val_loss: 0.1396 - val_salida_main_loss: 0.0846 - val_salida_iobes_loss: 0.0550 - val_salida_main_acc: 0.5765 - val_salida_iobes_acc: 0.8416
+Epoch 5/50
+130s - loss: 0.1302 - salida_main_loss: 0.0781 - salida_iobes_loss: 0.0521 - salida_main_acc: 0.6310 - salida_iobes_acc: 0.8453 - val_loss: 0.1395 - val_salida_main_loss: 0.0847 - val_salida_iobes_loss: 0.0547 - val_salida_main_acc: 0.5796 - val_salida_iobes_acc: 0.8422
+Epoch 6/50
+129s - loss: 0.1267 - salida_main_loss: 0.0753 - salida_iobes_loss: 0.0514 - salida_main_acc: 0.6518 - salida_iobes_acc: 0.8469 - val_loss: 0.1418 - val_salida_main_loss: 0.0872 - val_salida_iobes_loss: 0.0546 - val_salida_main_acc: 0.5670 - val_salida_iobes_acc: 0.8436
+Epoch 7/50
+130s - loss: 0.1231 - salida_main_loss: 0.0723 - salida_iobes_loss: 0.0507 - salida_main_acc: 0.6728 - salida_iobes_acc: 0.8484 - val_loss: 0.1433 - val_salida_main_loss: 0.0886 - val_salida_iobes_loss: 0.0547 - val_salida_main_acc: 0.5696 - val_salida_iobes_acc: 0.8417
+Epoch 8/50
+127s - loss: 0.1196 - salida_main_loss: 0.0695 - salida_iobes_loss: 0.0501 - salida_main_acc: 0.6910 - salida_iobes_acc: 0.8498 - val_loss: 0.1445 - val_salida_main_loss: 0.0901 - val_salida_iobes_loss: 0.0544 - val_salida_main_acc: 0.5660 - val_salida_iobes_acc: 0.8445
+Epoch 9/50
+126s - loss: 0.1166 - salida_main_loss: 0.0671 - salida_iobes_loss: 0.0495 - salida_main_acc: 0.7053 - salida_iobes_acc: 0.8518 - val_loss: 0.1532 - val_salida_main_loss: 0.0988 - val_salida_iobes_loss: 0.0545 - val_salida_main_acc: 0.5446 - val_salida_iobes_acc: 0.8431
+Epoch 10/50
+127s - loss: 0.1143 - salida_main_loss: 0.0654 - salida_iobes_loss: 0.0489 - salida_main_acc: 0.7153 - salida_iobes_acc: 0.8534 - val_loss: 0.1478 - val_salida_main_loss: 0.0934 - val_salida_iobes_loss: 0.0544 - val_salida_main_acc: 0.5588 - val_salida_iobes_acc: 0.8452
+Epoch 11/50
+127s - loss: 0.1122 - salida_main_loss: 0.0639 - salida_iobes_loss: 0.0483 - salida_main_acc: 0.7263 - salida_iobes_acc: 0.8551 - val_loss: 0.1531 - val_salida_main_loss: 0.0984 - val_salida_iobes_loss: 0.0546 - val_salida_main_acc: 0.5484 - val_salida_iobes_acc: 0.8489
+Epoch 12/50
+127s - loss: 0.1103 - salida_main_loss: 0.0626 - salida_iobes_loss: 0.0477 - salida_main_acc: 0.7337 - salida_iobes_acc: 0.8570 - val_loss: 0.1647 - val_salida_main_loss: 0.1093 - val_salida_iobes_loss: 0.0554 - val_salida_main_acc: 0.5163 - val_salida_iobes_acc: 0.8415
+Epoch 13/50
+127s - loss: 0.1087 - salida_main_loss: 0.0616 - salida_iobes_loss: 0.0471 - salida_main_acc: 0.7401 - salida_iobes_acc: 0.8591 - val_loss: 0.1495 - val_salida_main_loss: 0.0948 - val_salida_iobes_loss: 0.0547 - val_salida_main_acc: 0.5576 - val_salida_iobes_acc: 0.8440
+Epoch 14/50
+126s - loss: 0.1072 - salida_main_loss: 0.0606 - salida_iobes_loss: 0.0465 - salida_main_acc: 0.7456 - salida_iobes_acc: 0.8610 - val_loss: 0.1523 - val_salida_main_loss: 0.0976 - val_salida_iobes_loss: 0.0546 - val_salida_main_acc: 0.5456 - val_salida_iobes_acc: 0.8465
+Epoch 15/50
+126s - loss: 0.1052 - salida_main_loss: 0.0593 - salida_iobes_loss: 0.0459 - salida_main_acc: 0.7526 - salida_iobes_acc: 0.8634 - val_loss: 0.1523 - val_salida_main_loss: 0.0977 - val_salida_iobes_loss: 0.0546 - val_salida_main_acc: 0.5577 - val_salida_iobes_acc: 0.8499
+Epoch 16/50
+126s - loss: 0.1037 - salida_main_loss: 0.0585 - salida_iobes_loss: 0.0452 - salida_main_acc: 0.7563 - salida_iobes_acc: 0.8660 - val_loss: 0.1523 - val_salida_main_loss: 0.0976 - val_salida_iobes_loss: 0.0547 - val_salida_main_acc: 0.5544 - val_salida_iobes_acc: 0.8523
+Epoch 17/50
+126s - loss: 0.1017 - salida_main_loss: 0.0573 - salida_iobes_loss: 0.0444 - salida_main_acc: 0.7628 - salida_iobes_acc: 0.8687 - val_loss: 0.1544 - val_salida_main_loss: 0.1004 - val_salida_iobes_loss: 0.0540 - val_salida_main_acc: 0.5504 - val_salida_iobes_acc: 0.8526
+Epoch 18/50
+127s - loss: 0.1001 - salida_main_loss: 0.0563 - salida_iobes_loss: 0.0437 - salida_main_acc: 0.7669 - salida_iobes_acc: 0.8707 - val_loss: 0.1516 - val_salida_main_loss: 0.0974 - val_salida_iobes_loss: 0.0542 - val_salida_main_acc: 0.5596 - val_salida_iobes_acc: 0.8507
+Epoch 19/50
+126s - loss: 0.0986 - salida_main_loss: 0.0555 - salida_iobes_loss: 0.0431 - salida_main_acc: 0.7712 - salida_iobes_acc: 0.8722 - val_loss: 0.1538 - val_salida_main_loss: 0.0994 - val_salida_iobes_loss: 0.0544 - val_salida_main_acc: 0.5519 - val_salida_iobes_acc: 0.8467
+Epoch 20/50
+126s - loss: 0.0970 - salida_main_loss: 0.0546 - salida_iobes_loss: 0.0425 - salida_main_acc: 0.7748 - salida_iobes_acc: 0.8738 - val_loss: 0.1543 - val_salida_main_loss: 0.1003 - val_salida_iobes_loss: 0.0540 - val_salida_main_acc: 0.5553 - val_salida_iobes_acc: 0.8514
+Epoch 21/50
+127s - loss: 0.0956 - salida_main_loss: 0.0538 - salida_iobes_loss: 0.0418 - salida_main_acc: 0.7786 - salida_iobes_acc: 0.8750 - val_loss: 0.1532 - val_salida_main_loss: 0.0995 - val_salida_iobes_loss: 0.0538 - val_salida_main_acc: 0.5537 - val_salida_iobes_acc: 0.8542
+Epoch 22/50
+126s - loss: 0.0943 - salida_main_loss: 0.0531 - salida_iobes_loss: 0.0412 - salida_main_acc: 0.7821 - salida_iobes_acc: 0.8767 - val_loss: 0.1546 - val_salida_main_loss: 0.1009 - val_salida_iobes_loss: 0.0538 - val_salida_main_acc: 0.5597 - val_salida_iobes_acc: 0.8510
+Epoch 23/50
+126s - loss: 0.0929 - salida_main_loss: 0.0524 - salida_iobes_loss: 0.0406 - salida_main_acc: 0.7860 - salida_iobes_acc: 0.8782 - val_loss: 0.1547 - val_salida_main_loss: 0.1011 - val_salida_iobes_loss: 0.0536 - val_salida_main_acc: 0.5530 - val_salida_iobes_acc: 0.8500
+Epoch 24/50
+126s - loss: 0.0917 - salida_main_loss: 0.0517 - salida_iobes_loss: 0.0400 - salida_main_acc: 0.7893 - salida_iobes_acc: 0.8797 - val_loss: 0.1542 - val_salida_main_loss: 0.1006 - val_salida_iobes_loss: 0.0536 - val_salida_main_acc: 0.5624 - val_salida_iobes_acc: 0.8522
+Epoch 25/50
+126s - loss: 0.0907 - salida_main_loss: 0.0513 - salida_iobes_loss: 0.0394 - salida_main_acc: 0.7906 - salida_iobes_acc: 0.8812 - val_loss: 0.1566 - val_salida_main_loss: 0.1024 - val_salida_iobes_loss: 0.0542 - val_salida_main_acc: 0.5608 - val_salida_iobes_acc: 0.8507
+Epoch 26/50
+126s - loss: 0.0896 - salida_main_loss: 0.0507 - salida_iobes_loss: 0.0389 - salida_main_acc: 0.7936 - salida_iobes_acc: 0.8829 - val_loss: 0.1601 - val_salida_main_loss: 0.1063 - val_salida_iobes_loss: 0.0538 - val_salida_main_acc: 0.5476 - val_salida_iobes_acc: 0.8542
+Epoch 27/50
+126s - loss: 0.0886 - salida_main_loss: 0.0502 - salida_iobes_loss: 0.0384 - salida_main_acc: 0.7957 - salida_iobes_acc: 0.8848 - val_loss: 0.1550 - val_salida_main_loss: 0.1015 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5603 - val_salida_iobes_acc: 0.8525
+Epoch 28/50
+126s - loss: 0.0874 - salida_main_loss: 0.0496 - salida_iobes_loss: 0.0378 - salida_main_acc: 0.7988 - salida_iobes_acc: 0.8866 - val_loss: 0.1549 - val_salida_main_loss: 0.1015 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5696 - val_salida_iobes_acc: 0.8558
+Epoch 29/50
+126s - loss: 0.0865 - salida_main_loss: 0.0492 - salida_iobes_loss: 0.0373 - salida_main_acc: 0.7999 - salida_iobes_acc: 0.8882 - val_loss: 0.1571 - val_salida_main_loss: 0.1039 - val_salida_iobes_loss: 0.0532 - val_salida_main_acc: 0.5585 - val_salida_iobes_acc: 0.8542
+Epoch 30/50
+126s - loss: 0.0856 - salida_main_loss: 0.0488 - salida_iobes_loss: 0.0368 - salida_main_acc: 0.8022 - salida_iobes_acc: 0.8902 - val_loss: 0.1553 - val_salida_main_loss: 0.1021 - val_salida_iobes_loss: 0.0532 - val_salida_main_acc: 0.5618 - val_salida_iobes_acc: 0.8525
+Epoch 31/50
+126s - loss: 0.0846 - salida_main_loss: 0.0483 - salida_iobes_loss: 0.0363 - salida_main_acc: 0.8043 - salida_iobes_acc: 0.8917 - val_loss: 0.1559 - val_salida_main_loss: 0.1024 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5676 - val_salida_iobes_acc: 0.8510
+Epoch 32/50
+126s - loss: 0.0836 - salida_main_loss: 0.0479 - salida_iobes_loss: 0.0358 - salida_main_acc: 0.8065 - salida_iobes_acc: 0.8932 - val_loss: 0.1567 - val_salida_main_loss: 0.1029 - val_salida_iobes_loss: 0.0538 - val_salida_main_acc: 0.5656 - val_salida_iobes_acc: 0.8534
+Epoch 33/50
+126s - loss: 0.0828 - salida_main_loss: 0.0475 - salida_iobes_loss: 0.0353 - salida_main_acc: 0.8083 - salida_iobes_acc: 0.8948 - val_loss: 0.1561 - val_salida_main_loss: 0.1029 - val_salida_iobes_loss: 0.0533 - val_salida_main_acc: 0.5704 - val_salida_iobes_acc: 0.8542
+Epoch 34/50
+126s - loss: 0.0819 - salida_main_loss: 0.0472 - salida_iobes_loss: 0.0348 - salida_main_acc: 0.8091 - salida_iobes_acc: 0.8966 - val_loss: 0.1582 - val_salida_main_loss: 0.1042 - val_salida_iobes_loss: 0.0540 - val_salida_main_acc: 0.5650 - val_salida_iobes_acc: 0.8527
+Epoch 35/50
+127s - loss: 0.0811 - salida_main_loss: 0.0468 - salida_iobes_loss: 0.0343 - salida_main_acc: 0.8106 - salida_iobes_acc: 0.8980 - val_loss: 0.1571 - val_salida_main_loss: 0.1043 - val_salida_iobes_loss: 0.0528 - val_salida_main_acc: 0.5640 - val_salida_iobes_acc: 0.8555
+Epoch 36/50
+126s - loss: 0.0803 - salida_main_loss: 0.0464 - salida_iobes_loss: 0.0339 - salida_main_acc: 0.8129 - salida_iobes_acc: 0.8993 - val_loss: 0.1584 - val_salida_main_loss: 0.1054 - val_salida_iobes_loss: 0.0530 - val_salida_main_acc: 0.5656 - val_salida_iobes_acc: 0.8540
+Epoch 37/50
+126s - loss: 0.0794 - salida_main_loss: 0.0460 - salida_iobes_loss: 0.0334 - salida_main_acc: 0.8142 - salida_iobes_acc: 0.9006 - val_loss: 0.1585 - val_salida_main_loss: 0.1052 - val_salida_iobes_loss: 0.0533 - val_salida_main_acc: 0.5650 - val_salida_iobes_acc: 0.8585
+Epoch 38/50
+126s - loss: 0.0788 - salida_main_loss: 0.0458 - salida_iobes_loss: 0.0330 - salida_main_acc: 0.8147 - salida_iobes_acc: 0.9021 - val_loss: 0.1603 - val_salida_main_loss: 0.1069 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5713 - val_salida_iobes_acc: 0.8566
+Epoch 39/50
+126s - loss: 0.0779 - salida_main_loss: 0.0454 - salida_iobes_loss: 0.0325 - salida_main_acc: 0.8171 - salida_iobes_acc: 0.9037 - val_loss: 0.1596 - val_salida_main_loss: 0.1054 - val_salida_iobes_loss: 0.0542 - val_salida_main_acc: 0.5661 - val_salida_iobes_acc: 0.8544
+Epoch 40/50
+125s - loss: 0.0773 - salida_main_loss: 0.0452 - salida_iobes_loss: 0.0321 - salida_main_acc: 0.8178 - salida_iobes_acc: 0.9048 - val_loss: 0.1629 - val_salida_main_loss: 0.1091 - val_salida_iobes_loss: 0.0538 - val_salida_main_acc: 0.5645 - val_salida_iobes_acc: 0.8529
+Epoch 41/50
+126s - loss: 0.0765 - salida_main_loss: 0.0448 - salida_iobes_loss: 0.0317 - salida_main_acc: 0.8195 - salida_iobes_acc: 0.9059 - val_loss: 0.1586 - val_salida_main_loss: 0.1059 - val_salida_iobes_loss: 0.0527 - val_salida_main_acc: 0.5694 - val_salida_iobes_acc: 0.8560
+Epoch 42/50
+126s - loss: 0.0758 - salida_main_loss: 0.0445 - salida_iobes_loss: 0.0313 - salida_main_acc: 0.8208 - salida_iobes_acc: 0.9070 - val_loss: 0.1643 - val_salida_main_loss: 0.1109 - val_salida_iobes_loss: 0.0533 - val_salida_main_acc: 0.5615 - val_salida_iobes_acc: 0.8582
+Epoch 43/50
+126s - loss: 0.0752 - salida_main_loss: 0.0442 - salida_iobes_loss: 0.0309 - salida_main_acc: 0.8220 - salida_iobes_acc: 0.9084 - val_loss: 0.1627 - val_salida_main_loss: 0.1075 - val_salida_iobes_loss: 0.0552 - val_salida_main_acc: 0.5626 - val_salida_iobes_acc: 0.8585
+Epoch 44/50
+126s - loss: 0.0745 - salida_main_loss: 0.0440 - salida_iobes_loss: 0.0305 - salida_main_acc: 0.8231 - salida_iobes_acc: 0.9095 - val_loss: 0.1604 - val_salida_main_loss: 0.1074 - val_salida_iobes_loss: 0.0531 - val_salida_main_acc: 0.5676 - val_salida_iobes_acc: 0.8551
+Epoch 45/50
+126s - loss: 0.0739 - salida_main_loss: 0.0437 - salida_iobes_loss: 0.0301 - salida_main_acc: 0.8239 - salida_iobes_acc: 0.9107 - val_loss: 0.1617 - val_salida_main_loss: 0.1087 - val_salida_iobes_loss: 0.0530 - val_salida_main_acc: 0.5623 - val_salida_iobes_acc: 0.8560
+Epoch 46/50
+125s - loss: 0.0732 - salida_main_loss: 0.0434 - salida_iobes_loss: 0.0298 - salida_main_acc: 0.8250 - salida_iobes_acc: 0.9118 - val_loss: 0.1610 - val_salida_main_loss: 0.1076 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5637 - val_salida_iobes_acc: 0.8563
+Epoch 47/50
+126s - loss: 0.0726 - salida_main_loss: 0.0432 - salida_iobes_loss: 0.0294 - salida_main_acc: 0.8270 - salida_iobes_acc: 0.9132 - val_loss: 0.1613 - val_salida_main_loss: 0.1077 - val_salida_iobes_loss: 0.0536 - val_salida_main_acc: 0.5677 - val_salida_iobes_acc: 0.8543
+Epoch 48/50
+126s - loss: 0.0719 - salida_main_loss: 0.0429 - salida_iobes_loss: 0.0290 - salida_main_acc: 0.8269 - salida_iobes_acc: 0.9143 - val_loss: 0.1617 - val_salida_main_loss: 0.1083 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5658 - val_salida_iobes_acc: 0.8574
+Epoch 49/50
+126s - loss: 0.0713 - salida_main_loss: 0.0427 - salida_iobes_loss: 0.0286 - salida_main_acc: 0.8287 - salida_iobes_acc: 0.9150 - val_loss: 0.1610 - val_salida_main_loss: 0.1076 - val_salida_iobes_loss: 0.0534 - val_salida_main_acc: 0.5666 - val_salida_iobes_acc: 0.8555
+Epoch 50/50
+126s - loss: 0.0707 - salida_main_loss: 0.0424 - salida_iobes_loss: 0.0283 - salida_main_acc: 0.8299 - salida_iobes_acc: 0.9163 - val_loss: 0.1612 - val_salida_main_loss: 0.1079 - val_salida_iobes_loss: 0.0533 - val_salida_main_acc: 0.5696 - val_salida_iobes_acc: 0.8569

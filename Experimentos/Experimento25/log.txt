@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: NER
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+IOBES: Separado
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 1 hs, 45 min, 4 s
+
+Accuracy main entrenamiento inicial: 0.31914758354
+Accuracy main entrenamiento final: 0.331891433954
+
+Accuracy main validacion inicial: 0.329888506817
+Accuracy main validacion final: 0.337049796091
+
+Accuracy iobes entrenamiento inicial: 0.275007952197
+Accuracy iobes entrenamiento final: 0.286164122825
+
+Accuracy iobes validacion inicial: 0.278709981107
+Accuracy iobes validacion final: 0.271141238282

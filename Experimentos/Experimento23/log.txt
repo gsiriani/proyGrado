@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+IOBES: Separado
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 1 hs, 26 min, 29 s
+
+Accuracy main entrenamiento inicial: 0.493965770637
+Accuracy main entrenamiento final: 0.498506453947
+
+Accuracy main validacion inicial: 0.490003891682
+Accuracy main validacion final: 0.490003891682
+
+Accuracy iobes entrenamiento inicial: 0.115778287144
+Accuracy iobes entrenamiento final: 0.110932106442
+
+Accuracy iobes validacion inicial: 0.111890748116
+Accuracy iobes validacion final: 0.111890748116
