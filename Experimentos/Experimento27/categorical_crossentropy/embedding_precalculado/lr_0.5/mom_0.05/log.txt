@@ -1,0 +1,25 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+IOBES: Unido
+Activacion: relu
+Learning Rate / Momentum: 0.5 / 0.05
+OUT tag: SI
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
+Duracion del entrenamiento: 5 hs, 53 min, 12 s
+
+Accuracy entrenamiento inicial: 0.370155777674
+Accuracy entrenamiento final: 0.370254999046
+
+Accuracy validacion inicial: 0.361404318619
+Accuracy validacion final: 0.361404318619
+
+Loss entrenamiento inicial: 9.41422461182
+Loss entrenamiento final: 8.81777011518
+
+Loss validacion inicial: 9.87631511722
+Loss validacion final: 8.90073530155
