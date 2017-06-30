@@ -1,0 +1,7 @@
+Categorical crossentropy no sirve para nada (o está mal utilizado...)
+Embedding aleatorio aprende al comienzo, luego ese estanca el conjunto de test (inclusive empeorando) mientras que training mejora hasta precisión superior a 95%, como conlusión OVERFITTING
+Embedding precalculado falla en todos los casos con momentum >= 0.1 (sería necesario volver a calcularlos con momentums más chicos)
+Para los casos de momentum 0.05 ambas precisiones avanzan en conjunto hasta un quiebre en que training mejora a precisiones superiores al 70% pero testing empeora, conclusión, OVERFITTING
+
+Como resultado preliminar, embedding aleatorio funciona mejor contra el caso de entrenamiento y es levemente superior contra pruebas, faltan experimentos.
+
