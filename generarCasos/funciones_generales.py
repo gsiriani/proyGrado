@@ -18,17 +18,6 @@ def list_to_str(vector):
 			salida += " " + str(p)
 	return salida
 
-def list_to_str_utf8(vector):
-	salida = ""
-	primero = True
-	for p in vector:
-		if primero:
-			salida = p
-			primero = False
-		else:
-			salida += " " + p
-	return salida
-
 def correct_escape_sequences(word):
 	if word == "&quot;":
 		return "\""
