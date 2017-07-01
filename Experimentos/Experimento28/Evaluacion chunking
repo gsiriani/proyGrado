@@ -1,0 +1,3 @@
+No se aprecia diferencia entre con y sin out_tag para el caso 0.03
+Para el caso 0.1 se aprecia mayor suavidad con out_tag
+Se opta por utilizar out_tag basados en resultados de NER

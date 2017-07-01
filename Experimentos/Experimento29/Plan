@@ -1,0 +1,11 @@
+Chunking embedding precalculado
+lr 0.8
+mom 0.05
+
+Chunking embedding aleatorio
+*50 features:
+lr 0.1, 0.03, 0.01
+mom 0.03, 0.01, 0
+*150 features:
+lr 0.1
+mom 0.03

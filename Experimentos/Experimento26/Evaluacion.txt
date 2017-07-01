@@ -1,0 +1,21 @@
+Relu vs Tanh
+-------------
+Se nota mejora de hasta 9 min a favor de tanh
+
+
+NER
+----
+
+Probar lr 0.07, momentum 0.02
+
+
+Chunking
+--------
+Relu da resultados mas estables (con menos saltos) que tanh
+Tanh da mejores resultados para train, pero esto no se refleja en los casos de test
+Para L.R pequeño (0.01) no hay resultados apreciables, salvo en la velocidad del aprendizaje
+
+Los resultados comparando los casos con o sin OUT tag no son concluyentes. Se requiere mas experimentacion
+
+
+
