@@ -30,16 +30,7 @@ def list_to_str_utf8(vector):
 	return salida
 
 def correct_escape_sequences(word):
-	if word == "&quot;":
-		return "\""
-  	elif word == "&lt;":
-  		return "<"
-	elif word == "&gt;":
-		return ">"
-	elif word == "&amp;":
-		return "&"
-	else:
-		return word
+	return word.replace("&quot;","\"").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&")
 
 def number_filter(word):
 	try:
