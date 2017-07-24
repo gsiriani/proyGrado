@@ -1,0 +1,25 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: NER
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+IOBES: Unido
+Activacion: relu
+Learning Rate / Momentum: 0.03 / 0.01
+OUT tag: SI
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
+Duracion del entrenamiento: 7 hs, 15 min, 38 s
+
+Accuracy entrenamiento inicial: 0.910588489093
+Accuracy entrenamiento final: 0.945587522507
+
+Accuracy validacion inicial: 0.910874114924
+Accuracy validacion final: 0.936253530356
+
+Loss entrenamiento inicial: 0.0230972171479
+Loss entrenamiento final: 0.00477652905956
+
+Loss validacion inicial: 0.0191233155639
+Loss validacion final: 0.0056998849135

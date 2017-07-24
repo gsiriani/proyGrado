@@ -1,0 +1,9 @@
+Buscar que redes corten por paciencia (earlystopping - minimprovement)
+Probar con BILU separado
+Estudiar cantidad de entidades con nombres y distintos subtipos. Buscar Accuracy ignorando los OUT. 
+Descomentar softmax y pasar a categoriacal cross entropy
+Probar Selu
+Cambiar sgd por adam
+Evaluar usar una semilla fija para los aleatorios
+USAR GPU!
+
