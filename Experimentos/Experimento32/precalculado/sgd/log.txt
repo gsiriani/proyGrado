@@ -6,17 +6,17 @@ Modelo de red: Ventana
 Embedding inicial: Aleatorio
 Optimizer: sgd
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
-Duracion del entrenamiento: 0 hs, 6 min, 55 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
+Duracion del entrenamiento: 0 hs, 20 min, 36 s
 
-Accuracy entrenamiento inicial: 0.609589469571
-Accuracy entrenamiento final: 0.980161076733
+Accuracy entrenamiento inicial: 0.745401648461
+Accuracy entrenamiento final: 0.986854795327
 
-Accuracy validacion inicial: 0.753948613209
-Accuracy validacion final: 0.957760151548
+Accuracy validacion inicial: 0.815864811365
+Accuracy validacion final: 0.937816921783
 
-Loss entrenamiento inicial: 1.23444135083
-Loss entrenamiento final: 0.0435513176648
+Loss entrenamiento inicial: 0.727284748678
+Loss entrenamiento final: 0.0269305887299
 
-Loss validacion inicial: 0.745867301509
-Loss validacion final: 0.109882500553
+Loss validacion inicial: 0.493349767638
+Loss validacion final: 0.196213053605

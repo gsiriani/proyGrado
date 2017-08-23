@@ -20,7 +20,7 @@ import time
 from codecs import open, BOM_UTF8
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-vector_size = 50 # Cantidad de features a considerar por palabra
+vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 11 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
@@ -43,11 +43,45 @@ print 'Cargando embedding inicial...'
 palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario
 
 cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
+f = 0
+embedding_inicial= [[0] * vector_size] * len(palabras)
+for l in open(archivo_embedding):
+    print_progress(f, cant_palabras, prefix = 'Progreso:', suffix = 'Completado', bar_length = 50)
+    f += 1
+    ind_palabra = palabras.obtener_indice(l.split()[0])
+    embedding_inicial[ind_palabra] = list([float(x) for x in l.split()[1:]])
+    #embedding_inicial.append([float(x) for x in l.split()[1:]])
+
+
+# Agregamos embedding para 11 signos de puntuacion y PUNCT inicializado como el mismo embedding que ':'
+signos_puntuacion = ['.', ',', ';', '(', ')', '¿', '?', '¡', '!', '"', "'", 'PUNCT'] 
+indice_punct_base = palabras.obtener_indice(':')
+for s in signos_puntuacion:
+    ind_palabra = palabras.obtener_indice(s)
+    embedding_inicial[ind_palabra] = list(embedding_inicial[indice_punct_base])
+
+# Agregamos embedding para NUM, DATE, OUT y UNK
+palabras_extra = ['NUM', 'DATE', 'OUT', 'UNK']
+for p in palabras_extra:
+    features_aux = []
+    for _ in range(vector_size):
+        features_aux.append(uniform(-1,1))    
+    ind_palabra = palabras.obtener_indice(p)
+    embedding_inicial[ind_palabra] = list(features_aux)
+
+
+embedding_inicial = np.array(embedding_inicial)
+
+cant_palabras = len(embedding_inicial)
+print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
+
+print 'Dimensiones del embedding: ' + str(embedding_inicial.shape)
+ 
 
 # Defino las capas de la red
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             input_length=window_size, trainable=True)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
