@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-path_proyecto = '/home/guille/proyGrado'
+path_proyecto = '/home/guille/proyecto/proyGrado'
 
 import sys
 sys.path.append(path_proyecto)
@@ -20,7 +20,7 @@ import time
 from codecs import open, BOM_UTF8
 
 window_size = 11 # Cantidad de palabras en cada caso de prueba
-vector_size = 150 # Cantidad de features a considerar por palabra
+vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 11 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
@@ -36,9 +36,7 @@ log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: POS Simple'
 log += '\nModelo de red: Ventana'
 log += '\nEmbedding inicial: Aleatorio'
-log += '\nIOBES: Unido'
-log += '\nActivacion: relu'
-log += '\nOUT tag: SI'
+log += '\nOptimizer: sgd'
 
 print 'Cargando embedding inicial...'
 # Cargo embedding inicial
@@ -76,7 +74,7 @@ model.add(Activation("softmax"))
 
 
 # Compilo la red
-sgd = optimizers.SGD(lr=0.03, momentum=0.005)
+sgd = optimizers.SGD(lr=0.01, momentum=0.001)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 model.summary()
 

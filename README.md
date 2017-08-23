@@ -4,24 +4,22 @@
 
 ### Gonzalo
 
-+ Lenguage Model (Corpus y red)
-+ POS Modo Sentencia
++ POS modo sentencia
++ Modo sentencia indizado
 + Analizar caso NER
-+ Instalación ambiente Gonza
 
 ### Guillermo
 
-+ CUDA
-+ ADAM (Depende de CUDA)
-+ Redes Ventana Combinada (Realizando pruebas)
++ ADAM vs SGD
++ Listar métricas posibles
++ Sentencia stand alone
 
 ## Tareas a futuro
-
-+ Sentencia stand alone
 
 + Metricas personalizadas (medir precision a nivel de oracion en lugar de por palabra, NER ignorando OUTs, etc...)
 + Determinar redes definitivas
 + Opcional -> definir si usar IOBES separado
++ Lenguage Model (Corpus y red)
 
 + Sentencia todo junto
 
