@@ -121,6 +121,7 @@ def process_file(input_file, output_file):
 			if (" wd=\"") in line:
 				palabra = re.sub(".* wd=\"","",line)
 				palabra = re.sub("\".*\n","",palabra)
+				palabra = palabra.decode('utf-8').lower().encode('utf-8')
 				sentence.append((palabra,tag_seleccionado, first))
 				if first:
 					first = False				
