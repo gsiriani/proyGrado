@@ -1,0 +1,40 @@
+﻿Log de ejecucion:
+-----------------
+
+Tareas: NER y Chunking
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 1 min, 43 s
+Duracion del entrenamiento: 0 hs, 30 min, 9 s
+
+NER
+--------
+
+Accuracy entrenamiento inicial: 0.155994276713
+Accuracy entrenamiento final: 0.156135275601
+
+Accuracy validacion inicial: 0.00993530480719
+Accuracy validacion final: 0.0135348767035
+
+Loss entrenamiento inicial: 0.231442502257
+Loss entrenamiento final: 0.227484124733
+
+Loss validacion inicial: 0.234887424126
+Loss validacion final: 0.236924317145
+
+CHUNKING
+--------
+
+Accuracy entrenamiento inicial: 0.384905817211
+Accuracy entrenamiento final: 0.385213926148
+
+Accuracy validacion inicial: 0.361404318619
+Accuracy validacion final: 0.361404318619
+
+Loss entrenamiento inicial: 1.48419253383
+Loss entrenamiento final: 1.48072992925
+
+Loss validacion inicial: 1.47573122764
+Loss validacion final: 1.49089250866
