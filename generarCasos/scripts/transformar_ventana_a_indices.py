@@ -25,7 +25,7 @@ valor_num = diccionario[indice_num]
 unks = []
 
 for l in archivo_entrada:
-	auxL = l.decode('utf8').replace("\n","").lower().encode("utf8")
+	auxL = l.decode('utf8').replace("\n","").encode("utf8")
 	separada = auxL.split(separador)
 	inicio = separada[:ventana]
 	fin = separada[ventana:]
