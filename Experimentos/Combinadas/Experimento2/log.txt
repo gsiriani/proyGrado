@@ -1,0 +1,57 @@
+﻿Log de ejecucion:
+-----------------
+
+Tareas: NER, Chunking y POS Simple
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+IOBES: Unido
+Activacion: relu
+OUT tag: SI
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 25 s
+Duracion del entrenamiento: 4 hs, 2 min, 29 s
+
+NER
+--------
+
+Accuracy entrenamiento inicial: 0.927422177942
+Accuracy entrenamiento final: 0.988568662796
+
+Accuracy validacion inicial: 0.935475242797
+Accuracy validacion final: 0.956148463455
+
+Loss entrenamiento inicial: 0.319153470913
+Loss entrenamiento final: 0.0414578756401
+
+Loss validacion inicial: 0.254086176459
+Loss validacion final: 0.187839999367
+
+CHUNKING
+--------
+
+Accuracy entrenamiento inicial: 0.469272704331
+Accuracy entrenamiento final: 0.744471019675
+
+Accuracy validacion inicial: 0.473136976463
+Accuracy validacion final: 0.543632647569
+
+Loss entrenamiento inicial: 1.29603954749
+Loss entrenamiento final: 0.589209519219
+
+Loss validacion inicial: 1.19779053061
+Loss validacion final: 1.21390152898
+
+POS
+--------
+
+Accuracy entrenamiento inicial: 0.810867265079
+Accuracy entrenamiento final: 0.988592035947
+
+Accuracy validacion inicial: 0.853919498116
+Accuracy validacion final: 0.943894512128
+
+Loss entrenamiento inicial: 0.511788502595
+Loss entrenamiento final: 0.020075124684
+
+Loss validacion inicial: 0.379383743829
+Loss validacion final: 0.209383940169

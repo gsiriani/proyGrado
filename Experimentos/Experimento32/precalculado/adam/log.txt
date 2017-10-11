@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: POS Simple
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 2 min, 55 s
+
+Accuracy entrenamiento inicial: 0.915367426412
+Accuracy entrenamiento final: 0.990751215128
+
+Accuracy validacion inicial: 0.953902519834
+Accuracy validacion final: 0.959143076918
+
+Loss entrenamiento inicial: 0.228445630064
+Loss entrenamiento final: 0.00570651181075
+
+Loss validacion inicial: 0.116761191689
+Loss validacion final: 0.217638281743

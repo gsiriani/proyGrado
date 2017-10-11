@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: NER
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
+Duracion del entrenamiento: 0 hs, 5 min, 6 s
+
+Accuracy entrenamiento inicial: 0.956381766717
+Accuracy entrenamiento final: 0.986787901034
+
+Accuracy validacion inicial: 0.960854659764
+Accuracy validacion final: 0.961024909626
+
+Loss entrenamiento inicial: 0.171597106908
+Loss entrenamiento final: 0.0427547463143
+
+Loss validacion inicial: 0.151300148453
+Loss validacion final: 0.181164857263
