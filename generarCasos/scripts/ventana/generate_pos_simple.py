@@ -187,6 +187,7 @@ def process_sentence(sentence_in, freeling_list):
 	freeling = False
 	intermediate = []
 	for word in sentence_in:
+		word[0] = word[0].encode('utf-8').lower().encode('utf-8')
 		if " " in word[0]:
 			words = word[0].split(" ")
 			for w in words:

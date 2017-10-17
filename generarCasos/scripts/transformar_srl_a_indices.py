@@ -51,7 +51,7 @@ for archivo in os.listdir(ifolder):
       else:
         salida.append(diccionario.setdefault(p.decode("utf-8").lower().encode("utf-8"),valor_default))
     salida += fin
-    escribir = str(oracion[0][1])
+    escribir = str(oracion[0][1]) + separador_salida + str(oracion[0][2])
     for p in salida:
       escribir += separador_salida + p
     escribir += "\n"
