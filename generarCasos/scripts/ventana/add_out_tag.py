@@ -29,7 +29,7 @@ for n_archivo in os.listdir(c_entrada):
 		else:
 			separado.append("1")
 		l_salida = a_csv(separado)
-		salida.write(l_salida + "\n")
+		a_salida.write(l_salida + "\n")
 
 	a_entrada.close()
 	a_salida.close()
