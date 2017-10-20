@@ -3,7 +3,7 @@ import os
 import re
 import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
-from funciones_vector import generate_vector_cero, generate_vector_palabra
+from funciones_vector import generate_vector_palabra
 
 opciones_arg = {"arg0" : 0, "arg1" : 1, "arg2" : 2, "arg3" : 3, "arg4" : 4, "argl" : 5, "argm" : 6, "verb" : 7}
 opciones_iobes = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
@@ -13,7 +13,7 @@ output_folder = sys.argv[2]
 
 cant_opciones = len(opciones_iobes)
 cant_tags = len(opciones_arg)
-largo_vector = cant_tags * cant_opciones
+largo_vector = cant_tags * cant_opciones + 1
 
 def generate_cases(words, indice_verbo):
 	output = []

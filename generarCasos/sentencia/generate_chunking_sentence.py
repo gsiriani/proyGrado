@@ -14,7 +14,7 @@ for tag in tags:
 
 cant_opciones = len(opciones)
 cant_tags = len(tags)
-largo_vector = cant_tags * cant_opciones
+largo_vector = cant_tags * cant_opciones + 1
 
 def generate_cases(words):
 	output = []
