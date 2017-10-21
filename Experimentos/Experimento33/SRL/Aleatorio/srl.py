@@ -7,7 +7,7 @@ sys.path.append(path_proyecto)
 from keras.models import Model
 from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D, Input, Concatenate
 from keras.layers.pooling import GlobalMaxPooling1D
-from keras.initializers import RandomUniform, TruncatedNormal, Constant
+from keras.initializers import TruncatedNormal, Constant
 from keras.callbacks import EarlyStopping
 from keras.preprocessing.sequence import pad_sequences
 from vector_palabras import palabras_comunes
@@ -20,20 +20,20 @@ from script_auxiliares import print_progress
 import time
 from codecs import open, BOM_UTF8
 
-vector_size = 50 # Cantidad de features a considerar por palabra
+vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 16 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 33 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/ner_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/ner_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/srl_simple_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/srl_simple_pruebas.csv'
 
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
 
 log = 'Log de ejecucion:\n-----------------\n'
-log += '\nTarea: NER'
+log += '\nTarea: SRL'
 log += '\nModelo de red: Oracion'
 log += '\nEmbedding inicial: Aleatorio'
 log += '\nOptimizer: adam'
@@ -41,6 +41,7 @@ log += '\nOptimizer: adam'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
+indice_OUT = palabras.obtener_indice("OUT")
 cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
@@ -49,38 +50,42 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 main_input = Input(shape=(None,), name='main_input')
 
-aux_input_layer = Input(shape=(None,1), name='aux_input')
+aux_input_layer = Input(shape=(None,2), name='aux_input')
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, 
-                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, embeddings_initializer='uniform',
                             trainable=True)(main_input)
 
 concat_layer = Concatenate()([embedding_layer, aux_input_layer])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
+#convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(embedding_layer)
 
 x_layer = GlobalMaxPooling1D()(convolutive_layer)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
-                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=2),
+                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
                      bias_initializer=Constant(value=0.1))(x_layer)
 
 y_layer = Activation("tanh")(second_layer)
 
 third_layer = Dense(units=unidades_ocultas_capa_3,
                     use_bias=True,
-                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
+                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
                     bias_initializer=Constant(value=0.1))(y_layer)
 
 softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)
 
 
 # Agrego las capas al modelo
+
 model = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer])
+#model = Model(inputs=[main_input], outputs=[softmax_layer])
+
 
 # Compilo la red
+
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
 
@@ -100,9 +105,9 @@ with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
 
 #x_train_a = [np.array(l[1:]) for l in x_train]
 #x_train_b = [ np.matrix([[i-l[0]] for i in range(len(l)-1)]) for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = [l[1:] for l in x_train]
-x_train_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = pad_sequences(x_train_a, padding='post', value=56946)
+x_train_a = [l[2:] for l in x_train]
+x_train_b = [ [[i-l[0], i-l[1]] for i in range(len(l)-2)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
+x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
 x_train_b = pad_sequences(x_train_b, padding='post', value=np.iinfo('int32').min)
 y_train = np.array(y_train)
 
@@ -112,37 +117,17 @@ print 'Cargando casos de prueba...'
 # Abro el archivo con casos de prueba
 x_test = []
 y_test = []
-casos_test = []
 with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
     lector = csv.reader(archivo_csv, delimiter=',')
     for linea in lector:
-        casos_test.append([int(x) for x in linea])
         x_test.append([int(x) for x in linea[:-unidades_ocultas_capa_3]])
         y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
 
-x_test_a = [l[1:] for l in x_test]
-x_test_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
-x_test_a = pad_sequences(x_test_a, padding='post', value=56946)
+x_test_a = [l[2:] for l in x_test]
+x_test_b = [ [[i-l[0], i-l[1]] for i in range(len(l)-2)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
+x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
 x_test_b = pad_sequences(x_test_b, padding='post', value=np.iinfo('int32').min)
 y_test = np.array(y_test)
-
-
-print 'Separo casos por oraciones'
-oraciones = []
-oracion_actual = {'x_a':[], 'x_b':[], 'y':[], 'largo':0, 'correctas':0}
-primera = True
-
-for caso in casos_test: 
-    oracion_actual['x_a'].append(caso[1:-unidades_ocultas_capa_3])  
-    oracion_actual['x_b'].append([[i-caso[0]] for i in range(len(caso[1:-unidades_ocultas_capa_3]))])
-    oracion_actual['y'].append(caso[-unidades_ocultas_capa_3:])
-    oracion_actual['largo']+=1
-    if (caso[0]+1 == len(caso[1:-unidades_ocultas_capa_3])): # Guardo oracion anterior          
-        oracion_actual['x_a']=np.array(oracion_actual['x_a']) # En teoria NO requiere PADDING porque todos los casos miden lo mismo     
-        oracion_actual['x_b']=np.array(oracion_actual['x_b']) 
-        oracion_actual['y']=np.array(oracion_actual['y'])
-        oraciones.append(oracion_actual)
-        oracion_actual = {'x_a':[], 'x_b':[], 'y':[], 'largo':0, 'correctas':0}
 
 duracion_carga_casos = time.time() - inicio_carga_casos
 
@@ -150,26 +135,12 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 print 'Entrenando...'
 inicio_entrenamiento = time.time()
 
-early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=1, batch_size=200, 
-    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), 
-    callbacks=[early_stop], verbose=1)
+early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
+history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=200, batch_size=100, 
+    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
 #history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
-
-print 'Obtengo cantidad de palabras correctamente etiquetadas por oracion...'
-for oracion in oraciones[:100]:
-    for palabra in range(oracion['largo']):
-        y_pred = (model.predict({'main_input': np.array([oracion['x_a'][palabra]]), 
-                        'aux_input': np.array([oracion['x_b'][palabra]])}, 
-                        batch_size=1, verbose=0))
-        if oracion['y'][palabra][y_pred[0].tolist().index(max(y_pred[0]))] == 1:
-            oracion['correctas']+=1
-
-
-for oracion in oraciones:
-    print 'Palabras correctas: ' + str(oracion['correctas']) + ' / ' + str(oracion['largo'])
 
 # list all data in history
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))

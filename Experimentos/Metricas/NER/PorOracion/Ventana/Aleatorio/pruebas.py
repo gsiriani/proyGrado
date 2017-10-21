@@ -14,8 +14,8 @@ unidades_ocultas_capa_3 = 17
 
 archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
 archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana_indizada/Entrenamiento/ner_training_out_tag.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana_indizada/Pruebas/ner_pruebas_out_tag.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana_indizada/Entrenamiento/ner_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana_indizada/Pruebas/ner_pruebas.csv'
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario

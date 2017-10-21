@@ -4,8 +4,7 @@
 
 ### Gonzalo
 
-+ Modo Ventana corregido
-+ Modo Sentencia correcto
++ POS Modo Sentencia correcto
 + Supertagging
 + Analizar caso NER
 
