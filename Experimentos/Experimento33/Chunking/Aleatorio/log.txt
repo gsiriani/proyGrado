@@ -7,16 +7,16 @@ Embedding inicial: Aleatorio
 Optimizer: adam
 
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 53 s
-Duracion del entrenamiento: 19 hs, 39 min, 4 s
+Duracion del entrenamiento: 0 hs, 30 min, 47 s
 
-Accuracy entrenamiento inicial: 0.385023316416
-Accuracy entrenamiento final: 0.385924142138
+Accuracy entrenamiento inicial: 0.386036418898
+Accuracy entrenamiento final: 0.385830142954
 
-Accuracy validacion inicial: 0.401607645881
-Accuracy validacion final: 0.362960890308
+Accuracy validacion inicial: 0.401182020855
+Accuracy validacion final: 0.361404318619
 
-Loss entrenamiento inicial: 1.68098273834
-Loss entrenamiento final: 1.64611630181
+Loss entrenamiento inicial: 1.68583098147
+Loss entrenamiento final: 1.64573664527
 
-Loss validacion inicial: 1.65323714861
-Loss validacion final: 1.645442145
+Loss validacion inicial: 1.65118855014
+Loss validacion final: 1.65936280338

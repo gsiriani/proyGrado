@@ -4,8 +4,8 @@
 
 ### Gonzalo
 
-+ POS Modo Sentencia correcto
 + Supertagging
++ Analizar conjuntos de palabras Ancora
 + Analizar caso NER
 
 ### Guillermo
