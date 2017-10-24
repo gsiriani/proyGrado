@@ -10,7 +10,6 @@ import unicodedata
 from funciones_generales import list_to_str, correct_escape_sequences, number_filter, date_filter, list_to_str_utf8
 from funciones_vector import vector_variante
 
-tamanio_ventana = 11
 # Orden de los tags en aparicion
 orden_tags = {"pos" : 0}
 
@@ -30,6 +29,8 @@ opciones_pos = {"a" : 0,
 				"v" : 9,
 				"w" : 10,
 				"z" : 11}
+
+largo_vector = len(opciones_pos)
 
 lista_separables = {"del" : 2, "al" : 2, "¡qué" : 2, "rajada!" : 2, "¡agua" : 2, "va!" : 2, "`toro`" : 3,
 					"\"el" : 2, "pibe\"" : 2, ",obligado" : 2, "'savoir" : 2, "faire'" : 2, "(capital" : 2, "carintia)" : 2} #, "1993," : 2, "g-77," : 2, "arte," : 2, "baby," : 2}
@@ -187,7 +188,6 @@ def process_sentence(sentence_in, freeling_list):
 	freeling = False
 	intermediate = []
 	for word in sentence_in:
-		word[0] = word[0].encode('utf-8').lower().encode('utf-8')
 		if " " in word[0]:
 			words = word[0].split(" ")
 			for w in words:
@@ -210,7 +210,7 @@ def process_sentence(sentence_in, freeling_list):
 	for word in sentence:
 		aux_uno = number_filter(word[0])
 		aux_dos = date_filter(aux_uno)
-		pos_tag = vector_variante(opciones_pos[word[1]],tamanio_ventana)
+		pos_tag = vector_variante(opciones_pos[word[1]],largo_vector)
 		intermediate.append((aux_dos,pos_tag))
 	output = generate_cases(intermediate)
 	return output
