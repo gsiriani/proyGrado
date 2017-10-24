@@ -10,7 +10,6 @@ from keras.layers.pooling import GlobalMaxPooling1D
 from keras.initializers import TruncatedNormal, Constant
 from keras.callbacks import EarlyStopping
 from keras.preprocessing.sequence import pad_sequences
-from vector_palabras import palabras_comunes
 from random import uniform
 import csv
 from sklearn.model_selection import train_test_split
@@ -20,11 +19,12 @@ from script_auxiliares import print_progress
 import time
 from codecs import open, BOM_UTF8
 
-vector_size = 50 # Cantidad de features a considerar por palabra
+vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 24 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 25 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
-archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
+archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
+archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
 archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/chunking_training.csv'
 archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/chunking_pruebas.csv'
 
@@ -35,13 +35,20 @@ archivo_loss = './loss.png'
 log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: Chunking'
 log += '\nModelo de red: Oracion'
-log += '\nEmbedding inicial: Aleatorio'
+log += '\nEmbedding inicial: Precalculado'
 log += '\nOptimizer: adam'
 
 
 # Cargo embedding inicial
 palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
-cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
+indice_OUT = palabras.obtener_indice("OUT")
+embedding_inicial = []
+for l in open(archivo_embedding):
+    embedding_inicial.append(list([float(x) for x in l.split()])) 
+
+embedding_inicial = np.array(embedding_inicial)
+
+cant_palabras = len(embedding_inicial) # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 
@@ -52,7 +59,7 @@ main_input = Input(shape=(None,), name='main_input')
 aux_input_layer = Input(shape=(None,1), name='aux_input')
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, embeddings_initializer='uniform',
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             trainable=True)(main_input)
 
 concat_layer = Concatenate()([embedding_layer, aux_input_layer])
@@ -106,7 +113,7 @@ with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
 #x_train_b = [ np.matrix([[i-l[0]] for i in range(len(l)-1)]) for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
 x_train_a = [l[1:] for l in x_train]
 x_train_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = pad_sequences(x_train_a, padding='post', value=56946)
+x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
 x_train_b = pad_sequences(x_train_b, padding='post', value=np.iinfo('int32').min)
 y_train = np.array(y_train)
 
@@ -124,7 +131,7 @@ with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
 
 x_test_a = [l[1:] for l in x_test]
 x_test_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
-x_test_a = pad_sequences(x_test_a, padding='post', value=56946)
+x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
 x_test_b = pad_sequences(x_test_b, padding='post', value=np.iinfo('int32').min)
 y_test = np.array(y_test)
 
@@ -134,9 +141,9 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 print 'Entrenando...'
 inicio_entrenamiento = time.time()
 
-early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=10, batch_size=25, 
-    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=1)
+early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
+history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=200, batch_size=100, 
+    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
 #history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 

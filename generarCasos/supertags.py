@@ -3,6 +3,21 @@ import re
 
 window_size = int(11)
 
+def generate_vector_salida(supertag, supertags):
+	salida = ""
+	for i in range(len(supertags)):
+		if i == supertags[supertag]:
+			if salida == "":
+				salida = "1"
+			else:
+				salida += " 1"
+		else:
+			if salida == "":
+				salida = "0"
+			else:
+				salida += " 0"
+	return salida
+
 def generate_cases(words,dicc_st):
 	output = []
 	mitad_ventana = int(window_size / 2)
@@ -19,15 +34,15 @@ def generate_cases(words,dicc_st):
 			line += "OUT "
 		if len(line.split(" ")) != 12:
 			mal = True
-		line +=  + "\n"
+		line += generate_vector_salida(words[i][1],dicc_st) + "\n"
 		output.append(line)
 	return output
 
 archivo = open(sys.argv[1],"r")
 supertags = {}
-for linea in archvio:
+for linea in archivo:
 	if linea != "\n":
-		supertag = linea.replace("\n")
+		supertag = linea.replace("\n","")
 		supertags[supertag] = len(supertags)
 archivo.close()
 
@@ -39,7 +54,7 @@ for linea in archivo:
 	if linea == "\n":
 		output = generate_cases(oracion, supertags)
 		for o in output:
-			salida.wirte(o)
+			salida.write(o)
 		oracion = []
 	else:
 		separada = linea.replace("\n","").split("\t")
@@ -48,3 +63,4 @@ for linea in archivo:
 		oracion.append((palabra,supertag))
 
 archivo.close()
+salida.close()

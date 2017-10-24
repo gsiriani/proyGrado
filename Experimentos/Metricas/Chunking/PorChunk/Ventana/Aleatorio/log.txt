@@ -1,0 +1,25 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
+Duracion del entrenamiento: 0 hs, 11 min, 59 s
+
+Duracion de validacion por chunks: 5 hs, 15 min, 54 s
+Chunk correctos: 45462 / 82232
+
+Accuracy entrenamiento inicial: 0.692643517992
+Accuracy entrenamiento final: 0.969669599932
+
+Accuracy validacion inicial: 0.530717966292
+Accuracy validacion final: 0.504268410501
+
+Loss entrenamiento inicial: 0.800165029088
+Loss entrenamiento final: 0.0866177778009
+
+Loss validacion inicial: 1.36666355685
+Loss validacion final: 3.1439339432
