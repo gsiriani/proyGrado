@@ -60,7 +60,16 @@ for linea in archivo:
 		separada = linea.replace("\n","").split("\t")
 		palabra = separada[1]
 		supertag = separada[4]
-		oracion.append((palabra,supertag))
+		if "_" in palabra:
+			palabras = palabra.split("_")
+			for p in palabras:
+				oracion.append((p,supertag))
+		elif " " in palabra:
+			palabras = palabra.split(" ")
+			for p in palabras:
+				oracion.append((p,supertag))
+		else:
+			oracion.append((palabra,supertag))
 
 archivo.close()
 salida.close()
