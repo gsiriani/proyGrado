@@ -1,5 +1,6 @@
 import sys
 import re
+from funciones_generales import number_filter, date_filter
 
 window_size = int(11)
 
@@ -51,24 +52,31 @@ salida = open(sys.argv[3],"w")
 
 oracion = []
 for linea in archivo:
-	if linea == "\n":
+	linea = linea.replace("\n","").replace("\r","")
+	if linea == "":
 		output = generate_cases(oracion, supertags)
 		for o in output:
 			salida.write(o)
 		oracion = []
 	else:
-		separada = linea.replace("\n","").split("\t")
+		separada = linea.split("\t")
 		palabra = separada[1]
 		supertag = separada[4]
 		if "_" in palabra:
 			palabras = palabra.split("_")
 			for p in palabras:
+				p = number_filter(p)
+				p =	date_filter(p)
 				oracion.append((p,supertag))
 		elif " " in palabra:
 			palabras = palabra.split(" ")
 			for p in palabras:
+				p = number_filter(p)
+				p =	date_filter(p)
 				oracion.append((p,supertag))
 		else:
+			palabra = number_filter(palabra)
+			palabra = date_filter(palabra)
 			oracion.append((palabra,supertag))
 
 archivo.close()
