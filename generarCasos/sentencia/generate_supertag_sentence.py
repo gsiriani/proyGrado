@@ -25,7 +25,7 @@ def generate_cases(words,dicc_st):
 	for i in range(largo):
 		line = "["
 		for j in range(largo):
-			if j > 0
+			if j > 0:
 				line += ","
 			if "\"" in words[j][0]:
 				line += "('" + words[j][0] + "'," + str(i - j) + ")"

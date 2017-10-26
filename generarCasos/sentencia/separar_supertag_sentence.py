@@ -5,14 +5,13 @@ import os
 carpeta_separadas = sys.argv[1]
 ifolder = sys.argv[2]
 ofolder = sys.argv[3]
-ventana = 11
 separador = " "
 
 def extraer_oracion(linea):
-	lista_oracion = linea.replace("\n","").split(separador)[:ventana]
-	oracion = lista_oracion[0]
-	for i in range(1,ventana):
-		oracion += separador + lista_oracion[i]
+	lista_oracion = eval(linea.replace("\n","").split(separador)[0])
+	oracion = lista_oracion[0][0]
+	for i in range(1,len(lista_oracion)):
+		oracion += separador + lista_oracion[i][0]
 	return oracion
 
 def extraer_oraciones(archivo):
