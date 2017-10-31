@@ -21,7 +21,7 @@ def generate_cases(words):
 	largo = len(words)
 	for i in range(largo):
 		line = "["
-		for j in range(len(words)):
+		for j in range(largo):
 			if j > 0:
 				line += ","
 			if "\"" in words[j][0]:

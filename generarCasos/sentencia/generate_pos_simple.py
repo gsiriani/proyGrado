@@ -10,7 +10,6 @@ import unicodedata
 from funciones_generales import list_to_str, correct_escape_sequences, number_filter, date_filter, list_to_str_utf8
 from funciones_vector import vector_variante
 
-tamanio_ventana = 11
 # Orden de los tags en aparicion
 orden_tags = {"pos" : 0}
 
@@ -30,6 +29,8 @@ opciones_pos = {"a" : 0,
 				"v" : 9,
 				"w" : 10,
 				"z" : 11}
+
+largo_vector = len(opciones_pos)
 
 lista_separables = {"del" : 2, "al" : 2, "¡qué" : 2, "rajada!" : 2, "¡agua" : 2, "va!" : 2, "`toro`" : 3,
 					"\"el" : 2, "pibe\"" : 2, ",obligado" : 2, "'savoir" : 2, "faire'" : 2, "(capital" : 2, "carintia)" : 2} #, "1993," : 2, "g-77," : 2, "arte," : 2, "baby," : 2}
@@ -56,17 +57,19 @@ def quitar_tildes(word):
 
 def generate_cases(words):
 	output = []
-	for i in range(len(words)):
-		line = ""
-		max_index = min(i + 6,len(words))
-		min_index = max(0,i - 5)
-		for j in range(0,5 - i):
-			line += "OUT "
-		for j in range(min_index, max_index):
-			line += words[j][0] + " "
-		for j in range(6 - (len(words) - i)):
-			line += "OUT "
-		line += list_to_str(words[i][1]) + "\n"
+	largo = len(words)
+	for i in range(largo):
+		line = "["
+		for j in range(largo):
+			if j > 0:
+				line += ","
+			if "\"" in words[j][0]:
+				line += "('" + words[j][0] + "'," + str(i - j) + ")"
+			else:
+				line += "(\"" + words[j][0] + "\"," + str(i - j) + ")"
+		for j in range(largo,5):
+			line += ",(\"OUT\"," + str(i - j) + ")"
+		line += "] " + list_to_str(words[i][1]) + "\n"
 		output.append(line)
 	return output
 
@@ -187,7 +190,6 @@ def process_sentence(sentence_in, freeling_list):
 	freeling = False
 	intermediate = []
 	for word in sentence_in:
-		word[0] = word[0].encode('utf-8').lower().encode('utf-8')
 		if " " in word[0]:
 			words = word[0].split(" ")
 			for w in words:
@@ -210,7 +212,7 @@ def process_sentence(sentence_in, freeling_list):
 	for word in sentence:
 		aux_uno = number_filter(word[0])
 		aux_dos = date_filter(aux_uno)
-		pos_tag = vector_variante(opciones_pos[word[1]],tamanio_ventana)
+		pos_tag = vector_variante(opciones_pos[word[1]],largo_vector)
 		intermediate.append((aux_dos,pos_tag))
 	output = generate_cases(intermediate)
 	return output

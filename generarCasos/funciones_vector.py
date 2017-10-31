@@ -39,7 +39,7 @@ def generate_vector_palabra(palabra, tags, opciones, largo_vector):
 		vector = vector_variante(indice, largo_vector)
 		return list_to_str(vector)
 	else:
-		vector = vector_variante(largo_vector - 1, largo_vector)
+		vector = vector_variante(-1, largo_vector)
 		return list_to_str(vector)
 
 def generate_vector_palabra_multiple(valores, tags, largo_vector):
