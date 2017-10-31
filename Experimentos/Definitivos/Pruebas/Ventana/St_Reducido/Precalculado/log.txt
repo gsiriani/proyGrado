@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: SuperTagging Reducido
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 15 s
+Duracion del entrenamiento: 0 hs, 1 min, 44 s
+
+Accuracy entrenamiento inicial: 0.811083265864
+Accuracy entrenamiento final: 0.98890740246
+
+Accuracy validacion inicial: 0.869815748932
+Accuracy validacion final: 0.890137774089
+
+Loss entrenamiento inicial: 0.794177190286
+Loss entrenamiento final: 0.0431126703908
+
+Loss validacion inicial: 0.52095145808
+Loss validacion final: 0.57119441499

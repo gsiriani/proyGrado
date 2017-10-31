@@ -10,6 +10,7 @@ from keras.layers.pooling import GlobalMaxPooling1D
 from keras.initializers import TruncatedNormal, Constant
 from keras.callbacks import EarlyStopping
 from keras.preprocessing.sequence import pad_sequences
+from vector_palabras import palabras_comunes
 from random import uniform
 import csv
 from sklearn.model_selection import train_test_split
@@ -40,7 +41,7 @@ log += '\nOptimizer: adam'
 
 
 # Cargo embedding inicial
-palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
+palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario
 indice_OUT = palabras.obtener_indice("OUT")
 embedding_inicial = []
 for l in open(archivo_embedding):
@@ -141,8 +142,8 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 print 'Entrenando...'
 inicio_entrenamiento = time.time()
 
-early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=200, batch_size=100, 
+early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
+history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=5, batch_size=100, 
     validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
 #history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento

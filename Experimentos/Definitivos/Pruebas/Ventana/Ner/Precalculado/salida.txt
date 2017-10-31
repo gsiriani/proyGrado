@@ -1,0 +1,35 @@
+Cargando embedding inicial...
+Cantidad de palabras consideradas: 56947
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 17)                5117      
+_________________________________________________________________
+activation_2 (Activation)    (None, 17)                0         
+=================================================================
+Total params: 9,042,467.0
+Trainable params: 9,042,467.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/5
+21s - loss: 0.1902 - acc: 0.9529 - val_loss: 0.1390 - val_acc: 0.9623
+Epoch 2/5
+21s - loss: 0.0753 - acc: 0.9773 - val_loss: 0.1430 - val_acc: 0.9636
+Epoch 3/5
+21s - loss: 0.0352 - acc: 0.9887 - val_loss: 0.1759 - val_acc: 0.9645
+Epoch 4/5
+21s - loss: 0.0163 - acc: 0.9946 - val_loss: 0.2215 - val_acc: 0.9634
+Epoch 5/5
+21s - loss: 0.0086 - acc: 0.9973 - val_loss: 0.2619 - val_acc: 0.9633

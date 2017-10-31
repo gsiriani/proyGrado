@@ -1,0 +1,23 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: SuperTaggging Completo
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 13 min, 17 s
+Duracion del entrenamiento: 0 hs, 4 min, 8 s
+
+Accuracy entrenamiento inicial: 0.848641685893
+Accuracy entrenamiento final: 0.988334598341
+
+Accuracy validacion inicial: 0.889265026506
+Accuracy validacion final: 0.88359445685
+
+Loss entrenamiento inicial: 0.650218048866
+Loss entrenamiento final: 0.0420143820827
+
+Loss validacion inicial: 0.435757899089
+Loss validacion final: 0.611492220188

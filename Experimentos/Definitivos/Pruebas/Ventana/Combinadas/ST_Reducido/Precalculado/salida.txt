@@ -1,0 +1,166 @@
+Cargando embedding inicial...
+Cantidad de palabras consideradas: 56947
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 17)                5117      
+_________________________________________________________________
+activation_2 (Activation)    (None, 17)                0         
+=================================================================
+Total params: 9,042,467.0
+Trainable params: 9,042,467.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_3 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 25)                7525      
+_________________________________________________________________
+activation_4 (Activation)    (None, 25)                0         
+=================================================================
+Total params: 9,044,875.0
+Trainable params: 9,044,875.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_3 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_5 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 12)                3612      
+_________________________________________________________________
+activation_6 (Activation)    (None, 12)                0         
+=================================================================
+Total params: 9,040,962.0
+Trainable params: 9,040,962.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_4 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_7 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_5 (Dense)              (None, 643)               193543    
+_________________________________________________________________
+activation_8 (Activation)    (None, 643)               0         
+=================================================================
+Total params: 9,230,893.0
+Trainable params: 9,230,893.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Iteracion: 0
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.1903 - acc: 0.9528 - val_loss: 0.1443 - val_acc: 0.9610
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 1.0043 - acc: 0.5889 - val_loss: 1.1305 - val_acc: 0.5273
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.1989 - acc: 0.9339 - val_loss: 0.1243 - val_acc: 0.9581
+ST Reducido
+Train on 192741 samples, validate on 42171 samples
+Epoch 1/1
+15s - loss: 0.6265 - acc: 0.8661 - val_loss: 0.4403 - val_acc: 0.8906
+Iteracion: 1
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0884 - acc: 0.9739 - val_loss: 0.1367 - val_acc: 0.9650
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.6507 - acc: 0.7464 - val_loss: 1.3387 - val_acc: 0.5347
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0747 - acc: 0.9753 - val_loss: 0.1027 - val_acc: 0.9669
+ST Reducido
+Train on 192741 samples, validate on 42171 samples
+Epoch 1/1
+15s - loss: 0.3199 - acc: 0.9198 - val_loss: 0.4104 - val_acc: 0.8997
+Iteracion: 2
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0464 - acc: 0.9856 - val_loss: 0.1715 - val_acc: 0.9650
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.4917 - acc: 0.8013 - val_loss: 1.5687 - val_acc: 0.5291
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0412 - acc: 0.9864 - val_loss: 0.1174 - val_acc: 0.9666
+ST Reducido
+Train on 192741 samples, validate on 42171 samples
+Epoch 1/1
+15s - loss: 0.2065 - acc: 0.9452 - val_loss: 0.4435 - val_acc: 0.8998
+Iteracion: 3
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0249 - acc: 0.9922 - val_loss: 0.2177 - val_acc: 0.9625
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.3925 - acc: 0.8398 - val_loss: 1.7922 - val_acc: 0.5228
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0220 - acc: 0.9927 - val_loss: 0.1575 - val_acc: 0.9628
+ST Reducido
+Train on 192741 samples, validate on 42171 samples
+Epoch 1/1
+15s - loss: 0.1312 - acc: 0.9640 - val_loss: 0.5103 - val_acc: 0.8950
+Iteracion: 4
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0137 - acc: 0.9955 - val_loss: 0.2508 - val_acc: 0.9614
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.3251 - acc: 0.8656 - val_loss: 2.0270 - val_acc: 0.5216
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0127 - acc: 0.9959 - val_loss: 0.1899 - val_acc: 0.9627
+ST Reducido
+Train on 192741 samples, validate on 42171 samples
+Epoch 1/1
+15s - loss: 0.0825 - acc: 0.9766 - val_loss: 0.5878 - val_acc: 0.8915
