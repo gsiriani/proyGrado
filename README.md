@@ -10,8 +10,7 @@
 
 ### Guillermo
 
-+ Convolutiva stand alone
-+ Convolutiva multired
++ Tunear convolutivas: kernel_size: 7, 9, 11, 13, 15. Batch_size: 250
 + ADAM vs SGD
 
 ## Tareas a futuro

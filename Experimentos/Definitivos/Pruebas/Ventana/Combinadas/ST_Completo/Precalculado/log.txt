@@ -1,0 +1,71 @@
+﻿Log de ejecucion:
+-----------------
+
+Tareas: NER, Chunking, POS Simple y Super Tagging Completo
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+Activacion: relu
+Optimizador: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 4 min, 59 s
+Duracion del entrenamiento: 0 hs, 16 min, 1 s
+
+NER
+--------
+
+Accuracy entrenamiento inicial: 0.952600908708
+Accuracy entrenamiento final: 0.995276544854
+
+Accuracy validacion inicial: 0.961803196376
+Accuracy validacion final: 0.960526321469
+
+Loss entrenamiento inicial: 0.190677494027
+Loss entrenamiento final: 0.0146665230278
+
+Loss validacion inicial: 0.140058600418
+Loss validacion final: 0.249944319733
+
+CHUNKING
+--------
+
+Accuracy entrenamiento inicial: 0.584539219902
+Accuracy entrenamiento final: 0.860732357999
+
+Accuracy validacion inicial: 0.531885395046
+Accuracy validacion final: 0.523640431091
+
+Loss entrenamiento inicial: 1.01022170481
+Loss entrenamiento final: 0.341456894062
+
+Loss validacion inicial: 1.12105669945
+Loss validacion final: 1.98147652984
+
+POS
+--------
+
+Accuracy entrenamiento inicial: 0.934315602225
+Accuracy entrenamiento final: 0.995999399449
+
+Accuracy validacion inicial: 0.962418425468
+Accuracy validacion final: 0.96112041694
+
+Loss entrenamiento inicial: 0.199399123726
+Loss entrenamiento final: 0.0119819065593
+
+Loss validacion inicial: 0.112840370818
+Loss validacion final: 0.197980237938
+
+SuperTagging Completo
+--------
+
+Accuracy entrenamiento inicial: 0.869586756527
+Accuracy entrenamiento final: 0.970896450818
+
+Accuracy validacion inicial: 0.888996163492
+Accuracy validacion final: 0.883985531073
+
+Loss entrenamiento inicial: 0.57887946954
+Loss entrenamiento final: 0.108339302918
+
+Loss validacion inicial: 0.448458152766
+Loss validacion final: 0.630921423183

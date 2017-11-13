@@ -1,0 +1,86 @@
+﻿Log de ejecucion:
+-----------------
+
+Tareas: NER, Chunking, POS Simple y Super Tagging (reducido y completo)
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Activacion: relu
+Optimizador: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 12 min, 15 s
+Duracion del entrenamiento: 0 hs, 46 min, 20 s
+
+NER
+--------
+
+Accuracy entrenamiento inicial: 0.959956348512
+Accuracy entrenamiento final: 0.997229637455
+
+Accuracy validacion inicial: 0.961292446355
+Accuracy validacion final: 0.956391676673
+
+Loss entrenamiento inicial: 0.154489192717
+Loss entrenamiento final: 0.00910679333631
+
+Loss validacion inicial: 0.151645493375
+Loss validacion final: 0.339135327109
+
+CHUNKING
+--------
+
+Accuracy entrenamiento inicial: 0.692223133187
+Accuracy entrenamiento final: 0.938169419533
+
+Accuracy validacion inicial: 0.522959430484
+Accuracy validacion final: 0.515760286391
+
+Loss entrenamiento inicial: 0.783481025006
+Loss entrenamiento final: 0.160781355439
+
+Loss validacion inicial: 1.35355731633
+Loss validacion final: 2.9026135973
+
+POS
+--------
+
+Accuracy entrenamiento inicial: 0.948458364357
+Accuracy entrenamiento final: 0.997327723923
+
+Accuracy validacion inicial: 0.966142617511
+Accuracy validacion final: 0.959676837208
+
+Loss entrenamiento inicial: 0.159983700105
+Loss entrenamiento final: 0.00833376120871
+
+Loss validacion inicial: 0.10211719764
+Loss validacion final: 0.237227782761
+
+SuperTagging Reducido
+--------
+
+Accuracy entrenamiento inicial: 0.886536855863
+Accuracy entrenamiento final: 0.994832448312
+
+Accuracy validacion inicial: 0.899314697236
+Accuracy validacion final: 0.890422327759
+
+Loss entrenamiento inicial: 0.509842350685
+Loss entrenamiento final: 0.0185171062564
+
+Loss validacion inicial: 0.399408896515
+Loss validacion final: 0.713944915866
+
+SuperTagging Completo
+--------
+
+Accuracy entrenamiento inicial: 0.905672874748
+Accuracy entrenamiento final: 0.991864986702
+
+Accuracy validacion inicial: 0.896194364317
+Accuracy validacion final: 0.880270329427
+
+Loss entrenamiento inicial: 0.398756745348
+Loss entrenamiento final: 0.0284361038779
+
+Loss validacion inicial: 0.409462294208
+Loss validacion final: 0.846064178123
