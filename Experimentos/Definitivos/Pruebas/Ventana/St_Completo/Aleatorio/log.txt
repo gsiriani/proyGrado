@@ -7,17 +7,17 @@ Embedding inicial: Aleatorio
 Optimizer: adam
 Activacion: relu
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 13 min, 17 s
-Duracion del entrenamiento: 0 hs, 4 min, 8 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 7 min, 48 s
+Duracion del entrenamiento: 0 hs, 4 min, 51 s
 
-Accuracy entrenamiento inicial: 0.848641685893
-Accuracy entrenamiento final: 0.988334598341
+Accuracy entrenamiento inicial: 0.848268830731
+Accuracy entrenamiento final: 0.993372050252
 
-Accuracy validacion inicial: 0.889265026506
-Accuracy validacion final: 0.88359445685
+Accuracy validacion inicial: 0.891257057665
+Accuracy validacion final: 0.879097108665
 
-Loss entrenamiento inicial: 0.650218048866
-Loss entrenamiento final: 0.0420143820827
+Loss entrenamiento inicial: 0.649543271639
+Loss entrenamiento final: 0.024487635749
 
-Loss validacion inicial: 0.435757899089
-Loss validacion final: 0.611492220188
+Loss validacion inicial: 0.42773970666
+Loss validacion final: 0.712017655436

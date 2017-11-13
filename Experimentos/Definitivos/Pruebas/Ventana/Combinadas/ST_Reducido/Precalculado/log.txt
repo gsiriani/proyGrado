@@ -8,64 +8,64 @@ Activacion: relu
 Optimizador: adam
 
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 16 s
-Duracion del entrenamiento: 0 hs, 7 min, 9 s
+Duracion del entrenamiento: 4 hs, 31 min, 3 s
 
 NER
 --------
 
-Accuracy entrenamiento inicial: 0.952838517619
-Accuracy entrenamiento final: 0.995519375878
+Accuracy entrenamiento inicial: 0.95270535207
+Accuracy entrenamiento final: 0.99970494725
 
-Accuracy validacion inicial: 0.960976267533
-Accuracy validacion final: 0.9614140534
+Accuracy validacion inicial: 0.961280285724
+Accuracy validacion final: 0.956306552818
 
-Loss entrenamiento inicial: 0.190306015486
-Loss entrenamiento final: 0.0137165335598
+Loss entrenamiento inicial: 0.188482374185
+Loss entrenamiento final: 0.00371572009895
 
-Loss validacion inicial: 0.144295982633
-Loss validacion final: 0.250837969487
+Loss validacion inicial: 0.139096228534
+Loss validacion final: 0.67290078166
 
 CHUNKING
 --------
 
-Accuracy entrenamiento inicial: 0.588897127137
-Accuracy entrenamiento final: 0.865594204914
+Accuracy entrenamiento inicial: 0.592215821627
+Accuracy entrenamiento final: 0.997519468032
 
-Accuracy validacion inicial: 0.52730080557
-Accuracy validacion final: 0.521597431426
+Accuracy validacion inicial: 0.53861027197
+Accuracy validacion final: 0.507430195672
 
-Loss entrenamiento inicial: 1.00430513047
-Loss entrenamiento final: 0.32512013085
+Loss entrenamiento inicial: 1.00488527594
+Loss entrenamiento final: 0.0219574953135
 
-Loss validacion inicial: 1.13053470753
-Loss validacion final: 2.02702917619
+Loss validacion inicial: 1.13634214697
+Loss validacion final: 7.4894207457
 
 POS
 --------
 
-Accuracy entrenamiento inicial: 0.933872827026
-Accuracy entrenamiento final: 0.995897821734
+Accuracy entrenamiento inicial: 0.934747958686
+Accuracy entrenamiento final: 0.999656198399
 
-Accuracy validacion inicial: 0.958051293926
-Accuracy validacion final: 0.962721698317
+Accuracy validacion inicial: 0.960246990022
+Accuracy validacion final: 0.956073954896
 
-Loss entrenamiento inicial: 0.198904903082
-Loss entrenamiento final: 0.0126907918056
+Loss entrenamiento inicial: 0.198953739421
+Loss entrenamiento final: 0.00419480500491
 
-Loss validacion inicial: 0.124266425737
-Loss validacion final: 0.189866321205
+Loss validacion inicial: 0.117579020358
+Loss validacion final: 0.672933980429
 
 SuperTagging Reducido
 --------
 
-Accuracy entrenamiento inicial: 0.8661416098
-Accuracy entrenamiento final: 0.976647427753
+Accuracy entrenamiento inicial: 0.865700603796
+Accuracy entrenamiento final: 0.99874443025
 
-Accuracy validacion inicial: 0.890564606198
-Accuracy validacion final: 0.891465700805
+Accuracy validacion inicial: 0.889995495649
+Accuracy validacion final: 0.878304996976
 
-Loss entrenamiento inicial: 0.626494542636
-Loss entrenamiento final: 0.0825086690609
+Loss entrenamiento inicial: 0.624188222814
+Loss entrenamiento final: 0.0155862464793
 
-Loss validacion inicial: 0.440349859251
-Loss validacion final: 0.587829068866
+Loss validacion inicial: 0.444897013634
+Loss validacion final: 1.83104285524

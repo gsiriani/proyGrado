@@ -1,0 +1,41 @@
+Cargando embedding inicial...
+Cantidad de palabras consideradas: 56947
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 13)                3913      
+_________________________________________________________________
+activation_2 (Activation)    (None, 13)                0         
+=================================================================
+Total params: 9,041,263.0
+Trainable params: 9,041,263.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/200
+21s - loss: 0.9215 - acc: 0.5910 - val_loss: 0.9825 - val_acc: 0.5592
+Epoch 2/200
+20s - loss: 0.5634 - acc: 0.7683 - val_loss: 1.2140 - val_acc: 0.5522
+Epoch 3/200
+21s - loss: 0.3976 - acc: 0.8331 - val_loss: 1.4919 - val_acc: 0.5451
+Epoch 4/200
+20s - loss: 0.2974 - acc: 0.8738 - val_loss: 1.7897 - val_acc: 0.5466
+Epoch 5/200
+20s - loss: 0.2198 - acc: 0.9079 - val_loss: 2.1176 - val_acc: 0.5453
+Epoch 6/200
+21s - loss: 0.1564 - acc: 0.9356 - val_loss: 2.5600 - val_acc: 0.5443
+Epoch 7/200
+21s - loss: 0.1066 - acc: 0.9579 - val_loss: 3.0081 - val_acc: 0.5452
+Epoch 8/200
+21s - loss: 0.0723 - acc: 0.9725 - val_loss: 3.4694 - val_acc: 0.5450

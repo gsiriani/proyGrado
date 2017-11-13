@@ -22,13 +22,15 @@ Cargando casos de entrenamiento...
 Cargando casos de prueba...
 Entrenando...
 Train on 192741 samples, validate on 42171 samples
-Epoch 1/5
-10s - loss: 0.7682 - acc: 0.8270 - val_loss: 0.4545 - val_acc: 0.8880
-Epoch 2/5
-10s - loss: 0.2976 - acc: 0.9238 - val_loss: 0.4098 - val_acc: 0.8954
-Epoch 3/5
-10s - loss: 0.1540 - acc: 0.9596 - val_loss: 0.4456 - val_acc: 0.8937
-Epoch 4/5
-10s - loss: 0.0710 - acc: 0.9812 - val_loss: 0.5087 - val_acc: 0.8894
-Epoch 5/5
-10s - loss: 0.0291 - acc: 0.9929 - val_loss: 0.5890 - val_acc: 0.8860
+Epoch 1/200
+12s - loss: 0.7649 - acc: 0.8288 - val_loss: 0.4570 - val_acc: 0.8870
+Epoch 2/200
+12s - loss: 0.2965 - acc: 0.9242 - val_loss: 0.4091 - val_acc: 0.8967
+Epoch 3/200
+12s - loss: 0.1541 - acc: 0.9593 - val_loss: 0.4523 - val_acc: 0.8921
+Epoch 4/200
+12s - loss: 0.0703 - acc: 0.9815 - val_loss: 0.5130 - val_acc: 0.8879
+Epoch 5/200
+12s - loss: 0.0296 - acc: 0.9927 - val_loss: 0.5775 - val_acc: 0.8852
+Epoch 6/200
+12s - loss: 0.0151 - acc: 0.9964 - val_loss: 0.6716 - val_acc: 0.8764

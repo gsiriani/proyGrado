@@ -9,14 +9,17 @@ Optimizer: adam
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
 Duracion del entrenamiento: 0 hs, 2 min, 14 s
 
-Accuracy entrenamiento inicial: 0.567783862887
-Accuracy entrenamiento final: 0.906400302106
+Duracion de validacion por chunks: 2 hs, 33 min, 57 s
+Chunk correctos: 46284 / 82232
 
-Accuracy validacion inicial: 0.543973148051
-Accuracy validacion final: 0.520746180051
+Accuracy entrenamiento inicial: 0.568470579854
+Accuracy entrenamiento final: 0.906893798531
 
-Loss entrenamiento inicial: 1.03687739737
-Loss entrenamiento final: 0.230297732429
+Accuracy validacion inicial: 0.53302850313
+Accuracy validacion final: 0.523093198166
 
-Loss validacion inicial: 1.07585227436
-Loss validacion final: 2.29211967031
+Loss entrenamiento inicial: 1.03716771084
+Loss entrenamiento final: 0.229769989658
+
+Loss validacion inicial: 1.09315563677
+Loss validacion final: 2.29407707225
