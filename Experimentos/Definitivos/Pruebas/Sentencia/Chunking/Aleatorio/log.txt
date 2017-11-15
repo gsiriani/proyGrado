@@ -6,17 +6,17 @@ Modelo de red: Oracion
 Embedding inicial: Aleatorio
 Optimizer: adam
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 44 s
-Duracion del entrenamiento: 0 hs, 2 min, 39 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 43 s
+Duracion del entrenamiento: 0 hs, 6 min, 22 s
 
-Accuracy entrenamiento inicial: 0.466511446789
-Accuracy entrenamiento final: 0.466511446789
+Accuracy entrenamiento inicial: 0.467744053312
+Accuracy entrenamiento final: 0.4795880322
 
-Accuracy validacion inicial: 0.400142534534
-Accuracy validacion final: 0.400142534534
+Accuracy validacion inicial: 0.373302619552
+Accuracy validacion final: 0.403044147735
 
-Loss entrenamiento inicial: 1.61291294926
-Loss entrenamiento final: 1.61291294926
+Loss entrenamiento inicial: 1.6157795722
+Loss entrenamiento final: 1.54421839229
 
-Loss validacion inicial: 1.69029962078
-Loss validacion final: 1.69029962078
+Loss validacion inicial: 1.71850958793
+Loss validacion final: 1.79213634158

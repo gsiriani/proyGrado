@@ -26,8 +26,8 @@ unidades_ocultas_capa_3 = 947 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
 archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Sentencia_truncada/Entrenamiento/supertag_all_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/supertag_all_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Sentencia_truncada/Entrenamiento/supertag_completo_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/supertag_completo_pruebas.csv'
 
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
@@ -67,20 +67,19 @@ embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, wei
 concat_layer = Concatenate()([embedding_layer, aux_input_layer])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
-#convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(embedding_layer)
 
 x_layer = GlobalMaxPooling1D()(convolutive_layer)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
-                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=2),
                      bias_initializer=Constant(value=0.1))(x_layer)
 
 y_layer = Activation("tanh")(second_layer)
 
 third_layer = Dense(units=unidades_ocultas_capa_3,
                     use_bias=True,
-                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
+                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
                     bias_initializer=Constant(value=0.1))(y_layer)
 
 softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)

@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: SRL
+Modelo de red: Oracion
+Embedding inicial: Precalculado
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 6 min, 37 s
+Duracion del entrenamiento: 1 hs, 2 min, 47 s
+
+Accuracy entrenamiento inicial: 0.79123111908
+Accuracy entrenamiento final: 0.791498004133
+
+Accuracy validacion inicial: 0.792841896307
+Accuracy validacion final: 0.788415267021
+
+Loss entrenamiento inicial: 0.97407617378
+Loss entrenamiento final: 0.953977386643
+
+Loss validacion inicial: 0.962102125865
+Loss validacion final: 0.96448373979
