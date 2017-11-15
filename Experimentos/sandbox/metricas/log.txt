@@ -1,0 +1,45 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking Reducido
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 0 min, 57 s
+Duracion del calculo de metricas: 0 hs, 0 min, 57 s
+
+Accuracy entrenamiento inicial: 0.736810084372
+Accuracy entrenamiento final: 0.932926353144
+
+Accuracy validacion inicial: 0.588019261521
+Accuracy validacion final: 0.579227064237
+
+Loss entrenamiento inicial: 0.6136109995
+Loss entrenamiento final: 0.174646517991
+
+Loss validacion inicial: 1.04659528925
+Loss validacion final: 1.904454846
+
+Chunks identificados: 21824 / 39959
+Chunks correctos: 18735 / 39959
+
+Precision: [ 0.68713259  0.50838152  0.49332759  0.63834951  0.57714286  0.53191489
+  0.53074434  0.68386628  0.61440327]
+Recall: [ 0.61538462  0.46737777  0.33518573  0.49622642  0.48210024  0.19230769
+  0.39140811  0.49422269  0.68355688]
+Medida-F: [ 0.64928252  0.48701811  0.39916405  0.55838641  0.52535761  0.28248588
+  0.45054945  0.57378049  0.64713787]
+
+Matriz de confusion:
+[[ 2104   434     5    42     5     0     3    54   772]
+ [  368 13890   518    53    32     7    46   154 14651]
+ [    4   558  1146    14     0     0     0     6  1691]
+ [   39    68    22   263     0     0     3     2   133]
+ [    6    58     1     0   202     0     0    31   121]
+ [    0    25     0     0     0    25     9     0    71]
+ [    5    79     1     3     0     5   164     1   161]
+ [   67   317    18     0    25     0     1   941   535]
+ [  469 11893   612    37    86    10    83   187 28896]]

@@ -32,7 +32,7 @@ archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/chu
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 3
+cant_iteraciones = 50
 
 log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: Chunking'
@@ -149,9 +149,36 @@ history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
 
-# list all data in history
+print 'Obteniendo metricas...'
+
+inicio_metricas = time.time()
+etiquetas = range(unidades_ocultas_capa_3)
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+
+predictions = model.predict({'main_input': x_test_a, 'aux_input': x_test_b}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision, recall, fscore, _) = precision_recall_fscore_support(y_true, y_pred)
+
+
+duracion_metricas = time.time() - inicio_metricas
+
+
+# Anoto resultados
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
 log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
+log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
 
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history.history['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history.history['acc'][-1])
@@ -162,6 +189,12 @@ log += '\n\nLoss entrenamiento inicial: ' + str(history.history['loss'][0])
 log += '\nLoss entrenamiento final: ' + str(history.history['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history.history['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history.history['val_loss'][-1])
+
+log += '\n\nPrecision: ' + str(precision)
+log += '\nRecall: ' + str(recall)
+log += '\nMedida-F: ' + str(fscore)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat)
 
 #print log
 open("log.txt", "w").write(BOM_UTF8 + log)

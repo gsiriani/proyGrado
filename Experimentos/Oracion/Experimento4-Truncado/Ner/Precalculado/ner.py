@@ -7,11 +7,11 @@ sys.path.append(path_proyecto)
 from keras.models import Model
 from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D, Input, Concatenate
 from keras.layers.pooling import GlobalMaxPooling1D
-from keras.initializers import TruncatedNormal, Constant, RandomUniform
+from keras.initializers import TruncatedNormal, Constant
 from keras.callbacks import EarlyStopping
 from keras.preprocessing.sequence import pad_sequences
-from vector_palabras import palabras_comunes
 from random import uniform
+from vector_palabras import palabras_comunes
 import csv
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
@@ -20,30 +20,36 @@ from script_auxiliares import print_progress
 import time
 from codecs import open, BOM_UTF8
 
-vector_size = 50 # Cantidad de features a considerar por palabra
+vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 643 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 17 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
-archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/supertag_reducido_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/supertag_reducido_pruebas.csv'
+archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
+archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Oracion/Entrenamiento/ner_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Oracion/Pruebas/ner_pruebas.csv'
 
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 50
 
 log = 'Log de ejecucion:\n-----------------\n'
-log += '\nTarea: SuperTaggging Reducido'
+log += '\nTarea: NER'
 log += '\nModelo de red: Oracion'
-log += '\nEmbedding inicial: Aleatorio'
+log += '\nEmbedding inicial: Precalculado'
 log += '\nOptimizer: adam'
 
 
 # Cargo embedding inicial
-palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
+palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario
 indice_OUT = palabras.obtener_indice("OUT")
-cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
+embedding_inicial = []
+for l in open(archivo_embedding):
+    embedding_inicial.append(list([float(x) for x in l.split()])) 
+
+embedding_inicial = np.array(embedding_inicial)
+
+cant_palabras = len(embedding_inicial) # Cantidad de palabras consideradas en el diccionario
 print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 
@@ -54,26 +60,26 @@ main_input = Input(shape=(None,), name='main_input')
 aux_input_layer = Input(shape=(None,1), name='aux_input')
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
-embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
-                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
+embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             trainable=True)(main_input)
 
 concat_layer = Concatenate()([embedding_layer, aux_input_layer])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
+#convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(embedding_layer)
 
 x_layer = GlobalMaxPooling1D()(convolutive_layer)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
-                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=2),
+                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
                      bias_initializer=Constant(value=0.1))(x_layer)
 
 y_layer = Activation("tanh")(second_layer)
 
 third_layer = Dense(units=unidades_ocultas_capa_3,
                     use_bias=True,
-                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
+                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=None),
                     bias_initializer=Constant(value=0.1))(y_layer)
 
 softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)
@@ -136,43 +142,16 @@ duracion_carga_casos = time.time() - inicio_carga_casos
 print 'Entrenando...'
 inicio_entrenamiento = time.time()
 
-early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=cant_iteraciones, batch_size=100, 
+early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
+history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=5, batch_size=100, 
     validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
 #history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
 
-print 'Obteniendo metricas...'
-
-inicio_metricas = time.time()
-etiquetas = range(unidades_ocultas_capa_3)
-from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
-
-predictions = model.predict({'main_input': x_test_a, 'aux_input': x_test_b}, batch_size=200, verbose=0)
-y_pred = []
-for p in predictions:
-    p = p.tolist()
-    ind_max = p.index(max(p))
-    etiqueta = etiquetas[ind_max]
-    y_pred.append(etiqueta)
-y_true = []
-for p in y_test:
-    p = p.tolist()
-    ind_max = p.index(max(p))
-    etiqueta = etiquetas[ind_max]
-    y_true.append(etiqueta)
-conf_mat = confusion_matrix(y_true, y_pred, labels=etiquetas)
-(precision, recall, fscore, _) = precision_recall_fscore_support(y_true, y_pred)
-
-
-duracion_metricas = time.time() - inicio_metricas
-
-
-# Anoto resultados
+# list all data in history
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
 log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
-log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
 
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history.history['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history.history['acc'][-1])
@@ -183,12 +162,6 @@ log += '\n\nLoss entrenamiento inicial: ' + str(history.history['loss'][0])
 log += '\nLoss entrenamiento final: ' + str(history.history['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history.history['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history.history['val_loss'][-1])
-
-log += '\n\nPrecision: ' + str(precision)
-log += '\nRecall: ' + str(recall)
-log += '\nMedida-F: ' + str(fscore)
-
-log += '\n\nMatriz de confusion:\n' + str(conf_mat)
 
 #print log
 open("log.txt", "w").write(BOM_UTF8 + log)

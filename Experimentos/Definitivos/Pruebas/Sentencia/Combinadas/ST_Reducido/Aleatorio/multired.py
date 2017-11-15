@@ -30,7 +30,7 @@ unidades_ocultas_capa_3_st = 643 # Reducido
 unidades_ocultas_capa_3_srl = 33
 largo_oracion = 50
 
-cant_iteraciones = 1
+cant_iteraciones = 50
 
 archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
 
@@ -448,10 +448,114 @@ for i in range(cant_iteraciones):
 
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
+print 'Obteniendo metricas...'
 
-# list all data in history
+inicio_metricas = time.time()
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+
+# NER
+etiquetas = range(unidades_ocultas_capa_3_ner)
+
+predictions = model_ner.predict({'main_input': x_test_a_ner, 'aux_input': x_test_b_ner}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test_ner:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat_ner = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision_ner, recall_ner, fscore_ner, _) = precision_recall_fscore_support(y_true, y_pred)
+
+# Chunking
+etiquetas = range(unidades_ocultas_capa_3_chunking)
+
+predictions = model_chunking.predict({'main_input': x_test_a_chunking, 'aux_input': x_test_b_chunking}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test_chunking:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat_chunking = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision_chunking, recall_chunking, fscore_chunking, _) = precision_recall_fscore_support(y_true, y_pred)
+
+# POS
+etiquetas = range(unidades_ocultas_capa_3_pos)
+
+predictions = model_pos.predict({'main_input': x_test_a_pos, 'aux_input': x_test_b_pos}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test_pos:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat_pos = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision_pos, recall_pos, fscore_pos, _) = precision_recall_fscore_support(y_true, y_pred)
+
+# SRL
+etiquetas = range(unidades_ocultas_capa_3_srl)
+
+predictions = model_srl.predict({'main_input': x_test_a_srl, 'aux_input': x_test_b_srl}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test_srl:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat_srl = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision_srl, recall_srl, fscore_srl, _) = precision_recall_fscore_support(y_true, y_pred)
+
+# SuperTag
+etiquetas = range(unidades_ocultas_capa_3_st)
+
+predictions = model_st.predict({'main_input': x_test_a_st, 'aux_input': x_test_b_st}, batch_size=200, verbose=0)
+y_pred = []
+for p in predictions:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_pred.append(etiqueta)
+y_true = []
+for p in y_test_st:
+    p = p.tolist()
+    ind_max = p.index(max(p))
+    etiqueta = etiquetas[ind_max]
+    y_true.append(etiqueta)
+conf_mat_st = confusion_matrix(y_true, y_pred, labels=etiquetas)
+(precision_st, recall_st, fscore_st, _) = precision_recall_fscore_support(y_true, y_pred)
+
+
+duracion_metricas = time.time() - inicio_metricas
+
+
+# Anoto resultados
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
 log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
+log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
 
 log += '\n\nNER\n--------'
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history_ner['acc'][0])
@@ -464,6 +568,12 @@ log += '\nLoss entrenamiento final: ' + str(history_ner['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history_ner['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history_ner['val_loss'][-1])
 
+log += '\n\nPrecision: ' + str(precision_ner)
+log += '\nRecall: ' + str(recall_ner)
+log += '\nMedida-F: ' + str(fscore_ner)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat_ner)
+
 log += '\n\nCHUNKING\n--------'
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history_chunking['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history_chunking['acc'][-1])
@@ -474,6 +584,12 @@ log += '\n\nLoss entrenamiento inicial: ' + str(history_chunking['loss'][0])
 log += '\nLoss entrenamiento final: ' + str(history_chunking['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history_chunking['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history_chunking['val_loss'][-1])
+
+log += '\n\nPrecision: ' + str(precision_chunking)
+log += '\nRecall: ' + str(recall_chunking)
+log += '\nMedida-F: ' + str(fscore_chunking)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat_chunking)
 
 log += '\n\nPOS\n--------'
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history_pos['acc'][0])
@@ -486,6 +602,12 @@ log += '\nLoss entrenamiento final: ' + str(history_pos['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history_pos['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history_pos['val_loss'][-1])
 
+log += '\n\nPrecision: ' + str(precision_pos)
+log += '\nRecall: ' + str(recall_pos)
+log += '\nMedida-F: ' + str(fscore_pos)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat_pos)
+
 log += '\n\nSuperTagging\n--------'
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history_st['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history_st['acc'][-1])
@@ -497,6 +619,12 @@ log += '\nLoss entrenamiento final: ' + str(history_st['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history_st['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history_st['val_loss'][-1])
 
+log += '\n\nPrecision: ' + str(precision_st)
+log += '\nRecall: ' + str(recall_st)
+log += '\nMedida-F: ' + str(fscore_st)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat_st)
+
 log += '\n\nSRL\n--------'
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history_srl['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history_srl['acc'][-1])
@@ -507,6 +635,12 @@ log += '\n\nLoss entrenamiento inicial: ' + str(history_srl['loss'][0])
 log += '\nLoss entrenamiento final: ' + str(history_srl['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history_srl['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history_srl['val_loss'][-1])
+
+log += '\n\nPrecision: ' + str(precision_srl)
+log += '\nRecall: ' + str(recall_srl)
+log += '\nMedida-F: ' + str(fscore_srl)
+
+log += '\n\nMatriz de confusion:\n' + str(conf_mat_srl)
 
 #print log
 open("log.txt", "w").write(BOM_UTF8 + log)

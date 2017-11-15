@@ -76,4 +76,15 @@ cd ..
 cd Precalculado
 pwd 
 python st_completo.py > salida.txt
+cd ..
+cd ..
+cd Combinadas
+cd ST_Reducido
+cd Aleatorio
+pwd
+python multired.py > salida.txt
+cd ..
+cd Precalculado
+pwd 
+python multired.py > salida.txt
 echo 'FIN!!!'

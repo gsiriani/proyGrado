@@ -22,11 +22,11 @@ from codecs import open, BOM_UTF8
 
 vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 643 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 12 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
 archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/supertag_reducido_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/supertag_reducido_pruebas.csv'
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Sentencia_truncada/Entrenamiento/pos_simple_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/pos_simple_pruebas.csv'
 
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
@@ -34,10 +34,12 @@ archivo_loss = './loss.png'
 cant_iteraciones = 50
 
 log = 'Log de ejecucion:\n-----------------\n'
-log += '\nTarea: SuperTaggging Reducido'
+log += '\nTarea: POS Simple'
 log += '\nModelo de red: Oracion'
 log += '\nEmbedding inicial: Aleatorio'
 log += '\nOptimizer: adam'
+log += '\nKernel size: 5'
+log += '\nBatch size: 100'
 
 
 # Cargo embedding inicial

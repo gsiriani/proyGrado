@@ -4,15 +4,15 @@ path_proyecto = '/home/guille/proyecto/proyGrado'
 import sys
 sys.path.append(path_proyecto)
 
-from keras.models import Model
-from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D, Input, Concatenate
-from keras.layers.pooling import GlobalMaxPooling1D
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Embedding, Flatten
 from keras.initializers import TruncatedNormal, Constant, RandomUniform
-from keras.callbacks import EarlyStopping
-from keras.preprocessing.sequence import pad_sequences
+from keras.callbacks import EarlyStopping, TensorBoard
+from keras import optimizers
+from keras import metrics
 from vector_palabras import palabras_comunes
 from random import uniform
-import csv
+import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,72 +20,63 @@ from script_auxiliares import print_progress
 import time
 from codecs import open, BOM_UTF8
 
+window_size = 11 # Cantidad de palabras en cada caso de prueba
 vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
-unidades_ocultas_capa_3 = 643 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+unidades_ocultas_capa_3 = 9 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
 
-archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
-archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/supertag_reducido_training.csv'
-archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/supertag_reducido_pruebas.csv'
+cantidad_iteraciones = 3
+
+archivo_embedding = path_proyecto + "/embedding/embedding_total.txt"
+archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
+archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/chunking_reducido_training.csv'
+archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Pruebas/chunking_reducido_pruebas.csv'
 
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 50
-
 log = 'Log de ejecucion:\n-----------------\n'
-log += '\nTarea: SuperTaggging Reducido'
-log += '\nModelo de red: Oracion'
+log += '\nTarea: Chunking Reducido'
+log += '\nModelo de red: Ventana'
 log += '\nEmbedding inicial: Aleatorio'
 log += '\nOptimizer: adam'
+log += '\nActivacion: relu'
 
-
+print 'Cargando embedding inicial...'
 # Cargo embedding inicial
-palabras = palabras_comunes(archivo_embedding) # Indice de cada palabra en el diccionario
-indice_OUT = palabras.obtener_indice("OUT")
-cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
-print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
+palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario
 
+cant_palabras = len(palabras)  # Cantidad de palabras consideradas en el diccionario
 
 # Defino las capas de la red
-
-main_input = Input(shape=(None,), name='main_input')
-
-aux_input_layer = Input(shape=(None,1), name='aux_input')
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
                             embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
-                            trainable=True)(main_input)
-
-concat_layer = Concatenate()([embedding_layer, aux_input_layer])
-
-convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
-
-x_layer = GlobalMaxPooling1D()(convolutive_layer)
+                            input_length=window_size, trainable=True)
 
 second_layer = Dense(units=unidades_ocultas_capa_2,
                      use_bias=True,
                      kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=2),
-                     bias_initializer=Constant(value=0.1))(x_layer)
-
-y_layer = Activation("tanh")(second_layer)
+                     bias_initializer=Constant(value=0.1))
 
 third_layer = Dense(units=unidades_ocultas_capa_3,
                     use_bias=True,
                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
-                    bias_initializer=Constant(value=0.1))(y_layer)
-
-softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)
+                    bias_initializer=Constant(value=0.1))
 
 
 # Agrego las capas al modelo
 
-model = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer])
-#model = Model(inputs=[main_input], outputs=[softmax_layer])
+model = Sequential()
 
+model.add(embedding_layer)
+model.add(Flatten())
+model.add(second_layer)
+model.add(Activation("relu"))
+model.add(third_layer)
+model.add(Activation("softmax"))
 
-# Compilo la red
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
@@ -96,72 +87,71 @@ inicio_carga_casos = time.time()
 print 'Cargando casos de entrenamiento...'
 
 # Abro el archivo con casos de entrenamiento
-x_train = []
-y_train = []
-with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        x_train.append([int(x) for x in linea[:-unidades_ocultas_capa_3]])
-        y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
+df = pd.read_csv(archivo_corpus_entrenamiento, sep=',', skipinitialspace=True, header=None, quoting=3)
+largo = len(df)
 
-#x_train_a = [np.array(l[1:]) for l in x_train]
-#x_train_b = [ np.matrix([[i-l[0]] for i in range(len(l)-1)]) for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = [l[1:] for l in x_train]
-x_train_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b = pad_sequences(x_train_b, padding='post', value=np.iinfo('int32').min)
-y_train = np.array(y_train)
+# Separo features de resultados esperados
+x_train = np.array(df.iloc[:largo,:11])
+y_train = np.array(df.iloc[:largo,11:])
 
 
 print 'Cargando casos de prueba...' 
 
 # Abro el archivo con casos de prueba
-x_test = []
-y_test = []
-with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        x_test.append([int(x) for x in linea[:-unidades_ocultas_capa_3]])
-        y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
+df = pd.read_csv(archivo_corpus_pruebas, sep=',', skipinitialspace=True, header=None, quoting=3)
+largo = len(df)
+cantidad_casos_test = largo
+no_out = df[df[19]==0]
+no_out_x = no_out[range(11)].values
+no_out_y = no_out[range(11, 11+unidades_ocultas_capa_3)].values
 
-x_test_a = [l[1:] for l in x_test]
-x_test_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
-x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b = pad_sequences(x_test_b, padding='post', value=np.iinfo('int32').min)
-y_test = np.array(y_test)
+# Separo features de resultados esperados
+x_test = np.array(df.iloc[:largo,:11])
+y_test = np.array(df.iloc[:largo,11:])
 
 duracion_carga_casos = time.time() - inicio_carga_casos
 
 
 print 'Entrenando...'
 inicio_entrenamiento = time.time()
-
-early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=cant_iteraciones, batch_size=100, 
-    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
-#history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
+early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
+history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=cantidad_iteraciones, batch_size=100, 
+					callbacks=[early_stop], verbose=2)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
+
 
 
 print 'Obteniendo metricas...'
 
+# Reconocimiento de chunks (no_out)
 inicio_metricas = time.time()
+chunk_identificados = 0
+chunks_correctos = 0
+predictions = model.predict(no_out_x, batch_size=200, verbose=0)
+for (p,t) in zip(predictions.tolist(), no_out_y.tolist()):
+	if p.index(max(p)) < len(p) - 1:
+		chunk_identificados += 1
+		if t[p.index(max(p))] == 1:
+			chunks_correctos += 1
+
+
+# Matriz de confusion
 etiquetas = range(unidades_ocultas_capa_3)
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
-predictions = model.predict({'main_input': x_test_a, 'aux_input': x_test_b}, batch_size=200, verbose=0)
+predictions = model.predict(x_test, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
-    p = p.tolist()
-    ind_max = p.index(max(p))
-    etiqueta = etiquetas[ind_max]
-    y_pred.append(etiqueta)
+	p = p.tolist()
+	ind_max = p.index(max(p))
+	etiqueta = etiquetas[ind_max]
+	y_pred.append(etiqueta)
 y_true = []
 for p in y_test:
-    p = p.tolist()
-    ind_max = p.index(max(p))
-    etiqueta = etiquetas[ind_max]
-    y_true.append(etiqueta)
+	p = p.tolist()
+	ind_max = p.index(max(p))
+	etiqueta = etiquetas[ind_max]
+	y_true.append(etiqueta)
 conf_mat = confusion_matrix(y_true, y_pred, labels=etiquetas)
 (precision, recall, fscore, _) = precision_recall_fscore_support(y_true, y_pred)
 
@@ -169,7 +159,8 @@ conf_mat = confusion_matrix(y_true, y_pred, labels=etiquetas)
 duracion_metricas = time.time() - inicio_metricas
 
 
-# Anoto resultados
+
+# list all data in history
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
 log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
 log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
@@ -184,11 +175,16 @@ log += '\nLoss entrenamiento final: ' + str(history.history['loss'][-1])
 log += '\n\nLoss validacion inicial: ' + str(history.history['val_loss'][0])
 log += '\nLoss validacion final: ' + str(history.history['val_loss'][-1])
 
+
+log += '\n\nChunks identificados: ' + str(chunk_identificados) + ' / ' + str(len(no_out_x))
+log += '\nChunks correctos: ' + str(chunks_correctos) + ' / ' + str(len(no_out_x))
+
 log += '\n\nPrecision: ' + str(precision)
 log += '\nRecall: ' + str(recall)
 log += '\nMedida-F: ' + str(fscore)
 
 log += '\n\nMatriz de confusion:\n' + str(conf_mat)
+
 
 #print log
 open("log.txt", "w").write(BOM_UTF8 + log)
@@ -213,3 +209,6 @@ plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 #plt.show()
 plt.savefig(archivo_loss, bbox_inches='tight')
+
+
+

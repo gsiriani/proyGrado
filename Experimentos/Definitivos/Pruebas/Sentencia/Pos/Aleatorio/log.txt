@@ -7,16 +7,38 @@ Embedding inicial: Aleatorio
 Optimizer: adam
 
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
-Duracion del entrenamiento: 0 hs, 6 min, 21 s
+Duracion del entrenamiento: 0 hs, 2 min, 37 s
+Duracion del calculo de metricas: 0 hs, 2 min, 37 s
 
-Accuracy entrenamiento inicial: 0.232549491415
-Accuracy entrenamiento final: 0.245649677534
+Accuracy entrenamiento inicial: 0.226364431474
+Accuracy entrenamiento final: 0.226364431474
 
-Accuracy validacion inicial: 0.245406957072
-Accuracy validacion final: 0.251886768433
+Accuracy validacion inicial: 0.135656747974
+Accuracy validacion final: 0.135656747974
 
-Loss entrenamiento inicial: 2.10766702701
-Loss entrenamiento final: 2.07122708359
+Loss entrenamiento inicial: 2.11771747391
+Loss entrenamiento final: 2.11771747391
 
-Loss validacion inicial: 2.0960783258
-Loss validacion final: 2.06714296611
+Loss validacion inicial: 2.13856521401
+Loss validacion final: 2.13856521401
+
+Precision: [ 0.          0.          0.14756366  0.48717949  0.          0.24126268
+  0.27272727  0.          0.34782609  0.12304805  0.          0.        ]
+Recall: [ 0.          0.          0.20707605  0.00825011  0.          0.05660777
+  0.00639854  0.          0.00127602  0.7531879   0.          0.        ]
+Medida-F: [ 0.          0.          0.17232644  0.01622545  0.          0.09169988
+  0.01250372  0.          0.00254271  0.21153732  0.          0.        ]
+
+Matriz de confusion:
+[[    0     0  1234    11     0   348     5     0     6  4565     0     0]
+ [    0     0   931     6     0   233     8     0     0  2843     0     0]
+ [    0     0  2347     4     0   632    10     0     1  8340     0     0]
+ [    0     0  1652    76     0   479     6     0     6  6993     0     0]
+ [    0     0     2     0     0     0     0     0     0    21     0     0]
+ [    2     0  3862    34     0  1070     8     0    16 13910     0     0]
+ [    0     0   658     3     0   186    21     0     1  2413     0     0]
+ [    0     0   569     3     0   143     5     0     0  2055     0     0]
+ [    0     0  2687     5     0   791     2     0    16  9038     0     0]
+ [    2     0  1821    11     0   496    12     0     0  7147     0     0]
+ [    0     0    43     1     0    14     0     0     0   224     0     0]
+ [    0     0    99     2     0    43     0     0     0   534     0     0]]
