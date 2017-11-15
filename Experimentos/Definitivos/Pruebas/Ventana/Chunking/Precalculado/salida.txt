@@ -23,13 +23,14 @@ Cargando casos de entrenamiento...
 Cargando casos de prueba...
 Entrenando...
 Train on 382982 samples, validate on 82232 samples
-Epoch 1/5
-21s - loss: 1.0369 - acc: 0.5678 - val_loss: 1.0759 - val_acc: 0.5440
-Epoch 2/5
-21s - loss: 0.6227 - acc: 0.7550 - val_loss: 1.3304 - val_acc: 0.5375
-Epoch 3/5
-21s - loss: 0.4339 - acc: 0.8241 - val_loss: 1.5850 - val_acc: 0.5344
-Epoch 4/5
-21s - loss: 0.3163 - acc: 0.8701 - val_loss: 1.9143 - val_acc: 0.5289
-Epoch 5/5
-21s - loss: 0.2303 - acc: 0.9064 - val_loss: 2.2921 - val_acc: 0.5207
+Epoch 1/200
+21s - loss: 1.0372 - acc: 0.5685 - val_loss: 1.0932 - val_acc: 0.5330
+Epoch 2/200
+21s - loss: 0.6235 - acc: 0.7552 - val_loss: 1.3385 - val_acc: 0.5285
+Epoch 3/200
+21s - loss: 0.4343 - acc: 0.8242 - val_loss: 1.6307 - val_acc: 0.5236
+Epoch 4/200
+21s - loss: 0.3174 - acc: 0.8704 - val_loss: 1.9310 - val_acc: 0.5168
+Epoch 5/200
+21s - loss: 0.2298 - acc: 0.9069 - val_loss: 2.2941 - val_acc: 0.5231
+Obtengo metricas por Chunk (ignorando IOBES)...

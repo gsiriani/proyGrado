@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking Simplificado
+Modelo de red: Oracion
+Embedding inicial: Precalculado
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
+Duracion del entrenamiento: 0 hs, 13 min, 49 s
+
+Accuracy entrenamiento inicial: 0.510362109307
+Accuracy entrenamiento final: 0.526301082
+
+Accuracy validacion inicial: 0.453567837582
+Accuracy validacion final: 0.451366174996
+
+Loss entrenamiento inicial: 1.32082147902
+Loss entrenamiento final: 1.21543936874
+
+Loss validacion inicial: 1.49720087009
+Loss validacion final: 1.50001393287

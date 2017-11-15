@@ -1,0 +1,22 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: NER
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 42 s
+Duracion del entrenamiento: 0 hs, 6 min, 20 s
+
+Accuracy entrenamiento inicial: 0.914342063844
+Accuracy entrenamiento final: 0.914594063094
+
+Accuracy validacion inicial: 0.910660882474
+Accuracy validacion final: 0.910660882474
+
+Loss entrenamiento inicial: 0.522826714841
+Loss entrenamiento final: 0.512946393891
+
+Loss validacion inicial: 0.532636729083
+Loss validacion final: 0.534695509864
