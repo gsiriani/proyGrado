@@ -1,0 +1,44 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: POS Simple
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
+Duracion del entrenamiento: 1 hs, 28 min, 54 s
+Duracion del calculo de metricas: 1 hs, 28 min, 54 s
+
+Accuracy entrenamiento inicial: 0.230474133274
+Accuracy entrenamiento final: 0.272131686068
+
+Accuracy validacion inicial: 0.240362869228
+Accuracy validacion final: 0.25080680068
+
+Loss entrenamiento inicial: 2.11333797472
+Loss entrenamiento final: 1.99467714983
+
+Loss validacion inicial: 2.11389523914
+Loss validacion final: 2.06589934681
+
+Precision: [ 0.37096774  0.33486239  0.54035568  0.39393939  0.          0.24329068
+  0.28959276  0.54237288  0.5259467   0.245142    0.          0.25      ]
+Recall: [ 0.00745664  0.01815469  0.03485089  0.02540165  0.          0.96063909
+  0.0195003   0.02306306  0.02990669  0.03456634  0.          0.00442478]
+Medida-F: [ 0.01461942  0.03444209  0.06547866  0.04772588  0.          0.38825278
+  0.03654011  0.04424473  0.05659523  0.06058927  0.          0.00869565]
+
+Matriz de confusion:
+[[   46    16    27    41     0  5898     9     6    38    88     0     0]
+ [    2    73    18     6     0  3768    16     4    18   116     0     0]
+ [    8    16   395    37     0 10653    20     4    48   151     0     2]
+ [    7     2    15   234     0  8788    15     5    19   126     0     1]
+ [    0     0     0     0     0    23     0     0     0     0     0     0]
+ [   36    42   123   134     1 18158    28    12   132   235     0     1]
+ [    1    15    11    10     0  3094    64     0    17    69     0     1]
+ [    2     5    13    27     0  2565     6    64    11    82     0     0]
+ [    5    14    86    52     0 11843    14     6   375   142     0     2]
+ [   16    34    38    48     0  8907    48    17    51   328     0     2]
+ [    1     0     3     2     0   275     0     0     1     0     0     0]
+ [    0     1     2     3     1   663     1     0     3     1     0     3]]

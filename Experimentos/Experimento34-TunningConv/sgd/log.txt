@@ -1,0 +1,46 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: POS Simple
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: sgd
+Kernel size: 5
+Batch size: 100
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 39 s
+Duracion del entrenamiento: 1 hs, 31 min, 25 s
+Duracion del calculo de metricas: 1 hs, 31 min, 25 s
+
+Accuracy entrenamiento inicial: 0.229888985752
+Accuracy entrenamiento final: 0.237367384529
+
+Accuracy validacion inicial: 0.167369705608
+Accuracy validacion final: 0.23730084038
+
+Loss entrenamiento inicial: 2.11087626929
+Loss entrenamiento final: 2.09175119574
+
+Loss validacion inicial: 2.10829921383
+Loss validacion final: 2.10492723418
+
+Precision: [ 0.          0.          0.          0.13089005  0.          0.24008312
+  0.          0.          0.16273997  0.          0.          0.        ]
+Recall: [ 0.          0.          0.          0.0054277   0.          0.96571791
+  0.          0.          0.02974719  0.          0.          0.        ]
+Medida-F: [ 0.          0.          0.          0.01042318  0.          0.38456191
+  0.          0.          0.05030005  0.          0.          0.        ]
+
+Matriz de confusion:
+[[    0     0     0    27     0  5963     0     0   179     0     0     0]
+ [    0     0     0    20     0  3855     0     0   146     0     0     0]
+ [    0     0     0    60     0 10930     0     0   344     0     0     0]
+ [    0     0     0    50     0  8927     0     0   235     0     0     0]
+ [    0     0     0     0     0    22     0     0     1     0     0     0]
+ [    0     0     0    76     0 18254     0     0   572     0     0     0]
+ [    0     0     0    27     0  3164     0     0    91     0     0     0]
+ [    0     0     0    13     0  2681     0     0    81     0     0     0]
+ [    0     0     0    59     0 12107     0     0   373     0     0     0]
+ [    0     0     0    44     0  9196     0     0   249     0     0     0]
+ [    0     0     0     1     0   270     0     0    11     0     0     0]
+ [    0     0     0     5     0   663     0     0    10     0     0     0]]

@@ -1,0 +1,44 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: POS Simple
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 41 s
+Duracion del entrenamiento: 2 hs, 20 min, 36 s
+Duracion del calculo de metricas: 2 hs, 20 min, 36 s
+
+Accuracy entrenamiento inicial: 0.229383134603
+Accuracy entrenamiento final: 0.253658536855
+
+Accuracy validacion inicial: 0.231380072334
+Accuracy validacion final: 0.245089319366
+
+Loss entrenamiento inicial: 2.11018512385
+Loss entrenamiento final: 2.04840123743
+
+Loss validacion inicial: 2.10248890805
+Loss validacion final: 2.06878585485
+
+Precision: [ 0.44186047  0.58441558  0.86374696  0.5125523   0.          0.24285883
+  0.56164384  0.47413793  0.20119334  0.52380952  0.          0.4       ]
+Recall: [ 0.00615983  0.01119125  0.03132169  0.02659574  0.          0.86810919
+  0.01249238  0.01981982  0.15328176  0.01854779  0.          0.00589971]
+Medida-F: [ 0.01215028  0.02196193  0.06045126  0.0505676   0.          0.37953925
+  0.02444113  0.03804912  0.17399964  0.03582697  0.          0.01162791]
+
+Matriz de confusion:
+[[   38     0     5    20     0  5300     2     3   780    21     0     0]
+ [    1    45     4    21     0  3477    11     7   433    22     0     0]
+ [    3     9   355    17     0  9614     2     3  1313    17     0     1]
+ [    1     2     1   245     0  7919     5     5  1031     3     0     0]
+ [    0     0     0     0     0    21     0     0     2     0     0     0]
+ [   27     7    27    79     0 16409     2    12  2302    33     0     4]
+ [    2     9     3    11     0  2858    41     8   325    25     0     0]
+ [    0     2     1    19     0  2422     3    55   242    31     0     0]
+ [    0     0     4    12     0 10582     1    10  1922     7     0     1]
+ [   11     3    10    52     0  8171     6    13  1047   176     0     0]
+ [    0     0     0     0     0   230     0     0    52     0     0     0]
+ [    3     0     1     2     0   563     0     0   104     1     0     4]]
