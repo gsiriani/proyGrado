@@ -32,7 +32,7 @@ archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/sup
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 50
+cant_iteraciones = 200
 
 log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: SuperTaggging Completo'
@@ -178,7 +178,7 @@ duracion_metricas = time.time() - inicio_metricas
 # Anoto resultados
 log += '\n\nTiempo de carga de casos de Entrenamiento/Prueba: {0} hs, {1} min, {2} s'.format(int(duracion_carga_casos/3600),int((duracion_carga_casos % 3600)/60),int((duracion_carga_casos % 3600) % 60))
 log += '\nDuracion del entrenamiento: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
-log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_entrenamiento/3600),int((duracion_entrenamiento % 3600)/60),int((duracion_entrenamiento % 3600) % 60))
+log += '\nDuracion del calculo de metricas: {0} hs, {1} min, {2} s'.format(int(duracion_metricas/3600),int((duracion_metricas % 3600)/60),int((duracion_metricas % 3600) % 60))
 
 log += '\n\nAccuracy entrenamiento inicial: ' + str(history.history['acc'][0])
 log += '\nAccuracy entrenamiento final: ' + str(history.history['acc'][-1])

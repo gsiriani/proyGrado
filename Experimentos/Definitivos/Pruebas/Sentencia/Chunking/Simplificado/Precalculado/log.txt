@@ -7,16 +7,42 @@ Embedding inicial: Precalculado
 Optimizer: adam
 
 Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
-Duracion del entrenamiento: 0 hs, 13 min, 49 s
+Duracion del entrenamiento: 14 hs, 32 min, 24 s
+Duracion del calculo de metricas: 0 hs, 0 min, 24 s
 
-Accuracy entrenamiento inicial: 0.510362109307
-Accuracy entrenamiento final: 0.526301082
+Accuracy entrenamiento inicial: 0.511348194914
+Accuracy entrenamiento final: 0.535252544179
 
-Accuracy validacion inicial: 0.453567837582
-Accuracy validacion final: 0.451366174996
+Accuracy validacion inicial: 0.455934942566
+Accuracy validacion final: 0.420364736914
 
-Loss entrenamiento inicial: 1.32082147902
-Loss entrenamiento final: 1.21543936874
+Loss entrenamiento inicial: 1.31571906123
+Loss entrenamiento final: 1.15838423402
 
-Loss validacion inicial: 1.49720087009
-Loss validacion final: 1.50001393287
+Loss validacion inicial: 1.48043864636
+Loss validacion final: 1.63493184134
+
+Precision: [ 0.65818182  0.4427302   0.          0.          0.          0.
+  0.15699659  0.4205204   0.30769231  0.13157895  0.09756098  0.22222222
+  0.14471243]
+Recall: [ 0.04589249  0.14243529  0.          0.          0.          0.
+  0.02552719  0.86094801  0.01181684  0.01425856  0.00517019  0.00732601
+  0.02471483]
+Medida-F: [ 0.08580232  0.21553015  0.          0.          0.          0.
+  0.04391408  0.56504897  0.0227596   0.02572899  0.00981997  0.0141844
+  0.04221922]
+
+Matriz de confusion:
+[[  181   344     0     0     0     0     8  3349     1     7    12     1     41]
+ [   10  4534     0     0     0     0    91 26863     1    34    61     6    232]
+ [    1    11     0     0     0     0     2   118     0     0     0     0      2]
+ [    0    97     0     0     0     0     3   289     0     0     0     0      2]
+ [    0     1     0     0     0     0     0     5     0     0     0     0      0]
+ [    0     4     0     0     0     0     0    12     0     0     0     0      0]
+ [   31   168     0     0     0     0    46  1511     9     8     2     1     26]
+ [   15  4263     0     0     0     0   101 28153     4    32    23     1    108]
+ [   11    81     0     0     0     0     5   557     8     4     0     0     11]
+ [    6    97     0     0     0     0     8   915     1    15     3     0      7]
+ [    0   297     0     0     0     0    14  1964     0     7    12     3     24]
+ [    0    55     0     0     0     0     6   470     0     1     2     4      8]
+ [   20   289     0     0     0     0     9  2742     2     6     8     2     78]]

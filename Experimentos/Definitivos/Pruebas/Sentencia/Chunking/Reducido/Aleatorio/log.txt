@@ -6,17 +6,36 @@ Modelo de red: Oracion
 Embedding inicial: Aleatorio
 Optimizer: adam
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 39 s
-Duracion del entrenamiento: 0 hs, 6 min, 18 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
+Duracion del entrenamiento: 6 hs, 10 min, 56 s
+Duracion del calculo de metricas: 0 hs, 0 min, 7 s
 
-Accuracy entrenamiento inicial: 0.548000435731
-Accuracy entrenamiento final: 0.569825789788
+Accuracy entrenamiento inicial: 0.547173220565
+Accuracy entrenamiento final: 0.582428506868
 
-Accuracy validacion inicial: 0.516372474759
-Accuracy validacion final: 0.494394032972
+Accuracy validacion inicial: 0.50953841345
+Accuracy validacion final: 0.504867835074
 
-Loss entrenamiento inicial: 1.16176202251
-Loss entrenamiento final: 1.07793634456
+Loss entrenamiento inicial: 1.15615358132
+Loss entrenamiento final: 1.00763300001
 
-Loss validacion inicial: 1.19320184361
-Loss validacion final: 1.25140431656
+Loss validacion inicial: 1.22239632423
+Loss validacion final: 1.36619988154
+
+Precision: [ 0.24954128  0.44358974  0.04210526  0.          0.          0.          0.
+  0.07070707  0.51376289]
+Recall: [ 0.0398243   0.1030628   0.00121359  0.          0.          0.          0.
+  0.00367647  0.91608654]
+Medida-F: [ 0.06868687  0.16726383  0.00235919  0.          0.          0.          0.
+  0.00698952  0.65832284]
+
+Matriz de confusion:
+[[  136   183     6     0     0     0     0     6  3084]
+ [  115  2941    49     0     0     0     0    35 25396]
+ [   21   204     4     0     0     0     0     4  3063]
+ [   20    19     0     0     0     0     0     3   487]
+ [    5    37     0     0     0     0     0     4   371]
+ [    1     7     0     0     0     0     0     0   121]
+ [    0    39     0     0     0     0     0     3   375]
+ [   19   147     5     0     0     0     0     7  1726]
+ [  228  3053    31     2     0     0     0    37 36583]]

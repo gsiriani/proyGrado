@@ -6,17 +6,40 @@ Modelo de red: Oracion
 Embedding inicial: Precalculado
 Optimizer: adam
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 39 s
-Duracion del entrenamiento: 0 hs, 13 min, 51 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
+Duracion del entrenamiento: 14 hs, 34 min, 25 s
+Duracion del calculo de metricas: 0 hs, 0 min, 24 s
 
-Accuracy entrenamiento inicial: 0.222457070894
-Accuracy entrenamiento final: 0.229424149742
+Accuracy entrenamiento inicial: 0.227195668776
+Accuracy entrenamiento final: 0.239196653147
 
-Accuracy validacion inicial: 0.162897365692
-Accuracy validacion final: 0.240172286247
+Accuracy validacion inicial: 0.240223108264
+Accuracy validacion final: 0.244758975981
 
-Loss entrenamiento inicial: 2.12448516119
-Loss entrenamiento final: 2.10091706049
+Loss entrenamiento inicial: 2.1150996059
+Loss entrenamiento final: 2.0803665522
 
-Loss validacion inicial: 2.10785701912
-Loss validacion final: 2.09309256513
+Loss validacion inicial: 2.09762526455
+Loss validacion final: 2.08425326225
+
+Precision: [ 0.27272727  0.38888889  0.6245614   0.4009009   0.          0.2414768
+  0.57142857  0.32432432  0.6993865   0.29333333  0.          0.2       ]
+Recall: [  4.86302480e-04   5.22258145e-03   1.57049585e-02   9.66131133e-03
+   0.00000000e+00   9.89630727e-01   2.43753809e-03   4.32432432e-03
+   9.09163410e-03   1.39108441e-02   0.00000000e+00   1.47492625e-03]
+Medida-F: [ 0.00097087  0.01030675  0.03063947  0.01886792  0.          0.38822418
+  0.00485437  0.00853485  0.01794993  0.02656203  0.          0.00292826]
+
+Matriz de confusion:
+[[    3     2     5    13     0  6126     0     0     1    19     0     0]
+ [    0    21     3     7     0  3937     1     3     1    48     0     0]
+ [    0     6   178    13     0 11098     0     1     7    31     0     0]
+ [    1     0     5    89     0  9069     2     3     0    42     0     1]
+ [    0     0     0     0     0    23     0     0     0     0     0     0]
+ [    6     7    43    46     0 18706     0     6    24    64     0     0]
+ [    0     2     1     9     0  3220     8     2     1    39     0     0]
+ [    0     5     5    15     0  2692     1    12     7    37     0     1]
+ [    1     1    30     8     0 12342     0     6   114    37     0     0]
+ [    0    10    14    21     0  9296     2     4     8   132     0     2]
+ [    0     0     0     1     0   281     0     0     0     0     0     0]
+ [    0     0     1     0     0   675     0     0     0     1     0     1]]
