@@ -29,12 +29,13 @@ a_entrada = open(sys.argv[2],"r")
 a_salida = open(sys.argv[3],"w")
 
 tags = {}
+cantidad_palabras = {}
 casos_ner = 0
 
 diccionario = []
 for linea in lista_palabras:
 	p = linea.replace("\n","")
-	diccionario.append[p]
+	diccionario.append(p)
 
 lista_palabras.close()
 
@@ -44,15 +45,22 @@ for linea in a_entrada:
 	if not es_out(etiquetas):
 		casos_ner += 1
 		etiqueta = list_to_str(etiquetas)
+		indice = int(lista[clave])
+		if indice not in cantidad_palabras:
+			cantidad_palabras[indice] = 1
+		else:
+			cantidad_palabras[indice] += 1
 		if etiqueta not in tags:
 			tags[etiqueta] = {}
-		if lista[clave] not in tags[etiqueta]:
-			tags[etiqueta].append(int(lista[clave]))
+		if indice not in tags[etiqueta]:
+			tags[etiqueta][indice] = 1
+		else:
+			tags[etiqueta][indice] += 1
 for tag in tags:
-	salida.write(tag + "\n\n==============================\n\n")
+	a_salida.write(tag + "\n\n==============================\n\n")
 	for palabra in tags[tag]:
-		salida.write(diccionario[palabra] + "\n")
-	salida.write("\n----------------------------------\n\n")
-salida.write(str(casos_ner))
+		a_salida.write(diccionario[palabra] + " " + str(tags[tag][palabra]) + " " + str(cantidad_palabras[palabra]) + "\n")
+	a_salida.write("\n----------------------------------\n\n")
+a_salida.write(str(casos_ner))
 a_entrada.close()
 a_salida.close()
