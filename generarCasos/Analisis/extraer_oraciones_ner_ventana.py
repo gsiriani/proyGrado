@@ -4,7 +4,7 @@ import os
 
 separador = ","
 largo_ventana = 11
-clave = (largo_ventana + 1) / 2
+clave = (largo_ventana - 1) / 2
 cantidad_iobes = 4
 
 dicc_names = {
@@ -14,15 +14,15 @@ dicc_names = {
 	3 : "Otro"
 }
 
-def list_to_str(vector, separador):
+def list_to_str(vector, separador, palabras):
 	salida = ""
 	primero = True
 	for p in vector:
 		if primero:
-			salida = str(p)
+			salida = palabras[int(p)]
 			primero = False
 		else:
-			salida += separador + str(p)
+			salida += separador + palabras[int(p)]
 	return salida
 
 def es_out(vector):
@@ -53,7 +53,7 @@ lista_palabras.close()
 
 for linea in a_entrada:
 	lista = linea.replace("\n","").split(separador)
-	oracion = list_to_str(lista[:largo_ventana], " ")
+	oracion = list_to_str(lista[:largo_ventana], " ",diccionario)
 	etiquetas = lista[largo_ventana:]
 	if not es_out(etiquetas):
 		etiqueta = tag_to_name(etiquetas, dicc_names, cantidad_iobes)

@@ -4,7 +4,7 @@ import os
 
 separador = ","
 largo_ventana = 11
-clave = (largo_ventana + 1) / 2
+clave = (largo_ventana - 1) / 2
 
 def list_to_str(vector):
 	salida = ""
