@@ -5,8 +5,16 @@ import os
 separador = ","
 largo_ventana = 11
 clave = (largo_ventana + 1) / 2
+cantidad_iobes = 4
 
-def list_to_str(vector):
+dicc_names = {
+	0 : "Persona",
+	1 : "Lugar",
+	2 : "Organizacion",
+	3 : "Otro"
+}
+
+def list_to_str(vector, separador):
 	salida = ""
 	primero = True
 	for p in vector:
@@ -24,13 +32,17 @@ def es_out(vector):
 			out = False
 	return out
 
+def tag_to_name(tag, names, cantidad_iobes):
+	for i in range(len(tag) - 1):
+		if tag[i] == "1":
+			return names[i / cantidad_iobes]
+	return "OUT"
+
 lista_palabras = open(sys.argv[1],"r")
 a_entrada = open(sys.argv[2],"r")
 a_salida = open(sys.argv[3],"w")
 
-tags = {}
-cantidad_palabras = {}
-casos_ner = 0
+palabras = {}
 
 diccionario = []
 for linea in lista_palabras:
@@ -41,26 +53,21 @@ lista_palabras.close()
 
 for linea in a_entrada:
 	lista = linea.replace("\n","").split(separador)
+	oracion = list_to_str(lista[:largo_ventana], " ")
 	etiquetas = lista[largo_ventana:]
 	if not es_out(etiquetas):
-		casos_ner += 1
-		etiqueta = list_to_str(etiquetas)
-		indice = int(lista[clave])
-		if indice not in cantidad_palabras:
-			cantidad_palabras[indice] = 1
+		etiqueta = tag_to_name(etiquetas, dicc_names, cantidad_iobes)
+		palabra = int(lista[clave])
+		if palabra not in palabras:
+			palabras[palabra] = [oracion + " " + etiqueta]
 		else:
-			cantidad_palabras[indice] += 1
-		if etiqueta not in tags:
-			tags[etiqueta] = {}
-		if indice not in tags[etiqueta]:
-			tags[etiqueta][indice] = 1
-		else:
-			tags[etiqueta][indice] += 1
-for tag in tags:
-	a_salida.write(tag + "\n\n----------------------------------\n\n")
-	for palabra in tags[tag]:
-		a_salida.write(diccionario[palabra] + " " + str(tags[tag][palabra]) + " " + str(cantidad_palabras[palabra]) + "\n")
+			palabras[palabra].append(oracion + " " + etiqueta)
+
+for palabra in palabras:
+	a_salida.write(diccionario[palabra] + "\n\n----------------------------------\n\n")
+	for oracion in palabras[palabra]:
+		a_salida.write(oracion + "\n")
 	a_salida.write("\n==================================\n\n")
-a_salida.write(str(casos_ner))
+a_salida.write("FIN")
 a_entrada.close()
 a_salida.close()
