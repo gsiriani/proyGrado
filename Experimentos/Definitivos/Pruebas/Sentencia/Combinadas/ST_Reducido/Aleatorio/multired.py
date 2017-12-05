@@ -27,10 +27,12 @@ unidades_ocultas_capa_3_chunking = 25
 unidades_ocultas_capa_3_pos = 12
 unidades_ocultas_capa_3_st = 643 # Reducido
 #unidades_ocultas_capa_3_st = 947 # Completo
+unidades_ocultas_capa_2_2 = 500
 unidades_ocultas_capa_3_srl = 33
-largo_oracion = 50
+vector_size_distancia = 5 # Cantidad de features para representar la distancia a la palabra a etiquetar
+largo_sentencias = 50
 
-cant_iteraciones = 200
+cant_iteraciones = 50
 
 archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
 
@@ -74,16 +76,28 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 # Defino las capas de la red
 
-main_input = Input(shape=(None,), name='main_input')
+main_input = Input(shape=(largo_sentencias,), name='main_input')
 
-aux_input_layer = Input(shape=(None,2), name='aux_input')
+aux_input_layer = Input(shape=(largo_sentencias,), name='aux_input')
+
+distance_embedding_layer = Embedding(input_dim=100, output_dim=vector_size_distancia,
+                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=4),
+                            trainable=True)(aux_input_layer)
+
+aux_input_layer2 = Input(shape=(largo_sentencias,), name='aux_input2')
+
+distance_embedding_layer2 = Embedding(input_dim=100, output_dim=vector_size_distancia,
+                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=5),
+                            trainable=True)(aux_input_layer2)    
+
+concat_layer_aux = Concatenate()([distance_embedding_layer, distance_embedding_layer2]) 
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
                             embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
                             trainable=True)(main_input)                            
 
-concat_layer = Concatenate()([embedding_layer, aux_input_layer])
+concat_layer = Concatenate()([embedding_layer, concat_layer_aux])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
 
@@ -117,10 +131,17 @@ third_layer_st = Dense(units=unidades_ocultas_capa_3_st,
                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
                     bias_initializer=Constant(value=0.1))(y_layer)
 
+second_layer_2 = Dense(units=unidades_ocultas_capa_2_2,
+                     use_bias=True,
+                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=6),
+                     bias_initializer=Constant(value=0.1))(y_layer)
+
+y_layer_2 = Activation("tanh")(second_layer_2)
+
 third_layer_srl = Dense(units=unidades_ocultas_capa_3_srl,
                     use_bias=True,
                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
-                    bias_initializer=Constant(value=0.1))(y_layer)
+                    bias_initializer=Constant(value=0.1))(y_layer_2)
 
 softmax_layer_ner = Activation("softmax", name='softmax_layer')(third_layer_ner)
 softmax_layer_chunking = Activation("softmax", name='softmax_layer')(third_layer_chunking)
@@ -130,12 +151,12 @@ softmax_layer_srl = Activation("softmax", name='softmax_layer')(third_layer_srl)
 
 
 # Agrego las capas al modelo
-
-model_ner = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer_ner])
-model_chunking = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer_chunking])
-model_pos = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer_pos])
-model_st = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer_st])
-model_srl = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer_srl])
+inputs = [main_input, aux_input_layer, aux_input_layer2]
+model_ner = Model(inputs=inputs, outputs=[softmax_layer_ner])
+model_chunking = Model(inputs=inputs, outputs=[softmax_layer_chunking])
+model_pos = Model(inputs=inputs, outputs=[softmax_layer_pos])
+model_st = Model(inputs=inputs, outputs=[softmax_layer_st])
+model_srl = Model(inputs=inputs, outputs=[softmax_layer_srl])
 
 
 # Compilo la red
@@ -156,114 +177,70 @@ model_srl.summary()
 inicio_carga_casos = time.time()
 print 'Cargando casos de entrenamiento...'
 
+def cargar_casos(archivo, etiquetas):
+    # Abro el archivo con casos de entrenamiento
+    x = []
+    y = []
+    with open(archivo, 'rb') as archivo_csv:
+        lector = csv.reader(archivo_csv, delimiter=',')
+        for linea in lector:
+            x.append([int(t) for t in linea[:-etiquetas]])
+            y.append([int(t) for t in linea[-etiquetas:]])
+
+    x_a = [l[1:] for l in x]
+    x_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x] # Matriz que almacenara distancias a la palabra a analizar
+    x_c = [ [0]*largo_sentencias for l in x]
+
+    x_a = pad_sequences(x_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
+    x_b = np.array(x_b)
+    x_c = np.array(x_c)
+    y = np.array(y)
+
+    return x_a, x_b, x_c, y
+
 # NER
 print '--> NER...'
 
-# Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
-y_train = []
-with open(archivo_corpus_entrenamiento_ner, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_ner]]        
-        y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3_ner:]])
-        x_train_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+x_train_a_ner, x_train_b_ner, x_train_c_ner, y_train_ner = cargar_casos(archivo_corpus_entrenamiento_ner, unidades_ocultas_capa_3_ner)
 
-x_train_a_ner = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b_ner = np.array(x_train_b)
-y_train_ner = np.array(y_train)
 
 # Chunking
 print '--> Chunking...'
 
-# Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
-y_train = []
-with open(archivo_corpus_entrenamiento_chunking, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_chunking]]        
-        y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3_chunking:]])
-        x_train_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+x_train_a_chunking, x_train_b_chunking, x_train_c_chunking, y_train_chunking = cargar_casos(archivo_corpus_entrenamiento_chunking, unidades_ocultas_capa_3_chunking)
 
-x_train_a_chunking = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b_chunking = np.array(x_train_b)
-y_train_chunking = np.array(y_train)
 
 # POS
 print '--> POS...'
 
-# Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
-y_train = []
-with open(archivo_corpus_entrenamiento_pos, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_pos]]        
-        y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3_pos:]])
-        x_train_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+x_train_a_pos, x_train_b_pos, x_train_c_pos, y_train_pos = cargar_casos(archivo_corpus_entrenamiento_pos, unidades_ocultas_capa_3_pos)
 
-x_train_a_pos = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b_pos = np.array(x_train_b)
-y_train_pos = np.array(y_train)
 
 # SuperTag
 print '--> SuperTag...'
 
-# Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
-y_train = []
-with open(archivo_corpus_entrenamiento_st, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_st]]        
-        y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3_st:]])
-        x_train_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+x_train_a_st, x_train_b_st, x_train_c_st, y_train_st = cargar_casos(archivo_corpus_entrenamiento_st, unidades_ocultas_capa_3_st)
 
-x_train_a_st = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b_st = np.array(x_train_b)
-y_train_st = np.array(y_train)
 
 # SRL
 print '--> SRL...'
 
 # Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
+x_train = []
 y_train = []
 with open(archivo_corpus_entrenamiento_srl, 'rb') as archivo_csv:
     lector = csv.reader(archivo_csv, delimiter=',')
     for linea in lector:
-        x_train_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3_srl]])
-        distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3_srl+int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3_srl+int(linea[1])))
-        distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_oracion)]
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+        x_train.append([int(x) for x in linea[:-unidades_ocultas_capa_3_srl]])
         y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3_srl:]])
 
-x_train_a_srl = pad_sequences(x_train_a, padding='post', value=indice_OUT)
+x_train_a = [l[2:] for l in x_train]
+x_train_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
+x_train_c = [ [50+i-l[1] for i in range(largo_sentencias)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
+
+x_train_a_srl = pad_sequences(x_train_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 x_train_b_srl = np.array(x_train_b)
+x_train_c_srl = np.array(x_train_c)
 y_train_srl = np.array(y_train)
 
 
@@ -272,112 +249,45 @@ print 'Cargando casos de prueba...'
 # NER
 print '--> NER...'
 
-# Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
-y_test = []
-with open(archivo_corpus_pruebas_ner, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_ner]]
-        y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3_ner:]])
-        x_test_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+x_test_a_ner, x_test_b_ner, x_test_c_ner, y_test_ner = cargar_casos(archivo_corpus_pruebas_ner, unidades_ocultas_capa_3_ner)
 
-x_test_a_ner = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b_ner = np.array(x_test_b)
-y_test_ner = np.array(y_test)
 
 # Chunking
 print '--> Chunking...'
 
-# Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
-y_test = []
-with open(archivo_corpus_pruebas_chunking, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_chunking]]
-        y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3_chunking:]])
-        x_test_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
-
-x_test_a_chunking = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b_chunking = np.array(x_test_b)
-y_test_chunking = np.array(y_test)
+x_test_a_chunking, x_test_b_chunking, x_test_c_chunking, y_test_chunking = cargar_casos(archivo_corpus_pruebas_chunking, unidades_ocultas_capa_3_chunking)
 
 # POS
 print '--> POS...'
 
-# Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
-y_test = []
-with open(archivo_corpus_pruebas_pos, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_pos]]
-        y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3_pos:]])
-        x_test_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
-
-x_test_a_pos = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b_pos = np.array(x_test_b)
-y_test_pos = np.array(y_test)
+x_test_a_pos, x_test_b_pos, x_test_c_pos, y_test_pos = cargar_casos(archivo_corpus_pruebas_pos, unidades_ocultas_capa_3_pos)
 
 # SuperTag
 print '--> SuperTag...'
 
-# Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
-y_test = []
-with open(archivo_corpus_pruebas_st, 'rb') as archivo_csv:
-    lector = csv.reader(archivo_csv, delimiter=',')
-    for linea in lector:
-        caso = [int(x) for x in linea[1:-unidades_ocultas_capa_3_st]]
-        y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3_st:]])
-        x_test_a.append(caso)
-        distancia_palabra = range(-int(linea[0]),len(caso)-(int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = [np.iinfo('int32').min]*len(distancia_palabra)
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
-
-x_test_a_st = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b_st = np.array(x_test_b)
-y_test_st = np.array(y_test)
+x_test_a_st, x_test_b_st, x_test_c_st, y_test_st = cargar_casos(archivo_corpus_pruebas_st, unidades_ocultas_capa_3_st)
 
 # SRL
 print '--> SRL...'
 
 # Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
+x_test = []
 y_test = []
 with open(archivo_corpus_pruebas_srl, 'rb') as archivo_csv:
     lector = csv.reader(archivo_csv, delimiter=',')
     for linea in lector:
-        x_test_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3_srl]])
-        distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3_srl+int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3_srl+int(linea[1])))
-        distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_oracion)]
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+        x_test.append([int(x) for x in linea[:-unidades_ocultas_capa_3_srl]])
         y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3_srl:]])
 
-x_test_a_srl = pad_sequences(x_test_a, padding='post', value=indice_OUT)
+x_test_a = [l[2:] for l in x_test]
+x_test_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
+x_test_c = [ [50+i-l[1] for i in range(largo_sentencias)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
+
+x_test_a_srl = pad_sequences(x_test_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 x_test_b_srl = np.array(x_test_b)
+x_test_c_srl = np.array(x_test_c)
 y_test_srl = np.array(y_test)
+
 
 duracion_carga_casos = time.time() - inicio_carga_casos
 
@@ -396,9 +306,10 @@ history_srl = {'acc':[0]*cant_iteraciones, 'val_acc':[0]*cant_iteraciones, 'loss
 for i in range(cant_iteraciones):
     print 'Iteracion: ' + str(i)
     print 'NER'
-    history_aux = model_ner.fit({'main_input': x_train_a_ner, 'aux_input': x_train_b_ner}, 
+    history_aux = model_ner.fit({'main_input': x_train_a_ner, 'aux_input': x_train_b_ner, 'aux_input2': x_train_c_ner}, 
                             {'softmax_layer': y_train_ner}, epochs=1, batch_size=100, 
-                            validation_data=({'main_input': x_test_a_ner, 'aux_input': x_test_b_ner}, {'softmax_layer': y_test_ner}), 
+                            validation_data=({'main_input': x_test_a_ner, 'aux_input': x_test_b_ner, 'aux_input2': x_test_c_ner}, 
+                                {'softmax_layer': y_test_ner}), 
                             verbose=0) 
     history_ner['acc'][i] = history_aux.history['acc'][0]
     history_ner['val_acc'][i] = history_aux.history['val_acc'][0]
@@ -406,9 +317,10 @@ for i in range(cant_iteraciones):
     history_ner['val_loss'][i] = history_aux.history['val_loss'][0]
 
     print 'CHUNKING'
-    history_aux = model_chunking.fit({'main_input': x_train_a_chunking, 'aux_input': x_train_b_chunking}, 
+    history_aux = model_chunking.fit({'main_input': x_train_a_chunking, 'aux_input': x_train_b_chunking, 'aux_input2': x_train_c_chunking}, 
                             {'softmax_layer': y_train_chunking}, epochs=1, batch_size=100, 
-                            validation_data=({'main_input': x_test_a_chunking, 'aux_input': x_test_b_chunking}, {'softmax_layer': y_test_chunking}), 
+                            validation_data=({'main_input': x_test_a_chunking, 'aux_input': x_test_b_chunking, 'aux_input2': x_test_c_chunking}, 
+                                {'softmax_layer': y_test_chunking}), 
                             verbose=0) 
     history_chunking['acc'][i] = history_aux.history['acc'][0]
     history_chunking['val_acc'][i] = history_aux.history['val_acc'][0]
@@ -416,9 +328,10 @@ for i in range(cant_iteraciones):
     history_chunking['val_loss'][i] = history_aux.history['val_loss'][0]
 
     print 'POS'
-    history_aux = model_pos.fit({'main_input': x_train_a_pos, 'aux_input': x_train_b_pos}, 
+    history_aux = model_pos.fit({'main_input': x_train_a_pos, 'aux_input': x_train_b_pos, 'aux_input2': x_train_c_pos}, 
                             {'softmax_layer': y_train_pos}, epochs=1, batch_size=100, 
-                            validation_data=({'main_input': x_test_a_pos, 'aux_input': x_test_b_pos}, {'softmax_layer': y_test_pos}), 
+                            validation_data=({'main_input': x_test_a_pos, 'aux_input': x_test_b_pos, 'aux_input2': x_test_c_pos}, 
+                                {'softmax_layer': y_test_pos}), 
                             verbose=0) 
     history_pos['acc'][i] = history_aux.history['acc'][0]
     history_pos['val_acc'][i] = history_aux.history['val_acc'][0]
@@ -426,9 +339,10 @@ for i in range(cant_iteraciones):
     history_pos['val_loss'][i] = history_aux.history['val_loss'][0]
 
     print 'ST Reducido'
-    history_aux = model_st.fit({'main_input': x_train_a_st, 'aux_input': x_train_b_st}, 
+    history_aux = model_st.fit({'main_input': x_train_a_st, 'aux_input': x_train_b_st, 'aux_input2': x_train_c_st}, 
                             {'softmax_layer': y_train_st}, epochs=1, batch_size=100, 
-                            validation_data=({'main_input': x_test_a_st, 'aux_input': x_test_b_st}, {'softmax_layer': y_test_st}), 
+                            validation_data=({'main_input': x_test_a_st, 'aux_input': x_test_b_st, 'aux_input2': x_test_c_st}, 
+                                {'softmax_layer': y_test_st}), 
                             verbose=0) 
     history_st['acc'][i] = history_aux.history['acc'][0]
     history_st['val_acc'][i] = history_aux.history['val_acc'][0]
@@ -436,9 +350,10 @@ for i in range(cant_iteraciones):
     history_st['val_loss'][i] = history_aux.history['val_loss'][0]
 
     print 'SRL'
-    history_aux = model_srl.fit({'main_input': x_train_a_srl, 'aux_input': x_train_b_srl}, 
+    history_aux = model_srl.fit({'main_input': x_train_a_srl, 'aux_input': x_train_b_srl, 'aux_input2': x_train_c_srl}, 
                             {'softmax_layer': y_train_srl}, epochs=1, batch_size=100, 
-                            validation_data=({'main_input': x_test_a_srl, 'aux_input': x_test_b_srl}, {'softmax_layer': y_test_srl}), 
+                            validation_data=({'main_input': x_test_a_srl, 'aux_input': x_test_b_srl, 'aux_input2': x_test_c_srl}, 
+                                {'softmax_layer': y_test_srl}), 
                             verbose=0) 
     history_srl['acc'][i] = history_aux.history['acc'][0]
     history_srl['val_acc'][i] = history_aux.history['val_acc'][0]
@@ -456,7 +371,7 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 # NER
 etiquetas = range(unidades_ocultas_capa_3_ner)
 
-predictions = model_ner.predict({'main_input': x_test_a_ner, 'aux_input': x_test_b_ner}, batch_size=200, verbose=0)
+predictions = model_ner.predict({'main_input': x_test_a_ner, 'aux_input': x_test_b_ner, 'aux_input2': x_test_c_ner}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()
@@ -475,7 +390,7 @@ conf_mat_ner = confusion_matrix(y_true, y_pred, labels=etiquetas)
 # Chunking
 etiquetas = range(unidades_ocultas_capa_3_chunking)
 
-predictions = model_chunking.predict({'main_input': x_test_a_chunking, 'aux_input': x_test_b_chunking}, batch_size=200, verbose=0)
+predictions = model_chunking.predict({'main_input': x_test_a_chunking, 'aux_input': x_test_b_chunking, 'aux_input2': x_test_c_chunking}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()
@@ -494,7 +409,7 @@ conf_mat_chunking = confusion_matrix(y_true, y_pred, labels=etiquetas)
 # POS
 etiquetas = range(unidades_ocultas_capa_3_pos)
 
-predictions = model_pos.predict({'main_input': x_test_a_pos, 'aux_input': x_test_b_pos}, batch_size=200, verbose=0)
+predictions = model_pos.predict({'main_input': x_test_a_pos, 'aux_input': x_test_b_pos, 'aux_input2': x_test_c_pos}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()
@@ -513,7 +428,7 @@ conf_mat_pos = confusion_matrix(y_true, y_pred, labels=etiquetas)
 # SRL
 etiquetas = range(unidades_ocultas_capa_3_srl)
 
-predictions = model_srl.predict({'main_input': x_test_a_srl, 'aux_input': x_test_b_srl}, batch_size=200, verbose=0)
+predictions = model_srl.predict({'main_input': x_test_a_srl, 'aux_input': x_test_b_srl, 'aux_input2': x_test_c_srl}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()
@@ -532,7 +447,7 @@ conf_mat_srl = confusion_matrix(y_true, y_pred, labels=etiquetas)
 # SuperTag
 etiquetas = range(unidades_ocultas_capa_3_st)
 
-predictions = model_st.predict({'main_input': x_test_a_st, 'aux_input': x_test_b_st}, batch_size=200, verbose=0)
+predictions = model_st.predict({'main_input': x_test_a_st, 'aux_input': x_test_b_st, 'aux_input2': x_test_c_st}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()

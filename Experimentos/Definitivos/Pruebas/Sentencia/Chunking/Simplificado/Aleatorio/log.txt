@@ -6,43 +6,55 @@ Modelo de red: Oracion
 Embedding inicial: Aleatorio
 Optimizer: adam
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 40 s
-Duracion del entrenamiento: 6 hs, 11 min, 12 s
-Duracion del calculo de metricas: 0 hs, 0 min, 7 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 22 s
+Duracion del entrenamiento: 2 hs, 17 min, 24 s
+Duracion del calculo de metricas: 0 hs, 0 min, 15 s
 
-Accuracy entrenamiento inicial: 0.491440229299
-Accuracy entrenamiento final: 0.536775498536
+Accuracy entrenamiento inicial: 0.883685767951
+Accuracy entrenamiento final: 0.999159089221
 
-Accuracy validacion inicial: 0.43032948547
-Accuracy validacion final: 0.44105781502
+Accuracy validacion inicial: 0.710945951331
+Accuracy validacion final: 0.654720846802
 
-Loss entrenamiento inicial: 1.34609484273
-Loss entrenamiento final: 1.1575683422
+Loss entrenamiento inicial: 0.354384906844
+Loss entrenamiento final: 0.00278010004766
 
-Loss validacion inicial: 1.45249065143
-Loss validacion final: 1.66019520149
+Loss validacion inicial: 1.10887690067
+Loss validacion final: 3.88867573657
 
-Precision: [ 0.48111332  0.41907789  0.          0.          0.          0.
-  0.16483516  0.59573683  0.58333333  0.2125      0.14285714  0.
-  0.14750542]
-Recall: [ 0.06135903  0.87405755  0.          0.          0.          0.
-  0.01664817  0.19743119  0.02067947  0.0161597   0.00301594  0.
-  0.02154626]
-Medida-F: [ 0.10883742  0.56652719  0.          0.          0.          0.
-  0.03024194  0.29657533  0.03994294  0.03003534  0.00590717  0.
-  0.03760022]
+Precision: [ 0.62165605  0.64524016  0.35820896  0.23469388  1.          0.          0.5786419
+  0.68671703  0.63875969  0.54066986  0.68211649  0.67424242  0.56021105]
+Recall: [ 0.74239351  0.65496984  0.35820896  0.11764706  0.16666667  0.
+  0.55327414  0.67556575  0.60856721  0.32224335  0.71650151  0.48901099
+  0.57192649]
+Medida-F: [ 0.6766813   0.6500686   0.35820896  0.15672913  0.28571429  0.
+  0.56567376  0.68109575  0.62329803  0.40381179  0.69888632  0.56687898
+  0.56600815]
 
 Matriz de confusion:
-[[  242  3531     0     2     0     0    11   130     1     4     3     0     20]
- [   70 27823     0     9     0     0    62  3617     1    17    21     0    212]
- [    1   128     0     0     0     0     1     3     0     0     0     0      1]
- [    1   334     0     0     0     0     1    54     0     0     0     0      1]
- [    0     5     0     0     0     0     0     1     0     0     0     0      0]
- [    0    10     0     0     0     0     0     6     0     0     0     0      0]
- [   73  1588     0     2     0     0    30    88     3     5     1     0     12]
- [   40 25983     1    35     0     0    57  6456     1    24    11     0     92]
- [   14   605     0     0     0     0     4    26    14     3     0     0     11]
- [    9   823     0     0     0     0     1   190     2    17     2     0      8]
- [   22  2157     0     1     0     0     5   100     0     3     7     0     26]
- [    1   498     0     0     0     0     2    30     0     2     3     0     10]
- [   30  2906     0     0     0     0     8   136     2     5     1     0     68]]
+[[ 2928   559    13     2     0     0    12   232    23     4    89     8
+     74]
+ [  794 20849    36    76     0     0   392  8354    85   124   366    58
+    698]
+ [   22    34    48     4     0     0     1     7     6     2     4     3
+      3]
+ [    6   123     0    46     0     0    12   184     0     8     1     1
+     10]
+ [    3     1     0     0     1     0     0     1     0     0     0     0
+      0]
+ [    1    10     0     0     0     0     1     4     0     0     0     0
+      0]
+ [   44   382     4     5     0     0   997   305    33     5     1     2
+     24]
+ [  481  8819    16    51     0     3   201 22091    48   118   283    47
+    542]
+ [   59    78     6     2     0     0    37    57   412     6     1     0
+     19]
+ [   24   353     0     4     0     0    19   264    10   339     7     0
+     32]
+ [  137   342     0     0     0     0     2   171     0     3  1663     1
+      2]
+ [   26   129     9     0     0     1    16    75     4     0     6   267
+     13]
+ [  185   633     2     6     0     0    33   424    24    18    17     9
+   1805]]

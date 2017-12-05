@@ -7,7 +7,7 @@ sys.path.append(path_proyecto)
 from keras.models import Model
 from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D, Input, Concatenate
 from keras.layers.pooling import GlobalMaxPooling1D
-from keras.initializers import TruncatedNormal, Constant
+from keras.initializers import TruncatedNormal, Constant, RandomUniform
 from keras.callbacks import EarlyStopping
 from keras.preprocessing.sequence import pad_sequences
 from random import uniform
@@ -23,6 +23,8 @@ from vector_palabras import palabras_comunes
 vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3 = 9 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
+vector_size_distancia = 5 # Cantidad de features para representar la distancia a la palabra a etiquetar
+largo_sentencias = 50
 
 archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
 archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
@@ -32,7 +34,7 @@ archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/chu
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 200
+cant_iteraciones = 50
 
 log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: Chunking Reducido'
@@ -56,15 +58,19 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 # Defino las capas de la red
 
-main_input = Input(shape=(None,), name='main_input')
+main_input = Input(shape=(largo_sentencias,), name='main_input')
 
-aux_input_layer = Input(shape=(None,1), name='aux_input')
+aux_input_layer = Input(shape=(largo_sentencias,), name='aux_input')
+
+distance_embedding_layer = Embedding(input_dim=100, output_dim=vector_size_distancia,
+                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=4),
+                            trainable=True)(aux_input_layer)
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
                             trainable=True)(main_input)
 
-concat_layer = Concatenate()([embedding_layer, aux_input_layer])
+concat_layer = Concatenate()([embedding_layer, distance_embedding_layer])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
 
@@ -113,9 +119,9 @@ with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
 #x_train_a = [np.array(l[1:]) for l in x_train]
 #x_train_b = [ np.matrix([[i-l[0]] for i in range(len(l)-1)]) for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
 x_train_a = [l[1:] for l in x_train]
-x_train_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
-x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
-x_train_b = pad_sequences(x_train_b, padding='post', value=np.iinfo('int32').min)
+x_train_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
+x_train_b = np.array(x_train_b)
+x_train_a = pad_sequences(x_train_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 y_train = np.array(y_train)
 
 
@@ -131,9 +137,9 @@ with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
         y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
 
 x_test_a = [l[1:] for l in x_test]
-x_test_b = [ [[i-l[0]] for i in range(len(l)-1)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
-x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
-x_test_b = pad_sequences(x_test_b, padding='post', value=np.iinfo('int32').min)
+x_test_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
+x_test_b = np.array(x_test_b)
+x_test_a = pad_sequences(x_test_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 y_test = np.array(y_test)
 
 duracion_carga_casos = time.time() - inicio_carga_casos

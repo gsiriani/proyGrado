@@ -22,8 +22,10 @@ from codecs import open, BOM_UTF8
 
 vector_size = 50 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
+unidades_ocultas_capa_2_2 = 500
 unidades_ocultas_capa_3 = 33 # SE MODIFICA PARA CADA PROBLEMA A RESOLVER
-largo_oracion = 50
+vector_size_distancia = 5 # Cantidad de features para representar la distancia a la palabra a etiquetar
+largo_sentencias = 50
 
 archivo_embedding = path_proyecto + "/embedding/lexicon_total.txt"
 archivo_corpus_entrenamiento = path_proyecto + '/corpus/Sentencia_truncada/Entrenamiento/srl_simple_training.csv'
@@ -32,7 +34,7 @@ archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia_truncada/Pruebas/srl
 archivo_acc = './accuracy.png'
 archivo_loss = './loss.png'
 
-cant_iteraciones = 200
+cant_iteraciones = 50
 
 log = 'Log de ejecucion:\n-----------------\n'
 log += '\nTarea: SRL'
@@ -50,16 +52,28 @@ print 'Cantidad de palabras consideradas: ' + str(cant_palabras)
 
 # Defino las capas de la red
 
-main_input = Input(shape=(None,), name='main_input')
+main_input = Input(shape=(largo_sentencias,), name='main_input')
 
-aux_input_layer = Input(shape=(None,2), name='aux_input')
+aux_input_layer = Input(shape=(largo_sentencias,), name='aux_input')
+
+distance_embedding_layer = Embedding(input_dim=100, output_dim=vector_size_distancia,
+                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=4),
+                            trainable=True)(aux_input_layer)
+
+aux_input_layer2 = Input(shape=(largo_sentencias,), name='aux_input2')
+
+distance_embedding_layer2 = Embedding(input_dim=100, output_dim=vector_size_distancia,
+                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=5),
+                            trainable=True)(aux_input_layer2)    
+
+concat_layer_aux = Concatenate()([distance_embedding_layer, distance_embedding_layer2])                        
 
 # https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
 embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
                             embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
                             trainable=True)(main_input)
 
-concat_layer = Concatenate()([embedding_layer, aux_input_layer])
+concat_layer = Concatenate()([embedding_layer, concat_layer_aux])
 
 convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
 
@@ -72,19 +86,24 @@ second_layer = Dense(units=unidades_ocultas_capa_2,
 
 y_layer = Activation("tanh")(second_layer)
 
+second_layer_2 = Dense(units=unidades_ocultas_capa_2_2,
+                     use_bias=True,
+                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=6),
+                     bias_initializer=Constant(value=0.1))(y_layer)
+
+y_layer_2 = Activation("tanh")(second_layer_2)
+
 third_layer = Dense(units=unidades_ocultas_capa_3,
                     use_bias=True,
                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
-                    bias_initializer=Constant(value=0.1))(y_layer)
+                    bias_initializer=Constant(value=0.1))(y_layer_2)
 
 softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)
 
 
 # Agrego las capas al modelo
 
-model = Model(inputs=[main_input, aux_input_layer], outputs=[softmax_layer])
-#model = Model(inputs=[main_input], outputs=[softmax_layer])
-
+model = Model(inputs=[main_input, aux_input_layer, aux_input_layer2], outputs=[softmax_layer])
 
 # Compilo la red
 
@@ -97,45 +116,79 @@ inicio_carga_casos = time.time()
 print 'Cargando casos de entrenamiento...'
 
 # Abro el archivo con casos de entrenamiento
-x_train_a = []
-x_train_b = []
+x_train = []
 y_train = []
 with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
     lector = csv.reader(archivo_csv, delimiter=',')
     for linea in lector:
-        x_train_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3]])
-        distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[1])))
-        distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_oracion)]
-        x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+        x_train.append([int(x) for x in linea[:-unidades_ocultas_capa_3]])
         y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
 
-x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
+x_train_a = [l[2:] for l in x_train]
+x_train_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
 x_train_b = np.array(x_train_b)
+x_train_c = [ [50+i-l[1] for i in range(largo_sentencias)] for l in x_train] # Matriz que almacenara distancias a la palabra a analizar
+x_train_c = np.array(x_train_c)
+x_train_a = pad_sequences(x_train_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 y_train = np.array(y_train)
+
+# # Abro el archivo con casos de entrenamiento
+# x_train_a = []
+# x_train_b = []
+# y_train = []
+# with open(archivo_corpus_entrenamiento, 'rb') as archivo_csv:
+#     lector = csv.reader(archivo_csv, delimiter=',')
+#     for linea in lector:
+#         x_train_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3]])
+#         distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[0])))
+#         distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_sentencias)]
+#         distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[1])))
+#         distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_sentencias)]
+#         x_train_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+#         y_train.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
+
+# x_train_a = pad_sequences(x_train_a, padding='post', value=indice_OUT)
+# x_train_b = np.array(x_train_b)
+# y_train = np.array(y_train)
 
 
 print 'Cargando casos de prueba...' 
 
 # Abro el archivo con casos de prueba
-x_test_a = []
-x_test_b = []
+x_test = []
 y_test = []
 with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
     lector = csv.reader(archivo_csv, delimiter=',')
     for linea in lector:
-        x_test_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3]])
-        distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[0])))
-        distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_oracion)]
-        distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[1])))
-        distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_oracion)]
-        x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+        x_test.append([int(x) for x in linea[:-unidades_ocultas_capa_3]])
         y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
 
-x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
+x_test_a = [l[2:] for l in x_test]
+x_test_b = [ [50+i-l[0] for i in range(largo_sentencias)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
 x_test_b = np.array(x_test_b)
+x_test_c = [ [50+i-l[1] for i in range(largo_sentencias)] for l in x_test] # Matriz que almacenara distancias a la palabra a analizar
+x_test_c = np.array(x_test_c)
+x_test_a = pad_sequences(x_test_a, maxlen=largo_sentencias, padding='post', value=indice_OUT)
 y_test = np.array(y_test)
+
+# # Abro el archivo con casos de prueba
+# x_test_a = []
+# x_test_b = []
+# y_test = []
+# with open(archivo_corpus_pruebas, 'rb') as archivo_csv:
+#     lector = csv.reader(archivo_csv, delimiter=',')
+#     for linea in lector:
+#         x_test_a.append([int(x) for x in linea[2:-unidades_ocultas_capa_3]])
+#         distancia_palabra = range(-int(linea[0]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[0])))
+#         distancia_palabra += [np.iinfo('int32').min for _ in range(len(distancia_palabra),largo_sentencias)]
+#         distancia_verbo = range(-int(linea[1]),len(linea)-(2+unidades_ocultas_capa_3+int(linea[1])))
+#         distancia_verbo += [np.iinfo('int32').min for _ in range(len(distancia_verbo),largo_sentencias)]
+#         x_test_b.append(np.array([ np.array([x,y]) for (x,y) in zip(distancia_palabra, distancia_verbo) ]))
+#         y_test.append([int(x) for x in linea[-unidades_ocultas_capa_3:]])
+
+# x_test_a = pad_sequences(x_test_a, padding='post', value=indice_OUT)
+# x_test_b = np.array(x_test_b)
+# y_test = np.array(y_test)
 
 duracion_carga_casos = time.time() - inicio_carga_casos
 
@@ -144,9 +197,11 @@ print 'Entrenando...'
 inicio_entrenamiento = time.time()
 
 early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=5, verbose=0, mode='auto')
-history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=cant_iteraciones, batch_size=100, 
-    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
-#history = model.fit({'main_input': x_train_a}, {'softmax_layer': y_train}, epochs=10, batch_size=25, verbose=2)
+# history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b}, {'softmax_layer': y_train}, epochs=cant_iteraciones, batch_size=100, 
+#     validation_data=({'main_input': x_test_a, 'aux_input': x_test_b}, {'softmax_layer': y_test}), verbose=2)
+history = model.fit({'main_input': x_train_a, 'aux_input': x_train_b, 'aux_input2': x_train_c}, {'softmax_layer': y_train}, 
+    epochs=cant_iteraciones, batch_size=100, 
+    validation_data=({'main_input': x_test_a, 'aux_input': x_test_b, 'aux_input2': x_test_c}, {'softmax_layer': y_test}), verbose=0)
 duracion_entrenamiento = time.time() - inicio_entrenamiento
 
 
@@ -156,7 +211,7 @@ inicio_metricas = time.time()
 etiquetas = range(unidades_ocultas_capa_3)
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
-predictions = model.predict({'main_input': x_test_a, 'aux_input': x_test_b}, batch_size=200, verbose=0)
+predictions = model.predict({'main_input': x_test_a, 'aux_input': x_test_b, 'aux_input2': x_test_c}, batch_size=200, verbose=0)
 y_pred = []
 for p in predictions:
     p = p.tolist()
