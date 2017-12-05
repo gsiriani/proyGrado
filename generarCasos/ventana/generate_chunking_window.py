@@ -93,8 +93,6 @@ def process_sentence(sentence_in):
 
 def process_file(input_file, output_file):
 	in_sentence = False
-	sn = 0
-	sv = 0
 	sentence = []
 	in_chunk = []
 	first = True
