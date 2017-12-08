@@ -169,4 +169,327 @@ ________________________________________________________________________________
 dense_6 (Dense)                  (None, 500)           150500                                       
 ____________________________________________________________________________________________________
 activation_2 (Activation)        (None, 500)           0                                            
-_________________________________________________________
+____________________________________________________________________________________________________
+dense_7 (Dense)                  (None, 33)            16533                                        
+____________________________________________________________________________________________________
+softmax_layer (Activation)       (None, 33)            0                                            
+====================================================================================================
+Total params: 3,195,983.0
+Trainable params: 3,195,983.0
+Non-trainable params: 0.0
+____________________________________________________________________________________________________
+Cargando casos de entrenamiento...
+--> NER...
+--> Chunking...
+--> POS...
+--> SuperTag...
+--> SRL...
+Cargando casos de prueba...
+--> NER...
+--> Chunking...
+--> POS...
+--> SuperTag...
+--> SRL...
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 23 min, 10 s
+Entrenando...
+Iteracion: 0
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 1
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 2
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 3
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 4
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 5
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 6
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 7
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 8
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 9
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 10
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 11
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 12
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 13
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 14
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 15
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 16
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 17
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 18
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 19
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 20
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 21
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 22
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 23
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 24
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 25
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 26
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 27
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 28
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 29
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 30
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 31
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 32
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 33
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 34
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 35
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 36
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 37
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 38
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 39
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 40
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 41
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 42
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 43
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 44
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 45
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 46
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 47
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 48
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Iteracion: 49
+NER
+CHUNKING
+POS
+ST Reducido
+SRL
+Obteniendo metricas...
