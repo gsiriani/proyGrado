@@ -20,7 +20,7 @@ from script_auxiliares import print_progress
 import time
 from codecs import open, BOM_UTF8
 
-vector_size = 50 # Cantidad de features a considerar por palabra
+vector_size = 150 # Cantidad de features a considerar por palabra
 unidades_ocultas_capa_2 = 300
 unidades_ocultas_capa_3_ner = 17 
 unidades_ocultas_capa_3_chunking = 25 
