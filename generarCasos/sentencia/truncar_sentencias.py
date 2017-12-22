@@ -11,7 +11,8 @@ largos_salida = {"ner" : 17,
 				"srl_simple" : 33,
 				"pos_simple" : 12,
 				"supertag_completo" : 947,
-				"supertag_reducido" : 643}
+				"supertag_reducido" : 643,
+				"microchunking" : 11}
 largo_previo = {"ner" : 1,
 				"chunking" : 1,
 				"chunking_reducido" : 1,
@@ -19,7 +20,8 @@ largo_previo = {"ner" : 1,
 				"srl_simple" : 2,
 				"pos_simple" : 1,
 				"supertag_completo" : 1,
-				"supertag_reducido" : 1}
+				"supertag_reducido" : 1,
+				"microchunking" : 1}
 
 def list_to_str(vector):
 	salida = ""
