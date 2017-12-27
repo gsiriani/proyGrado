@@ -5,8 +5,10 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_cero, generate_vector_palabra
 
-tags = {"sn" : 0, "sa" : 1, "s.a" : 2, "sp" : 3, "sadv" : 4, "grup.verb": 5}
-opciones = {"b" : 0, "i" : 1, "e" : 2, "s" : 3}
+todos = ["sn", "sa", "sp", "sadv", "grup.verb", "s.a"]
+tags = {"sn" : 0, "sa" : 1, "sp" : 2, "sadv" : 3, "grup.verb": 4}
+opciones = {"b" : 0, "i" : 1}
+cambios = {"s.a" : "sa"}
 
 in_tag = {}
 for tag in tags:
@@ -14,7 +16,13 @@ for tag in tags:
 
 cant_opciones = len(opciones)
 cant_tags = len(tags)
-largo_vector = cant_tags * cant_opciones + 1
+largo_vector = cant_tags * cant_opciones
+
+def reemplazo(tag):
+	if tag in cambios:
+		return cambios[tag]
+	else:
+		return tag
 
 def generate_cases(words):
 	output = []
@@ -69,20 +77,13 @@ def process_sentence(sentence_in):
 			aux_dos = date_filter(aux_uno)
 			aux_tres = correct_escape_sequences(aux_dos)
 			sentence.append((aux_tres,word[1],word[2]))
-	length = len(sentence)
-	for i in range(length):
-		if sentence[i][1] == None:
-			intermediate.append((sentence[i][0], None))
-		elif sentence[i][2]:
-			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
-				intermediate.append((sentence[i][0], sentence[i][1], "b"))
-			else:
-				intermediate.append((sentence[i][0], sentence[i][1], "s"))
+	for w in sentence:
+		if w[1] == None:
+			intermediate.append((w[0], None))
+		elif w[2]:
+			intermediate.append((w[0], w[1], "b"))
 		else:
-			if i < (len(sentence) - 1) and not sentence[i + 1][2]:
-				intermediate.append((sentence[i][0], sentence[i][1], "i"))
-			else:
-				intermediate.append((sentence[i][0], sentence[i][1], "e"))
+			intermediate.append((w[0], w[1], "i"))
 	output = generate_cases(intermediate)
 	return output
 
@@ -91,39 +92,36 @@ def process_file(input_file, output_file):
 	sn = 0
 	sv = 0
 	sentence = []
-	in_chunk = []
+	in_chunk = 0
 	first = True
 	for line in input_file:
 		if not in_sentence and "<sentence" in line:
 			in_sentence = True
 			first = True
-			in_chunk = generate_vector_cero(cant_tags)
-		if in_sentence and all(map(lambda x : x == 0, in_chunk)):
+			in_chunk = 0
+			tag_seleccionado = ""
+		if in_sentence and in_chunk == 0:
 			if (" wd=\"") in line:
 				palabra = re.sub(".* wd=\"","",line)
 				palabra = re.sub("\".*\n","",palabra)
 				sentence.append((palabra, None, True))
 			else:
-				for tag in tags:
+				for tag in todos:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
-						in_chunk[tags[tag]] = 1
-		elif in_sentence and any(map(lambda x : x > 0, in_chunk)):
-			tag_seleccionado = ""
-			for tag in tags:
-				if in_chunk[tags[tag]] > 0:
-					tag_seleccionado = tag
-					break
+						in_chunk = 1
+						tag_seleccionado = tag
+		elif in_sentence and in_chunk > 0:
 			if (" wd=\"") in line:
 				palabra = re.sub(".* wd=\"","",line)
 				palabra = re.sub("\".*\n","",palabra)
-				sentence.append((palabra,tag_seleccionado, first))
+				sentence.append((palabra,reemplazo(tag_seleccionado), first))
 				if first:
 					first = False				
-			elif ("<" + tag_seleccionado) in line and ("</" + tag_seleccionado + ">") not in line and in_chunk[tags[tag_seleccionado]] > 0:
-				in_chunk[tags[tag_seleccionado]] += 1
-			elif ("<" + tag_seleccionado) not in line and ("</" + tag_seleccionado + ">") in line and in_chunk[tags[tag_seleccionado]] > 0:
-				in_chunk[tags[tag_seleccionado]] -= 1
-				if in_chunk[tags[tag_seleccionado]] == 0:
+			elif ("<" + tag_seleccionado) in line and ("</" + tag_seleccionado + ">") not in line:
+				in_chunk += 1
+			elif ("<" + tag_seleccionado) not in line and ("</" + tag_seleccionado + ">") in line:
+				in_chunk -= 1
+				if in_chunk == 0:
 					first = True
 		if in_sentence and "</sentence" in line:
 			in_sentence = False
@@ -135,9 +133,9 @@ def process_file(input_file, output_file):
 input_folder = sys.argv[1]
 output_folder = sys.argv[2]
 
-output_training_file = open(output_folder + "/" + "chunking_training.csv","w")
-output_testing_file = open(output_folder + "/" + "chunking_testing.csv","w")
-output_pruebas_file = open(output_folder + "/" + "chunking_pruebas.csv","w")
+output_training_file = open(output_folder + "/" + "macrochunking_training.csv","w")
+output_testing_file = open(output_folder + "/" + "macrochunking_testing.csv","w")
+output_pruebas_file = open(output_folder + "/" + "macrochunking_pruebas.csv","w")
 
 input_training_file = open(input_folder + "/" + "ancora_training.xml","r")
 input_testing_file = open(input_folder + "/" + "ancora_testing.xml","r")

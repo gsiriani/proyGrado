@@ -3,7 +3,7 @@ import re
 import os
 
 separador = ","
-largo_salida = 25
+largo_salida = 33
 
 def list_to_str(vector):
 	salida = ""

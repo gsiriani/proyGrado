@@ -5,6 +5,7 @@ import random
 from funciones_generales import correct_escape_sequences, number_filter, date_filter
 from funciones_vector import generate_vector_cero, generate_vector_palabra
 
+todos = ["sn", "sa", "sp", "sadv", "grup.verb", "s.a"]
 tags = {"sn" : 0, "sa" : 1, "sp" : 2, "sadv" : 3, "grup.verb": 4}
 opciones = {"b" : 0, "i" : 1}
 cambios = {"s.a" : "sa"}
@@ -144,7 +145,7 @@ def process_file(input_file, output_file):
 				palabra = re.sub("\".*\n","",palabra)
 				sentence.append((palabra, "", first))
 			else:
-				for tag in tags:
+				for tag in todos:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
 						in_chunk = True
 						tag_seleccionado = tag
@@ -164,7 +165,7 @@ def process_file(input_file, output_file):
 				elif sentence[-1][2] == "i" and reemplazo(tag_seleccionado) == sentence[-1][1]:
 					sentence[-1] = (sentence[-1][0],sentence[-1][1],"e")
 				tag_seleccionado = ""
-			for tag in tags:
+			for tag in todos:
 					if (("<" + tag + ">") in line or ("<" + tag + " ") in line) and ("</" + tag + ">") not in line:
 						tag_seleccionado = tag
 						first = "b"

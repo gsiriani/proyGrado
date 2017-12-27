@@ -5,18 +5,14 @@ import os
 separador = ","
 cantidad = 50
 largos_salida = {"ner" : 17,
-				"chunking" : 25,
-				"chunking_reducido" : 9,
-				"chunking_simplificado" : 13,
+				"macrochunking" : 11,
 				"srl_simple" : 33,
 				"pos_simple" : 12,
 				"supertag_completo" : 947,
 				"supertag_reducido" : 643,
 				"microchunking" : 11}
 largo_previo = {"ner" : 1,
-				"chunking" : 1,
-				"chunking_reducido" : 1,
-				"chunking_simplificado" : 1,
+				"macrochunking" : 1,
 				"srl_simple" : 2,
 				"pos_simple" : 1,
 				"supertag_completo" : 1,
