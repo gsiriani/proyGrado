@@ -2,7 +2,29 @@ import sys
 import re
 import os
 
+indices_eliminar = [4, 5]
+cambios_indice = {4 : 2, 5 : 3}
 separador = ","
+
+def generate_vector(indice_uno, largo):
+	salida = []
+	for i in range(largo):
+		if i == indice_uno:
+			salida.append("1")
+		else:
+			salida.append("0")
+	return salida
+
+def encontrar_uno(etiqueta):
+	indice = None
+	for i in range(len(etiqueta)):
+		if etiqueta[i] == "1":
+			indice = i
+	return indice
+
+def cambio_etiquetas(etiqueta):
+	indice_uno = encontrar_uno(etiqueta)
+	
 
 def list_to_str(vector):
 	salida = ""
