@@ -1,0 +1,37 @@
+microchunking
+20
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Compilando red...
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 50)            2847350   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 550)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               165300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 11)                3311      
+_________________________________________________________________
+activation_2 (Activation)    (None, 11)                0         
+=================================================================
+Total params: 3,015,961.0
+Trainable params: 3,015,961.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Entrenando...
+Train on 382764 samples, validate on 82179 samples
+Epoch 1/20
+9s - loss: 0.4235 - acc: 0.8531 - val_loss: 0.3864 - val_acc: 0.8620
+Epoch 2/20
+9s - loss: 0.1729 - acc: 0.9404 - val_loss: 0.4612 - val_acc: 0.8571
+Epoch 3/20
+9s - loss: 0.0844 - acc: 0.9719 - val_loss: 0.5612 - val_acc: 0.8523
+Epoch 4/20
+9s - loss: 0.0447 - acc: 0.9852 - val_loss: 0.7123 - val_acc: 0.8483
+Epoch 5/20
+9s - loss: 0.0258 - acc: 0.9915 - val_loss: 0.8259 - val_acc: 0.8452
+Obteniendo metricas...

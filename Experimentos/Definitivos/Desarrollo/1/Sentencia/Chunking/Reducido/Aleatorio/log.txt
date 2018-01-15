@@ -1,0 +1,41 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: Chunking Reducido
+Modelo de red: Oracion
+Embedding inicial: Aleatorio
+Optimizer: adam
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 21 s
+Duracion del entrenamiento: 2 hs, 17 min, 9 s
+Duracion del calculo de metricas: 0 hs, 0 min, 15 s
+
+Accuracy entrenamiento inicial: 0.886000329717
+Accuracy entrenamiento final: 0.999465871004
+
+Accuracy validacion inicial: 0.721559743477
+Accuracy validacion final: 0.646270536227
+
+Loss entrenamiento inicial: 0.327273536401
+Loss entrenamiento final: 0.00181428810455
+
+Loss validacion inicial: 1.04337859895
+Loss validacion final: 4.09934791187
+
+Precision: [ 0.62653631  0.58985779  0.39086527  0.58894231  0.60043668  0.475
+  0.51320755  0.59360731  0.74114331]
+Recall: [ 0.6568082   0.67297449  0.51668689  0.463138    0.65947242  0.29457364
+  0.65227818  0.68277311  0.6386037 ]
+Medida-F: [ 0.64131523  0.62868086  0.44505423  0.51851852  0.62857143  0.36363636
+  0.57444562  0.63507572  0.68606325]
+
+Matriz de confusion:
+[[ 2243   450    11    39    17     2     8   108   537]
+ [  585 19204  1122    44    56    16    96   341  7072]
+ [    6   651  1703    22     3     0     7    15   889]
+ [   61    63    40   245     2     2     3     2   111]
+ [    7    50     4     0   275     0     0    60    21]
+ [    4    30     3     0     0    38    17     0    37]
+ [    7    65     5     2     0     2   272     6    58]
+ [   57   291    41     3    29     0     1  1300   182]
+ [  610 11753  1428    61    76    20   126   358 25502]]

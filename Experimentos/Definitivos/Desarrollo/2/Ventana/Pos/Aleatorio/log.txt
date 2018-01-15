@@ -1,0 +1,42 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: pos
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 1 min, 24 s
+Duracion del calculo de metricas: 0 hs, 0 min, 0 s
+
+Accuracy entrenamiento inicial: 0.937451492844
+Accuracy entrenamiento final: 0.998736789574
+
+Accuracy validacion inicial: 0.963910528265
+Accuracy validacion final: 0.958924720675
+
+Loss entrenamiento inicial: 0.193408977717
+Loss entrenamiento final: 0.00403401457639
+
+Loss validacion inicial: 0.108921990768
+Loss validacion final: 0.221624279128
+
+Precision: [ 0.86746802  0.95555556  0.98908629  0.99959807  0.47368421  0.95324715  0.94560924  0.94515216  0.99688213  0.93094809  0.76627219  0.8137931 ]
+Recall: [ 0.87095776  0.97563888  0.99143487  0.99959807  0.39130435  0.94231741  0.91234242  0.92743056  0.99893317  0.94747042  0.8779661   0.83569405]
+Medida-F: [ 0.86920939  0.96549279  0.99025919  0.99959807  0.42857143  0.94775077  0.92867801  0.9362075   0.9979066   0.93913659  0.81832543  0.82459818]
+
+Matriz de confusion:
+[[ 5629     0    20     2     0   486    11    39     1   245     8    22]
+ [    0  4085     0     0     0     2    79    10    11     0     0     0]
+ [   30     1 11691     0     0    10    54     1     0     4     0     1]
+ [    0     0     0  9948     0     2     0     0     1     0     1     0]
+ [    1     0     0     2     9     8     1     1     0     0     1     0]
+ [  547     3     9     0     8 18656    16    59    11   377    30    82]
+ [   11   164    90     0     0    13  3112    14     0     7     0     0]
+ [   59    13     4     0     1    62    17  2671     9    42     1     1]
+ [    0     7     0     0     0     2     0     2 13109     3     0     0]
+ [  205     1     4     0     1   262     1    26     8  9289     0     7]
+ [    1     1     0     0     0    11     0     1     0     0   259    22]
+ [    6     0     2     0     0    57     0     2     0    11    38   590]]
