@@ -4,15 +4,14 @@ path_proyecto = '/home/guille/proyGrado'
 import sys
 sys.path.append(path_proyecto)
 
-from keras.models import Model
-from keras.layers import Dense, Activation, Embedding, Flatten, Conv1D, Input, Concatenate
-from keras.layers.pooling import GlobalMaxPooling1D
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Embedding, Flatten
 from keras.initializers import TruncatedNormal, Constant, RandomUniform
 from keras.callbacks import EarlyStopping
-from keras.preprocessing.sequence import pad_sequences
+from keras import optimizers
 from vector_palabras import palabras_comunes
 from random import uniform
-import csv
+import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,56 +21,39 @@ from codecs import open, BOM_UTF8
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 
 divisor = 1000
-largo_sentencias = 50
 
-def cargarCasos(archivo, extra=False):
+def cargarCasos(archivo):
 
-		# Abro el archivo
+	# Abro el archivo
+	df = pd.read_csv(archivo, sep=',', skipinitialspace=True, header=None, quoting=3)
+	largo = len(df)
 
-		x = []
-		y = []
-		inicio = 2 if extra else 1
-		with open(archivo, 'rb') as archivo_csv:
-		    lector = csv.reader(archivo_csv, delimiter=',')
-		    for linea in lector:
-		    	largo_x = largo_sentencias + inicio
-		        x.append([int(t) for t in linea[:largo_x]])
-		        y.append([int(t) for t in linea[-largo_x:]])
+	# Separo features de resultados esperados
+	x = np.array(df.iloc[:largo,:11])
+	y = np.array(df.iloc[:largo,11:])
 
-		x_a = [l[inicio:] for l in x]
-		x_b = [ [largo_sentencias+i-l[0] for i in range(largo_sentencias)] for l in x] # Matriz que almacenara distancias a la palabra a analizar
-		x_a = np.array(x_a)
-		x_b = np.array(x_b)
-		if extra:
-			x_c = [ [largo_sentencias+i-l[1] for i in range(largo_sentencias)] for l in x] # Matriz que almacenara distancias a la palabra a analizar
-		else:
-			x_c = [ [0]*largo_sentencias for l in x]
-		x_c = np.array(x_c)
-		y = np.array(y)
-
-		return x_a, x_b, x_c, y
+	return x, y
 
 class Tarea:
 
 	def __init__(self, nombre, cant_iteraciones):
 		print 'Inicializando ' + nombre 
 		self.nombre = nombre
-		self.archivo_corpus_entrenamiento = path_proyecto + '/corpus/Sentencia/Entrenamiento/' + nombre + '_training.csv'
-		self.archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia/Desarrollo/' + nombre + '_pruebas.csv'
+		self.archivo_corpus_entrenamiento = path_proyecto + '/corpus/Ventana/Entrenamiento/' + nombre + '_training.csv'
+		self.archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Desarrollo/' + nombre + '_pruebas.csv'
 		self.archivo_acc = './accuracy_' + nombre + '.png'
 		self.archivo_loss = './loss_' + nombre + '.png'
-		self.srl = nombre == 'srl' # Variable auxiliar para distinguir la tarea de srl
 
 		print 'Cargando casos de entrenamiento de ' + nombre
-		self.x_train_a, self.x_train_b, self.x_train_c, self.y_train = cargarCasos(self.archivo_corpus_entrenamiento, self.srl)
+		self.x_train, self.y_train = cargarCasos(self.archivo_corpus_entrenamiento)
 		print 'Cargando casos de desarrollo de ' + nombre
-		self.x_test_a, self.x_test_b, self.x_test_c, self.y_test = cargarCasos(self.archivo_corpus_pruebas, self.srl)
+		self.x_test, self.y_test = cargarCasos(self.archivo_corpus_pruebas)
 
 		self.unidades_ocultas_capa_3 = len(self.y_train[0])
 
-		self.model = None
+		self.model = Sequential()
 		
-		self.largo_batch = int(len(self.x_train_a)/divisor)
+		self.largo_batch = int(len(self.x_train)/divisor)
 
 		self.history = {'acc':[], 'val_acc':[], 'loss':[], 'val_loss':[]}
 		self.conf_mat = None
@@ -81,18 +63,16 @@ class Tarea:
 
 
 	def evaluar(self):
-		train = self.model.evaluate({'main_input': self.x_train_a, 'aux_input': self.x_train_b, 'aux_input2': self.x_train_c}, 
-			{'softmax_layer': t.y_train}, batch_size=200, verbose=0)
+		train = self.model.evaluate(x=self.x_train, y=self.y_train, batch_size=200, verbose=0)
 		self.history['acc'].append(train[1])
 		self.history['loss'].append(train[0])
-		test = self.model.evaluate({'main_input': self.x_test_a, 'aux_input': self.x_test_b, 'aux_input2': self.x_test_c}, 
-			{'softmax_layer': t.y_test}, batch_size=200, verbose=0)	
+		test = self.model.evaluate(x=self.x_test, y=self.y_test, batch_size=200, verbose=0)	
 		self.history['val_acc'].append(test[1])
 		self.history['val_loss'].append(test[0])
 
 	def obtenerMetricas(self):
 		etiquetas = range(self.unidades_ocultas_capa_3)
-		predictions = self.model.predict({'main_input': self.x_test_a, 'aux_input': self.x_test_b, 'aux_input2': self.x_test_c}, batch_size=200, verbose=0)
+		predictions = self.model.predict(self.x_test, batch_size=200, verbose=0)
 		y_pred = []
 		for p in predictions:
 		    p = p.tolist()
@@ -138,18 +118,16 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
 	archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
 
-
-	vector_size_distancia = 5 # Cantidad de features para representar la distancia a la palabra a etiquetar
+	window_size = 11 # Cantidad de palabras en cada caso de prueba
 	vector_size = 150 if precalculado else 50 # Cantidad de features a considerar por palabra
 	unidades_ocultas_capa_2 = 300
-	unidades_ocultas_capa_2_2 = 500
 
 	# Defino las tareas a entrenar...
-	nombre_tareas = ['microchunking', 'macrochunking', 'ner', 'pos', 'srl']
+	nombre_tareas = ['microchunking', 'macrochunking', 'ner', 'pos']
 	if supertag_reducido:
 		nombre_tareas.append('supertag_reducido')
 	else:
-		nombre_tareas.append('supertag_completo')
+		nombre_tareas.append('supertag_all')
 	
 	tareas = []
 	inicio_carga_casos = time.time()
@@ -160,7 +138,7 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 
 	log = 'Log de ejecucion:\n-----------------\n'
 	log += '\nTareas: ' + str(nombre_tareas)
-	log += '\nModelo de red: Convolutiva'
+	log += '\nModelo de red: Ventana'
 	log += '\nEmbedding inicial: '
 	if precalculado:
 		log += 'Precalculado'
@@ -172,22 +150,6 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	print 'Compilando red...'
 
 	# Defino las capas de la red
-
-	main_input = Input(shape=(largo_sentencias,), name='main_input')
-
-	aux_input_layer = Input(shape=(largo_sentencias,), name='aux_input')
-
-	distance_embedding_layer = Embedding(input_dim=100, output_dim=vector_size_distancia,
-	                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=4),
-	                            trainable=True)(aux_input_layer)
-
-	aux_input_layer2 = Input(shape=(largo_sentencias,), name='aux_input2')
-
-	distance_embedding_layer2 = Embedding(input_dim=100, output_dim=vector_size_distancia,
-	                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=5),
-	                            trainable=True)(aux_input_layer2)    
-
-	concat_layer_aux = Concatenate()([distance_embedding_layer, distance_embedding_layer2]) 
 
 	# Cargo embedding inicial
 
@@ -201,7 +163,7 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 		cant_palabras = len(embedding_inicial)
 
 		embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size, weights=[embedding_inicial],
-		                            trainable=True)(main_input)
+		                            input_length=window_size, trainable=True)
 
 	else:
 		palabras = palabras_comunes(archivo_lexicon) # Indice de cada palabra en el diccionario
@@ -210,52 +172,30 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 
 		embedding_layer = Embedding(input_dim=cant_palabras, output_dim=vector_size,
 		                            embeddings_initializer=RandomUniform(minval=-0.05, maxval=0.05, seed=1),
-		                            trainable=True)(main_input)                           
-
-	concat_layer = Concatenate()([embedding_layer, concat_layer_aux])
-
-	convolutive_layer = Conv1D(filters=unidades_ocultas_capa_2, kernel_size=5)(concat_layer)
-
-	x_layer = GlobalMaxPooling1D()(convolutive_layer)
+		                            input_length=window_size, trainable=True)
 
 	second_layer = Dense(units=unidades_ocultas_capa_2,
 	                     use_bias=True,
 	                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=2),
-	                     bias_initializer=Constant(value=0.1))(x_layer)
-
-	y_layer = Activation("tanh")(second_layer)
-
-	inputs = [main_input, aux_input_layer, aux_input_layer2]
-
+	                     bias_initializer=Constant(value=0.1))
+	
+	# Agrego las capas a los modelos
 	for t in tareas:
-		if t.srl:
+		t.model.add(embedding_layer)
+		t.model.add(Flatten())
+		t.model.add(second_layer)
+		t.model.add(Activation("relu"))
+		third_layer = Dense(units=t.unidades_ocultas_capa_3,
+	                    use_bias=True,
+	                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
+	                    bias_initializer=Constant(value=0.1))
+		t.model.add(third_layer)
+		t.model.add(Activation("softmax"))
 
-			second_layer_2 = Dense(units=unidades_ocultas_capa_2_2,
-			                     use_bias=True,
-			                     kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=6),
-			                     bias_initializer=Constant(value=0.1))(y_layer)
-
-			y_layer_2 = Activation("tanh")(second_layer_2)
-
-			third_layer = Dense(units=t.unidades_ocultas_capa_3,
-			                    use_bias=True,
-			                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
-			                    bias_initializer=Constant(value=0.1))(y_layer_2)
-
-		else:
-
-			third_layer = Dense(units=t.unidades_ocultas_capa_3,
-			                    use_bias=True,
-			                    kernel_initializer=TruncatedNormal(mean=0.0, stddev=0.1, seed=3),
-			                    bias_initializer=Constant(value=0.1))(y_layer)
-
-		softmax_layer = Activation("softmax", name='softmax_layer')(third_layer)
-
-		t.model = Model(inputs=inputs, outputs=[softmax_layer])
 		t.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 		t.model.summary
 
-	
+
 	print 'Entrenando...'
 
 	# Calculo valores iniciales
@@ -268,12 +208,9 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 		for j in range(divisor):
 			#print_progress(j, divisor)
 			for t in tareas:
-				print t.nombre
-				in_batch = t.largo_batch*j
-				fn_batch = t.largo_batch*(j+1)
-				_ = t.model.fit({'main_input': t.x_train_a[in_batch: fn_batch], 'aux_input': t.x_train_b[in_batch: fn_batch], 'aux_input2': t.x_train_c[in_batch: fn_batch]}, 
-	                            {'softmax_layer': t.y_train[in_batch: fn_batch]}, epochs=1, batch_size=200, verbose=0)
-		
+				_ = t.model.fit(t.x_train[t.largo_batch*j: t.largo_batch*(j+1)], t.y_train[t.largo_batch*j: t.largo_batch*(j+1)],
+								epochs=1, batch_size=100, verbose=0)
+
 		#print_progress(divisor, divisor)
 		print '/n'
 		for t in tareas:

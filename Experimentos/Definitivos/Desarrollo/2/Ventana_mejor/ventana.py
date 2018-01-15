@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-path_proyecto = '/home/guille/proyecto/proyGrado'
+path_proyecto = '/home/guille/proyGrado'
 
 import sys
 sys.path.append(path_proyecto)
@@ -129,6 +129,15 @@ def main(tarea, cantidad_iteraciones = 20, precalculado = False):
 
 	# Entreno
 	print 'Entrenando...'
+
+	# Obtengo metricas iniciales
+	train = model.evaluate(x=x_train, y=y_train, batch_size=200, verbose=0)
+	acc_ini = train[1]
+	loss_ini = train[0]
+	test = model.evaluate(x=x_test, y=y_test, batch_size=200, verbose=0)
+	val_acc_ini = test[1]
+	val_loss_ini = test[0]	
+
 	inicio_entrenamiento = time.time()
 	early_stop = EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=0, mode='auto')
 	model_checkpoint = ModelCheckpoint(archivo_best, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='max', period=1)
@@ -136,6 +145,10 @@ def main(tarea, cantidad_iteraciones = 20, precalculado = False):
 		callbacks=[early_stop, model_checkpoint], verbose=2)
 	duracion_entrenamiento = time.time() - inicio_entrenamiento
 
+	history.history['acc'].insert(0,acc_ini)
+	history.history['loss'].insert(0,loss_ini)
+	history.history['val_acc'].insert(0,val_acc_ini)
+	history.history['val_loss'].insert(0,val_loss_ini)
 
 
 	# Obtengo metricas
