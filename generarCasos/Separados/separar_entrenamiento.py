@@ -50,8 +50,13 @@ entrenamiento = []
 for line in entrada:
 	entrenamiento.append(line.replace("\n",""))
 
+cantidad = int(len(entrenamiento) / len(repartir))
+
 for opcion in verificar:
 	archivo = open(opcion,"r")
 	lineas = []
+	seleccionadas = []
 	for line in archivo:
-		lineas.append(line.replace("\n"))
+		lineas.append(line.replace("\n").split(separador)[:ventana])
+	for i in range(cantidad):
+		
