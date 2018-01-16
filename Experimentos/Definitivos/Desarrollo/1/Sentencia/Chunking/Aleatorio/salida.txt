@@ -1,0 +1,135 @@
+Cantidad de palabras consideradas: 56947
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+main_input (InputLayer)          (None, 50)            0                                            
+____________________________________________________________________________________________________
+aux_input (InputLayer)           (None, 50)            0                                            
+____________________________________________________________________________________________________
+embedding_2 (Embedding)          (None, 50, 50)        2847350                                      
+____________________________________________________________________________________________________
+embedding_1 (Embedding)          (None, 50, 5)         500                                          
+____________________________________________________________________________________________________
+concatenate_1 (Concatenate)      (None, 50, 55)        0                                            
+____________________________________________________________________________________________________
+conv1d_1 (Conv1D)                (None, 46, 300)       82800                                        
+____________________________________________________________________________________________________
+global_max_pooling1d_1 (GlobalMa (None, 300)           0                                            
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 300)           90300                                        
+____________________________________________________________________________________________________
+activation_1 (Activation)        (None, 300)           0                                            
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 25)            7525                                         
+____________________________________________________________________________________________________
+softmax_layer (Activation)       (None, 25)            0                                            
+====================================================================================================
+Total params: 3,028,475.0
+Trainable params: 3,028,475.0
+Non-trainable params: 0.0
+____________________________________________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Train on 365080 samples, validate on 78577 samples
+Epoch 1/50
+164s - loss: 0.4423 - acc: 0.8630 - val_loss: 1.4241 - val_acc: 0.6812
+Epoch 2/50
+164s - loss: 0.1223 - acc: 0.9609 - val_loss: 1.7878 - val_acc: 0.6769
+Epoch 3/50
+163s - loss: 0.0649 - acc: 0.9789 - val_loss: 2.1819 - val_acc: 0.6641
+Epoch 4/50
+163s - loss: 0.0415 - acc: 0.9867 - val_loss: 2.3079 - val_acc: 0.6692
+Epoch 5/50
+163s - loss: 0.0297 - acc: 0.9905 - val_loss: 2.5111 - val_acc: 0.6574
+Epoch 6/50
+163s - loss: 0.0224 - acc: 0.9926 - val_loss: 2.6665 - val_acc: 0.6635
+Epoch 7/50
+163s - loss: 0.0181 - acc: 0.9942 - val_loss: 2.8407 - val_acc: 0.6522
+Epoch 8/50
+163s - loss: 0.0157 - acc: 0.9948 - val_loss: 2.8731 - val_acc: 0.6523
+Epoch 9/50
+163s - loss: 0.0130 - acc: 0.9959 - val_loss: 2.8424 - val_acc: 0.6615
+Epoch 10/50
+163s - loss: 0.0117 - acc: 0.9962 - val_loss: 3.0539 - val_acc: 0.6573
+Epoch 11/50
+163s - loss: 0.0104 - acc: 0.9967 - val_loss: 3.0352 - val_acc: 0.6567
+Epoch 12/50
+163s - loss: 0.0089 - acc: 0.9971 - val_loss: 3.2762 - val_acc: 0.6573
+Epoch 13/50
+163s - loss: 0.0090 - acc: 0.9971 - val_loss: 3.3750 - val_acc: 0.6458
+Epoch 14/50
+163s - loss: 0.0070 - acc: 0.9977 - val_loss: 3.4220 - val_acc: 0.6474
+Epoch 15/50
+163s - loss: 0.0077 - acc: 0.9976 - val_loss: 3.3015 - val_acc: 0.6548
+Epoch 16/50
+163s - loss: 0.0069 - acc: 0.9978 - val_loss: 3.4141 - val_acc: 0.6505
+Epoch 17/50
+163s - loss: 0.0076 - acc: 0.9977 - val_loss: 3.4893 - val_acc: 0.6410
+Epoch 18/50
+163s - loss: 0.0063 - acc: 0.9980 - val_loss: 3.5351 - val_acc: 0.6440
+Epoch 19/50
+163s - loss: 0.0059 - acc: 0.9982 - val_loss: 3.6818 - val_acc: 0.6266
+Epoch 20/50
+163s - loss: 0.0057 - acc: 0.9982 - val_loss: 3.7483 - val_acc: 0.6387
+Epoch 21/50
+163s - loss: 0.0059 - acc: 0.9982 - val_loss: 3.7642 - val_acc: 0.6413
+Epoch 22/50
+163s - loss: 0.0053 - acc: 0.9983 - val_loss: 3.7296 - val_acc: 0.6411
+Epoch 23/50
+163s - loss: 0.0059 - acc: 0.9982 - val_loss: 3.7418 - val_acc: 0.6419
+Epoch 24/50
+163s - loss: 0.0048 - acc: 0.9985 - val_loss: 3.7230 - val_acc: 0.6416
+Epoch 25/50
+163s - loss: 0.0051 - acc: 0.9984 - val_loss: 3.7610 - val_acc: 0.6430
+Epoch 26/50
+163s - loss: 0.0045 - acc: 0.9987 - val_loss: 3.7046 - val_acc: 0.6337
+Epoch 27/50
+163s - loss: 0.0050 - acc: 0.9984 - val_loss: 3.9744 - val_acc: 0.6300
+Epoch 28/50
+163s - loss: 0.0044 - acc: 0.9986 - val_loss: 4.0763 - val_acc: 0.6201
+Epoch 29/50
+163s - loss: 0.0045 - acc: 0.9985 - val_loss: 4.0465 - val_acc: 0.6252
+Epoch 30/50
+163s - loss: 0.0042 - acc: 0.9987 - val_loss: 3.9099 - val_acc: 0.6354
+Epoch 31/50
+163s - loss: 0.0044 - acc: 0.9987 - val_loss: 4.0011 - val_acc: 0.6228
+Epoch 32/50
+163s - loss: 0.0043 - acc: 0.9986 - val_loss: 3.9655 - val_acc: 0.6340
+Epoch 33/50
+163s - loss: 0.0042 - acc: 0.9987 - val_loss: 4.0857 - val_acc: 0.6289
+Epoch 34/50
+163s - loss: 0.0037 - acc: 0.9988 - val_loss: 4.0094 - val_acc: 0.6399
+Epoch 35/50
+163s - loss: 0.0044 - acc: 0.9987 - val_loss: 4.1096 - val_acc: 0.6255
+Epoch 36/50
+163s - loss: 0.0039 - acc: 0.9988 - val_loss: 4.0569 - val_acc: 0.6330
+Epoch 37/50
+163s - loss: 0.0042 - acc: 0.9987 - val_loss: 4.1426 - val_acc: 0.6278
+Epoch 38/50
+163s - loss: 0.0037 - acc: 0.9988 - val_loss: 4.0996 - val_acc: 0.6322
+Epoch 39/50
+163s - loss: 0.0039 - acc: 0.9988 - val_loss: 4.0359 - val_acc: 0.6323
+Epoch 40/50
+163s - loss: 0.0036 - acc: 0.9989 - val_loss: 4.1658 - val_acc: 0.6310
+Epoch 41/50
+163s - loss: 0.0041 - acc: 0.9987 - val_loss: 4.2283 - val_acc: 0.6324
+Epoch 42/50
+163s - loss: 0.0034 - acc: 0.9990 - val_loss: 4.1936 - val_acc: 0.6310
+Epoch 43/50
+163s - loss: 0.0036 - acc: 0.9989 - val_loss: 4.1057 - val_acc: 0.6366
+Epoch 44/50
+163s - loss: 0.0038 - acc: 0.9989 - val_loss: 4.2849 - val_acc: 0.6277
+Epoch 45/50
+163s - loss: 0.0040 - acc: 0.9987 - val_loss: 4.2166 - val_acc: 0.6255
+Epoch 46/50
+163s - loss: 0.0033 - acc: 0.9989 - val_loss: 4.4383 - val_acc: 0.6199
+Epoch 47/50
+163s - loss: 0.0037 - acc: 0.9988 - val_loss: 4.3130 - val_acc: 0.6284
+Epoch 48/50
+163s - loss: 0.0034 - acc: 0.9990 - val_loss: 4.4368 - val_acc: 0.6166
+Epoch 49/50
+163s - loss: 0.0033 - acc: 0.9990 - val_loss: 4.4447 - val_acc: 0.6203
+Epoch 50/50
+163s - loss: 0.0039 - acc: 0.9989 - val_loss: 4.5033 - val_acc: 0.6251
+Obteniendo metricas...

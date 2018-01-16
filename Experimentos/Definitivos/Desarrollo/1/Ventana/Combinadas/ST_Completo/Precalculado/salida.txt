@@ -1,0 +1,3481 @@
+Cargando embedding inicial...
+Cantidad de palabras consideradas: 56947
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 17)                5117      
+_________________________________________________________________
+activation_2 (Activation)    (None, 17)                0         
+=================================================================
+Total params: 9,042,467.0
+Trainable params: 9,042,467.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_3 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 25)                7525      
+_________________________________________________________________
+activation_4 (Activation)    (None, 25)                0         
+=================================================================
+Total params: 9,044,875.0
+Trainable params: 9,044,875.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_3 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_5 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 12)                3612      
+_________________________________________________________________
+activation_6 (Activation)    (None, 12)                0         
+=================================================================
+Total params: 9,040,962.0
+Trainable params: 9,040,962.0
+Non-trainable params: 0.0
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_4 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_7 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_5 (Dense)              (None, 947)               285047    
+_________________________________________________________________
+activation_8 (Activation)    (None, 947)               0         
+=================================================================
+Total params: 9,322,397.0
+Trainable params: 9,322,397.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Entrenando...
+Iteracion: 0
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+126s - loss: 0.1907 - acc: 0.9528 - val_loss: 0.1431 - val_acc: 0.9613
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+162s - loss: 1.0067 - acc: 0.5875 - val_loss: 1.1301 - val_acc: 0.5324
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+98s - loss: 0.2012 - acc: 0.9339 - val_loss: 0.1108 - val_acc: 0.9633
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.5772 - acc: 0.8694 - val_loss: 0.4446 - val_acc: 0.8898
+Iteracion: 1
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0880 - acc: 0.9741 - val_loss: 0.1409 - val_acc: 0.9647
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.6618 - acc: 0.7422 - val_loss: 1.3335 - val_acc: 0.5296
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0692 - acc: 0.9772 - val_loss: 0.1020 - val_acc: 0.9676
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.3213 - acc: 0.9175 - val_loss: 0.4352 - val_acc: 0.8920
+Iteracion: 2
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0458 - acc: 0.9857 - val_loss: 0.1821 - val_acc: 0.9640
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.5081 - acc: 0.7967 - val_loss: 1.5448 - val_acc: 0.5282
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0366 - acc: 0.9878 - val_loss: 0.1253 - val_acc: 0.9660
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.2258 - acc: 0.9405 - val_loss: 0.4754 - val_acc: 0.8932
+Iteracion: 3
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0245 - acc: 0.9923 - val_loss: 0.2133 - val_acc: 0.9621
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.4097 - acc: 0.8331 - val_loss: 1.7688 - val_acc: 0.5233
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0195 - acc: 0.9935 - val_loss: 0.1577 - val_acc: 0.9643
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.1589 - acc: 0.9575 - val_loss: 0.5407 - val_acc: 0.8903
+Iteracion: 4
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0145 - acc: 0.9954 - val_loss: 0.2638 - val_acc: 0.9609
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.3440 - acc: 0.8589 - val_loss: 2.0384 - val_acc: 0.5222
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0117 - acc: 0.9960 - val_loss: 0.1911 - val_acc: 0.9624
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.1110 - acc: 0.9705 - val_loss: 0.6320 - val_acc: 0.8847
+Iteracion: 5
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0089 - acc: 0.9971 - val_loss: 0.3044 - val_acc: 0.9613
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.2860 - acc: 0.8819 - val_loss: 2.2341 - val_acc: 0.5150
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0085 - acc: 0.9971 - val_loss: 0.2264 - val_acc: 0.9622
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0793 - acc: 0.9794 - val_loss: 0.7119 - val_acc: 0.8822
+Iteracion: 6
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0070 - acc: 0.9978 - val_loss: 0.3320 - val_acc: 0.9595
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.2412 - acc: 0.9011 - val_loss: 2.4824 - val_acc: 0.5172
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0062 - acc: 0.9979 - val_loss: 0.2589 - val_acc: 0.9603
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0608 - acc: 0.9852 - val_loss: 0.7902 - val_acc: 0.8793
+Iteracion: 7
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0053 - acc: 0.9984 - val_loss: 0.3469 - val_acc: 0.9587
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.2017 - acc: 0.9180 - val_loss: 2.7722 - val_acc: 0.5130
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0055 - acc: 0.9981 - val_loss: 0.2876 - val_acc: 0.9598
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0488 - acc: 0.9885 - val_loss: 0.8628 - val_acc: 0.8798
+Iteracion: 8
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0047 - acc: 0.9985 - val_loss: 0.3854 - val_acc: 0.9576
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.1696 - acc: 0.9317 - val_loss: 3.0686 - val_acc: 0.5146
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0048 - acc: 0.9984 - val_loss: 0.3002 - val_acc: 0.9595
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0427 - acc: 0.9903 - val_loss: 0.9421 - val_acc: 0.8764
+Iteracion: 9
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0046 - acc: 0.9987 - val_loss: 0.3928 - val_acc: 0.9586
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.1418 - acc: 0.9439 - val_loss: 3.3668 - val_acc: 0.5134
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0042 - acc: 0.9987 - val_loss: 0.3202 - val_acc: 0.9593
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0372 - acc: 0.9921 - val_loss: 1.0053 - val_acc: 0.8739
+Iteracion: 10
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0043 - acc: 0.9987 - val_loss: 0.4082 - val_acc: 0.9586
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.1181 - acc: 0.9544 - val_loss: 3.6356 - val_acc: 0.5074
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0038 - acc: 0.9989 - val_loss: 0.3328 - val_acc: 0.9595
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0357 - acc: 0.9926 - val_loss: 1.0474 - val_acc: 0.8746
+Iteracion: 11
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0035 - acc: 0.9990 - val_loss: 0.4257 - val_acc: 0.9575
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0976 - acc: 0.9630 - val_loss: 3.9429 - val_acc: 0.5084
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0037 - acc: 0.9989 - val_loss: 0.3605 - val_acc: 0.9573
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0328 - acc: 0.9935 - val_loss: 1.1282 - val_acc: 0.8723
+Iteracion: 12
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0038 - acc: 0.9990 - val_loss: 0.4370 - val_acc: 0.9573
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0827 - acc: 0.9692 - val_loss: 4.1832 - val_acc: 0.5089
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0034 - acc: 0.9990 - val_loss: 0.3683 - val_acc: 0.9579
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0325 - acc: 0.9939 - val_loss: 1.1663 - val_acc: 0.8706
+Iteracion: 13
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0033 - acc: 0.9991 - val_loss: 0.4440 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0723 - acc: 0.9736 - val_loss: 4.4109 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0034 - acc: 0.9990 - val_loss: 0.3857 - val_acc: 0.9571
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0309 - acc: 0.9943 - val_loss: 1.1943 - val_acc: 0.8730
+Iteracion: 14
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9993 - val_loss: 0.4615 - val_acc: 0.9572
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0639 - acc: 0.9771 - val_loss: 4.5794 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9992 - val_loss: 0.4043 - val_acc: 0.9575
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+39s - loss: 0.0306 - acc: 0.9946 - val_loss: 1.2541 - val_acc: 0.8707
+Iteracion: 15
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0037 - acc: 0.9991 - val_loss: 0.4677 - val_acc: 0.9572
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0577 - acc: 0.9798 - val_loss: 4.7406 - val_acc: 0.5033
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9992 - val_loss: 0.4242 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0298 - acc: 0.9947 - val_loss: 1.2773 - val_acc: 0.8709
+Iteracion: 16
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9993 - val_loss: 0.4777 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0516 - acc: 0.9819 - val_loss: 4.8816 - val_acc: 0.5053
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9992 - val_loss: 0.4272 - val_acc: 0.9557
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0289 - acc: 0.9951 - val_loss: 1.3052 - val_acc: 0.8712
+Iteracion: 17
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0031 - acc: 0.9992 - val_loss: 0.5012 - val_acc: 0.9571
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0481 - acc: 0.9834 - val_loss: 4.9485 - val_acc: 0.5075
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9993 - val_loss: 0.4348 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0296 - acc: 0.9951 - val_loss: 1.3351 - val_acc: 0.8709
+Iteracion: 18
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0034 - acc: 0.9992 - val_loss: 0.5106 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0445 - acc: 0.9852 - val_loss: 5.0699 - val_acc: 0.5090
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9993 - val_loss: 0.4498 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0283 - acc: 0.9954 - val_loss: 1.3603 - val_acc: 0.8709
+Iteracion: 19
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9993 - val_loss: 0.5155 - val_acc: 0.9549
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0419 - acc: 0.9860 - val_loss: 5.1571 - val_acc: 0.5074
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9993 - val_loss: 0.4515 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0276 - acc: 0.9956 - val_loss: 1.3900 - val_acc: 0.8691
+Iteracion: 20
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9994 - val_loss: 0.5084 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0384 - acc: 0.9872 - val_loss: 5.2253 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0024 - acc: 0.9994 - val_loss: 0.4555 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+38s - loss: 0.0276 - acc: 0.9957 - val_loss: 1.4130 - val_acc: 0.8699
+Iteracion: 21
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9993 - val_loss: 0.5235 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0385 - acc: 0.9875 - val_loss: 5.3057 - val_acc: 0.5064
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9994 - val_loss: 0.4675 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0280 - acc: 0.9957 - val_loss: 1.4483 - val_acc: 0.8687
+Iteracion: 22
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0030 - acc: 0.9994 - val_loss: 0.5361 - val_acc: 0.9552
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0369 - acc: 0.9881 - val_loss: 5.3614 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9994 - val_loss: 0.4715 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0268 - acc: 0.9960 - val_loss: 1.4628 - val_acc: 0.8698
+Iteracion: 23
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9994 - val_loss: 0.5322 - val_acc: 0.9574
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0339 - acc: 0.9890 - val_loss: 5.4652 - val_acc: 0.5090
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9994 - val_loss: 0.4761 - val_acc: 0.9557
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0273 - acc: 0.9960 - val_loss: 1.4628 - val_acc: 0.8710
+Iteracion: 24
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0034 - acc: 0.9993 - val_loss: 0.5267 - val_acc: 0.9575
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0330 - acc: 0.9894 - val_loss: 5.5313 - val_acc: 0.5064
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0023 - acc: 0.9994 - val_loss: 0.4937 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0265 - acc: 0.9961 - val_loss: 1.4972 - val_acc: 0.8691
+Iteracion: 25
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9995 - val_loss: 0.5427 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0322 - acc: 0.9899 - val_loss: 5.5598 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0022 - acc: 0.9995 - val_loss: 0.4963 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0260 - acc: 0.9963 - val_loss: 1.5186 - val_acc: 0.8676
+Iteracion: 26
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9995 - val_loss: 0.5557 - val_acc: 0.9545
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0306 - acc: 0.9904 - val_loss: 5.6040 - val_acc: 0.5069
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9994 - val_loss: 0.5034 - val_acc: 0.9550
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+37s - loss: 0.0264 - acc: 0.9962 - val_loss: 1.5263 - val_acc: 0.8698
+Iteracion: 27
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0031 - acc: 0.9994 - val_loss: 0.5477 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0311 - acc: 0.9905 - val_loss: 5.6429 - val_acc: 0.5109
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0024 - acc: 0.9994 - val_loss: 0.5170 - val_acc: 0.9547
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0266 - acc: 0.9963 - val_loss: 1.5439 - val_acc: 0.8690
+Iteracion: 28
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0034 - acc: 0.9994 - val_loss: 0.5499 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0310 - acc: 0.9907 - val_loss: 5.6651 - val_acc: 0.5095
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9994 - val_loss: 0.5043 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0258 - acc: 0.9965 - val_loss: 1.5506 - val_acc: 0.8705
+Iteracion: 29
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9994 - val_loss: 0.5679 - val_acc: 0.9549
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0291 - acc: 0.9912 - val_loss: 5.7111 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0024 - acc: 0.9995 - val_loss: 0.5149 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0267 - acc: 0.9965 - val_loss: 1.5746 - val_acc: 0.8686
+Iteracion: 30
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9995 - val_loss: 0.5643 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0286 - acc: 0.9916 - val_loss: 5.8253 - val_acc: 0.5053
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9995 - val_loss: 0.5149 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0269 - acc: 0.9965 - val_loss: 1.5851 - val_acc: 0.8690
+Iteracion: 31
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9995 - val_loss: 0.5680 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0280 - acc: 0.9917 - val_loss: 5.7961 - val_acc: 0.5086
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0020 - acc: 0.9996 - val_loss: 0.5266 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0264 - acc: 0.9966 - val_loss: 1.6109 - val_acc: 0.8673
+Iteracion: 32
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9995 - val_loss: 0.5751 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0263 - acc: 0.9923 - val_loss: 5.8276 - val_acc: 0.5079
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9995 - val_loss: 0.5370 - val_acc: 0.9547
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0256 - acc: 0.9967 - val_loss: 1.6108 - val_acc: 0.8685
+Iteracion: 33
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9996 - val_loss: 0.5718 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0261 - acc: 0.9924 - val_loss: 5.8881 - val_acc: 0.5074
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0024 - acc: 0.9995 - val_loss: 0.5391 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+36s - loss: 0.0258 - acc: 0.9968 - val_loss: 1.6200 - val_acc: 0.8695
+Iteracion: 34
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9995 - val_loss: 0.5749 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0265 - acc: 0.9926 - val_loss: 5.8913 - val_acc: 0.5084
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0023 - acc: 0.9996 - val_loss: 0.5441 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0255 - acc: 0.9968 - val_loss: 1.6304 - val_acc: 0.8695
+Iteracion: 35
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0035 - acc: 0.9994 - val_loss: 0.5853 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0262 - acc: 0.9926 - val_loss: 5.9283 - val_acc: 0.5079
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0019 - acc: 0.9996 - val_loss: 0.5402 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0260 - acc: 0.9967 - val_loss: 1.6468 - val_acc: 0.8694
+Iteracion: 36
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9995 - val_loss: 0.5933 - val_acc: 0.9549
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0247 - acc: 0.9931 - val_loss: 5.9594 - val_acc: 0.5059
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9995 - val_loss: 0.5429 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0253 - acc: 0.9970 - val_loss: 1.6428 - val_acc: 0.8689
+Iteracion: 37
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0032 - acc: 0.9995 - val_loss: 0.5896 - val_acc: 0.9552
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0261 - acc: 0.9930 - val_loss: 5.9728 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0023 - acc: 0.9996 - val_loss: 0.5488 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0264 - acc: 0.9969 - val_loss: 1.6477 - val_acc: 0.8701
+Iteracion: 38
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9995 - val_loss: 0.5807 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0244 - acc: 0.9933 - val_loss: 6.0372 - val_acc: 0.5046
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0024 - acc: 0.9996 - val_loss: 0.5591 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0272 - acc: 0.9968 - val_loss: 1.6584 - val_acc: 0.8693
+Iteracion: 39
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0030 - acc: 0.9995 - val_loss: 0.5839 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0243 - acc: 0.9935 - val_loss: 6.0831 - val_acc: 0.5068
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0022 - acc: 0.9996 - val_loss: 0.5687 - val_acc: 0.9543
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0264 - acc: 0.9969 - val_loss: 1.6657 - val_acc: 0.8698
+Iteracion: 40
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0035 - acc: 0.9995 - val_loss: 0.5958 - val_acc: 0.9548
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0234 - acc: 0.9937 - val_loss: 6.0883 - val_acc: 0.5064
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9995 - val_loss: 0.5682 - val_acc: 0.9546
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0267 - acc: 0.9969 - val_loss: 1.6873 - val_acc: 0.8682
+Iteracion: 41
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0030 - acc: 0.9996 - val_loss: 0.6004 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0239 - acc: 0.9936 - val_loss: 6.0836 - val_acc: 0.5110
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0023 - acc: 0.9996 - val_loss: 0.5756 - val_acc: 0.9547
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0253 - acc: 0.9971 - val_loss: 1.7062 - val_acc: 0.8678
+Iteracion: 42
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9995 - val_loss: 0.6004 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0239 - acc: 0.9935 - val_loss: 6.1309 - val_acc: 0.5083
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0022 - acc: 0.9996 - val_loss: 0.5719 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0257 - acc: 0.9971 - val_loss: 1.7015 - val_acc: 0.8695
+Iteracion: 43
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9995 - val_loss: 0.5945 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0224 - acc: 0.9942 - val_loss: 6.1884 - val_acc: 0.5044
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0022 - acc: 0.9996 - val_loss: 0.5640 - val_acc: 0.9556
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0261 - acc: 0.9970 - val_loss: 1.7159 - val_acc: 0.8689
+Iteracion: 44
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9995 - val_loss: 0.6052 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0227 - acc: 0.9941 - val_loss: 6.1648 - val_acc: 0.5110
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0019 - acc: 0.9997 - val_loss: 0.5870 - val_acc: 0.9546
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0253 - acc: 0.9971 - val_loss: 1.7038 - val_acc: 0.8699
+Iteracion: 45
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0035 - acc: 0.9995 - val_loss: 0.5990 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0234 - acc: 0.9939 - val_loss: 6.2065 - val_acc: 0.5119
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0030 - acc: 0.9995 - val_loss: 0.5738 - val_acc: 0.9551
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0261 - acc: 0.9971 - val_loss: 1.7154 - val_acc: 0.8704
+Iteracion: 46
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.6099 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0231 - acc: 0.9940 - val_loss: 6.2281 - val_acc: 0.5124
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9996 - val_loss: 0.5764 - val_acc: 0.9555
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0259 - acc: 0.9972 - val_loss: 1.7363 - val_acc: 0.8679
+Iteracion: 47
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9995 - val_loss: 0.6095 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0231 - acc: 0.9940 - val_loss: 6.2481 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.5715 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0253 - acc: 0.9972 - val_loss: 1.7288 - val_acc: 0.8697
+Iteracion: 48
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9995 - val_loss: 0.6118 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0223 - acc: 0.9945 - val_loss: 6.2903 - val_acc: 0.5073
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9995 - val_loss: 0.5980 - val_acc: 0.9544
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0261 - acc: 0.9971 - val_loss: 1.7552 - val_acc: 0.8677
+Iteracion: 49
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9996 - val_loss: 0.6234 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0228 - acc: 0.9945 - val_loss: 6.2861 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0025 - acc: 0.9996 - val_loss: 0.5813 - val_acc: 0.9555
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0263 - acc: 0.9971 - val_loss: 1.7321 - val_acc: 0.8705
+Iteracion: 50
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9996 - val_loss: 0.6186 - val_acc: 0.9552
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0235 - acc: 0.9944 - val_loss: 6.3012 - val_acc: 0.5079
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.5866 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0261 - acc: 0.9971 - val_loss: 1.7421 - val_acc: 0.8700
+Iteracion: 51
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6124 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9946 - val_loss: 6.3271 - val_acc: 0.5056
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.5910 - val_acc: 0.9551
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0253 - acc: 0.9973 - val_loss: 1.7501 - val_acc: 0.8692
+Iteracion: 52
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.6401 - val_acc: 0.9534
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9948 - val_loss: 6.3364 - val_acc: 0.5084
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.5931 - val_acc: 0.9550
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+35s - loss: 0.0257 - acc: 0.9972 - val_loss: 1.7593 - val_acc: 0.8692
+Iteracion: 53
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.6144 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9945 - val_loss: 6.3845 - val_acc: 0.5079
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9996 - val_loss: 0.5907 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9972 - val_loss: 1.7675 - val_acc: 0.8691
+Iteracion: 54
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.6321 - val_acc: 0.9549
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0219 - acc: 0.9946 - val_loss: 6.3824 - val_acc: 0.5085
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9996 - val_loss: 0.5921 - val_acc: 0.9557
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0261 - acc: 0.9972 - val_loss: 1.7785 - val_acc: 0.8686
+Iteracion: 55
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9995 - val_loss: 0.6305 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0222 - acc: 0.9947 - val_loss: 6.4120 - val_acc: 0.5060
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9996 - val_loss: 0.5938 - val_acc: 0.9555
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9972 - val_loss: 1.7704 - val_acc: 0.8699
+Iteracion: 56
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0025 - acc: 0.9997 - val_loss: 0.6317 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0213 - acc: 0.9949 - val_loss: 6.4109 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9997 - val_loss: 0.6102 - val_acc: 0.9547
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0251 - acc: 0.9974 - val_loss: 1.7791 - val_acc: 0.8689
+Iteracion: 57
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9995 - val_loss: 0.6285 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0216 - acc: 0.9949 - val_loss: 6.4606 - val_acc: 0.5062
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9996 - val_loss: 0.6040 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9971 - val_loss: 1.8007 - val_acc: 0.8677
+Iteracion: 58
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6233 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0210 - acc: 0.9952 - val_loss: 6.4765 - val_acc: 0.5071
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9996 - val_loss: 0.6084 - val_acc: 0.9549
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0262 - acc: 0.9973 - val_loss: 1.7974 - val_acc: 0.8685
+Iteracion: 59
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9995 - val_loss: 0.6257 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9951 - val_loss: 6.4475 - val_acc: 0.5084
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0027 - acc: 0.9996 - val_loss: 0.6020 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9973 - val_loss: 1.7873 - val_acc: 0.8699
+Iteracion: 60
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6408 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9953 - val_loss: 6.4932 - val_acc: 0.5093
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.6079 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0258 - acc: 0.9974 - val_loss: 1.7719 - val_acc: 0.8713
+Iteracion: 61
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.6290 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0214 - acc: 0.9951 - val_loss: 6.5022 - val_acc: 0.5083
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0026 - acc: 0.9996 - val_loss: 0.5971 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0249 - acc: 0.9975 - val_loss: 1.7853 - val_acc: 0.8708
+Iteracion: 62
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9996 - val_loss: 0.6232 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0225 - acc: 0.9950 - val_loss: 6.5088 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6092 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9972 - val_loss: 1.8089 - val_acc: 0.8689
+Iteracion: 63
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6241 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9954 - val_loss: 6.5427 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+21s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6118 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9973 - val_loss: 1.8126 - val_acc: 0.8698
+Iteracion: 64
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6287 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0227 - acc: 0.9951 - val_loss: 6.5513 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.6049 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9974 - val_loss: 1.8297 - val_acc: 0.8679
+Iteracion: 65
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6480 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9954 - val_loss: 6.6041 - val_acc: 0.5067
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6021 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9973 - val_loss: 1.8299 - val_acc: 0.8684
+Iteracion: 66
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6334 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9955 - val_loss: 6.5939 - val_acc: 0.5093
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6183 - val_acc: 0.9550
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0262 - acc: 0.9974 - val_loss: 1.8120 - val_acc: 0.8700
+Iteracion: 67
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6510 - val_acc: 0.9542
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0223 - acc: 0.9953 - val_loss: 6.6337 - val_acc: 0.5055
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.6184 - val_acc: 0.9551
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0261 - acc: 0.9973 - val_loss: 1.8323 - val_acc: 0.8684
+Iteracion: 68
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6447 - val_acc: 0.9552
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0214 - acc: 0.9955 - val_loss: 6.6108 - val_acc: 0.5086
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0025 - acc: 0.9997 - val_loss: 0.6079 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9975 - val_loss: 1.8252 - val_acc: 0.8685
+Iteracion: 69
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6349 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0210 - acc: 0.9954 - val_loss: 6.5853 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.5969 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9974 - val_loss: 1.8289 - val_acc: 0.8694
+Iteracion: 70
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6419 - val_acc: 0.9557
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9953 - val_loss: 6.6390 - val_acc: 0.5081
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0022 - acc: 0.9997 - val_loss: 0.6084 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9974 - val_loss: 1.8183 - val_acc: 0.8700
+Iteracion: 71
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.6327 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0207 - acc: 0.9957 - val_loss: 6.6325 - val_acc: 0.5081
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0026 - acc: 0.9997 - val_loss: 0.6046 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9975 - val_loss: 1.8401 - val_acc: 0.8691
+Iteracion: 72
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6272 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9958 - val_loss: 6.6954 - val_acc: 0.5061
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6097 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0261 - acc: 0.9975 - val_loss: 1.8171 - val_acc: 0.8717
+Iteracion: 73
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6408 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9957 - val_loss: 6.6909 - val_acc: 0.5086
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.6111 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9974 - val_loss: 1.8292 - val_acc: 0.8699
+Iteracion: 74
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6435 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0204 - acc: 0.9957 - val_loss: 6.7088 - val_acc: 0.5064
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9996 - val_loss: 0.6115 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9975 - val_loss: 1.8224 - val_acc: 0.8711
+Iteracion: 75
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6343 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9957 - val_loss: 6.7367 - val_acc: 0.5076
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6139 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9975 - val_loss: 1.8434 - val_acc: 0.8699
+Iteracion: 76
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6332 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9957 - val_loss: 6.7573 - val_acc: 0.5049
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6341 - val_acc: 0.9551
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9974 - val_loss: 1.8355 - val_acc: 0.8705
+Iteracion: 77
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6457 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9956 - val_loss: 6.7621 - val_acc: 0.5059
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9997 - val_loss: 0.6247 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9975 - val_loss: 1.8237 - val_acc: 0.8712
+Iteracion: 78
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6748 - val_acc: 0.9535
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0207 - acc: 0.9959 - val_loss: 6.7801 - val_acc: 0.5078
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.5984 - val_acc: 0.9575
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9975 - val_loss: 1.8622 - val_acc: 0.8687
+Iteracion: 79
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6435 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0205 - acc: 0.9960 - val_loss: 6.7891 - val_acc: 0.5062
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6264 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9975 - val_loss: 1.8330 - val_acc: 0.8705
+Iteracion: 80
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6439 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9958 - val_loss: 6.7833 - val_acc: 0.5080
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6260 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0256 - acc: 0.9976 - val_loss: 1.8423 - val_acc: 0.8708
+Iteracion: 81
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6404 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9960 - val_loss: 6.8209 - val_acc: 0.5069
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0026 - acc: 0.9996 - val_loss: 0.6178 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9975 - val_loss: 1.8390 - val_acc: 0.8712
+Iteracion: 82
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9996 - val_loss: 0.6523 - val_acc: 0.9552
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0209 - acc: 0.9959 - val_loss: 6.8037 - val_acc: 0.5067
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9996 - val_loss: 0.6155 - val_acc: 0.9566
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0262 - acc: 0.9976 - val_loss: 1.8402 - val_acc: 0.8704
+Iteracion: 83
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6454 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0210 - acc: 0.9959 - val_loss: 6.7823 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0024 - acc: 0.9997 - val_loss: 0.6162 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0260 - acc: 0.9976 - val_loss: 1.8818 - val_acc: 0.8680
+Iteracion: 84
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6472 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9960 - val_loss: 6.8074 - val_acc: 0.5095
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6215 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0275 - acc: 0.9974 - val_loss: 1.8515 - val_acc: 0.8709
+Iteracion: 85
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6504 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0223 - acc: 0.9958 - val_loss: 6.8004 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9997 - val_loss: 0.6165 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0258 - acc: 0.9977 - val_loss: 1.8579 - val_acc: 0.8703
+Iteracion: 86
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9996 - val_loss: 0.6648 - val_acc: 0.9550
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0213 - acc: 0.9961 - val_loss: 6.8446 - val_acc: 0.5068
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6132 - val_acc: 0.9571
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9975 - val_loss: 1.8579 - val_acc: 0.8710
+Iteracion: 87
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6491 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0205 - acc: 0.9959 - val_loss: 6.8673 - val_acc: 0.5068
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6161 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0261 - acc: 0.9976 - val_loss: 1.8457 - val_acc: 0.8714
+Iteracion: 88
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.6552 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0207 - acc: 0.9961 - val_loss: 6.9077 - val_acc: 0.5062
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6240 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9975 - val_loss: 1.8752 - val_acc: 0.8697
+Iteracion: 89
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0027 - acc: 0.9997 - val_loss: 0.6660 - val_acc: 0.9550
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0206 - acc: 0.9961 - val_loss: 6.8679 - val_acc: 0.5095
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0026 - acc: 0.9997 - val_loss: 0.6207 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9976 - val_loss: 1.8677 - val_acc: 0.8708
+Iteracion: 90
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6410 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0210 - acc: 0.9962 - val_loss: 6.9109 - val_acc: 0.5068
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6385 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0280 - acc: 0.9975 - val_loss: 1.8732 - val_acc: 0.8697
+Iteracion: 91
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6497 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0223 - acc: 0.9960 - val_loss: 6.8963 - val_acc: 0.5091
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6320 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9977 - val_loss: 1.8983 - val_acc: 0.8686
+Iteracion: 92
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6489 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9960 - val_loss: 6.8820 - val_acc: 0.5110
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6367 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9977 - val_loss: 1.8785 - val_acc: 0.8702
+Iteracion: 93
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6546 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9961 - val_loss: 6.8988 - val_acc: 0.5107
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6354 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9976 - val_loss: 1.8878 - val_acc: 0.8691
+Iteracion: 94
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9996 - val_loss: 0.6663 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0208 - acc: 0.9963 - val_loss: 6.9196 - val_acc: 0.5113
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9996 - val_loss: 0.6326 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9975 - val_loss: 1.8591 - val_acc: 0.8721
+Iteracion: 95
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0027 - acc: 0.9997 - val_loss: 0.6514 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0217 - acc: 0.9963 - val_loss: 6.8981 - val_acc: 0.5137
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0028 - acc: 0.9997 - val_loss: 0.6372 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9977 - val_loss: 1.8902 - val_acc: 0.8698
+Iteracion: 96
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6524 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0213 - acc: 0.9963 - val_loss: 6.9935 - val_acc: 0.5079
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6288 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9976 - val_loss: 1.8716 - val_acc: 0.8713
+Iteracion: 97
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6541 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0228 - acc: 0.9961 - val_loss: 6.9739 - val_acc: 0.5074
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9997 - val_loss: 0.6315 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9977 - val_loss: 1.8815 - val_acc: 0.8709
+Iteracion: 98
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6620 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0201 - acc: 0.9965 - val_loss: 6.9739 - val_acc: 0.5076
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9997 - val_loss: 0.6258 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9975 - val_loss: 1.8775 - val_acc: 0.8710
+Iteracion: 99
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6481 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0219 - acc: 0.9962 - val_loss: 7.0035 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6283 - val_acc: 0.9571
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9976 - val_loss: 1.9115 - val_acc: 0.8681
+Iteracion: 100
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6531 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0205 - acc: 0.9964 - val_loss: 7.0287 - val_acc: 0.5061
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9996 - val_loss: 0.6292 - val_acc: 0.9566
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9977 - val_loss: 1.8944 - val_acc: 0.8699
+Iteracion: 101
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9996 - val_loss: 0.6601 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9963 - val_loss: 7.0326 - val_acc: 0.5064
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6336 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9977 - val_loss: 1.8894 - val_acc: 0.8703
+Iteracion: 102
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6491 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0202 - acc: 0.9965 - val_loss: 6.9753 - val_acc: 0.5114
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9997 - val_loss: 0.6236 - val_acc: 0.9571
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9978 - val_loss: 1.9020 - val_acc: 0.8699
+Iteracion: 103
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6496 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0202 - acc: 0.9966 - val_loss: 7.0049 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6296 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9977 - val_loss: 1.8700 - val_acc: 0.8717
+Iteracion: 104
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6549 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0219 - acc: 0.9963 - val_loss: 6.9964 - val_acc: 0.5097
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0045 - acc: 0.9996 - val_loss: 0.6275 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9977 - val_loss: 1.9141 - val_acc: 0.8686
+Iteracion: 105
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9996 - val_loss: 0.6492 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0203 - acc: 0.9966 - val_loss: 7.0246 - val_acc: 0.5098
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6290 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9977 - val_loss: 1.8814 - val_acc: 0.8715
+Iteracion: 106
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9996 - val_loss: 0.6541 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0224 - acc: 0.9964 - val_loss: 7.0510 - val_acc: 0.5082
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6256 - val_acc: 0.9574
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9975 - val_loss: 1.8929 - val_acc: 0.8709
+Iteracion: 107
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6544 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0218 - acc: 0.9964 - val_loss: 7.0295 - val_acc: 0.5105
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9996 - val_loss: 0.6405 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9977 - val_loss: 1.8813 - val_acc: 0.8713
+Iteracion: 108
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6573 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9966 - val_loss: 7.0443 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6278 - val_acc: 0.9573
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9978 - val_loss: 1.8851 - val_acc: 0.8717
+Iteracion: 109
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9996 - val_loss: 0.6572 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9964 - val_loss: 7.0778 - val_acc: 0.5073
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9997 - val_loss: 0.6340 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0255 - acc: 0.9978 - val_loss: 1.8674 - val_acc: 0.8731
+Iteracion: 110
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6517 - val_acc: 0.9568
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0206 - acc: 0.9966 - val_loss: 7.0695 - val_acc: 0.5087
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6430 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0277 - acc: 0.9976 - val_loss: 1.8943 - val_acc: 0.8712
+Iteracion: 111
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6532 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0220 - acc: 0.9964 - val_loss: 7.0491 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6398 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9976 - val_loss: 1.8899 - val_acc: 0.8722
+Iteracion: 112
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6651 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0216 - acc: 0.9965 - val_loss: 7.1084 - val_acc: 0.5068
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6397 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9978 - val_loss: 1.8961 - val_acc: 0.8716
+Iteracion: 113
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6583 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9966 - val_loss: 7.0787 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6568 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9977 - val_loss: 1.8974 - val_acc: 0.8716
+Iteracion: 114
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6808 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0224 - acc: 0.9965 - val_loss: 7.1497 - val_acc: 0.5059
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0045 - acc: 0.9996 - val_loss: 0.6474 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9977 - val_loss: 1.9068 - val_acc: 0.8708
+Iteracion: 115
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6612 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0217 - acc: 0.9966 - val_loss: 7.0959 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6401 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9977 - val_loss: 1.9107 - val_acc: 0.8707
+Iteracion: 116
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6719 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9966 - val_loss: 7.0742 - val_acc: 0.5126
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6444 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9977 - val_loss: 1.9048 - val_acc: 0.8709
+Iteracion: 117
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6668 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0213 - acc: 0.9967 - val_loss: 7.1157 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9995 - val_loss: 0.6489 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9977 - val_loss: 1.8880 - val_acc: 0.8725
+Iteracion: 118
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6679 - val_acc: 0.9557
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0214 - acc: 0.9967 - val_loss: 7.1160 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6540 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0260 - acc: 0.9978 - val_loss: 1.8965 - val_acc: 0.8720
+Iteracion: 119
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6702 - val_acc: 0.9557
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0228 - acc: 0.9966 - val_loss: 7.1366 - val_acc: 0.5100
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6465 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9978 - val_loss: 1.9044 - val_acc: 0.8713
+Iteracion: 120
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6639 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0224 - acc: 0.9966 - val_loss: 7.1484 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6467 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9978 - val_loss: 1.9024 - val_acc: 0.8721
+Iteracion: 121
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6518 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0222 - acc: 0.9967 - val_loss: 7.1734 - val_acc: 0.5070
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6514 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9977 - val_loss: 1.9050 - val_acc: 0.8713
+Iteracion: 122
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6792 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9968 - val_loss: 7.1435 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6518 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0282 - acc: 0.9977 - val_loss: 1.9204 - val_acc: 0.8705
+Iteracion: 123
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9997 - val_loss: 0.6934 - val_acc: 0.9541
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0212 - acc: 0.9967 - val_loss: 7.1736 - val_acc: 0.5096
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0026 - acc: 0.9997 - val_loss: 0.6483 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9977 - val_loss: 1.9207 - val_acc: 0.8705
+Iteracion: 124
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6803 - val_acc: 0.9554
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0228 - acc: 0.9966 - val_loss: 7.1860 - val_acc: 0.5076
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6533 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9978 - val_loss: 1.8982 - val_acc: 0.8726
+Iteracion: 125
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6777 - val_acc: 0.9554
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0227 - acc: 0.9967 - val_loss: 7.1861 - val_acc: 0.5090
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6616 - val_acc: 0.9556
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9977 - val_loss: 1.9277 - val_acc: 0.8705
+Iteracion: 126
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6672 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0226 - acc: 0.9966 - val_loss: 7.1962 - val_acc: 0.5071
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6478 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0278 - acc: 0.9977 - val_loss: 1.9028 - val_acc: 0.8721
+Iteracion: 127
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6594 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0228 - acc: 0.9967 - val_loss: 7.1798 - val_acc: 0.5118
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9996 - val_loss: 0.6631 - val_acc: 0.9553
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9977 - val_loss: 1.9092 - val_acc: 0.8717
+Iteracion: 128
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6565 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0221 - acc: 0.9968 - val_loss: 7.2105 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6533 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9978 - val_loss: 1.9281 - val_acc: 0.8704
+Iteracion: 129
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6680 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0233 - acc: 0.9968 - val_loss: 7.1637 - val_acc: 0.5132
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0025 - acc: 0.9997 - val_loss: 0.6556 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9978 - val_loss: 1.9093 - val_acc: 0.8719
+Iteracion: 130
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6597 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0237 - acc: 0.9966 - val_loss: 7.2074 - val_acc: 0.5107
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6576 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0278 - acc: 0.9977 - val_loss: 1.9136 - val_acc: 0.8715
+Iteracion: 131
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6731 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0215 - acc: 0.9969 - val_loss: 7.2489 - val_acc: 0.5078
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9997 - val_loss: 0.6440 - val_acc: 0.9566
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9978 - val_loss: 1.9020 - val_acc: 0.8726
+Iteracion: 132
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6731 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0236 - acc: 0.9966 - val_loss: 7.1897 - val_acc: 0.5120
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6733 - val_acc: 0.9548
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0275 - acc: 0.9977 - val_loss: 1.9195 - val_acc: 0.8713
+Iteracion: 133
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6781 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0239 - acc: 0.9967 - val_loss: 7.2505 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6398 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9977 - val_loss: 1.9233 - val_acc: 0.8713
+Iteracion: 134
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9996 - val_loss: 0.6794 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0219 - acc: 0.9969 - val_loss: 7.2335 - val_acc: 0.5091
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6323 - val_acc: 0.9574
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0284 - acc: 0.9976 - val_loss: 1.9491 - val_acc: 0.8696
+Iteracion: 135
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6568 - val_acc: 0.9570
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0234 - acc: 0.9967 - val_loss: 7.2561 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6541 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9978 - val_loss: 1.9186 - val_acc: 0.8717
+Iteracion: 136
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9996 - val_loss: 0.6847 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0225 - acc: 0.9968 - val_loss: 7.2021 - val_acc: 0.5119
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0027 - acc: 0.9998 - val_loss: 0.6469 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0281 - acc: 0.9977 - val_loss: 1.9067 - val_acc: 0.8725
+Iteracion: 137
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6601 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0222 - acc: 0.9970 - val_loss: 7.2453 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6494 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0285 - acc: 0.9977 - val_loss: 1.9156 - val_acc: 0.8728
+Iteracion: 138
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6670 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0240 - acc: 0.9967 - val_loss: 7.2457 - val_acc: 0.5100
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6535 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0282 - acc: 0.9977 - val_loss: 1.9219 - val_acc: 0.8719
+Iteracion: 139
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6622 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0238 - acc: 0.9968 - val_loss: 7.2639 - val_acc: 0.5087
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6562 - val_acc: 0.9560
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0282 - acc: 0.9977 - val_loss: 1.9151 - val_acc: 0.8718
+Iteracion: 140
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6759 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0236 - acc: 0.9968 - val_loss: 7.2990 - val_acc: 0.5067
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6684 - val_acc: 0.9552
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9978 - val_loss: 1.9229 - val_acc: 0.8714
+Iteracion: 141
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6733 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0232 - acc: 0.9969 - val_loss: 7.2686 - val_acc: 0.5090
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6490 - val_acc: 0.9566
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9978 - val_loss: 1.9195 - val_acc: 0.8721
+Iteracion: 142
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6939 - val_acc: 0.9544
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0238 - acc: 0.9968 - val_loss: 7.2427 - val_acc: 0.5114
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6619 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9978 - val_loss: 1.9219 - val_acc: 0.8723
+Iteracion: 143
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6808 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0227 - acc: 0.9969 - val_loss: 7.2313 - val_acc: 0.5126
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6466 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9978 - val_loss: 1.9224 - val_acc: 0.8723
+Iteracion: 144
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6620 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0251 - acc: 0.9967 - val_loss: 7.2299 - val_acc: 0.5132
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6480 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9979 - val_loss: 1.9237 - val_acc: 0.8722
+Iteracion: 145
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6575 - val_acc: 0.9572
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0227 - acc: 0.9969 - val_loss: 7.2501 - val_acc: 0.5120
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6704 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0282 - acc: 0.9978 - val_loss: 1.9199 - val_acc: 0.8723
+Iteracion: 146
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6727 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0242 - acc: 0.9968 - val_loss: 7.2587 - val_acc: 0.5125
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6584 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9979 - val_loss: 1.9154 - val_acc: 0.8724
+Iteracion: 147
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6828 - val_acc: 0.9547
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0245 - acc: 0.9969 - val_loss: 7.2743 - val_acc: 0.5118
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9996 - val_loss: 0.6525 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9978 - val_loss: 1.8926 - val_acc: 0.8740
+Iteracion: 148
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6634 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0241 - acc: 0.9969 - val_loss: 7.2839 - val_acc: 0.5113
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9996 - val_loss: 0.6507 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0267 - acc: 0.9979 - val_loss: 1.8874 - val_acc: 0.8746
+Iteracion: 149
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6646 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0239 - acc: 0.9968 - val_loss: 7.3226 - val_acc: 0.5087
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6623 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9979 - val_loss: 1.9127 - val_acc: 0.8730
+Iteracion: 150
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6755 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0222 - acc: 0.9971 - val_loss: 7.2963 - val_acc: 0.5105
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6574 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0265 - acc: 0.9979 - val_loss: 1.8973 - val_acc: 0.8738
+Iteracion: 151
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6605 - val_acc: 0.9572
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0219 - acc: 0.9972 - val_loss: 7.3264 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9996 - val_loss: 0.6535 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9978 - val_loss: 1.9129 - val_acc: 0.8734
+Iteracion: 152
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6645 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0235 - acc: 0.9971 - val_loss: 7.3045 - val_acc: 0.5104
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9996 - val_loss: 0.6521 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0266 - acc: 0.9979 - val_loss: 1.9358 - val_acc: 0.8718
+Iteracion: 153
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6575 - val_acc: 0.9573
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0232 - acc: 0.9970 - val_loss: 7.3793 - val_acc: 0.5076
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6590 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9239 - val_acc: 0.8727
+Iteracion: 154
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6717 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0247 - acc: 0.9969 - val_loss: 7.3069 - val_acc: 0.5123
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6587 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9978 - val_loss: 1.9456 - val_acc: 0.8706
+Iteracion: 155
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9996 - val_loss: 0.6587 - val_acc: 0.9570
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0248 - acc: 0.9968 - val_loss: 7.3678 - val_acc: 0.5088
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9998 - val_loss: 0.6465 - val_acc: 0.9572
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9319 - val_acc: 0.8721
+Iteracion: 156
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6802 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0241 - acc: 0.9970 - val_loss: 7.3360 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0046 - acc: 0.9996 - val_loss: 0.6602 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9978 - val_loss: 1.9374 - val_acc: 0.8716
+Iteracion: 157
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0045 - acc: 0.9996 - val_loss: 0.6721 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0243 - acc: 0.9969 - val_loss: 7.3389 - val_acc: 0.5102
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6521 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9978 - val_loss: 1.9327 - val_acc: 0.8719
+Iteracion: 158
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6598 - val_acc: 0.9574
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0231 - acc: 0.9971 - val_loss: 7.3699 - val_acc: 0.5078
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6603 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0257 - acc: 0.9980 - val_loss: 1.9266 - val_acc: 0.8722
+Iteracion: 159
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6831 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0235 - acc: 0.9971 - val_loss: 7.3657 - val_acc: 0.5084
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9996 - val_loss: 0.6582 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9979 - val_loss: 1.9209 - val_acc: 0.8733
+Iteracion: 160
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6813 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0251 - acc: 0.9969 - val_loss: 7.3805 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6490 - val_acc: 0.9570
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9979 - val_loss: 1.9230 - val_acc: 0.8730
+Iteracion: 161
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6767 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0244 - acc: 0.9970 - val_loss: 7.3771 - val_acc: 0.5093
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6668 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9980 - val_loss: 1.9325 - val_acc: 0.8724
+Iteracion: 162
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6740 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0243 - acc: 0.9971 - val_loss: 7.3984 - val_acc: 0.5073
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6695 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0258 - acc: 0.9979 - val_loss: 1.9211 - val_acc: 0.8734
+Iteracion: 163
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6847 - val_acc: 0.9555
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0249 - acc: 0.9970 - val_loss: 7.3715 - val_acc: 0.5104
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6674 - val_acc: 0.9558
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9979 - val_loss: 1.9304 - val_acc: 0.8728
+Iteracion: 164
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6757 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0250 - acc: 0.9970 - val_loss: 7.3961 - val_acc: 0.5091
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9997 - val_loss: 0.6613 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9980 - val_loss: 1.9452 - val_acc: 0.8716
+Iteracion: 165
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6925 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0254 - acc: 0.9970 - val_loss: 7.3986 - val_acc: 0.5082
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6565 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9980 - val_loss: 1.9411 - val_acc: 0.8718
+Iteracion: 166
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6771 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0237 - acc: 0.9971 - val_loss: 7.4197 - val_acc: 0.5076
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6631 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0258 - acc: 0.9980 - val_loss: 1.9467 - val_acc: 0.8714
+Iteracion: 167
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6847 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0245 - acc: 0.9971 - val_loss: 7.3756 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9996 - val_loss: 0.6732 - val_acc: 0.9556
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0288 - acc: 0.9977 - val_loss: 1.9514 - val_acc: 0.8713
+Iteracion: 168
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9996 - val_loss: 0.6905 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0256 - acc: 0.9969 - val_loss: 7.3730 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9997 - val_loss: 0.6597 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9214 - val_acc: 0.8733
+Iteracion: 169
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9997 - val_loss: 0.6763 - val_acc: 0.9561
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0255 - acc: 0.9970 - val_loss: 7.3633 - val_acc: 0.5119
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6646 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0273 - acc: 0.9979 - val_loss: 1.9459 - val_acc: 0.8719
+Iteracion: 170
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6848 - val_acc: 0.9554
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0238 - acc: 0.9971 - val_loss: 7.3980 - val_acc: 0.5095
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0050 - acc: 0.9996 - val_loss: 0.6745 - val_acc: 0.9556
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0276 - acc: 0.9979 - val_loss: 1.9285 - val_acc: 0.8729
+Iteracion: 171
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9996 - val_loss: 0.6687 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0244 - acc: 0.9971 - val_loss: 7.4020 - val_acc: 0.5093
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6656 - val_acc: 0.9563
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9253 - val_acc: 0.8734
+Iteracion: 172
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6711 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0251 - acc: 0.9971 - val_loss: 7.3880 - val_acc: 0.5103
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0049 - acc: 0.9996 - val_loss: 0.6625 - val_acc: 0.9566
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0286 - acc: 0.9978 - val_loss: 1.9318 - val_acc: 0.8726
+Iteracion: 173
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0046 - acc: 0.9996 - val_loss: 0.6694 - val_acc: 0.9567
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0253 - acc: 0.9970 - val_loss: 7.3679 - val_acc: 0.5121
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6762 - val_acc: 0.9554
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0260 - acc: 0.9980 - val_loss: 1.9426 - val_acc: 0.8723
+Iteracion: 174
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6766 - val_acc: 0.9562
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0240 - acc: 0.9972 - val_loss: 7.4050 - val_acc: 0.5107
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6742 - val_acc: 0.9557
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0269 - acc: 0.9979 - val_loss: 1.9450 - val_acc: 0.8719
+Iteracion: 175
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6858 - val_acc: 0.9554
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0245 - acc: 0.9972 - val_loss: 7.4033 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6649 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0255 - acc: 0.9980 - val_loss: 1.9449 - val_acc: 0.8721
+Iteracion: 176
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6749 - val_acc: 0.9563
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0264 - acc: 0.9970 - val_loss: 7.4483 - val_acc: 0.5073
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0032 - acc: 0.9997 - val_loss: 0.6645 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9978 - val_loss: 1.9453 - val_acc: 0.8719
+Iteracion: 177
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6886 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0268 - acc: 0.9969 - val_loss: 7.3904 - val_acc: 0.5118
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6575 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0274 - acc: 0.9979 - val_loss: 1.9522 - val_acc: 0.8715
+Iteracion: 178
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0037 - acc: 0.9997 - val_loss: 0.6889 - val_acc: 0.9553
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0242 - acc: 0.9973 - val_loss: 7.4080 - val_acc: 0.5110
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0030 - acc: 0.9998 - val_loss: 0.6578 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0258 - acc: 0.9980 - val_loss: 1.9413 - val_acc: 0.8725
+Iteracion: 179
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6852 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0256 - acc: 0.9971 - val_loss: 7.4481 - val_acc: 0.5077
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6666 - val_acc: 0.9561
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0263 - acc: 0.9980 - val_loss: 1.9479 - val_acc: 0.8722
+Iteracion: 180
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6779 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0264 - acc: 0.9971 - val_loss: 7.4001 - val_acc: 0.5120
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0046 - acc: 0.9996 - val_loss: 0.6515 - val_acc: 0.9573
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9979 - val_loss: 1.9472 - val_acc: 0.8719
+Iteracion: 181
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6919 - val_acc: 0.9550
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0258 - acc: 0.9970 - val_loss: 7.4027 - val_acc: 0.5122
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6699 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0281 - acc: 0.9978 - val_loss: 1.9469 - val_acc: 0.8721
+Iteracion: 182
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6735 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0264 - acc: 0.9970 - val_loss: 7.4301 - val_acc: 0.5115
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6705 - val_acc: 0.9559
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9979 - val_loss: 1.9609 - val_acc: 0.8713
+Iteracion: 183
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0029 - acc: 0.9997 - val_loss: 0.6985 - val_acc: 0.9551
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0258 - acc: 0.9972 - val_loss: 7.4401 - val_acc: 0.5099
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0046 - acc: 0.9996 - val_loss: 0.6698 - val_acc: 0.9562
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0281 - acc: 0.9978 - val_loss: 1.9588 - val_acc: 0.8717
+Iteracion: 184
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6809 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0267 - acc: 0.9970 - val_loss: 7.4476 - val_acc: 0.5091
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9996 - val_loss: 0.6632 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0283 - acc: 0.9978 - val_loss: 1.9551 - val_acc: 0.8719
+Iteracion: 185
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0040 - acc: 0.9997 - val_loss: 0.6827 - val_acc: 0.9560
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0260 - acc: 0.9971 - val_loss: 7.4296 - val_acc: 0.5113
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6596 - val_acc: 0.9568
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0280 - acc: 0.9979 - val_loss: 1.9687 - val_acc: 0.8709
+Iteracion: 186
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0044 - acc: 0.9997 - val_loss: 0.6848 - val_acc: 0.9556
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0265 - acc: 0.9971 - val_loss: 7.4910 - val_acc: 0.5089
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6575 - val_acc: 0.9569
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0289 - acc: 0.9978 - val_loss: 1.9613 - val_acc: 0.8712
+Iteracion: 187
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0034 - acc: 0.9997 - val_loss: 0.6822 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0253 - acc: 0.9972 - val_loss: 7.4626 - val_acc: 0.5096
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6501 - val_acc: 0.9575
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0262 - acc: 0.9980 - val_loss: 1.9503 - val_acc: 0.8727
+Iteracion: 188
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6568 - val_acc: 0.9577
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0263 - acc: 0.9970 - val_loss: 7.4557 - val_acc: 0.5109
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6466 - val_acc: 0.9578
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9979 - val_loss: 1.9594 - val_acc: 0.8714
+Iteracion: 189
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6722 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0261 - acc: 0.9972 - val_loss: 7.4664 - val_acc: 0.5098
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0036 - acc: 0.9997 - val_loss: 0.6527 - val_acc: 0.9575
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0260 - acc: 0.9980 - val_loss: 1.9217 - val_acc: 0.8741
+Iteracion: 190
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9997 - val_loss: 0.6765 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0244 - acc: 0.9973 - val_loss: 7.4539 - val_acc: 0.5096
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9996 - val_loss: 0.6436 - val_acc: 0.9581
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0279 - acc: 0.9979 - val_loss: 1.9554 - val_acc: 0.8720
+Iteracion: 191
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6736 - val_acc: 0.9564
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0248 - acc: 0.9972 - val_loss: 7.4362 - val_acc: 0.5117
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6628 - val_acc: 0.9565
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0277 - acc: 0.9978 - val_loss: 1.9505 - val_acc: 0.8723
+Iteracion: 192
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0043 - acc: 0.9997 - val_loss: 0.7050 - val_acc: 0.9544
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0261 - acc: 0.9972 - val_loss: 7.4994 - val_acc: 0.5078
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6550 - val_acc: 0.9571
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9484 - val_acc: 0.8725
+Iteracion: 193
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0041 - acc: 0.9997 - val_loss: 0.6838 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0251 - acc: 0.9973 - val_loss: 7.4743 - val_acc: 0.5108
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6554 - val_acc: 0.9573
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0268 - acc: 0.9980 - val_loss: 1.9273 - val_acc: 0.8736
+Iteracion: 194
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0035 - acc: 0.9997 - val_loss: 0.6734 - val_acc: 0.9565
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0259 - acc: 0.9971 - val_loss: 7.4591 - val_acc: 0.5113
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0049 - acc: 0.9996 - val_loss: 0.6572 - val_acc: 0.9572
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0272 - acc: 0.9979 - val_loss: 1.9272 - val_acc: 0.8738
+Iteracion: 195
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6667 - val_acc: 0.9573
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0244 - acc: 0.9974 - val_loss: 7.5043 - val_acc: 0.5080
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6466 - val_acc: 0.9574
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9979 - val_loss: 1.9325 - val_acc: 0.8737
+Iteracion: 196
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6830 - val_acc: 0.9559
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0269 - acc: 0.9971 - val_loss: 7.4581 - val_acc: 0.5113
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0042 - acc: 0.9996 - val_loss: 0.6573 - val_acc: 0.9570
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0271 - acc: 0.9980 - val_loss: 1.9369 - val_acc: 0.8730
+Iteracion: 197
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0033 - acc: 0.9997 - val_loss: 0.6736 - val_acc: 0.9566
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0269 - acc: 0.9972 - val_loss: 7.4740 - val_acc: 0.5114
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0031 - acc: 0.9997 - val_loss: 0.6558 - val_acc: 0.9572
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0270 - acc: 0.9980 - val_loss: 1.9500 - val_acc: 0.8725
+Iteracion: 198
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6819 - val_acc: 0.9558
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0267 - acc: 0.9972 - val_loss: 7.4900 - val_acc: 0.5106
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0039 - acc: 0.9997 - val_loss: 0.6668 - val_acc: 0.9564
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0259 - acc: 0.9980 - val_loss: 1.9683 - val_acc: 0.8715
+Iteracion: 199
+NER
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+22s - loss: 0.0038 - acc: 0.9997 - val_loss: 0.6716 - val_acc: 0.9569
+CHUNKING
+Train on 382982 samples, validate on 82232 samples
+Epoch 1/1
+21s - loss: 0.0280 - acc: 0.9970 - val_loss: 7.5000 - val_acc: 0.5094
+POS
+Train on 383942 samples, validate on 82434 samples
+Epoch 1/1
+22s - loss: 0.0046 - acc: 0.9996 - val_loss: 0.6610 - val_acc: 0.9567
+ST All
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/1
+34s - loss: 0.0250 - acc: 0.9981 - val_loss: 1.9675 - val_acc: 0.8714

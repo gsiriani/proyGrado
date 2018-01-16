@@ -10,3 +10,6 @@ Corpus.7z
 
 # Embedding pre-entrenado
 embedding/eswiki.0.3.vectors.150.txt
+
+# Pesos calculados
+*.hdf5

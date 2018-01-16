@@ -1,0 +1,43 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: macrochunking
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 2 min, 13 s
+Duracion del calculo de metricas: 0 hs, 0 min, 0 s
+
+Accuracy entrenamiento inicial: 0.592884259954
+Accuracy entrenamiento final: 0.90779984581
+
+Accuracy validacion inicial: 0.553397702733
+Accuracy validacion final: 0.54943330955
+
+Loss entrenamiento inicial: 0.918914422535
+Loss entrenamiento final: 0.220067308431
+
+Loss validacion inicial: 0.991053453636
+Loss validacion final: 2.12861948666
+
+Precision: [ 0.75425719  0.52575689  0.31325301  0.16666667  0.          0.          0.60902778  0.54576881  0.66415094  0.65346535  0.69968553  0.55033557  0.65748899]
+Recall: [ 0.65054444  0.59164705  0.19402985  0.00231481  0.          0.          0.48641154  0.54719143  0.51917404  0.18232044  0.5746879   0.44808743  0.37231057]
+Medida-F: [ 0.6985724   0.55675929  0.23963134  0.00456621  0.          0.          0.54085723  0.5464792   0.58278146  0.28509719  0.63105649  0.4939759   0.4754131 ]
+
+Matriz de confusion:
+[[ 2569   607     6     0     0     0    23   579    27     2    83     4    49]
+ [  346 19606    22     2     0     0   192 12394    54    41   213    57   211]
+ [    7    56    26     0     0     0     1    31     4     0     2     3     4]
+ [    3   201     0     1     0     0     8   216     0     0     2     0     1]
+ [    2     3     0     0     0     0     0     1     0     0     0     0     0]
+ [    0    10     0     0     0     0     1     5     0     0     0     0     0]
+ [    2   440     0     0     0     0   877   466     9     5     0     3     1]
+ [  364 14429    16     3     0     0   221 19103    61    42   243   111   318]
+ [   22   110     4     0     0     0    64    99   352     1     8     3    15]
+ [    3   385     0     0     0     0     9   467     6   198     2     0    16]
+ [   34   429     0     0     0     0     2   518     2     0  1335     3     0]
+ [    4   127     4     0     0     0    12   144     2     0     3   246     7]
+ [   50   888     5     0     0     0    30   979    13    14    17    17  1194]]

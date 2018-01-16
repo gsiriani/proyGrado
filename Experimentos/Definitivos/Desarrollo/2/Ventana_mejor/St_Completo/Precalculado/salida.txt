@@ -1,0 +1,39 @@
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Compilando red...
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 947)               285047    
+_________________________________________________________________
+activation_2 (Activation)    (None, 947)               0         
+=================================================================
+Total params: 9,322,397.0
+Trainable params: 9,322,397.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Entrenando...
+Train on 383527 samples, validate on 81826 samples
+Epoch 1/20
+36s - loss: 0.7031 - acc: 0.8306 - val_loss: 0.4834 - val_acc: 0.8788
+Epoch 2/20
+36s - loss: 0.3383 - acc: 0.9091 - val_loss: 0.4347 - val_acc: 0.8913
+Epoch 3/20
+35s - loss: 0.2080 - acc: 0.9412 - val_loss: 0.4476 - val_acc: 0.8926
+Epoch 4/20
+35s - loss: 0.1182 - acc: 0.9661 - val_loss: 0.5113 - val_acc: 0.8910
+Epoch 5/20
+36s - loss: 0.0649 - acc: 0.9826 - val_loss: 0.5858 - val_acc: 0.8900
+Epoch 6/20
+36s - loss: 0.0393 - acc: 0.9903 - val_loss: 0.6757 - val_acc: 0.8889
+Epoch 7/20
+37s - loss: 0.0295 - acc: 0.9933 - val_loss: 0.7347 - val_acc: 0.8872
+Obteniendo metricas...

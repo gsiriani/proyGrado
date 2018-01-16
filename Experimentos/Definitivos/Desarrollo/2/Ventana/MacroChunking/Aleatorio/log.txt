@@ -1,0 +1,43 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: macrochunking
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 1 min, 15 s
+Duracion del calculo de metricas: 0 hs, 0 min, 0 s
+
+Accuracy entrenamiento inicial: 0.71200474096
+Accuracy entrenamiento final: 0.974011842753
+
+Accuracy validacion inicial: 0.545712131072
+Accuracy validacion final: 0.524552483735
+
+Loss entrenamiento inicial: 0.704123055491
+Loss entrenamiento final: 0.0730679374025
+
+Loss validacion inicial: 1.24543348174
+Loss validacion final: 2.98643963636
+
+Precision: [ 0.67372996  0.51015753  0.25735294  0.07337526  0.          0.          0.50083752  0.5422293   0.63520871  0.21767594  0.63397642  0.51480638  0.47443278]
+Recall: [ 0.62800709  0.58048162  0.26119403  0.08101852  0.          0.          0.49750416  0.48769729  0.51622419  0.24493554  0.50925527  0.41165756  0.43685688]
+Medida-F: [ 0.65006553  0.54305234  0.25925926  0.0770077   0.          0.          0.49916528  0.51351963  0.56956876  0.2305026   0.5648126   0.45748988  0.45487013]
+
+Matriz de confusion:
+[[ 2480   741    11     6     0     0    20   522    21    18    61    11    58]
+ [  449 19236    40   210     0     6   389 11410    64   377   259    62   636]
+ [   12    44    35     3     0     0     3    25     3     0     1     4     4]
+ [   10   156     3    35     0     0    13   195     0     4     2     1    13]
+ [    2     3     0     0     0     0     0     0     0     0     0     0     1]
+ [    1     7     0     0     0     0     1     5     0     0     0     0     2]
+ [    8   411     4     6     0     0   897   400    24    32     0     4    17]
+ [  495 15018    25   197     0     4   376 17026    69   477   350   115   759]
+ [   38   113     8     1     0     0    38   101   350    11     1     2    15]
+ [   12   369     1     5     0     0    21   371     4   266     6     1    30]
+ [   76   553     1     0     0     0     2   489     2     8  1183     0     9]
+ [   12   139     3     3     0     0    16   140     0     1     1   226     8]
+ [   86   916     5    11     0     0    15   716    14    28     2    13  1401]]
