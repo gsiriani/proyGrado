@@ -6,7 +6,7 @@ import random
 repartir = ["ner", "supertag", "pos", "srl", "macrochunking", "microchunking"]
 ventana = 11
 medio = 6
-verificar = ["ner_training.csv","supertag_reducido_training.csv"]
+verificar = ["ner_training.csv","supertag_reducido_training.csv", "pos_training.csv"]
 out_tag = "OUT"
 separador = ","
 
@@ -73,6 +73,10 @@ total_entrenamiento = len(entrenamiento)
 cantidad = int(total_entrenamiento / len(repartir))
 tolerancia = total_entrenamiento * 10
 
+print total_entrenamiento
+print cantidad
+print
+
 salida = []
 utilizadas = []
 
@@ -111,14 +115,22 @@ for i in range(len(repartir) - len(verificar)):
 		seleccion = random.randint(0,total_entrenamiento - 1)
 		while seleccion in utilizadas:
 			seleccion += 1
+			if seleccion == total_entrenamiento:
+				seleccion = 0
 		seleccionadas.append(seleccion)
 		utilizadas.append(seleccion)
 	salida.append(seleccionadas)
 
+print "Exito"
+print
+
 archivo_salida.write("{")
 for i in range(len(salida)):
+	print repartir[i]
+	print len(salida[i])
+	print
 	if i == 0:
-		archivo_salida.write("\n'" + repartir[i] + "':" + str(salida[i]))
+		archivo_salida.write("\n'" + repartir[i] + "':" + str(sorted(salida[i])))
 	else:
-		archivo_salida.write(",\n'" + repartir[i] + "':" + str(salida[i]))
+		archivo_salida.write(",\n'" + repartir[i] + "':" + str(sorted(salida[i])))
 archivo_salida.write("\n}")
