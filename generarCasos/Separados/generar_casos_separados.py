@@ -82,17 +82,30 @@ for nombre_archivo in os.listdir(carpeta_entrada):
 	if nombre in dicc_rep:
 		entrenamiento = dicc_rep[nombre]
 		casos = []
-		for linea in archivo_entrada:
-			casos.append(linea)
-		for caso in entrenamiento:
-			oracion = oraciones[caso]
-			transformada = transformar_a_ventana(oracion,out_ind)
-			for t in transformada:
+		if nombre in verificar:
+			for linea in archivo_entrada:
+				casos.append(linea)
+			for caso in entrenamiento:
+				oracion = oraciones[caso]
+				transformada = transformar_a_ventana(oracion,out_ind)
 				i = 0
-				print t
-				while not re.match("^" + t + ",.*\n",casos[i]):
-					print i
+				for t in transformada:
+					try:
+						while not re.match("^" + t + ",.*\n",casos[i]):
+							i += 1
+					except:
+						print nombre
+						print t
+					archivo_salida.write(casos[i])
+		else:
+			i = 0
+			regex = ".+,"
+			for j in range(ventana / 2):
+				regex += out_ind + ","
+			for linea in archivo_entrada:
+				if i in entrenamiento:
+					archivo_salida.write(linea)
+				if re.match(regex,linea):
 					i += 1
-				archivo_salida.write(casos[i])
 	archivo_entrada.close()
 	archivo_salida.close()

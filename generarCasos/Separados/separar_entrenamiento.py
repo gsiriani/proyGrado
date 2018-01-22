@@ -3,10 +3,10 @@ import os
 import re
 import random
 
-repartir = ["ner", "supertag", "pos", "srl", "macrochunking", "microchunking"]
+repartir = ["supertag", "ner",  "pos", "macrochunking", "microchunking", "srl"]
 ventana = 11
 medio = 6
-verificar = ["ner_training.csv","supertag_reducido_training.csv", "pos_training.csv"]
+verificar = ["supertag_reducido_training.csv", "ner_training.csv", "pos_training.csv"]
 out_tag = "OUT"
 separador = ","
 
