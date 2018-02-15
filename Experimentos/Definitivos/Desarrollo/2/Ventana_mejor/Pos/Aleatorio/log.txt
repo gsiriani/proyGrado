@@ -7,36 +7,36 @@ Embedding inicial: Aleatorio
 Optimizer: adam
 Activacion: relu
 
-Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 1 s
-Duracion del entrenamiento: 0 hs, 1 min, 24 s
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 1 min, 16 s
 Duracion del calculo de metricas: 0 hs, 0 min, 0 s
 
-Accuracy entrenamiento inicial: 0.937886454339
-Accuracy entrenamiento final: 0.998656048283
+Accuracy entrenamiento inicial: 0.0538232336929
+Accuracy entrenamiento final: 0.998739394131
 
-Accuracy validacion inicial: 0.964383634005
-Accuracy validacion final: 0.959531266155
+Accuracy validacion inicial: 0.0541038891298
+Accuracy validacion final: 0.958973243521
 
-Loss entrenamiento inicial: 0.192476777783
-Loss entrenamiento final: 0.00408853511585
+Loss entrenamiento inicial: 2.50451683643
+Loss entrenamiento final: 0.00378221500517
 
-Loss validacion inicial: 0.106408806411
-Loss validacion final: 0.231917221506
+Loss validacion inicial: 2.50390964107
+Loss validacion final: 0.232506236622
 
-Precision: [ 0.89000931  0.97639692  0.99037569  1.          0.66666667  0.94486945  0.94778997  0.95834817  0.99711027  0.96618713  0.9468599   0.83870968]
-Recall: [ 0.88766827  0.96823501  0.994827    0.99959807  0.26086957  0.96696636  0.93667546  0.93472222  0.99916178  0.93849449  0.66440678  0.8470255 ]
-Medida-F: [ 0.88883725  0.97229884  0.99259635  0.99979899  0.375       0.95579021  0.94219994  0.94638777  0.99813497  0.95213949  0.78087649  0.84284708]
+Precision: [ 0.90912057  0.95606695  0.98996035  1.          0.81818182  0.94087025  0.95928439  0.96352474  0.99862909  0.95651276  0.79559748  0.84325109]
+Recall: [ 0.86213833  0.98232625  0.99508141  0.99959807  0.39130435  0.9676735   0.91175608  0.92638889  0.99916178  0.94451244  0.85762712  0.82294618]
+Medida-F: [ 0.88500635  0.96901873  0.99251427  0.99979899  0.52941176  0.95408367  0.93491658  0.94459196  0.99889536  0.95047472  0.82544861  0.83297491]
 
 Matriz de confusion:
-[[ 5737     0    23     0     0   530    10    26     0   129     0     8]
- [    0  4054     0     0     0     3   113    10     7     0     0     0]
- [   20     0 11731     0     0     4    32     3     0     1     0     1]
- [    0     0     0  9948     0     2     0     0     1     0     0     1]
- [    5     0     0     0     6     9     1     2     0     0     0     0]
- [  386     0     6     0     1 19144    10    27    17   163     6    38]
- [    7    81    83     0     0    15  3195    28     0     1     0     1]
- [   44    10     0     0     1    91     8  2692     8    25     0     1]
- [    2     7     0     0     0     0     0     2 13112     0     0     0]
- [  224     0     0     0     1   346     2    19     5  9201     0     6]
- [    2     0     0     0     0    38     0     0     0     0   196    59]
- [   19     0     2     0     0    79     0     0     0     3     5   598]]
+[[ 5572     0    18     0     0   639     9    28     0   177     3    17]
+ [    0  4113     0     0     0     2    69     2     1     0     0     0]
+ [   21     0 11734     0     0     5    30     2     0     0     0     0]
+ [    0     0     0  9948     0     2     0     0     1     0     1     0]
+ [    1     0     0     0     9    12     0     1     0     0     0     0]
+ [  308     0     4     0     1 19158     9    27     6   206    18    61]
+ [    8   158    96     0     0    12  3110    23     0     4     0     0]
+ [   38    21     0     0     1   100    14  2668     8    28     0     2]
+ [    0     8     0     0     0     0     0     2 13112     1     0     0]
+ [  176     1     1     0     0   341     1    16     2  9260     0     6]
+ [    1     1     0     0     0    18     0     0     0     0   253    22]
+ [    4     0     0     0     0    73     0     0     0     5    43   581]]

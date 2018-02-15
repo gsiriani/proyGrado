@@ -1,0 +1,41 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: microchunking
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 0 s
+Duracion del entrenamiento: 0 hs, 0 min, 30 s
+Duracion del calculo de metricas: 0 hs, 0 min, 0 s
+
+Accuracy entrenamiento inicial: 0.041843409569
+Accuracy entrenamiento final: 0.997560561067
+
+Accuracy validacion inicial: 0.0410445490106
+Accuracy validacion final: 0.782998088386
+
+Loss entrenamiento inicial: 2.43188411659
+Loss entrenamiento final: 0.0122853316315
+
+Loss validacion inicial: 2.43187273641
+Loss validacion final: 1.11071879467
+
+Precision: [ 0.75310522  0.74000166  0.84        0.          0.          0.          0.76970228  0.69607843  0.88918537  0.77289377  0.82164872]
+Recall: [ 0.74157658  0.66166084  0.06122449  0.          0.          0.          0.52446301  0.09902371  0.87815843  0.70053121  0.8918726 ]
+Medida-F: [ 0.74729644  0.69864197  0.11413043  0.          0.          0.          0.6238467   0.17338217  0.8836375   0.73493556  0.8553217 ]
+
+Matriz de confusion:
+[[ 9398   443     2     0     0     0    24     7   115    56  2628]
+ [  620  8900     0     0     0     0    13     2   135     2  3779]
+ [   64    37    21     0     0     0    34     0    21    53   113]
+ [   10    55     0     0     0     0     6     3     2     3    91]
+ [    0     0     0     0     0     0     0     0     0     1   138]
+ [   62    16     0     0     0     0     1     2     1     0   135]
+ [   47    74     0     0     0     0   879     3    81    44   548]
+ [  122    48     0     0     0     0    60    71     7     6   403]
+ [   51   229     0     0     0     0     0     1  5665     3   502]
+ [   45    14     1     0     0     0     2     0    46  1055   343]
+ [ 2060  2211     1     0     0     0   123    13   298   142 39988]]

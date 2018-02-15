@@ -1,0 +1,47 @@
+Cargando casos de entrenamiento...
+Cargando casos de prueba...
+Compilando red...
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 11, 150)           8542050   
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1650)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 300)               495300    
+_________________________________________________________________
+activation_1 (Activation)    (None, 300)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 12)                3612      
+_________________________________________________________________
+activation_2 (Activation)    (None, 12)                0         
+=================================================================
+Total params: 9,040,962.0
+Trainable params: 9,040,962.0
+Non-trainable params: 0.0
+_________________________________________________________________
+Entrenando...
+Train on 61336 samples, validate on 82434 samples
+Epoch 1/20
+4s - loss: 0.5625 - acc: 0.8128 - val_loss: 0.3171 - val_acc: 0.8919
+Epoch 2/20
+6s - loss: 0.1758 - acc: 0.9409 - val_loss: 0.2519 - val_acc: 0.9148
+Epoch 3/20
+16s - loss: 0.0669 - acc: 0.9799 - val_loss: 0.2553 - val_acc: 0.9210
+Epoch 4/20
+5s - loss: 0.0229 - acc: 0.9947 - val_loss: 0.2540 - val_acc: 0.9289
+Epoch 5/20
+16s - loss: 0.0081 - acc: 0.9986 - val_loss: 0.2629 - val_acc: 0.9325
+Epoch 6/20
+5s - loss: 0.0034 - acc: 0.9995 - val_loss: 0.2787 - val_acc: 0.9329
+Epoch 7/20
+15s - loss: 0.0018 - acc: 0.9997 - val_loss: 0.2876 - val_acc: 0.9344
+Epoch 8/20
+4s - loss: 7.3064e-04 - acc: 1.0000 - val_loss: 0.2946 - val_acc: 0.9340
+Epoch 9/20
+4s - loss: 0.0320 - acc: 0.9898 - val_loss: 0.3320 - val_acc: 0.9265
+Epoch 10/20
+4s - loss: 0.0149 - acc: 0.9951 - val_loss: 0.3532 - val_acc: 0.9319
+Epoch 11/20
+4s - loss: 0.0038 - acc: 0.9988 - val_loss: 0.3660 - val_acc: 0.9330
+Obteniendo metricas...

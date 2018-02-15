@@ -1,0 +1,17 @@
+Inicializando microchunking
+Cargando casos de entrenamiento de microchunking
+Cargando casos de desarrollo de microchunking
+Inicializando macrochunking
+Cargando casos de entrenamiento de macrochunking
+Cargando casos de desarrollo de macrochunking
+Inicializando ner
+Cargando casos de entrenamiento de ner
+Cargando casos de desarrollo de ner
+Inicializando pos
+Cargando casos de entrenamiento de pos
+Cargando casos de desarrollo de pos
+Inicializando supertag_reducido
+Cargando casos de entrenamiento de supertag_reducido
+Cargando casos de desarrollo de supertag_reducido
+Compilando red...
+Entrenando...

@@ -1,0 +1,42 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: pos
+Modelo de red: Convolutiva
+Embedding inicial: Precalculado
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 6 s
+Duracion del entrenamiento: 0 hs, 13 min, 11 s
+Duracion del calculo de metricas: 0 hs, 0 min, 40 s
+
+Accuracy entrenamiento inicial: 0.0647124178066
+Accuracy entrenamiento final: 0.99682078758
+
+Accuracy validacion inicial: 0.0606688180935
+Accuracy validacion final: 0.93278784504
+
+Loss entrenamiento inicial: 2.55080796407
+Loss entrenamiento final: 0.00950467854636
+
+Loss validacion inicial: 2.5547673183
+Loss validacion final: 0.354297784177
+
+Precision: [ 0.79874112  0.9291527   0.97528384  0.99912664  0.          0.90545286  0.9017067   0.9375969   0.99561997  0.91324446  0.88819876  0.86148649]
+Recall: [ 0.80223699  0.96543148  0.98526557  0.99348676  0.          0.92767961  0.86928702  0.87171171  0.99704921  0.89524713  0.5070922   0.75221239]
+Medida-F: [ 0.80048524  0.94694475  0.9802493   0.99629872  0.          0.91643148  0.88520012  0.90345472  0.99633408  0.90415625  0.64559819  0.80314961]
+
+Matriz de confusion:
+[[ 4949     3    43     2     0   846    16    39     6   253     2    10]
+ [    0  3882     7     0     0     1   110     6    14     1     0     0]
+ [   23    17 11167     0     0    19    97     1     4     5     0     1]
+ [    4     7     1  9152     0    36     0     3     1     7     0     1]
+ [    1     0     0     0     0    16     0     4     0     2     0     0]
+ [  769     8    21     6     0 17535    33    31    13   454     7    25]
+ [    7   204   178     0     0    17  2853    15     0     8     0     0]
+ [   95    26    12     0     0   112    32  2419     9    69     0     1]
+ [    1    26     7     0     0     1     1     0 12502     1     0     0]
+ [  323     5     7     0     0   568    22    61     5  8495     0     3]
+ [    3     0     0     0     0    91     0     0     1     3   143    41]
+ [   21     0     7     0     0   124     0     1     2     4     9   510]]

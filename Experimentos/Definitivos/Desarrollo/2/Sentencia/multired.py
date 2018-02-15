@@ -36,7 +36,7 @@ def cargarCasos(archivo, extra=False):
 		    for linea in lector:
 		    	largo_x = largo_sentencias + inicio
 		        x.append([int(t) for t in linea[:largo_x]])
-		        y.append([int(t) for t in linea[-largo_x:]])
+		        y.append([int(t) for t in linea[largo_x:]])
 
 		x_a = [l[inicio:] for l in x]
 		x_b = [ [largo_sentencias+i-l[0] for i in range(largo_sentencias)] for l in x] # Matriz que almacenara distancias a la palabra a analizar
@@ -60,6 +60,7 @@ class Tarea:
 		self.archivo_corpus_pruebas = path_proyecto + '/corpus/Sentencia/Desarrollo/' + nombre + '_pruebas.csv'
 		self.archivo_acc = './accuracy_' + nombre + '.png'
 		self.archivo_loss = './loss_' + nombre + '.png'
+		self.archivo_best = 'mejores_pesos_' + nombre + '.hdf5'
 		self.srl = nombre == 'srl' # Variable auxiliar para distinguir la tarea de srl
 
 		print 'Cargando casos de entrenamiento de ' + nombre
@@ -82,11 +83,11 @@ class Tarea:
 
 	def evaluar(self):
 		train = self.model.evaluate({'main_input': self.x_train_a, 'aux_input': self.x_train_b, 'aux_input2': self.x_train_c}, 
-			{'softmax_layer': t.y_train}, batch_size=200, verbose=0)
+			{'softmax_layer': self.y_train}, batch_size=200, verbose=0)
 		self.history['acc'].append(train[1])
 		self.history['loss'].append(train[0])
 		test = self.model.evaluate({'main_input': self.x_test_a, 'aux_input': self.x_test_b, 'aux_input2': self.x_test_c}, 
-			{'softmax_layer': t.y_test}, batch_size=200, verbose=0)	
+			{'softmax_layer': self.y_test}, batch_size=200, verbose=0)	
 		self.history['val_acc'].append(test[1])
 		self.history['val_loss'].append(test[0])
 
@@ -133,7 +134,7 @@ class Tarea:
 
 
 
-def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
+def main(supertag = 0, cant_iteraciones = 20, precalculado = False):
 
 	archivo_embedding = path_proyecto + "/embedding/embedding_ordenado.txt"
 	archivo_lexicon = path_proyecto + "/embedding/lexicon_total.txt"
@@ -145,13 +146,10 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	unidades_ocultas_capa_2_2 = 500
 
 	# Defino las tareas a entrenar...
-	nombre_tareas = ['microchunking', 'macrochunking', 'ner', 'pos', 'srl']
-	if supertag_reducido:
-		nombre_tareas.append('supertag_reducido')
-	else:
-		nombre_tareas.append('supertag_completo')
+	supertags= ['supertag_reducido_compactado', 'supertag_reducido', 'supertag_completo_compactado', 'supertag_completo']
+	nombre_tareas = ['microchunking', 'macrochunking', 'ner', 'pos', 'srl', supertags[supertag]]
 	
-	tareas = []
+	tareas = []	
 	inicio_carga_casos = time.time()
 	for t in nombre_tareas:
 		tareas.append(Tarea(t, cant_iteraciones))
@@ -262,22 +260,35 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	for t in tareas:
 		t.evaluar()
 
+	# Cargo en una variable de control el valor de val_acc de la tarea de SuperTagging
+	mejor_acc = tareas[-1].history['val_acc'][0]
+
+	# Escribo en un archivo los pesos iniciales de las redes
+	for t in tareas:
+		t.model.save_weights(t.archivo_best)
+
 	inicio_entrenamiento = time.time()
 	for i in range(cant_iteraciones):
 		print 'Iteracion: ' + str(i+1)
 		for j in range(divisor):
 			#print_progress(j, divisor)
 			for t in tareas:
-				print t.nombre
 				in_batch = t.largo_batch*j
 				fn_batch = t.largo_batch*(j+1)
 				_ = t.model.fit({'main_input': t.x_train_a[in_batch: fn_batch], 'aux_input': t.x_train_b[in_batch: fn_batch], 'aux_input2': t.x_train_c[in_batch: fn_batch]}, 
 	                            {'softmax_layer': t.y_train[in_batch: fn_batch]}, epochs=1, batch_size=200, verbose=0)
 		
 		#print_progress(divisor, divisor)
-		print '/n'
+		print '\n'
 		for t in tareas:
 			t.evaluar()
+
+		# Actualizo pesos optimos
+		if tareas[-1].history['val_acc'][-1] > mejor_acc:
+			mejor_acc = tareas[-1].history['val_acc'][-1]
+			# Actualizo los pesos de las redes
+			for t in tareas:
+				t.model.save_weights(t.archivo_best)
 
 	duracion_entrenamiento = time.time() - inicio_entrenamiento
 
@@ -288,6 +299,7 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	inicio_metricas = time.time()
 
 	for t in tareas:
+		t.model.load_weights(t.archivo_best)
 		t.obtenerMetricas()
 
 	duracion_metricas = time.time() - inicio_metricas
@@ -325,6 +337,5 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 
 
 if __name__ == '__main__':
-	supertag_reducido = True if (sys.argv[1] is None or sys.argv[1] == 'r') else False
 	precalculado = False if (sys.argv[3] is None or sys.argv[3] == 'a') else True
-	main(supertag_reducido, int(sys.argv[2]), precalculado)
+	main(int(sys.argv[1]), int(sys.argv[2]), precalculado)

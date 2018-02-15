@@ -43,6 +43,7 @@ class Tarea:
 		self.archivo_corpus_pruebas = path_proyecto + '/corpus/Ventana/Desarrollo/' + nombre + '_pruebas.csv'
 		self.archivo_acc = './accuracy_' + nombre + '.png'
 		self.archivo_loss = './loss_' + nombre + '.png'
+		self.archivo_best = 'mejores_pesos_' + nombre + '.hdf5'
 
 		print 'Cargando casos de entrenamiento de ' + nombre
 		self.x_train, self.y_train = cargarCasos(self.archivo_corpus_entrenamiento)
@@ -202,6 +203,13 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	for t in tareas:
 		t.evaluar()
 
+	# Cargo en una variable de control el valor de val_acc de la tarea de SuperTagging
+	mejor_acc = tareas[-1].history['val_acc'][0]
+
+	# Escribo en un archivo los pesos iniciales de las redes
+	for t in tareas:
+		t.model.save_weights(t.archivo_best)
+
 	inicio_entrenamiento = time.time()
 	for i in range(cant_iteraciones):
 		print 'Iteracion: ' + str(i+1)
@@ -212,9 +220,16 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 								epochs=1, batch_size=100, verbose=0)
 
 		#print_progress(divisor, divisor)
-		print '/n'
+		print '\n'
 		for t in tareas:
 			t.evaluar()
+
+		# Actualizo pesos optimos
+		if tareas[-1].history['val_acc'][-1] > mejor_acc:
+			mejor_acc = tareas[-1].history['val_acc'][-1]
+			# Actualizo los pesos de las redes
+			for t in tareas:
+				t.model.save_weights(t.archivo_best)
 
 	duracion_entrenamiento = time.time() - inicio_entrenamiento
 
@@ -225,6 +240,7 @@ def main(supertag_reducido = True, cant_iteraciones = 20, precalculado = False):
 	inicio_metricas = time.time()
 
 	for t in tareas:
+		t.model.load_weights(t.archivo_best)
 		t.obtenerMetricas()
 
 	duracion_metricas = time.time() - inicio_metricas

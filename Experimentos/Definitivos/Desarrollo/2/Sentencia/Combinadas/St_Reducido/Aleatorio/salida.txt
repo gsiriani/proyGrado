@@ -18,25 +18,13 @@ Cargando casos de entrenamiento de supertag_reducido
 Cargando casos de desarrollo de supertag_reducido
 Compilando red...
 Entrenando...
-Iteracion: 0
-microchunking
-macrochunking
-ner
-pos
-srl
-supertag_reducido
 Iteracion: 1
-microchunking
-macrochunking
-ner
-pos
-srl
-supertag_reducido
+
+
 Iteracion: 2
-microchunking
-macrochunking
-ner
-pos
-srl
-supertag_reducido
+
+
+Iteracion: 3
+
+
 Obteniendo metricas...

@@ -35,9 +35,9 @@ ________________________________________________________________________________
 Entrenando...
 Train on 365080 samples, validate on 78577 samples
 Epoch 1/3
-167s - loss: 0.3514 - acc: 0.8851 - val_loss: 1.1219 - val_acc: 0.7098
+164s - loss: 0.3464 - acc: 0.8861 - val_loss: 1.1644 - val_acc: 0.7136
 Epoch 2/3
-165s - loss: 0.1079 - acc: 0.9643 - val_loss: 1.4537 - val_acc: 0.6953
+163s - loss: 0.1049 - acc: 0.9655 - val_loss: 1.4558 - val_acc: 0.6956
 Epoch 3/3
-164s - loss: 0.0598 - acc: 0.9802 - val_loss: 1.5571 - val_acc: 0.7030
+163s - loss: 0.0583 - acc: 0.9811 - val_loss: 1.6317 - val_acc: 0.7044
 Obteniendo metricas...

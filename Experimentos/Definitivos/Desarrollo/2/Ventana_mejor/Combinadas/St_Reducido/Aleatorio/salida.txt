@@ -1,0 +1,103 @@
+Inicializando microchunking
+Cargando casos de entrenamiento de microchunking
+Cargando casos de desarrollo de microchunking
+Inicializando macrochunking
+Cargando casos de entrenamiento de macrochunking
+Cargando casos de desarrollo de macrochunking
+Inicializando ner
+Cargando casos de entrenamiento de ner
+Cargando casos de desarrollo de ner
+Inicializando pos
+Cargando casos de entrenamiento de pos
+Cargando casos de desarrollo de pos
+Inicializando supertag_reducido
+Cargando casos de entrenamiento de supertag_reducido
+Cargando casos de desarrollo de supertag_reducido
+Compilando red...
+Entrenando...
+supertag_reducido
+{'acc': [9.3389572523067986e-05], 'loss': [6.5280878905809239], 'val_acc': [0.00018970382066315871], 'val_loss': [6.5304832425026698]}
+Mejor inicial: 0.000189703820663
+Iteracion: 1
+
+
+Val_acc: 0.885798293755
+Cambio!!!
+Iteracion: 2
+
+
+Val_acc: 0.892177086104
+Cambio!!!
+Iteracion: 3
+
+
+Val_acc: 0.888904695624
+Iteracion: 4
+
+
+Val_acc: 0.88397239667
+Iteracion: 5
+
+
+Val_acc: 0.880700005245
+Iteracion: 6
+
+
+Val_acc: 0.87756989388
+Iteracion: 7
+
+
+Val_acc: 0.875530575505
+Iteracion: 8
+
+
+Val_acc: 0.875269734408
+Iteracion: 9
+
+
+Val_acc: 0.872969574082
+Iteracion: 10
+
+
+Val_acc: 0.873396407143
+Iteracion: 11
+
+
+Val_acc: 0.872258185776
+Iteracion: 12
+
+
+Val_acc: 0.869578621414
+Iteracion: 13
+
+
+Val_acc: 0.869886886408
+Iteracion: 14
+
+
+Val_acc: 0.872115910373
+Iteracion: 15
+
+
+Val_acc: 0.871238529217
+Iteracion: 16
+
+
+Val_acc: 0.871949916819
+Iteracion: 17
+
+
+Val_acc: 0.869886887712
+Iteracion: 18
+
+
+Val_acc: 0.87225818648
+Iteracion: 19
+
+
+Val_acc: 0.871072537006
+Iteracion: 20
+
+
+Val_acc: 0.870076594077
+Obteniendo metricas...

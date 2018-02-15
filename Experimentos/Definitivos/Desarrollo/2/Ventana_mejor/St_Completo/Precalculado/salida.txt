@@ -23,17 +23,15 @@ _________________________________________________________________
 Entrenando...
 Train on 383527 samples, validate on 81826 samples
 Epoch 1/20
-36s - loss: 0.7031 - acc: 0.8306 - val_loss: 0.4834 - val_acc: 0.8788
+36s - loss: 0.6988 - acc: 0.8312 - val_loss: 0.4817 - val_acc: 0.8782
 Epoch 2/20
-36s - loss: 0.3383 - acc: 0.9091 - val_loss: 0.4347 - val_acc: 0.8913
+36s - loss: 0.3372 - acc: 0.9096 - val_loss: 0.4293 - val_acc: 0.8929
 Epoch 3/20
-35s - loss: 0.2080 - acc: 0.9412 - val_loss: 0.4476 - val_acc: 0.8926
+35s - loss: 0.2080 - acc: 0.9414 - val_loss: 0.4519 - val_acc: 0.8926
 Epoch 4/20
-35s - loss: 0.1182 - acc: 0.9661 - val_loss: 0.5113 - val_acc: 0.8910
+35s - loss: 0.1188 - acc: 0.9664 - val_loss: 0.5036 - val_acc: 0.8918
 Epoch 5/20
-36s - loss: 0.0649 - acc: 0.9826 - val_loss: 0.5858 - val_acc: 0.8900
+36s - loss: 0.0658 - acc: 0.9824 - val_loss: 0.5920 - val_acc: 0.8898
 Epoch 6/20
-36s - loss: 0.0393 - acc: 0.9903 - val_loss: 0.6757 - val_acc: 0.8889
-Epoch 7/20
-37s - loss: 0.0295 - acc: 0.9933 - val_loss: 0.7347 - val_acc: 0.8872
+37s - loss: 0.0392 - acc: 0.9906 - val_loss: 0.6778 - val_acc: 0.8866
 Obteniendo metricas...

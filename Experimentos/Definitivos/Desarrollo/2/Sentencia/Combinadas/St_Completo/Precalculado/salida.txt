@@ -13,5 +13,18 @@ Cargando casos de desarrollo de pos
 Inicializando srl
 Cargando casos de entrenamiento de srl
 Cargando casos de desarrollo de srl
-Inicializando supertag_all
-Cargando casos de entrenamiento de supertag_all
+Inicializando supertag_completo
+Cargando casos de entrenamiento de supertag_completo
+Cargando casos de desarrollo de supertag_completo
+Compilando red...
+Entrenando...
+Iteracion: 1
+
+
+Iteracion: 2
+
+
+Iteracion: 3
+
+
+Obteniendo metricas...

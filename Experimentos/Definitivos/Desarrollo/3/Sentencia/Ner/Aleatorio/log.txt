@@ -1,0 +1,39 @@
+﻿Log de ejecucion:
+-----------------
+
+Tarea: ner
+Modelo de red: Convolutiva
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Entrenamiento/Prueba: 0 hs, 0 min, 17 s
+Duracion del entrenamiento: 0 hs, 13 min, 17 s
+Duracion del calculo de metricas: 0 hs, 0 min, 15 s
+
+Accuracy entrenamiento inicial: 0.0212944831413
+Accuracy entrenamiento final: 0.996770082237
+
+Accuracy validacion inicial: 0.0171169679572
+Accuracy validacion final: 0.954465052354
+
+Loss entrenamiento inicial: 2.27206388154
+Loss entrenamiento final: 0.00967803789458
+
+Loss validacion inicial: 2.27427390426
+Loss validacion final: 0.299893300892
+
+Precision: [ 0.84237537  0.89617486  0.70971564  0.509375    0.71322034  0.71822542  0.3490099   0.42088608  0.97801817]
+Recall: [ 0.77951153  0.83248731  0.66261062  0.59057971  0.68803139  0.6093591   0.36434109  0.27593361  0.98550806]
+Medida-F: [ 0.80972516  0.86315789  0.68535469  0.54697987  0.70039947  0.65932856  0.35651075  0.33333333  0.98174883]
+
+Matriz de confusion:
+[[ 1149    13    16     6    22     3    19     2   244]
+ [   15   820     4     9     4    14     3    11   105]
+ [   17     1   599    22    91    17    16    12   129]
+ [    0    15    14   163     5    30     0     2    47]
+ [   30     0    89     1  1052    22    18     3   314]
+ [    1     9    20    27    35   599     3    13   276]
+ [   10     2     8     1    24     2   141     3   196]
+ [    6     8     6    11    13    22     9   133   274]
+ [  136    47    88    80   229   125   195   137 70520]]
