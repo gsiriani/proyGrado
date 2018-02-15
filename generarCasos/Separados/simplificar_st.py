@@ -67,18 +67,22 @@ for t in f_nuevo_dicc:
 etiquetas = {}
 
 for nombre in os.listdir(carpeta_entrada):
+	print nombre
 	archivo_entrada = open(carpeta_entrada + nombre, "r")
 	archivo_salida = open(carpeta_salida + nombre, "w")
 	for linea in archivo_entrada:
-		lista = linea.replace("\n","").split(separador)
-		oracion = lista[:largo_oracion]
-		vector_etiqueta = lista[largo_oracion:]
-		indice = encontrar_uno(vector_etiqueta)
-		vieja_etiqueta = viejo_dicc[indice]
-		nuevo_indice = encontrar_indice(vieja_etiqueta, nuevo_dicc)
-		nuevo_vector = crear_vector(nuevo_indice,len(nuevo_dicc))
-		lista_salida = oracion + nuevo_vector
-		salida = list_to_str(lista_salida, separador)
-		archivo_salida.write(salida)
+		try:
+			lista = linea.replace("\n","").split(separador)
+			oracion = lista[:largo_oracion]
+			vector_etiqueta = lista[largo_oracion:]
+			indice = encontrar_uno(vector_etiqueta)
+			vieja_etiqueta = viejo_dicc[indice]
+			nuevo_indice = encontrar_indice(vieja_etiqueta, nuevo_dicc)
+			nuevo_vector = crear_vector(nuevo_indice,len(nuevo_dicc))
+			lista_salida = oracion + nuevo_vector
+			salida = list_to_str(lista_salida, separador)
+			archivo_salida.write(salida)
+		except:
+			print linea
 	archivo_entrada.close()
 	archivo_salida.close()
