@@ -6,3 +6,9 @@ Inicializando ner
 Cargando casos de desarrollo de ner
 Inicializando pos
 Cargando casos de desarrollo de pos
+Inicializando srl
+Cargando casos de desarrollo de srl
+Inicializando supertag_reducido
+Cargando casos de desarrollo de supertag_reducido
+Compilando red...
+Obteniendo metricas...

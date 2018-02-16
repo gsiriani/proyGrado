@@ -1,0 +1,14 @@
+Inicializando microchunking
+Cargando casos de desarrollo de microchunking
+Inicializando macrochunking
+Cargando casos de desarrollo de macrochunking
+Inicializando ner
+Cargando casos de desarrollo de ner
+Inicializando pos
+Cargando casos de desarrollo de pos
+Inicializando srl
+Cargando casos de desarrollo de srl
+Inicializando supertag_completo_compactado
+Cargando casos de desarrollo de supertag_completo_compactado
+Compilando red...
+Obteniendo metricas...

@@ -1,0 +1,12 @@
+Inicializando microchunking
+Cargando casos de testing de microchunking
+Inicializando macrochunking
+Cargando casos de testing de macrochunking
+Inicializando ner
+Cargando casos de testing de ner
+Inicializando pos
+Cargando casos de testing de pos
+Inicializando supertag
+Cargando casos de testing de supertag
+Compilando red...
+Obteniendo metricas...
