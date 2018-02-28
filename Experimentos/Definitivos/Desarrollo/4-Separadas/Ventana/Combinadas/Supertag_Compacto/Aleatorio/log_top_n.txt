@@ -1,0 +1,18 @@
+﻿Log de ejecucion:
+-----------------
+
+TESTING
+Tareas: ['supertag_compacto']
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Activacion: relu
+Optimizador: adam
+
+Tiempo de carga de casos de Prueba: 0 hs, 0 min, 0 s
+
+SUPERTAG_COMPACTO
+--------
+Top 2: 0.936654945273
+Top 3: 0.957505819424
+Top 4: 0.968996087366
+Top 5: 0.975682234659

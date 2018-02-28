@@ -1,0 +1,19 @@
+﻿Log de ejecucion:
+-----------------
+
+TESTING
+Tarea: supertag
+Modelo de red: Convolutiva
+Embedding inicial: Aleatorio
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Prueba: 0 hs, 0 min, 13 s
+Duracion del calculo de metricas: 0 hs, 0 min, 18 s
+
+Accuracy
+---------
+Top 2: 0.917886178862
+Top 3: 0.93762703252
+Top 4: 0.947916666667
+Top 5: 0.954369918699

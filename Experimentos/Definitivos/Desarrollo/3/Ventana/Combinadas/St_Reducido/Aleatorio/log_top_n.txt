@@ -1,0 +1,18 @@
+﻿Log de ejecucion:
+-----------------
+
+TESTING
+Tareas: ['supertag_reducido']
+Modelo de red: Ventana
+Embedding inicial: Aleatorio
+Activacion: relu
+Optimizador: adam
+
+Tiempo de carga de casos de Prueba: 0 hs, 0 min, 2 s
+
+SUPERTAG_REDUCIDO
+--------
+Top 2: 0.942722004854
+Top 3: 0.958991629934
+Top 4: 0.967138824229
+Top 5: 0.972116289436

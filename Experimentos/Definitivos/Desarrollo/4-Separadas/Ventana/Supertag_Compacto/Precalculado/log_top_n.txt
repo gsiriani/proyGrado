@@ -1,0 +1,19 @@
+﻿Log de ejecucion:
+-----------------
+
+TESTING
+Tarea: supertag_compacto
+Modelo de red: Ventana
+Embedding inicial: Precalculado
+Optimizer: adam
+Activacion: relu
+
+Tiempo de carga de casos de Prueba: 0 hs, 0 min, 0 s
+Duracion del calculo de metricas: 0 hs, 0 min, 5 s
+
+Accuracy
+---------
+Top 2: 0.931231736912
+Top 3: 0.9524788272
+Top 4: 0.964216730226
+Top 5: 0.971670546283
